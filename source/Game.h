@@ -1,0 +1,19 @@
+#pragma once
+#include <memory>
+
+#include "ENG.h"
+#include "render/Material.h"
+
+class Game : public ENG::Application
+{
+public:
+    bool Init() override;
+    void Update(float deltaTime) override;
+    void Destroy() override;
+
+private:
+    ENG::Material              m_material;
+    std::unique_ptr<ENG::Mesh> m_mesh;
+    float                      m_offsetX = 0.0F;
+    float                      m_offsetY = 0.0F;
+};
