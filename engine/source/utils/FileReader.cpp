@@ -4,14 +4,14 @@
 namespace ENG
 {
 
-bool FileReader::exists()
+bool FileReader::Exists()
 {
     return std::filesystem::exists(m_filePath);
 }
 
-std::string FileReader::readToString()
+std::string FileReader::ReadToString()
 {
-    if (!exists()) {
+    if (!Exists()) {
         LOG_ERROR("Could not open file: %s", m_filePath.c_str());
         return "";
     }
@@ -25,9 +25,9 @@ std::string FileReader::readToString()
     return stream.str();
 }
 
-std::vector<std::string> FileReader::readLines()
+std::vector<std::string> FileReader::ReadLines()
 {
-    if (!exists()) {
+    if (!Exists()) {
         LOG_ERROR("Could not open file: %s", m_filePath.c_str());
         return {};
     }
@@ -43,9 +43,9 @@ std::vector<std::string> FileReader::readLines()
     return buf_lines;
 }
 
-std::vector<u64> FileReader::readToBytes()
+std::vector<u64> FileReader::ReadToBytes()
 {
-    if (!exists()) {
+    if (!Exists()) {
         LOG_ERROR("Could not open file: %s", m_filePath.c_str());
         return {};
     }
@@ -62,9 +62,9 @@ std::vector<u64> FileReader::readToBytes()
     return bytes;
 }
 
-u64 FileReader::getSize()
+u64 FileReader::GetSize()
 {
-    if (!exists()) {
+    if (!Exists()) {
         LOG_ERROR("Could not open file: %s", m_filePath.c_str());
         return {};
     }
@@ -76,9 +76,9 @@ u64 FileReader::getSize()
     return size;
 }
 
-std::string FileReader::getPath()
+std::string FileReader::GetPath()
 {
-    if (!exists()) {
+    if (!Exists()) {
         LOG_ERROR("Could not open file: %s", m_filePath.c_str());
         return {};
     }

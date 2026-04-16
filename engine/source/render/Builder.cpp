@@ -65,4 +65,24 @@ MeshData Builder::CreateTriangle(f32 size)
 
     return data;
 }
+
+MeshData Builder::CreateFullscreenQuad()
+{
+    MeshData data;
+    // clang-format off
+    data.vertices = {
+        -1.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F, // bottom-left
+         1.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F, // bottom-right
+         1.0F,  1.0F, 0.0F, 1.0F, 1.0F, 1.0F, // top-right
+        -1.0F,  1.0F, 0.0F, 1.0F, 1.0F, 1.0F  // top-left
+    };
+    // clang-format on
+    data.indices = {0, 1, 2, 0, 2, 3};
+    // Position
+    data.layout.elements.push_back({0, 3, GL_FLOAT, 0});
+    // Color (unused by shader effect, but keeps layout consistent)
+    data.layout.elements.push_back({1, 3, GL_FLOAT, sizeof(f32) * 3});
+    data.layout.stride = sizeof(f32) * 6;
+    return data;
+}
 }  // namespace ENG

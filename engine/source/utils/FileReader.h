@@ -23,12 +23,12 @@ public:
     {
     }
 
-    bool                     exists();
-    std::vector<std::string> readLines();
-    std::string              readToString();
-    std::vector<u64>         readToBytes();
-    u64                      getSize();
-    std::string              getPath();
+    bool                     Exists();
+    std::vector<std::string> ReadLines();
+    std::string              ReadToString();
+    std::vector<u64>         ReadToBytes();
+    u64                      GetSize();
+    std::string              GetPath();
 };
 
 }  // namespace ENG

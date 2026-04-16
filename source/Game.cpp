@@ -9,8 +9,8 @@ bool Game::Init()
 {
     ENG::FileReader vertShader("assets/shaders/lab.vert");
     ENG::FileReader fragShader("assets/shaders/lab.frag");
-    std::string     vertexShaderSource   = vertShader.readToString();
-    std::string     fragmentShaderSource = fragShader.readToString();
+    std::string     vertexShaderSource   = vertShader.ReadToString();
+    std::string     fragmentShaderSource = fragShader.ReadToString();
 
     auto &graphicsAPI   = ENG::Engine::GetInstance().GetGraphicsAPI();
     auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);

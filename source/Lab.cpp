@@ -8,23 +8,17 @@
 bool Lab::Init()
 {
     // load shaders
-    ENG::FileReader vertShader("assets/shaders/lab.vert");
-    ENG::FileReader fragShader("assets/shaders/lab.frag");
-    std::string     vertexShaderSource   = vertShader.readToString();
-    std::string     fragmentShaderSource = fragShader.readToString();
+    ENG::FileReader vertShader("assets/shaders/cool.vert");
+    ENG::FileReader fragShader("assets/shaders/green.frag");
+    std::string     vertexShaderSource   = vertShader.ReadToString();
+    std::string     fragmentShaderSource = fragShader.ReadToString();
 
-    // get graphicsAPI instance
-    auto &graphicsAPI = ENG::Engine::GetInstance().GetGraphicsAPI();
-
-    // create shader program
-    auto shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
-
+    auto &graphicsAPI   = ENG::Engine::GetInstance().GetGraphicsAPI();
+    auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
     m_material.SetShaderProgram(shaderProgram);
 
-    auto rec_data      = ENG::Builder::CreateRectangle(2.0F, 2.0F);
-    auto triangle_data = ENG::Builder::CreateTriangle(1.0F);
-
-    m_mesh = triangle_data.buildMesh();
+    auto fullscreen_data = ENG::Builder::CreateFullscreenQuad();
+    m_mesh               = fullscreen_data.buildMesh();
 
     return true;
 }
@@ -32,44 +26,60 @@ bool Lab::Init()
 void Lab::Update(ENG::f32 deltaTime)
 {
     auto &input = ENG::Engine::GetInstance().GetInputManager();
-
-    if (input.IsKeyPressed(GLFW_KEY_A)) {
-        LOG_INFO("[A] button is pressed");
-        m_offsetX -= 1.0F * deltaTime;
+    if (input.IsKeyPressed(GLFW_KEY_1)) {
+        m_timeScale = 0.25F;
+    }
+    if (input.IsKeyPressed(GLFW_KEY_2)) {
+        m_timeScale = 0.5F;
+    }
+    if (input.IsKeyPressed(GLFW_KEY_3)) {
+        m_timeScale = 1.0F;
+    }
+    if (input.IsKeyPressed(GLFW_KEY_4)) {
+        m_timeScale = 1.5F;
     }
 
-    if (input.IsKeyPressed(GLFW_KEY_D)) {
-        LOG_INFO("[D] button is pressed");
-        m_offsetX += 1.0F * deltaTime;
+    // if (input.IsKeyPressed(GLFW_KEY_A)) {
+    //     m_offsetX -= 1.0F * deltaTime;
+    // }
+    // if (input.IsKeyPressed(GLFW_KEY_D)) {
+    //     m_offsetX += 1.0F * deltaTime;
+    // }
+    // if (input.IsKeyPressed(GLFW_KEY_W)) {
+    //     m_offsetY += 1.0F * deltaTime;
+    // }
+    // if (input.IsKeyPressed(GLFW_KEY_S)) {
+    //     m_offsetY -= 1.0F * deltaTime;
+    // }
+    // if (input.IsKeyPressed(GLFW_KEY_Q)) {
+    //     m_angle += 1.0F * deltaTime;
+    // }
+    // if (input.IsKeyPressed(GLFW_KEY_E)) {
+    //     m_angle -= 1.0F * deltaTime;
+    // }
+
+    m_time += deltaTime * m_timeScale;
+    // grab window size from the current GLFW context
+    GLFWwindow *window = glfwGetCurrentContext();
+    int         w = 1, h = 1;
+    if (window) {
+        glfwGetFramebufferSize(window, &w, &h);
     }
 
-    if (input.IsKeyPressed(GLFW_KEY_W)) {
-        LOG_INFO("[W] button is pressed");
-        m_offsetY += 1.0F * deltaTime;
+    // mouse position (in window coords, Y flipped to match OpenGL)
+    double mx = 0.0, my = 0.0;
+    if (window) {
+        glfwGetCursorPos(window, &mx, &my);
+        my = (double)h - my;  // flip Y so origin is bottom-left like Shadertoy
     }
 
-    if (input.IsKeyPressed(GLFW_KEY_S)) {
-        LOG_INFO("[S] button is pressed");
-        m_offsetY -= 1.0F * deltaTime;
-    }
-
-    if (input.IsKeyPressed(GLFW_KEY_Q)) {
-        LOG_INFO("[Q] button is pressed");
-        m_angle += 1.0F * deltaTime;
-    }
-
-    if (input.IsKeyPressed(GLFW_KEY_E)) {
-        LOG_INFO("[E] button is pressed");
-        m_angle -= 1.0F * deltaTime;
-    }
-
-    m_material.SetParam("uOffset", m_offsetX, m_offsetY);
-    m_material.SetParam("uAngle", m_angle);
+    m_material.SetParam("iTime", m_time);
+    m_material.SetParam("iResolution", (ENG::f32)w, (ENG::f32)h);
+    m_material.SetParam("iMouse", (ENG::f32)mx, (ENG::f32)my, 0.0F, 0.0F);
 
     ENG::RenderCommand command;
-    command.material = &m_material;
-    command.mesh     = m_mesh.get();
-
+    command.material  = &m_material;
+    command.mesh      = m_mesh.get();
     auto &renderQueue = ENG::Engine::GetInstance().GetRenderQueue();
     renderQueue.Submit(command);
 }

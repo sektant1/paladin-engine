@@ -5,29 +5,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(Engine)
 
-set(PROJECT_SOURCE_FILES
-    source/utils/FileReader.h
-    source/utils/FileReader.cpp
-    source/Types.h
-    source/Log.h
-    source/Engine.h
-    source/Engine.cpp
-    source/Application.h
-    source/Application.cpp
-    source/input/InputManager.h
-    source/input/InputManager.cpp
-    source/graphics/ShaderProgram.h
-    source/graphics/ShaderProgram.cpp
-    source/graphics/GraphicsAPI.h
-    source/graphics/GraphicsAPI.cpp
-    source/render/Material.h
-    source/render/Material.cpp
-    source/render/Builder.h
-    source/render/Builder.cpp
-    source/render/Mesh.h
-    source/render/Mesh.cpp
-    source/render/RenderQueue.h
-    source/render/RenderQueue.cpp)
+file(GLOB_RECURSE PROJECT_SOURCE_FILES CONFIGURE_DEPENDS "source/*.cpp"
+     "source/*.h")
 
 include_directories(source)
 add_library(${PROJECT_NAME} ${PROJECT_SOURCE_FILES})

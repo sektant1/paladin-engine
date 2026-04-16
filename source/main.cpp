@@ -11,7 +11,7 @@ int main()
 
     engine.SetApplication(lab);
 
-    if (engine.Init(1280, 720)) {
+    if (engine.Init(1920, 1080)) {
         engine.Run();
     }
 
