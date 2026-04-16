@@ -40,22 +40,22 @@ void Game::Update(float deltaTime)
 
     if (input.IsKeyPressed(GLFW_KEY_A)) {
         LOG_INFO("[A] button is pressed");
-        m_offsetX -= 0.01F;
+        m_offsetX -= 0.01F * deltaTime;
     }
 
     if (input.IsKeyPressed(GLFW_KEY_D)) {
         LOG_INFO("[D] button is pressed");
-        m_offsetX += 0.01F;
+        m_offsetX += 0.01F * deltaTime;
     }
 
     if (input.IsKeyPressed(GLFW_KEY_W)) {
         LOG_INFO("[W] button is pressed");
-        m_offsetY += 0.01F;
+        m_offsetY += 0.01F * deltaTime;
     }
 
     if (input.IsKeyPressed(GLFW_KEY_S)) {
         LOG_INFO("[S] button is pressed");
-        m_offsetY -= 0.01F;
+        m_offsetY -= 0.01F * deltaTime;
     }
 
     if (input.IsKeyPressed(GLFW_KEY_Q)) {

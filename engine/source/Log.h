@@ -24,7 +24,7 @@ inline const char *shortFile(const char *file)
     // Pula até depois de "quakepg/"
     const char *ptr = std::strstr(file, "paladin-engine/");
     if (ptr != nullptr) {
-        ptr += 12;
+        ptr += 15;
     } else {
         ptr = file;
     }
@@ -55,10 +55,6 @@ enum class LogLevel : u8
     Fatal
 };
 
-// TODO(phase9): reactivate console_push when console.h exists
-// enum class ConsoleMsgLevel : u8;
-// void console_push(ConsoleMsgLevel level, const char *fmt, ...);
-
 }  // namespace ENG
 
 #define LOG_INFO(fmt, ...) \
@@ -68,7 +64,6 @@ enum class LogLevel : u8
                 ::ENG::shortFile(__FILE__), \
                 __LINE__, \
                 ##__VA_ARGS__); \
-        /* chad::console_push((chad::ConsoleMsgLevel)0, "[INFO] " fmt, ##__VA_ARGS__); */ \
     } while (0)
 
 #define LOG_WARN(fmt, ...) \
@@ -78,7 +73,6 @@ enum class LogLevel : u8
                 ::ENG::shortFile(__FILE__), \
                 __LINE__, \
                 ##__VA_ARGS__); \
-        /* chad::console_push((chad::ConsoleMsgLevel)1, "[WARN] " fmt, ##__VA_ARGS__); */ \
     } while (0)
 
 #define LOG_ERROR(fmt, ...) \
@@ -88,7 +82,6 @@ enum class LogLevel : u8
                 ::ENG::shortFile(__FILE__), \
                 __LINE__, \
                 ##__VA_ARGS__); \
-        /* chad::console_push((chad::ConsoleMsgLevel)2, "[ERROR] " fmt, ##__VA_ARGS__); */ \
     } while (0)
 
 #define LOG_FATAL(fmt, ...) \

@@ -3,6 +3,8 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <string>
+#include <vector>
 
 namespace ENG
 {
@@ -21,6 +23,8 @@ using f32 = float;
 using f64 = double;
 
 using usize = size_t;
+
+using str = std::string;
 
 }  // namespace ENG
 
