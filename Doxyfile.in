@@ -1,0 +1,12 @@
+PROJECT_NAME           = "Paladin Engine"
+PROJECT_BRIEF          = "OpenGL Game Engine"
+OUTPUT_DIRECTORY       = @CMAKE_SOURCE_DIR@/docs
+INPUT                  = @CMAKE_SOURCE_DIR@/engine/source @CMAKE_SOURCE_DIR@/source
+RECURSIVE              = YES
+FILE_PATTERNS          = *.h *.cpp
+EXTRACT_ALL            = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+HAVE_DOT               = NO
+QUIET                  = YES

@@ -1,7 +1,7 @@
 #include <chrono>
-#include <iostream>
 
 #include "Engine.h"
+#include "Log.h"
 
 #include "Application.h"
 #include "GL/glew.h"
@@ -30,10 +30,12 @@ Engine &Engine::GetInstance()
 bool Engine::Init(int width, int height)
 {
     if (!m_application) {
+        LOG_ERROR("No application set");
         return false;
     }
 
-    if (!glfwInit()) {
+    if (glfwInit() == 0) {
+        LOG_ERROR("Failed to initialize GLFW");
         return false;
     }
 
@@ -44,7 +46,7 @@ bool Engine::Init(int width, int height)
     m_window = glfwCreateWindow(width, height, "GL Game Engine", nullptr, nullptr);
 
     if (m_window == nullptr) {
-        std::cout << "Error creating window" << "\n";
+        LOG_ERROR("Error creating window");
         glfwTerminate();
         return false;
     }
@@ -53,7 +55,8 @@ bool Engine::Init(int width, int height)
 
     glfwMakeContextCurrent(m_window);
 
-    if (!glewInit() != GLEW_OK) {
+    if (glewInit() != GLEW_OK) {
+        LOG_ERROR("Failed to initialize GLEW");
         glfwTerminate();
         return false;
     }
@@ -69,7 +72,7 @@ void Engine::Run()
 
     m_lastTimePoint = std::chrono::steady_clock::now();
 
-    while (!glfwWindowShouldClose(m_window) && !m_application->NeedsToBeClosed()) {
+    while ((glfwWindowShouldClose(m_window) == 0) && !m_application->NeedsToBeClosed()) {
         glfwPollEvents();
 
         auto  now       = std::chrono::steady_clock::now();

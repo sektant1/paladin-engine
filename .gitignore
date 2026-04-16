@@ -54,6 +54,7 @@ dkms.conf
 
 .cache
 build
+docs/
 bin
 vcpkg_installed
 c++.md

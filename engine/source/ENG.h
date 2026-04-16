@@ -2,6 +2,8 @@
 
 #include "Application.h"
 #include "Engine.h"
+#include "Log.h"
+#include "Types.h"
 #include "graphics/GraphicsAPI.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/VertexLayout.h"
@@ -9,3 +11,4 @@
 #include "render/Material.h"
 #include "render/Mesh.h"
 #include "render/RenderQueue.h"
+#include "utils/FileReader.h"

@@ -1,13 +1,14 @@
 #pragma once
+
 #include <memory>
 
 #include "ENG.h"
 
-class Game : public ENG::Application
+class Lab : public ENG::Application
 {
 public:
     bool Init() override;
-    void Update(float deltaTime) override;
+    void Update(ENG::f32 deltaTime) override;
     void Destroy() override;
 
 private:

@@ -34,11 +34,11 @@ SHELL = /bin/sh
 SYSTEM ?= $(shell config/config.guess | cut -d - -f 3 | sed -e 's/[0-9\.]//g;')
 SYSTEM.SUPPORTED = $(shell test -f config/Makefile.$(SYSTEM) && echo 1)
 
-ifeq ($(SYSTEM.SUPPORTED), 1)
-include config/Makefile.$(SYSTEM)
-else
-$(error "Platform '$(SYSTEM)' not supported")
-endif
+# ifeq ($(SYSTEM.SUPPORTED), 1)
+# include config/Makefile.$(SYSTEM)
+# else
+# $(error "Platform '$(SYSTEM)' not supported")
+# endif
 
 GLEW_PREFIX ?= /usr
 GLEW_DEST ?= /usr

@@ -1,40 +1,35 @@
-#include "Game.h"
+#include "Lab.h"
 
-#include <GLFW/glfw3.h>
+#include "Engine.h"
+#include "GLFW/glfw3.h"
+#include "graphics/GraphicsAPI.h"
+#include "render/Builder.h"
 
-#include "Log.h"
-#include "utils/FileReader.h"
-
-bool Game::Init()
+bool Lab::Init()
 {
+    // load shaders
     ENG::FileReader vertShader("assets/shaders/lab.vert");
     ENG::FileReader fragShader("assets/shaders/lab.frag");
     std::string     vertexShaderSource   = vertShader.readToString();
     std::string     fragmentShaderSource = fragShader.readToString();
 
-    auto &graphicsAPI   = ENG::Engine::GetInstance().GetGraphicsAPI();
-    auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
+    // get graphicsAPI instance
+    auto &graphicsAPI = ENG::Engine::GetInstance().GetGraphicsAPI();
+
+    // create shader program
+    auto shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
+
     m_material.SetShaderProgram(shaderProgram);
 
-    std::vector<float> vertices = {0.5F,  0.5F,  0.0F, 1.0F, 0.0F, 0.0F, -0.5F, 0.5F,  0.0F, 0.0F, 1.0F, 0.0F,
-                                   -0.5f, -0.5f, 0.0F, 0.0F, 0.0F, 1.0F, 0.5F,  -0.5f, 0.0f, 1.0f, 1.0f, 0.0f};
+    auto rec_data      = ENG::Builder::CreateRectangle(2.0F, 2.0F);
+    auto triangle_data = ENG::Builder::CreateTriangle(1.0F);
 
-    std::vector<unsigned int> indices = {0, 1, 2, 0, 2, 3};
-
-    ENG::VertexLayout vertexLayout;
-
-    // Postion
-    vertexLayout.elements.push_back({0, 3, GL_FLOAT, 0});
-    // Color
-    vertexLayout.elements.push_back({1, 3, GL_FLOAT, sizeof(float) * 3});
-    vertexLayout.stride = sizeof(float) * 6;
-
-    m_mesh = std::make_unique<ENG::Mesh>(vertexLayout, vertices, indices);
+    m_mesh = triangle_data.buildMesh();
 
     return true;
 }
 
-void Game::Update(float deltaTime)
+void Lab::Update(ENG::f32 deltaTime)
 {
     auto &input = ENG::Engine::GetInstance().GetInputManager();
 
@@ -68,4 +63,4 @@ void Game::Update(float deltaTime)
     renderQueue.Submit(command);
 }
 
-void Game::Destroy() {}
+void Lab::Destroy() {}
