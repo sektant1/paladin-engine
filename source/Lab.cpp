@@ -53,7 +53,18 @@ void Lab::Update(ENG::f32 deltaTime)
         m_offsetY -= 0.01F;
     }
 
+    if (input.IsKeyPressed(GLFW_KEY_Q)) {
+        LOG_INFO("[Q] button is pressed");
+        m_angle += 1.0F * deltaTime;
+    }
+
+    if (input.IsKeyPressed(GLFW_KEY_E)) {
+        LOG_INFO("[E] button is pressed");
+        m_angle -= 1.0F * deltaTime;
+    }
+
     m_material.SetParam("uOffset", m_offsetX, m_offsetY);
+    m_material.SetParam("uAngle", m_angle);
 
     ENG::RenderCommand command;
     command.material = &m_material;

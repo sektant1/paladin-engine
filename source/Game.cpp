@@ -58,7 +58,16 @@ void Game::Update(float deltaTime)
         m_offsetY -= 0.01F;
     }
 
+    if (input.IsKeyPressed(GLFW_KEY_Q)) {
+        m_angle += 1.0F * deltaTime;
+    }
+
+    if (input.IsKeyPressed(GLFW_KEY_E)) {
+        m_angle -= 1.0F * deltaTime;
+    }
+
     m_material.SetParam("uOffset", m_offsetX, m_offsetY);
+    m_material.SetParam("uAngle", m_angle);
 
     ENG::RenderCommand command;
     command.material = &m_material;
