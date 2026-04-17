@@ -1,10 +1,13 @@
 #include "Game.h"
 
-#include "TestObject.h"
+#include "LabObject.h"
+
+// #include "TestObject.h"
 
 bool Game::Init()
 {
-    m_scene.CreateObject<TestObject>("TestObject");
+    // m_scene.CreateObject<TestObject>("TestObject");
+    m_scene.CreateObject<LabObject>("LabObject");
     return true;
 }
 

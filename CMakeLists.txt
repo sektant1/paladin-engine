@@ -5,8 +5,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(paladin-engine)
 
-set(PROJECT_SOURCE_FILES source/main.cpp source/Game.h source/Game.cpp
-                         source/TestObject.h source/TestObject.cpp)
+set(PROJECT_SOURCE_FILES
+    source/main.cpp
+    source/Game.h
+    source/Game.cpp
+    source/TestObject.h
+    source/TestObject.cpp
+    source/LabObject.h
+    source/LabObject.cpp)
 
 # Add the application
 include_directories(source)

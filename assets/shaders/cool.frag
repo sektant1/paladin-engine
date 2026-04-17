@@ -4,7 +4,6 @@ out vec4 fragColor;
 uniform vec2 iResolution;
 uniform float iTime;
 uniform vec4 iMouse;
-uniform sampler2D iChannel0;
 
 #define NUM_LAYERS 10.
 
@@ -39,7 +38,7 @@ vec3 StarLayer(vec2 uv) {
     for (int y = -1; y <= 1; y++) {
         for (int x = -1; x <= 1; x++) {
             vec2 offs = vec2(x, y);
-            float n = Hash21(id + offs);
+            vec3 hueShift = fract(n * 2345.2 + dot(uv / 420., vec2(fract(n * 7.1), fract(n * 13.3)))) * vec3(.2, .3, .9) * 123.2;
             float size = fract(n * 345.32);
             vec2 p = vec2(n, fract(n * 34.));
             float star = Star(gv - offs - p + .5, smoothstep(.8, 1., size) * .6);
