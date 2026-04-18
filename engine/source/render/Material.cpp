@@ -1,5 +1,6 @@
 #include "render/Material.h"
 
+#include "Log.h"
 #include "graphics/ShaderProgram.h"
 
 namespace ENG
@@ -38,6 +39,7 @@ void Material::SetParam(const std::string &name, float v0, float v1, float v2, f
 void Material::Bind()
 {
     if (!m_shaderProgram) {
+        LOG_WARN("Material::Bind with no shader program set");
         return;
     }
     m_shaderProgram->Bind();

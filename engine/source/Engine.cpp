@@ -1,13 +1,14 @@
 #include <chrono>
 
 #include "Engine.h"
-#include "Log.h"
 
 #include "Application.h"
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
+#include "Log.h"
 #include "graphics/GraphicsAPI.h"
 #include "render/RenderQueue.h"
+#include "scene/components/CameraComponent.h"
 
 namespace ENG
 {
@@ -29,6 +30,8 @@ Engine &Engine::GetInstance()
 
 bool Engine::Init(int width, int height)
 {
+    LOG_INFO("Engine::Init requested (%dx%d)", width, height);
+
     if (!m_application) {
         LOG_ERROR("No application set");
         return false;
@@ -38,6 +41,7 @@ bool Engine::Init(int width, int height)
         LOG_ERROR("Failed to initialize GLFW");
         return false;
     }
+    LOG_INFO("GLFW initialized");
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -50,26 +54,36 @@ bool Engine::Init(int width, int height)
         glfwTerminate();
         return false;
     }
+    LOG_INFO("Window created (%dx%d)", width, height);
 
     glfwSetKeyCallback(m_window, KeyCallback);
 
     glfwMakeContextCurrent(m_window);
 
-    if (glewInit() != GLEW_OK) {
+    if (!glewInit() != GLEW_OK) {
         LOG_ERROR("Failed to initialize GLEW");
         glfwTerminate();
         return false;
     }
+    LOG_INFO("GLEW initialized (GL %s)", reinterpret_cast<const char *>(glGetString(GL_VERSION)));
 
-    return m_application->Init();
+    bool appOk = m_application->Init();
+    if (!appOk) {
+        LOG_ERROR("Application Init failed");
+    } else {
+        LOG_INFO("Application initialized");
+    }
+    return appOk;
 }
 
 void Engine::Run()
 {
     if (!m_application) {
+        LOG_ERROR("Engine::Run called with no application");
         return;
     }
 
+    LOG_INFO("Engine main loop starting");
     m_lastTimePoint = std::chrono::steady_clock::now();
 
     while ((glfwWindowShouldClose(m_window) == 0) && !m_application->NeedsToBeClosed()) {
@@ -84,7 +98,26 @@ void Engine::Run()
         m_graphicsAPI.SetClearColor(1.0F, 1.0F, 1.0F, 1.0F);
         m_graphicsAPI.ClearBuffers();
 
-        m_renderQueue.Draw(m_graphicsAPI);
+        CameraData cameraData;
+
+        int width  = 0;
+        int height = 0;
+
+        glfwGetWindowSize(m_window, &width, &height);
+        f32 aspect = static_cast<f32>(width) / static_cast<f32>(height);
+
+        if (m_currentScene) {
+            if (auto cameraObject = m_currentScene->GetMainCamera()) {
+                // logic for matrices
+                auto cameraComponent = cameraObject->GetComponent<CameraComponent>();
+                if (cameraComponent) {
+                    cameraData.viewMatrix       = cameraComponent->GetViewMatrix();
+                    cameraData.projectionMatrix = cameraComponent->GetProjectionMatrix(aspect);
+                }
+            }
+        }
+
+        m_renderQueue.Draw(m_graphicsAPI, cameraData);
 
         glfwSwapBuffers(m_window);
     }
@@ -92,11 +125,15 @@ void Engine::Run()
 
 void Engine::Destroy()
 {
+    LOG_INFO("Engine::Destroy requested");
     if (m_application) {
         m_application->Destroy();
         m_application.reset();
         glfwTerminate();
         m_window = nullptr;
+        LOG_INFO("Engine shut down");
+    } else {
+        LOG_WARN("Engine::Destroy called with no application");
     }
 }
 
@@ -123,6 +160,16 @@ GraphicsAPI &Engine::GetGraphicsAPI()
 RenderQueue &Engine::GetRenderQueue()
 {
     return m_renderQueue;
+}
+
+void Engine::SetScene(Scene *scene)
+{
+    m_currentScene.reset(scene);
+}
+
+Scene *Engine::GetScene()
+{
+    return m_currentScene.get();
 }
 
 }  // namespace ENG

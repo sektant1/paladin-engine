@@ -1,14 +1,18 @@
 #include "graphics/ShaderProgram.h"
 
+#include "Log.h"
+
 namespace ENG
 {
 ShaderProgram::ShaderProgram(GLuint shaderProgramID)
     : m_shaderProgramID(shaderProgramID)
 {
+    LOG_INFO("ShaderProgram constructed (id=%u)", m_shaderProgramID);
 }
 
 ShaderProgram::~ShaderProgram()
 {
+    LOG_INFO("ShaderProgram destroyed (id=%u)", m_shaderProgramID);
     glDeleteProgram(m_shaderProgramID);
 }
 
@@ -23,7 +27,10 @@ GLint ShaderProgram::GetUniformLocation(const std::string &name)
     if (iter != m_uniformLocationCache.end()) {
         return iter->second;
     }
-    GLint location               = glGetUniformLocation(m_shaderProgramID, name.c_str());
+    GLint location = glGetUniformLocation(m_shaderProgramID, name.c_str());
+    if (location == -1) {
+        LOG_WARN("Uniform '%s' not found in shader program %u", name.c_str(), m_shaderProgramID);
+    }
     m_uniformLocationCache[name] = location;
     return location;
 }

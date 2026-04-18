@@ -7,20 +7,30 @@
 
 LabObject::LabObject()
 {
+    LOG_INFO("LabObject constructing");
+
     // load shaders
     ENG::FileReader vertShader("assets/shaders/cool.vert");
     ENG::FileReader fragShader("assets/shaders/green.frag");
     auto            vs = vertShader.ReadToString();
     auto            fs = fragShader.ReadToString();
 
+    if (vs.empty() || fs.empty()) {
+        LOG_ERROR("LabObject shader source is empty (vert=%zu frag=%zu bytes)", vs.size(), fs.size());
+    }
+
     auto &gfx  = ENG::Engine::GetInstance().GetGraphicsAPI();
     auto  prog = gfx.CreateShaderProgram(vs, fs);
+    if (!prog) {
+        LOG_ERROR("LabObject failed to create shader program");
+    }
 
     m_material = std::make_shared<ENG::Material>();
     m_material->SetShaderProgram(prog);
 
     auto mesh = ENG::Builder::CreateFullscreenQuad().buildMesh();
     AddComponent(new ENG::MeshComponent(m_material, mesh));
+    LOG_INFO("LabObject constructed");
 }
 
 void LabObject::Update(ENG::f32 deltaTime)

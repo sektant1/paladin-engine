@@ -1,6 +1,7 @@
 #include "render/Mesh.h"
 
 #include "Engine.h"
+#include "Log.h"
 #include "graphics/GraphicsAPI.h"
 
 namespace ENG
@@ -38,6 +39,13 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const
 
     m_vertexCount = (vertices.size() * sizeof(float)) / m_vertexLayout.stride;
     m_indexCount  = indices.size();
+
+    LOG_INFO("Mesh created (VAO=%u VBO=%u EBO=%u verts=%zu indices=%zu)",
+             m_VAO,
+             m_VBO,
+             m_EBO,
+             m_vertexCount,
+             m_indexCount);
 }
 
 Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices)
@@ -67,6 +75,8 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     m_vertexCount = (vertices.size() * sizeof(float)) / m_vertexLayout.stride;
+
+    LOG_INFO("Mesh created (VAO=%u VBO=%u verts=%zu, non-indexed)", m_VAO, m_VBO, m_vertexCount);
 }
 
 void Mesh::Bind()

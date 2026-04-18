@@ -3,6 +3,8 @@
 namespace ENG
 {
 
+usize Component::nextId = 1;
+
 GameObject *Component::GetOwner()
 {
     return m_owner;

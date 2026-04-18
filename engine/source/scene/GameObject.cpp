@@ -2,6 +2,8 @@
 
 #include <glm/ext/matrix_transform.hpp>
 
+#include "Log.h"
+
 namespace ENG
 {
 
@@ -23,8 +25,13 @@ void GameObject::Update(f32 deltaTime)
 
 void GameObject::AddComponent(Component *component)
 {
+    if (!component) {
+        LOG_ERROR("AddComponent called with nullptr on '%s'", m_name.c_str());
+        return;
+    }
     m_components.emplace_back(component);
     component->m_owner = this;
+    LOG_INFO("Component added to '%s' (total=%zu)", m_name.c_str(), m_components.size());
 }
 
 const vec3 &GameObject::GetPosition() const
@@ -106,6 +113,7 @@ bool GameObject::IsAlive() const
 
 void GameObject::MarkForDestroy()
 {
+    LOG_INFO("GameObject '%s' marked for destroy", m_name.c_str());
     m_isAlive = false;
 }
 

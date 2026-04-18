@@ -29,9 +29,13 @@ public:
         return obj;
     }
 
-    bool SetParent(GameObject *obj, GameObject *parent);
+    bool        SetParent(GameObject *obj, GameObject *parent);
+    void        SetMainCamera(GameObject *camera);
+    GameObject *GetMainCamera();
 
 private:
     std::vector<std::unique_ptr<GameObject>> m_objects;
+
+    GameObject *m_mainCamera = nullptr;
 };
 }  // namespace ENG

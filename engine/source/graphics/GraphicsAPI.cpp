@@ -1,7 +1,6 @@
-#include <iostream>
-
 #include "graphics/GraphicsAPI.h"
 
+#include "Log.h"
 #include "graphics/ShaderProgram.h"
 #include "render/Material.h"
 #include "render/Mesh.h"
@@ -22,7 +21,7 @@ std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::strin
     if (!success) {
         char infoLog[512];
         glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
-        std::cerr << "ERROR:VERTEX_SHADER_COMPILATION_FAILED: " << infoLog << std::endl;
+        LOG_ERROR("Vertex shader compilation failed: %s", infoLog);
         return nullptr;
     }
 
@@ -35,7 +34,7 @@ std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::strin
     if (!success) {
         char infoLog[512];
         glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
-        std::cerr << "ERROR:FRAGMENT_SHADER_COMPILATION_FAILED: " << infoLog << std::endl;
+        LOG_ERROR("Fragment shader compilation failed: %s", infoLog);
         return nullptr;
     }
 
@@ -48,13 +47,14 @@ std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::strin
     if (!success) {
         char infoLog[512];
         glGetProgramInfoLog(shaderProgramID, 512, nullptr, infoLog);
-        std::cerr << "ERROR:SHADER_PROGRAM_LINKING_FAILED: " << infoLog << std::endl;
+        LOG_ERROR("Shader program linking failed: %s", infoLog);
         return nullptr;
     }
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
+    LOG_INFO("Shader program created (id=%u)", shaderProgramID);
     return std::make_shared<ShaderProgram>(shaderProgramID);
 }
 
@@ -94,6 +94,8 @@ void GraphicsAPI::BindShaderProgram(ShaderProgram *shaderProgram)
 {
     if (shaderProgram) {
         shaderProgram->Bind();
+    } else {
+        LOG_WARN("BindShaderProgram called with nullptr");
     }
 }
 
@@ -101,6 +103,8 @@ void GraphicsAPI::BindMaterial(Material *material)
 {
     if (material) {
         material->Bind();
+    } else {
+        LOG_WARN("BindMaterial called with nullptr");
     }
 }
 
@@ -108,6 +112,8 @@ void GraphicsAPI::BindMesh(Mesh *mesh)
 {
     if (mesh) {
         mesh->Bind();
+    } else {
+        LOG_WARN("BindMesh called with nullptr");
     }
 }
 
@@ -115,6 +121,8 @@ void GraphicsAPI::DrawMesh(Mesh *mesh)
 {
     if (mesh) {
         mesh->Draw();
+    } else {
+        LOG_WARN("DrawMesh called with nullptr");
     }
 }
 

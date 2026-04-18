@@ -4,6 +4,7 @@
 
 #include "scene/Scene.h"
 
+#include "Log.h"
 #include "scene/GameObject.h"
 
 namespace ENG
@@ -21,8 +22,19 @@ void Scene::Update(f32 deltaTime)
     }
 }
 
+void Scene::SetMainCamera(GameObject *camera)
+{
+    m_mainCamera = camera;
+}
+
+GameObject *Scene::GetMainCamera()
+{
+    return m_mainCamera;
+}
+
 void Scene::Clear()
 {
+    LOG_INFO("Scene::Clear (%zu root objects)", m_objects.size());
     m_objects.clear();
 }
 
@@ -32,11 +44,16 @@ GameObject *Scene::CreateObject(const std::string &name, GameObject *parent)
     obj->SetName(name);
 
     SetParent(obj, parent);
+    LOG_INFO("Created GameObject '%s' (parent=%s)", name.c_str(), parent ? parent->GetName().c_str() : "<root>");
     return obj;
 }
 
 bool Scene::SetParent(GameObject *obj, GameObject *parent)
 {
+    if (!obj) {
+        LOG_ERROR("Scene::SetParent called with null object");
+        return false;
+    }
     bool result        = false;
     auto currentParent = obj->GetParent();
 
@@ -132,6 +149,12 @@ bool Scene::SetParent(GameObject *obj, GameObject *parent)
                 }
             }
         }
+    }
+
+    if (!result) {
+        LOG_WARN("Scene::SetParent failed for object '%s' (target parent=%s)",
+                 obj->GetName().c_str(),
+                 parent ? parent->GetName().c_str() : "<root>");
     }
 
     return result;
