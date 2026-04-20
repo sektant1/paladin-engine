@@ -33,9 +33,9 @@ private:
 };
 
 // clang-format off
-#define COMPONENT(ComponentClass) \ 
-public: \ 
-static usize TypeId() { return Component::StaticTypeId<ComponentClass>(); } \ 
+#define COMPONENT(ComponentClass) \
+public: \
+static usize TypeId() { return Component::StaticTypeId<ComponentClass>(); } \
 usize GetTypeId() const override {return TypeId();} \
 
 
