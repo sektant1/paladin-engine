@@ -21,46 +21,78 @@ MeshData Builder::CreateCube(f32 width, f32 height)
 
     // clang-format off
     data.vertices = {
-        halfW,  halfH, 0.5F, 1.0F, 0.0F, 0.0F, // top-right
-       -halfW,  halfH, 0.5F, 0.0F, 1.0F, 0.0F, // top-left
-       -halfW, -halfH, 0.5F, 0.0F, 0.0F, 1.0F, // bottom-left
-        halfW, -halfH, 0.5f, 1.0f, 1.0f, 0.0f,  // bottom-right
+        // Front face
+        0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
 
-        halfW,  halfH, -0.5F, 1.0F, 0.0F, 0.0F, // top-right
-       -halfW,  halfH, -0.5F, 0.0F, 1.0F, 0.0F, // top-left
-       -halfW, -halfH, -0.5F, 0.0F, 0.0F, 1.0F, // bottom-left
-        halfW, -halfH, -0.5f, 1.0f, 1.0f, 0.0f,  // bottom-right
+        // Top face 
+        0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+
+        // Right face
+        0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+
+        // Left face
+        -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+
+        // Bottom face
+        0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        -0.5f, -0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+
+        // Back face
+        -0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f
     };
     // clang-format on
 
     // clang-format off
     data.indices = {
-        // Front face
+        // front face
         0, 1, 2,
         0, 2, 3,
         // top face
-        4, 5, 1,
-        4, 1, 0,
+        4, 5, 6,
+        4, 6, 7,
         // right face
-        4, 0, 3,
-        4, 3, 7,
+        8, 9, 10,
+        8, 10, 11,
         // left face
-        1, 5, 6,
-        1, 6, 2,
+        12, 13, 14,
+        12, 14, 15,
         // bottom face
-        3, 2, 6,
-        3, 6 ,7,
+        16, 17, 18,
+        16, 18, 19,
         // back face
-        4, 7, 6,
-        4, 6, 5
+        20, 21, 22,
+        20, 22, 23
     };
 
     // clang-format off
+
     // Postion
     data.layout.elements.push_back({0, 3, GL_FLOAT, 0});
+
     // Color
     data.layout.elements.push_back({1, 3, GL_FLOAT, sizeof(f32) * 3});
-    data.layout.stride = sizeof(f32) * 6;
+
+    // UV
+    data.layout.elements.push_back({2, 2, GL_FLOAT, sizeof(f32) * 6});
+
+    data.layout.stride = sizeof(f32) * 8;
 
     return data;
 }

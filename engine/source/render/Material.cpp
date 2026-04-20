@@ -36,6 +36,11 @@ void Material::SetParam(const std::string &name, float v0, float v1, float v2, f
     m_float4Params[name] = {v0, v1, v2, v3};
 }
 
+void Material::SetParam(const std::string &name, const std::shared_ptr<Texture> &texture)
+{
+    m_textures[name] = texture;
+}
+
 void Material::Bind()
 {
     if (!m_shaderProgram) {
@@ -58,6 +63,9 @@ void Material::Bind()
     for (const auto &param : m_float4Params) {
         auto &v = param.second;
         m_shaderProgram->SetUniform(param.first, std::get<0>(v), std::get<1>(v), std::get<2>(v), std::get<3>(v));
+    }
+    for (const auto &tex : m_textures) {
+        m_shaderProgram->SetTexture(tex.first, tex.second.get());
     }
 }
 }  // namespace ENG

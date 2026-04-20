@@ -25,16 +25,15 @@ add_subdirectory(engine "${CMAKE_CURRENT_BINARY_DIR}/engine_build")
 
 include_directories(engine/source)
 
+include_directories(engine/thirdparty/stb_image)
 target_link_libraries(${PROJECT_NAME} Engine)
 
-configure_file("scripts/build_config.sh" "${CMAKE_BINARY_DIR}/build_config.sh"
-               @ONLY)
+configure_file("scripts/build_config.sh" "${CMAKE_BINARY_DIR}/build_config.sh" @ONLY)
 
 # Doxygen documentation target
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
-  configure_file("${CMAKE_SOURCE_DIR}/Doxyfile.in"
-                 "${CMAKE_BINARY_DIR}/Doxyfile" @ONLY)
+  configure_file("${CMAKE_SOURCE_DIR}/Doxyfile.in" "${CMAKE_BINARY_DIR}/Doxyfile" @ONLY)
   add_custom_target(
     engine-docs
     COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_BINARY_DIR}/Doxyfile"

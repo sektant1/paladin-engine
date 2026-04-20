@@ -4,9 +4,12 @@
 #include <tuple>
 #include <unordered_map>
 
+#include "graphics/Texture.h"
+
 namespace ENG
 {
 class ShaderProgram;
+class Texture;
 
 class Material
 {
@@ -17,6 +20,7 @@ public:
     void           SetParam(const std::string &name, float v0, float v1);
     void           SetParam(const std::string &name, float v0, float v1, float v2);
     void           SetParam(const std::string &name, float v0, float v1, float v2, float v3);
+    void           SetParam(const std::string &name, const std::shared_ptr<Texture> &texture);
     void           Bind();
     ShaderProgram *GetShaderProgram();
 
@@ -26,5 +30,6 @@ private:
     std::unordered_map<std::string, std::tuple<float, float>>               m_float2Params;
     std::unordered_map<std::string, std::tuple<float, float, float>>        m_float3Params;
     std::unordered_map<std::string, std::tuple<float, float, float, float>> m_float4Params;
+    std::unordered_map<std::string, std::shared_ptr<Texture>>               m_textures;
 };
 }  // namespace ENG

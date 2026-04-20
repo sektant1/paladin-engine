@@ -197,4 +197,9 @@ Scene *Engine::GetScene()
     return m_currentScene.get();
 }
 
+FileSystem &Engine::GetFileSystem()
+{
+    return m_fileSystem;
+}
+
 }  // namespace ENG

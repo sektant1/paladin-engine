@@ -8,6 +8,8 @@
 
 namespace ENG
 {
+class Texture;
+
 class ShaderProgram
 {
 public:
@@ -26,9 +28,11 @@ public:
     void SetUniform(const std::string &name, float v0, float v1, float v2);
     void SetUniform(const std::string &name, float v0, float v1, float v2, float v3);
     void SetUniform(const std::string &name, const mat4 &mat);
+    void SetTexture(const std::string &name, Texture *texture);
 
 private:
     std::unordered_map<std::string, GLint> m_uniformLocationCache;
-    GLuint                                 m_shaderProgramID = 0;
+    GLuint                                 m_shaderProgramID    = 0;
+    int                                    m_currentTextureUnit = 0;
 };
 }  // namespace ENG

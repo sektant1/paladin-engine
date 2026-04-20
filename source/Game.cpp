@@ -4,7 +4,6 @@
 
 #include "Engine.h"
 #include "GLFW/glfw3.h"
-#include "LabObject.h"
 #include "TestObject.h"
 #include "render/Builder.h"
 #include "render/Material.h"
@@ -13,9 +12,25 @@
 #include "scene/components/MeshComponent.h"
 #include "scene/components/PlayerControllerComponent.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 bool Game::Init()
 {
     LOG_INFO("Game::Init");
+
+    auto                         &fs   = ENG::Engine::GetInstance().GetFileSystem();
+    auto                          path = fs.GetAssetsFolder() / "textures/brick.png";
+    std::shared_ptr<ENG::Texture> texture;
+
+    int            width, height, channels;
+    unsigned char *data = stbi_load(path.string().c_str(), &width, &height, &channels, 0);
+
+    if (data) {
+        texture = std::make_shared<ENG::Texture>(width, height, channels, data);
+        LOG_INFO("Image loaded");
+        stbi_image_free(data);
+    }
 
     m_scene = new ENG::Scene();
 
@@ -52,10 +67,10 @@ bool Game::Init()
 
     auto material = std::make_shared<ENG::Material>();
     material->SetShaderProgram(shaderProgram);
+    material->SetParam("brickTexture", texture);
 
     // Build cube once -> single GPU upload. Shared across all instances below.
-    auto mesh = ENG::Builder::CreateCube(1.0F, 1.0F).buildMesh();
-
+    auto mesh    = ENG::Builder::CreateCube(1.0F, 1.0F).buildMesh();
     auto objectA = m_scene->CreateObject("ObjectA");
     objectA->AddComponent(new ENG::MeshComponent(material, mesh));
     objectA->SetPosition(ENG::vec3(0.0F, 2.0F, 0.0F));
