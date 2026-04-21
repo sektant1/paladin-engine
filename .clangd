@@ -1,0 +1,7 @@
+CompileFlags:
+  Add:
+    - -I/home/sektant1/Repos/paladin-engine/engine/thirdparty/cgltf
+    - -I/home/sektant1/Repos/paladin-engine/engine/thirdparty/stb_image
+    - -I/home/sektant1/Repos/paladin-engine/engine/thirdparty/json
+    - -I/home/sektant1/Repos/paladin-engine/engine/source
+  CompilationDatabase: build

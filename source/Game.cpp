@@ -45,7 +45,7 @@ bool Game::Init()
 
     auto objectB = m_scene->CreateObject("ObjectB");
     objectB->AddComponent(new ENG::MeshComponent(material, mesh));
-    objectB->SetPosition(ENG::vec3(0.0F, 2.0F, 2.0F));
+    objectB->SetPosition(ENG::vec3(1.0F, 2.0F, 2.0F));
     objectB->SetRotation(ENG::vec3(0.0F, 2.0F, 0.0F));
 
     // Orbit system: child parented to parent. Rotating parent -> child orbits.
@@ -68,8 +68,15 @@ bool Game::Init()
     auto objectC = m_scene->CreateObject("ObjectC");
     objectC->AddComponent(new ENG::MeshComponent(material, mesh));
     objectC->SetPosition(ENG::vec3(-2.0F, 0.0F, 0.0F));
-    objectC->SetRotation(ENG::vec3(1.0F, 0.0F, 1.0F));
+    objectC->SetRotation(ENG::vec3(1.0F, 0.0F, -5.0F));
     objectC->SetScale(ENG::vec3(1.5F, 1.5F, 1.5F));
+
+    auto suzanneMesh     = ENG::Mesh::Load("models/suzanne/Suzanne.gltf");
+    auto suzanneMaterial = ENG::Material::Load("materials/suzanne.mat");
+    auto suzanneObj      = m_scene->CreateObject("Suzanne");
+
+    suzanneObj->AddComponent(new ENG::MeshComponent(suzanneMaterial, suzanneMesh));
+    suzanneObj->SetPosition(ENG::vec3(0.0F, 0.0F, -5.0F));
 
     ENG::Engine::GetInstance().SetScene(m_scene);
 

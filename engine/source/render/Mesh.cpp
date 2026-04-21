@@ -15,9 +15,8 @@ namespace ENG
 {
 
 Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const std::vector<uint32_t> &indices)
+    : m_vertexLayout(layout)
 {
-    m_vertexLayout = layout;
-
     auto &graphicsAPI = Engine::GetInstance().GetGraphicsAPI();
 
     m_VBO = graphicsAPI.CreateVertexBuffer(vertices);
@@ -148,7 +147,7 @@ std::shared_ptr<Mesh> Mesh::Load(const str &path)
 
                         element.index = VertexElement::PositionIndex;
                         element.size  = 3;
-                    }
+                    } break;
                     case cgltf_attribute_type_color: {
                         if (attr.index != 0) {
                             continue;
@@ -222,11 +221,11 @@ std::shared_ptr<Mesh> Mesh::Load(const str &path)
         if (result) {
             break;
         }
-
-        cgltf_free(data);
-
-        return result;
     }
+
+    cgltf_free(data);
+
+    return result;
 }
 
 void Mesh::Bind()
