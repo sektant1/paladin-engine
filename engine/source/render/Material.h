@@ -4,6 +4,7 @@
 #include <tuple>
 #include <unordered_map>
 
+#include "Types.h"
 #include "graphics/Texture.h"
 
 namespace ENG
@@ -23,6 +24,8 @@ public:
     void           SetParam(const std::string &name, const std::shared_ptr<Texture> &texture);
     void           Bind();
     ShaderProgram *GetShaderProgram();
+
+    static std::shared_ptr<Material> Load(const str &path);
 
 private:
     std::shared_ptr<ShaderProgram>                                          m_shaderProgram;

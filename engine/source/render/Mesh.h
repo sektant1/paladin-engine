@@ -1,7 +1,9 @@
 #pragma once
+#include <memory>
 #include <vector>
 
 #include "GL/glew.h"
+#include "Types.h"
 #include "graphics/VertexLayout.h"
 
 namespace ENG
@@ -17,6 +19,8 @@ public:
 
     void Bind();
     void Draw();
+
+    static std::shared_ptr<Mesh> Load(const str &path);
 
 private:
     VertexLayout m_vertexLayout;

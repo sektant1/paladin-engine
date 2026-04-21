@@ -1,5 +1,10 @@
+#include <memory>
+
 #include "render/Material.h"
 
+#include <nlohmann/json.hpp>
+
+#include "Engine.h"
 #include "Log.h"
 #include "graphics/ShaderProgram.h"
 
@@ -39,6 +44,99 @@ void Material::SetParam(const std::string &name, float v0, float v1, float v2, f
 void Material::SetParam(const std::string &name, const std::shared_ptr<Texture> &texture)
 {
     m_textures[name] = texture;
+}
+
+std::shared_ptr<Material> Material::Load(const str &path)
+{
+    auto contents = Engine::GetInstance().GetFileSystem().LoadAssetFileText(path);
+    if (contents.empty()) {
+        return nullptr;
+    }
+
+    nlohmann::json            json = nlohmann::json::parse(contents);
+    std::shared_ptr<Material> result;
+
+    if (json.contains("shader")) {
+        auto shaderObj    = json["shader"];
+        str  vertexPath   = shaderObj.value("vertex", "");
+        str  fragmentPath = shaderObj.value("fragment", "");
+
+        auto &fs             = Engine::GetInstance().GetFileSystem();
+        auto  vertexSource   = fs.LoadAssetFileText(vertexPath);
+        auto  fragmentSource = fs.LoadAssetFileText(fragmentPath);
+
+        auto &graphicsAPI   = Engine::GetInstance().GetGraphicsAPI();
+        auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexSource, fragmentSource);
+
+        if (!shaderProgram) {
+            return nullptr;
+        }
+
+        result = std::make_shared<Material>();
+        result->SetShaderProgram(shaderProgram);
+    }
+
+    if (json.contains("params")) {
+        auto paramsObj = json["params"];
+
+        // Float
+        if (paramsObj.contains("float")) {
+            for (auto &param : paramsObj["float"]) {
+                str name  = param.value("name", "");
+                f32 value = param.value("value", 0.0F);
+                result->SetParam(name, value);
+            }
+        }
+
+        // Float 2
+        if (paramsObj.contains("float2")) {
+            for (auto &param : paramsObj["float2"]) {
+                str name = param.value("name", "");
+                f32 v0   = param.value("value0", 0.0F);
+                f32 v1   = param.value("value1", 0.0F);
+
+                result->SetParam(name, v0, v1);
+            }
+        }
+
+        // Float 3
+        if (paramsObj.contains("float3")) {
+            for (auto &param : paramsObj["float3"]) {
+                str name = param.value("name", "");
+                f32 v0   = param.value("value0", 0.0F);
+                f32 v1   = param.value("value1", 0.0F);
+                f32 v2   = param.value("value2", 0.0F);
+
+                result->SetParam(name, v0, v1, v2);
+            }
+        }
+
+        // Float 4
+        if (paramsObj.contains("float4")) {
+            for (auto &param : paramsObj["float4"]) {
+                str name = param.value("name", "");
+                f32 v0   = param.value("value0", 0.0F);
+                f32 v1   = param.value("value1", 0.0F);
+                f32 v2   = param.value("value2", 0.0F);
+                f32 v3   = param.value("value3", 0.0F);
+
+                result->SetParam(name, v0, v1, v2, v3);
+            }
+        }
+
+        // Textures
+        if (paramsObj.contains("textures")) {
+            for (auto &param : paramsObj["textures"]) {
+                str  name    = param.value("name", "");
+                str  texPath = param.value("path", "");
+                auto texture = Texture::Load(texPath);
+
+                result->SetParam(name, texture);
+            }
+        }
+    }
+
+    return result;
 }
 
 void Material::Bind()

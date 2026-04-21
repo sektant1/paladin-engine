@@ -4,6 +4,7 @@
 
 #include "io/FileSystem.h"
 
+#include "Log.h"
 #include "config.h"
 
 #if defined _WIN32
@@ -52,6 +53,7 @@ std::vector<char> FileSystem::LoadFile(const std::filesystem::path &path)
 {
     std::ifstream file(path, std::ios::binary | std::ios::ate);
     if (!file.is_open()) {
+        LOG_ERROR("Could not open file: %s", path.c_str());
         return {};
     }
 
@@ -61,6 +63,7 @@ std::vector<char> FileSystem::LoadFile(const std::filesystem::path &path)
     std::vector<char> buffer(size);
 
     if (!file.read(buffer.data(), size)) {
+        LOG_ERROR("Could not open file: %s", path.c_str());
         return {};
     }
 

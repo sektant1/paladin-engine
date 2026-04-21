@@ -35,24 +35,7 @@ bool Game::Init()
 
     m_scene->CreateObject<TestObject>("TestObject");
 
-    std::string vertexShaderSource   = fs.LoadAssetFileText("shaders/vertex.glsl");
-    std::string fragmentShaderSource = fs.LoadAssetFileText("shaders/fragment.glsl");
-
-    if (vertexShaderSource.empty() || fragmentShaderSource.empty()) {
-        LOG_ERROR("Game shader source is empty (vert=%zu frag=%zu bytes)",
-                  vertexShaderSource.size(),
-                  fragmentShaderSource.size());
-    }
-
-    auto &graphicsAPI   = ENG::Engine::GetInstance().GetGraphicsAPI();
-    auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
-    if (!shaderProgram) {
-        LOG_ERROR("Game failed to create shader program");
-    }
-
-    auto material = std::make_shared<ENG::Material>();
-    material->SetShaderProgram(shaderProgram);
-    material->SetParam("brickTexture", texture);
+    auto material = ENG::Material::Load("materials/brick.mat");
 
     // Build cube once -> single GPU upload. Shared across all instances below.
     auto mesh    = ENG::Builder::CreateCube(1.0F, 1.0F).buildMesh();
@@ -89,7 +72,7 @@ bool Game::Init()
     objectC->SetScale(ENG::vec3(1.5F, 1.5F, 1.5F));
 
     ENG::Engine::GetInstance().SetScene(m_scene);
-    // m_scene->CreateObject<LabObject>("LabObject");
+
     return true;
 }
 

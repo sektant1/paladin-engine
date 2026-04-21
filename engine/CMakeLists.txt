@@ -23,6 +23,13 @@ add_subdirectory(thirdparty/glfw-3.4 "${CMAKE_CURRENT_BINARY_DIR}/glfw_build")
 include_directories(thirdparty/glfw-3.4/include)
 include_directories(thirdparty/stb_image)
 
+# nlohmann/json (header-only)
+add_library(nlohmann_json INTERFACE)
+target_include_directories(nlohmann_json INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/json)
+
+add_library(cgltf INTERFACE)
+target_include_directories(cgltf INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cgltf)
+
 # Add Glew library
 set(BUILD_UTILS
     OFF
@@ -39,6 +46,8 @@ target_link_libraries(
   ${PROJECT_NAME}
   glfw
   glew_s
+  nlohmann_json
+  cgltf
   glm)
 
 add_custom_command(

@@ -51,7 +51,9 @@ GLuint Texture::GetID() const
 
 std::shared_ptr<Texture> Texture::Load(const std::string &path)
 {
-    int width, height, numChannels;
+    int width       = 0;
+    int height      = 0;
+    int numChannels = 0;
 
     auto &fs       = Engine::GetInstance().GetFileSystem();
     auto  fullPath = fs.GetAssetsFolder() / path;
@@ -64,7 +66,7 @@ std::shared_ptr<Texture> Texture::Load(const std::string &path)
 
     unsigned char *data = stbi_load(fullPath.string().c_str(), &width, &height, &numChannels, 0);
 
-    if (data) {
+    if (data != nullptr) {
         result = std::make_shared<Texture>(width, height, numChannels, data);
         LOG_INFO("Image loaded");
         stbi_image_free(data);
