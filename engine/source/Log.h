@@ -1,3 +1,21 @@
+/**
+ * @file Log.h
+ * @brief Console logging macros for all engine and game code.
+ *
+ * Four severity levels are available: INFO, WARN, ERROR, and FATAL.
+ * Every macro prefix-stamps the message with the module-relative source file
+ * path and line number so that log lines are easy to trace back to their origin.
+ *
+ * Usage example:
+ * @code
+ *   LOG_INFO("Loaded mesh with %zu vertices", vertexCount);
+ *   LOG_FATAL("Out of VRAM — cannot continue");  // calls abort()
+ * @endcode
+ *
+ * @note LOG_FATAL calls std::abort() — it is reserved for unrecoverable errors
+ *       where continuing execution would corrupt engine state.
+ */
+
 #pragma once
 
 #include <cstdio>
@@ -6,15 +24,18 @@
 
 #include "Types.h"
 
+/// @cond INTERNAL — ANSI colour escape codes used only by log macros.
 #define COLOR_RESET "\033[0m"
 #define COLOR_INFO  "\033[32m"    // green
 #define COLOR_WARN  "\033[33m"    // yellow
 #define COLOR_ERROR "\033[31m"    // red
 #define COLOR_FATAL "\033[1;31m"  // bold red
+/// @endcond
 
 namespace ENG
 {
 
+/// Internal buffer size used by shortFile() to build the shortened path string.
 constexpr i32 BUFFER_SIZE = 256;
 
 inline const char *shortFile(const char *file)
@@ -47,16 +68,27 @@ inline const char *shortFile(const char *file)
     std::snprintf(buffer, sizeof(buffer), "%s%s", module, base_name);
     return buffer;
 }
+/**
+ * @brief Severity levels for the engine logging system.
+ *
+ * The enum is used internally; game code should use the macros
+ * LOG_INFO / LOG_WARN / LOG_ERROR / LOG_FATAL directly.
+ */
 enum class LogLevel : u8
 {
-    Info,
-    Warn,
-    Error,
-    Fatal
+    Info,   ///< Informational — normal operating events.
+    Warn,   ///< Warning — non-fatal, but something may be wrong.
+    Error,  ///< Error — operation failed, engine may continue.
+    Fatal   ///< Fatal — unrecoverable; calls abort() immediately.
 };
 
 }  // namespace ENG
 
+/**
+ * @brief Log an informational message to stdout.
+ * @param fmt  printf-style format string.
+ * @param ...  Optional format arguments.
+ */
 #define LOG_INFO(fmt, ...) \
     do { \
         fprintf(stdout, \
@@ -66,6 +98,11 @@ enum class LogLevel : u8
                 ##__VA_ARGS__); \
     } while (0)
 
+/**
+ * @brief Log a warning message to stderr.
+ * @param fmt  printf-style format string.
+ * @param ...  Optional format arguments.
+ */
 #define LOG_WARN(fmt, ...) \
     do { \
         fprintf(stderr, \
@@ -75,6 +112,11 @@ enum class LogLevel : u8
                 ##__VA_ARGS__); \
     } while (0)
 
+/**
+ * @brief Log a non-fatal error to stderr.
+ * @param fmt  printf-style format string.
+ * @param ...  Optional format arguments.
+ */
 #define LOG_ERROR(fmt, ...) \
     do { \
         fprintf(stderr, \
@@ -84,6 +126,15 @@ enum class LogLevel : u8
                 ##__VA_ARGS__); \
     } while (0)
 
+/**
+ * @brief Log a fatal error to stderr and terminate the process immediately.
+ *
+ * Use this only when the engine has reached a state from which recovery is
+ * impossible (e.g. GPU context lost, required asset missing). Calls std::abort().
+ *
+ * @param fmt  printf-style format string.
+ * @param ...  Optional format arguments.
+ */
 #define LOG_FATAL(fmt, ...) \
     do { \
         fprintf(stderr, \

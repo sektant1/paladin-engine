@@ -1,12 +1,38 @@
 PROJECT_NAME           = "Paladin Engine"
 PROJECT_BRIEF          = "OpenGL Game Engine"
+PROJECT_NUMBER         = "dev"
 OUTPUT_DIRECTORY       = @CMAKE_SOURCE_DIR@/docs
-INPUT                  = @CMAKE_SOURCE_DIR@/engine/source @CMAKE_SOURCE_DIR@/source
+INPUT                  = @CMAKE_SOURCE_DIR@/engine/source @CMAKE_SOURCE_DIR@/source @CMAKE_SOURCE_DIR@/README.md
+USE_MDFILE_AS_MAINPAGE = @CMAKE_SOURCE_DIR@/README.md
 RECURSIVE              = YES
-FILE_PATTERNS          = *.h *.cpp
+FILE_PATTERNS          = *.h *.cpp *.md
+EXCLUDE_PATTERNS       = */thirdparty/* */build/* */bin/*
+
 EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_ANON_NSPACES   = YES
+
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+MARKDOWN_SUPPORT       = YES
+BUILTIN_STL_SUPPORT    = YES
+
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
 GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
 HTML_OUTPUT            = html
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_COLORSTYLE        = LIGHT
+SEARCHENGINE           = YES
+
 HAVE_DOT               = NO
 QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = NO

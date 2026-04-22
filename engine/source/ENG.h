@@ -1,3 +1,34 @@
+/**
+ * @file ENG.h
+ * @brief Umbrella include for the entire Engine library.
+ *
+ * Game / application code should include only this header.
+ * It transitively pulls in every public engine subsystem:
+ *
+ * | Include pulled in          | What it gives you                              |
+ * |----------------------------|------------------------------------------------|
+ * | Application.h              | Base class to subclass for your game loop      |
+ * | Engine.h                   | Singleton that owns all subsystems             |
+ * | Types.h                    | Primitive type aliases (f32, vec3, mat4 …)     |
+ * | Log.h                      | LOG_INFO / LOG_WARN / LOG_ERROR / LOG_FATAL    |
+ * | Common.h                   | CameraData, LightData transfer structs         |
+ * | graphics/GraphicsAPI.h     | Low-level GL wrapper (shaders, buffers)        |
+ * | graphics/ShaderProgram.h   | GLSL program + uniform upload                  |
+ * | graphics/Texture.h         | 2D texture + TextureManager cache              |
+ * | graphics/VertexLayout.h    | VBO attribute layout description               |
+ * | input/InputManager.h       | Keyboard + mouse polling                       |
+ * | io/FileReader.h            | Simple file reader utility                     |
+ * | io/FileSystem.h            | Asset-relative path resolution                 |
+ * | render/Builder.h           | MeshData factory helpers                       |
+ * | render/Material.h          | Shader + uniform container                     |
+ * | render/Mesh.h              | GPU mesh (VAO/VBO/EBO)                         |
+ * | render/RenderQueue.h       | Per-frame command submission + draw            |
+ * | scene/Component.h          | Base component + COMPONENT macro               |
+ * | scene/GameObject.h         | Scene node with transform + components         |
+ * | scene/Scene.h              | Owns the object graph, camera, lights          |
+ * | scene/components/…         | Built-in components (camera, mesh, light …)    |
+ */
+
 #pragma once
 
 #include "Application.h"
