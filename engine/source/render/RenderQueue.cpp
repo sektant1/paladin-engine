@@ -12,7 +12,8 @@ namespace ENG
 
 void RenderQueue::Submit(const RenderCommand &command)
 {
-    if (!command.material || !command.mesh) {
+    if (!command.material || !command.mesh)
+    {
         LOG_WARN("RenderQueue::Submit received incomplete command (material=%p mesh=%p)",
                  (void *)command.material,
                  (void *)command.mesh);
@@ -22,21 +23,26 @@ void RenderQueue::Submit(const RenderCommand &command)
 
 void RenderQueue::Draw(GraphicsAPI &graphicsAPI, const CameraData &cameraData, const std::vector<LightData> &lights)
 {
-    for (auto &command : m_commands) {
-        if (!command.material) {
+    for (auto &command : m_commands)
+    {
+        if (!command.material)
+        {
             LOG_ERROR("RenderQueue::Draw skipping command with null material");
             continue;
         }
         graphicsAPI.BindMaterial(command.material);
         auto *program = command.material->GetShaderProgram();
-        if (!program) {
+        if (!program)
+        {
             LOG_ERROR("RenderQueue::Draw material has no shader program");
             continue;
         }
         program->SetUniform("uModel", command.modelMatrix);
         program->SetUniform("uView", cameraData.viewMatrix);
         program->SetUniform("uProjection", cameraData.projectionMatrix);
-        if (!lights.empty()) {
+        program->SetUniform("uCameraPos", cameraData.position);
+        if (!lights.empty())
+        {
             auto &light = lights[0];
             program->SetUniform("uLight.color", light.color);
             program->SetUniform("uLight.position", light.position);

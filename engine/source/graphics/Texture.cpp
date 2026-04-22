@@ -23,7 +23,8 @@ Texture::Texture(int width, int height, int numChannels, unsigned char *data)
 
 Texture::~Texture()
 {
-    if (m_textureID > 0) {
+    if (m_textureID > 0)
+    {
         glDeleteTextures(1, &m_textureID);
     }
 }
@@ -33,7 +34,16 @@ void Texture::Init(int width, int height, int numChannels, unsigned char *data)
     glGenTextures(1, &m_textureID);
     glBindTexture(GL_TEXTURE_2D, m_textureID);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    GLint  internalFormat = GL_RGB;
+    GLenum format         = GL_RGB;
+
+    if (numChannels == 4)
+    {
+        internalFormat = GL_RGBA;
+        format         = GL_RGBA;
+    }
+
+    glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 
     glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -42,6 +52,19 @@ void Texture::Init(int width, int height, int numChannels, unsigned char *data)
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
+
+std::shared_ptr<Texture> TextureManager::GetOrLoadTexture(const std::string &path)
+{
+    auto it = m_textures.find(path);
+    if (it != m_textures.end())
+    {
+        return it->second;
+    }
+
+    auto texture     = Texture::Load(path);
+    m_textures[path] = texture;
+    return texture;
 }
 
 GLuint Texture::GetID() const
@@ -58,7 +81,8 @@ std::shared_ptr<Texture> Texture::Load(const std::string &path)
     auto &fs       = Engine::GetInstance().GetFileSystem();
     auto  fullPath = fs.GetAssetsFolder() / path;
 
-    if (!std::filesystem::exists(fullPath)) {
+    if (!std::filesystem::exists(fullPath))
+    {
         return nullptr;
     }
 
@@ -66,7 +90,8 @@ std::shared_ptr<Texture> Texture::Load(const std::string &path)
 
     unsigned char *data = stbi_load(fullPath.string().c_str(), &width, &height, &numChannels, 0);
 
-    if (data != nullptr) {
+    if (data != nullptr)
+    {
         result = std::make_shared<Texture>(width, height, numChannels, data);
         LOG_INFO("Image loaded");
         stbi_image_free(data);

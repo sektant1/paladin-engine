@@ -7,6 +7,7 @@
 
 namespace ENG
 {
+class Scene;
 
 class GameObject
 {
@@ -26,14 +27,19 @@ public:
     {
         usize typeId = Component::StaticTypeId<T>();
 
-        for (auto &component : m_components) {
-            if (component->GetTypeId() == typeId) {
+        for (auto &component : m_components)
+        {
+            if (component->GetTypeId() == typeId)
+            {
                 return static_cast<T *>(component.get());
             }
         }
 
         return nullptr;
     }
+
+    bool   SetParent(GameObject *parent);
+    Scene *GetScene();
 
     const vec3 &GetPosition() const;
     void        SetPosition(const vec3 &pos);
@@ -49,6 +55,8 @@ public:
 
     vec3 GetWorldPosition() const;
 
+    static GameObject *LoadGLTF(const std::string &path);
+
 protected:
     GameObject() = default;
 
@@ -58,6 +66,7 @@ private:
 
     str         m_name;
     GameObject *m_parent  = nullptr;
+    Scene      *m_scene   = nullptr;
     bool        m_isAlive = true;
 
     vec3 m_position = vec3(0.0f);

@@ -14,7 +14,7 @@ public:
     [[nodiscard]] mat4 GetProjectionMatrix(f32 aspect) const;
 
 private:
-    f32 m_fov       = 90.0F;
+    f32 m_fov       = 60.0F;
     f32 m_nearPlane = 0.1F;
     f32 m_farPlane  = 1000.0F;
 };

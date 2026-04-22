@@ -8,9 +8,6 @@
 #include "graphics/GraphicsAPI.h"
 #include "graphics/VertexLayout.h"
 
-#define CGLTF_IMPLEMENTATION
-#include "cgltf.h"
-
 namespace ENG
 {
 
@@ -27,7 +24,8 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const
 
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 
-    for (auto &element : m_vertexLayout.elements) {
+    for (auto &element : m_vertexLayout.elements)
+    {
         glVertexAttribPointer(element.index,
                               element.size,
                               element.type,
@@ -169,6 +167,21 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices)
     LOG_INFO("Mesh created (VAO=%u VBO=%u verts=%zu, non-indexed)", m_VAO, m_VBO, m_vertexCount);
 }
 
+
+void Mesh::Bind()
+{
+    glBindVertexArray(m_VAO);
+}
+
+void Mesh::Draw()
+{
+    if (m_indexCount > 0) {
+        glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_INT, 0);
+    } else {
+        glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
+    }
+}
+#if 0
 std::shared_ptr<Mesh> Mesh::Load(const str &path)
 {
     auto contents = Engine::GetInstance().GetFileSystem().LoadAssetFileText(path);
@@ -178,17 +191,17 @@ std::shared_ptr<Mesh> Mesh::Load(const str &path)
     }
 
     auto readFloats = [](const cgltf_accessor *acc, cgltf_size i, float *out, int n)
-    {
-        std::fill(out, out + n, 0.0f);
-        return cgltf_accessor_read_float(acc, i, out, n) == 1;
-    };
+        {
+            std::fill(out, out + n, 0.0f);
+            return cgltf_accessor_read_float(acc, i, out, n) == 1;
+        };
 
     auto readIndex = [](const cgltf_accessor *acc, cgltf_size i)
-    {
-        cgltf_uint out = 0;
-        cgltf_bool ok  = cgltf_accessor_read_uint(acc, i, &out, 1);
-        return ok ? static_cast<u32>(out) : 0;
-    };
+        {
+            cgltf_uint out = 0;
+            cgltf_bool ok  = cgltf_accessor_read_uint(acc, i, &out, 1);
+            return ok ? static_cast<u32>(out) : 0;
+        };
 
     cgltf_options options = {};
     cgltf_data   *data    = nullptr;
@@ -321,19 +334,5 @@ std::shared_ptr<Mesh> Mesh::Load(const str &path)
 
     return result;
 }
-
-void Mesh::Bind()
-{
-    glBindVertexArray(m_VAO);
-}
-
-void Mesh::Draw()
-{
-    if (m_indexCount > 0) {
-        glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_INT, 0);
-    } else {
-        glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
-    }
-}
-
+#endif
 }  // namespace ENG

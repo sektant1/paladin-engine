@@ -21,7 +21,7 @@ public:
     void Draw();
 
     static std::shared_ptr<Mesh> CreateCube();
-    static std::shared_ptr<Mesh> Load(const str &path);
+    // static std::shared_ptr<Mesh> Load(const str &path);
 
 private:
     VertexLayout m_vertexLayout;

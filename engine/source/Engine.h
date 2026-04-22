@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "graphics/GraphicsAPI.h"
+#include "graphics/Texture.h"
 #include "input/InputManager.h"
 #include "io/FileSystem.h"
 #include "render/RenderQueue.h"
@@ -29,12 +30,13 @@ public:
     void Run();
     void Destroy();
 
-    void          SetApplication(Application *app);
-    Application  *GetApplication();
-    InputManager &GetInputManager();
-    GraphicsAPI  &GetGraphicsAPI();
-    RenderQueue  &GetRenderQueue();
-    FileSystem   &GetFileSystem();
+    void            SetApplication(Application *app);
+    Application    *GetApplication();
+    InputManager   &GetInputManager();
+    GraphicsAPI    &GetGraphicsAPI();
+    RenderQueue    &GetRenderQueue();
+    FileSystem     &GetFileSystem();
+    TextureManager &GetTextureManager();
 
     void   SetScene(Scene *scene);
     Scene *GetScene();
@@ -47,6 +49,7 @@ private:
     GraphicsAPI                           m_graphicsAPI;
     RenderQueue                           m_renderQueue;
     FileSystem                            m_fileSystem;
+    TextureManager                        m_textureManager;
     std::unique_ptr<Scene>                m_currentScene;
 };
 

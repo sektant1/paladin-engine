@@ -8,6 +8,7 @@
 #include "Types.h"
 #include "render/Builder.h"
 #include "render/Material.h"
+#include "scene/GameObject.h"
 #include "scene/Scene.h"
 #include "scene/components/CameraComponent.h"
 #include "scene/components/LightComponent.h"
@@ -22,6 +23,8 @@ bool Game::Init()
     auto  texture = ENG::Texture::Load("textures/brick.png");
 
     m_scene = new ENG::Scene();
+
+    ENG::Engine::GetInstance().SetScene(m_scene);
 
     m_mainCamera = m_scene->CreateObject("Main Camera");
     m_mainCamera->AddComponent(new ENG::CameraComponent());
@@ -41,10 +44,6 @@ bool Game::Init()
 
     // Build cube once -> single GPU upload. Shared across all instances below.
     auto mesh = ENG::Mesh::CreateCube();
-
-    auto objectA = m_scene->CreateObject("ObjectA");
-    objectA->AddComponent(new ENG::MeshComponent(material, mesh));
-    objectA->SetPosition(ENG::vec3(0.0F, 2.0F, 0.0F));
 
     auto objectB = m_scene->CreateObject("ObjectB");
     objectB->AddComponent(new ENG::MeshComponent(material, mesh));
@@ -74,20 +73,26 @@ bool Game::Init()
     objectC->SetRotation(ENG::vec3(1.0F, 0.0F, -5.0F));
     objectC->SetScale(ENG::vec3(1.5F, 1.5F, 1.5F));
 
-    auto suzanneMesh     = ENG::Mesh::Load("models/suzanne/Suzanne.gltf");
-    auto suzanneMaterial = ENG::Material::Load("materials/suzanne.mat");
-    auto suzanneObj      = m_scene->CreateObject("Suzanne");
+    // auto suzanneMesh     = ENG::Mesh::Load("models/suzanne/Suzanne.gltf");
+    // auto suzanneMaterial = ENG::Material::Load("materials/suzanne.mat");
+    // auto suzanneObj      = m_scene->CreateObject("Suzanne");
 
-    suzanneObj->AddComponent(new ENG::MeshComponent(suzanneMaterial, suzanneMesh));
-    suzanneObj->SetPosition(ENG::vec3(0.0F, 0.0F, -5.0F));
+    // suzanneObj->AddComponent(new ENG::MeshComponent(suzanneMaterial, suzanneMesh));
+    // suzanneObj->SetPosition(ENG::vec3(0.0F, 0.0F, -5.0F));
+
+    auto suzanneObject = ENG::GameObject::LoadGLTF("models/suzanne/Suzanne.gltf");
+    suzanneObject->SetPosition(ENG::vec3(0.0F, 0.0F, -5.0F));
+
+    auto gun = ENG::GameObject::LoadGLTF("models/carbine/scene.gltf");
+    gun->SetParent(m_mainCamera);
+    gun->SetPosition(ENG::vec3(0.75f, -0.5f, -0.75f));
+    gun->SetScale(ENG::vec3(-1.0f, 1.0f, 1.0f));
 
     auto light          = m_scene->CreateObject("Light");
     auto lightComponent = new ENG::LightComponent();
     lightComponent->SetColor(ENG::vec3(1.0f));
     light->AddComponent(lightComponent);
     light->SetPosition(ENG::vec3(0.0f, 5.0f, 0.0f));
-
-    ENG::Engine::GetInstance().SetScene(m_scene);
 
     return true;
 }
@@ -99,7 +104,8 @@ void Game::Update(float deltaTime)
     auto &inputManager = ENG::Engine::GetInstance().GetInputManager();
 
     bool toggleKeyNow = inputManager.IsKeyPressed(GLFW_KEY_C);
-    if (toggleKeyNow && !m_toggleKeyPrev) {
+    if (toggleKeyNow && !m_toggleKeyPrev)
+    {
         auto *current = m_scene->GetMainCamera();
         m_scene->SetMainCamera(current == m_mainCamera ? m_altCamera : m_mainCamera);
     }

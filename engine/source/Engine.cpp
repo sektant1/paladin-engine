@@ -17,9 +17,11 @@ namespace ENG
 void KeyCallback(GLFWwindow *window, int key, int, int action, int)
 {
     auto &inputManager = ENG::Engine::GetInstance().GetInputManager();
-    if (action == GLFW_PRESS) {
+    if (action == GLFW_PRESS)
+    {
         inputManager.SetKeyPressed(key, true);
-    } else if (action == GLFW_RELEASE) {
+    } else if (action == GLFW_RELEASE)
+    {
         inputManager.SetKeyPressed(key, false);
     }
 }
@@ -27,9 +29,11 @@ void KeyCallback(GLFWwindow *window, int key, int, int action, int)
 void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
 {
     auto &inputManager = ENG::Engine::GetInstance().GetInputManager();
-    if (action == GLFW_PRESS) {
+    if (action == GLFW_PRESS)
+    {
         inputManager.SetMouseButtonPressed(button, true);
-    } else if (action == GLFW_RELEASE) {
+    } else if (action == GLFW_RELEASE)
+    {
         inputManager.SetMouseButtonPressed(button, false);
     }
 }
@@ -54,12 +58,14 @@ bool Engine::Init(int width, int height)
 {
     LOG_INFO("Engine::Init requested (%dx%d)", width, height);
 
-    if (!m_application) {
+    if (!m_application)
+    {
         LOG_ERROR("No application set");
         return false;
     }
 
-    if (glfwInit() == 0) {
+    if (glfwInit() == 0)
+    {
         LOG_ERROR("Failed to initialize GLFW");
         return false;
     }
@@ -71,7 +77,8 @@ bool Engine::Init(int width, int height)
 
     m_window = glfwCreateWindow(width, height, "GL Game Engine", nullptr, nullptr);
 
-    if (m_window == nullptr) {
+    if (m_window == nullptr)
+    {
         LOG_ERROR("Error creating window");
         glfwTerminate();
         return false;
@@ -84,7 +91,8 @@ bool Engine::Init(int width, int height)
 
     glfwMakeContextCurrent(m_window);
 
-    if (!glewInit() != GLEW_OK) {
+    if (!glewInit() != GLEW_OK)
+    {
         LOG_ERROR("Failed to initialize GLEW");
         glfwTerminate();
         return false;
@@ -93,9 +101,11 @@ bool Engine::Init(int width, int height)
 
     m_graphicsAPI.Init();
     bool appOk = m_application->Init();
-    if (!appOk) {
+    if (!appOk)
+    {
         LOG_ERROR("Application Init failed");
-    } else {
+    } else
+    {
         LOG_INFO("Application initialized");
     }
     return appOk;
@@ -103,7 +113,8 @@ bool Engine::Init(int width, int height)
 
 void Engine::Run()
 {
-    if (!m_application) {
+    if (!m_application)
+    {
         LOG_ERROR("Engine::Run called with no application");
         return;
     }
@@ -111,7 +122,8 @@ void Engine::Run()
     LOG_INFO("Engine main loop starting");
     m_lastTimePoint = std::chrono::steady_clock::now();
 
-    while ((glfwWindowShouldClose(m_window) == 0) && !m_application->NeedsToBeClosed()) {
+    while ((glfwWindowShouldClose(m_window) == 0) && !m_application->NeedsToBeClosed())
+    {
         glfwPollEvents();
 
         auto  now       = std::chrono::steady_clock::now();
@@ -132,13 +144,17 @@ void Engine::Run()
         glfwGetWindowSize(m_window, &width, &height);
         f32 aspect = static_cast<f32>(width) / static_cast<f32>(height);
 
-        if (m_currentScene) {
-            if (auto cameraObject = m_currentScene->GetMainCamera()) {
+        if (m_currentScene)
+        {
+            if (auto cameraObject = m_currentScene->GetMainCamera())
+            {
                 // logic for matrices
                 auto cameraComponent = cameraObject->GetComponent<CameraComponent>();
-                if (cameraComponent) {
+                if (cameraComponent)
+                {
                     cameraData.viewMatrix       = cameraComponent->GetViewMatrix();
                     cameraData.projectionMatrix = cameraComponent->GetProjectionMatrix(aspect);
+                    cameraData.position         = cameraObject->GetWorldPosition();
                 }
             }
 
@@ -156,13 +172,15 @@ void Engine::Run()
 void Engine::Destroy()
 {
     LOG_INFO("Engine::Destroy requested");
-    if (m_application) {
+    if (m_application)
+    {
         m_application->Destroy();
         m_application.reset();
         glfwTerminate();
         m_window = nullptr;
         LOG_INFO("Engine shut down");
-    } else {
+    } else
+    {
         LOG_WARN("Engine::Destroy called with no application");
     }
 }
@@ -195,6 +213,11 @@ RenderQueue &Engine::GetRenderQueue()
 void Engine::SetScene(Scene *scene)
 {
     m_currentScene.reset(scene);
+}
+
+TextureManager &Engine::GetTextureManager()
+{
+    return m_textureManager;
 }
 
 Scene *Engine::GetScene()

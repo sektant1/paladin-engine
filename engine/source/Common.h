@@ -10,6 +10,7 @@ struct CameraData
 {
     mat4 viewMatrix;
     mat4 projectionMatrix;
+    vec3 position;
 };
 
 struct LightData

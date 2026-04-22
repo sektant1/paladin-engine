@@ -25,6 +25,7 @@ public:
     {
         auto obj = new T();
         obj->SetName(name);
+        obj->m_scene = this;
         SetParent(obj, parent);
 
         return obj;
