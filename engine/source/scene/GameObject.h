@@ -41,6 +41,9 @@ public:
     bool   SetParent(GameObject *parent);
     Scene *GetScene();
 
+    void SetActive(bool active);
+    bool IsActive() const;
+
     const vec3 &GetPosition() const;
     void        SetPosition(const vec3 &pos);
 
@@ -57,6 +60,8 @@ public:
 
     static GameObject *LoadGLTF(const std::string &path);
 
+    GameObject *FindChildByName(const std::string &name);
+
 protected:
     GameObject() = default;
 
@@ -72,6 +77,7 @@ private:
     vec3 m_position = vec3(0.0f);
     quat m_rotation = quat(1.0f, 0.0f, 0.0f, 0.0f);
     vec3 m_scale    = vec3(1.0f);
+    bool m_active   = true;
 
     friend class Scene;
 };

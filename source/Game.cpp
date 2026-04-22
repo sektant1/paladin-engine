@@ -10,6 +10,7 @@
 #include "render/Material.h"
 #include "scene/GameObject.h"
 #include "scene/Scene.h"
+#include "scene/components/AnimationComponent.h"
 #include "scene/components/CameraComponent.h"
 #include "scene/components/LightComponent.h"
 #include "scene/components/MeshComponent.h"
@@ -87,6 +88,21 @@ bool Game::Init()
     gun->SetParent(m_mainCamera);
     gun->SetPosition(ENG::vec3(0.75f, -0.5f, -0.75f));
     gun->SetScale(ENG::vec3(-1.0f, 1.0f, 1.0f));
+
+    if (auto anim = gun->GetComponent<ENG::AnimationComponent>())
+    {
+        if (auto bullet = gun->FindChildByName("bullet_33"))
+        {
+            bullet->SetActive(false);
+        }
+
+        if (auto fire = gun->FindChildByName("BOOM_35"))
+        {
+            fire->SetActive(false);
+        }
+
+        anim->Play("shoot", false);
+    }
 
     auto light          = m_scene->CreateObject("Light");
     auto lightComponent = new ENG::LightComponent();

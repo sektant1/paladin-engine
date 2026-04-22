@@ -23,7 +23,7 @@ void main()
     // diffuse
     vec3 lightDir = normalize(uLight.position - vFragPos);
     float diff = max(dot(normal, lightDir), 0.0);
-    vec3 ambient = 0.1 * uLight.color;
+    vec3 ambient = 0.2 * uLight.color;
     vec3 diffuse = diff * uLight.color;
 
     // specular
