@@ -1,5 +1,6 @@
 /**
  * @file VertexLayout.h
+ * @ingroup coa_graphics
  * @brief Describes the memory layout of a single vertex in a VBO.
  *
  * A VertexLayout is a list of VertexElements — each element maps one
@@ -26,7 +27,7 @@
 
 #include <GL/glew.h>
 
-namespace ENG
+namespace COA
 {
 
 /**
@@ -67,4 +68,4 @@ struct VertexLayout
     uint32_t                   stride = 0;   ///< Total byte size of one vertex.
 };
 
-}  // namespace ENG
+}  // namespace COA

@@ -20,7 +20,7 @@
 #define CGLTF_IMPLEMENTATION
 #include "cgltf.h"
 
-namespace ENG
+namespace COA
 {
 
 auto ReadScalar = [](cgltf_accessor *acc, cgltf_size index)
@@ -590,4 +590,4 @@ GameObject *GameObject::FindChildByName(const std::string &name)
     return nullptr;
 }
 
-}  // namespace ENG
+}  // namespace COA

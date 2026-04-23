@@ -1,5 +1,6 @@
 /**
  * @file Log.h
+ * @ingroup coa_types
  * @brief Console logging macros for all engine and game code.
  *
  * Four severity levels are available: INFO, WARN, ERROR, and FATAL.
@@ -32,7 +33,7 @@
 #define COLOR_FATAL "\033[1;31m"  // bold red
 /// @endcond
 
-namespace ENG
+namespace COA
 {
 
 /// Internal buffer size used by shortFile() to build the shortened path string.
@@ -43,7 +44,7 @@ inline const char *shortFile(const char *file)
     static char buffer[BUFFER_SIZE];
 
     // Pula até depois de "quakepg/"
-    const char *ptr = std::strstr(file, "paladin-engine/");
+    const char *ptr = std::strstr(file, "coagula-engine/");
     if (ptr != nullptr) {
         ptr += 15;
     } else {
@@ -82,7 +83,7 @@ enum class LogLevel : u8
     Fatal   ///< Fatal — unrecoverable; calls abort() immediately.
 };
 
-}  // namespace ENG
+}  // namespace COA
 
 /**
  * @brief Log an informational message to stdout.
@@ -93,7 +94,7 @@ enum class LogLevel : u8
     do { \
         fprintf(stdout, \
                 COLOR_INFO "[INFO] %s:%d: " fmt COLOR_RESET "\n", \
-                ::ENG::shortFile(__FILE__), \
+                ::COA::shortFile(__FILE__), \
                 __LINE__, \
                 ##__VA_ARGS__); \
     } while (0)
@@ -107,7 +108,7 @@ enum class LogLevel : u8
     do { \
         fprintf(stderr, \
                 COLOR_WARN "[WARN] %s:%d: " fmt COLOR_RESET "\n", \
-                ::ENG::shortFile(__FILE__), \
+                ::COA::shortFile(__FILE__), \
                 __LINE__, \
                 ##__VA_ARGS__); \
     } while (0)
@@ -121,7 +122,7 @@ enum class LogLevel : u8
     do { \
         fprintf(stderr, \
                 COLOR_ERROR "[ERROR] %s:%d: " fmt COLOR_RESET "\n", \
-                ::ENG::shortFile(__FILE__), \
+                ::COA::shortFile(__FILE__), \
                 __LINE__, \
                 ##__VA_ARGS__); \
     } while (0)
@@ -139,7 +140,7 @@ enum class LogLevel : u8
     do { \
         fprintf(stderr, \
                 COLOR_FATAL "[FATAL] %s:%d: " fmt COLOR_RESET "\n", \
-                ::ENG::shortFile(__FILE__), \
+                ::COA::shortFile(__FILE__), \
                 __LINE__, \
                 ##__VA_ARGS__); \
         abort(); \

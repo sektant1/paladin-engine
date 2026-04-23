@@ -2,7 +2,7 @@
 
 #include "scene/GameObject.h"
 
-namespace ENG
+namespace COA
 {
 void AnimationComponent::Update(float deltaTime)
 {
@@ -210,4 +210,4 @@ glm::quat AnimationComponent::Interpolate(const std::vector<KeyFrameQuat> &keys,
 
     return keys.back().value;
 }
-}  // namespace ENG
+}  // namespace COA

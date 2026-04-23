@@ -1,11 +1,33 @@
+/**
+ * @file InputManager.h
+ * @ingroup coa_input
+ * @brief Keyboard and mouse state cache updated each frame by the engine.
+ *
+ * Engine::Run() feeds GLFW callbacks into InputManager; game code reads state
+ * via IsKeyPressed() / IsMouseButtonPressed() and mouse-position deltas.
+ *
+ * Keys are indexed by GLFW key codes (GLFW_KEY_*). Mouse buttons are indexed
+ * by GLFW mouse-button codes (GLFW_MOUSE_BUTTON_*). The manager is not
+ * instantiated directly — access it through Engine::GetInputManager().
+ *
+ * @see Engine::GetInputManager
+ */
+
 #pragma once
 #include <array>
 
 #include "Types.h"
 
-namespace ENG
+namespace COA
 {
 
+/**
+ * @brief Stores per-frame keyboard and mouse input state.
+ *
+ * Owned by the Engine singleton. Game code reads state; only the Engine writes
+ * state (it is a friend). Arrays are sized for 512 keys and 16 mouse buttons,
+ * matching GLFW's key-code range.
+ */
 class InputManager
 {
 public:
@@ -16,25 +38,69 @@ public:
     InputManager &operator=(const InputManager &) = delete;
     InputManager &operator=(InputManager &&)      = delete;
 
+    /**
+     * @brief Record a key press or release event.
+     * @param key     GLFW key code (0–511). Out-of-range values are ignored with a warning.
+     * @param pressed True when pressed, false when released.
+     */
     void SetKeyPressed(int key, bool pressed);
+
+    /**
+     * @brief Query whether a key is currently held down.
+     * @param key GLFW key code (e.g. GLFW_KEY_W).
+     * @return True if the key is pressed.
+     */
     bool IsKeyPressed(int key);
 
+    /**
+     * @brief Record a mouse-button press or release event.
+     * @param button  GLFW mouse-button code (0–15).
+     * @param pressed True when pressed, false when released.
+     */
     void SetMouseButtonPressed(int button, bool pressed);
+
+    /**
+     * @brief Query whether a mouse button is currently held down.
+     * @param button GLFW mouse-button code (e.g. GLFW_MOUSE_BUTTON_LEFT).
+     * @return True if the button is pressed.
+     */
     bool IsMouseButtonPressed(int button);
 
-    void                     SetMousePositionOld(const vec2 &pos);
+    /**
+     * @brief Store the cursor position from the previous frame.
+     * @param pos Screen-space cursor coordinates.
+     */
+    void SetMousePositionOld(const vec2 &pos);
+
+    /**
+     * @brief Retrieve the cursor position from the previous frame.
+     * @return Screen-space cursor coordinates.
+     */
     [[nodiscard]] const vec2 GetMousePositionOld() const;
 
-    void                     SetMousePositionCurrent(const vec2 &pos);
+    /**
+     * @brief Store the cursor position for the current frame.
+     * @param pos Screen-space cursor coordinates.
+     */
+    void SetMousePositionCurrent(const vec2 &pos);
+
+    /**
+     * @brief Retrieve the cursor position for the current frame.
+     *
+     * Subtract GetMousePositionOld() to get a per-frame delta suitable for
+     * camera rotation.
+     *
+     * @return Screen-space cursor coordinates.
+     */
     [[nodiscard]] const vec2 GetMousePositionCurrent() const;
 
 private:
-    std::array<bool, 512> m_keys                 = {false};
-    std::array<bool, 16>  m_mouseKeys            = {false};
-    vec2                  m_mousePositionOld     = vec2(0.0F);
-    vec2                  m_mousePositionCurrent = vec2(0.0F);
+    std::array<bool, 512> m_keys                 = {false};  ///< Pressed state for each GLFW key code.
+    std::array<bool, 16>  m_mouseKeys            = {false};  ///< Pressed state for each GLFW mouse button.
+    vec2                  m_mousePositionOld     = vec2(0.0F);  ///< Cursor position at end of previous frame.
+    vec2                  m_mousePositionCurrent = vec2(0.0F);  ///< Cursor position at end of current frame.
 
     friend class Engine;
 };
 
-}  // namespace ENG
+}  // namespace COA

@@ -8,7 +8,7 @@
 #include "Log.h"
 #include "graphics/ShaderProgram.h"
 
-namespace ENG
+namespace COA
 {
 
 ShaderProgram *Material::GetShaderProgram()
@@ -166,4 +166,4 @@ void Material::Bind()
         m_shaderProgram->SetTexture(tex.first, tex.second.get());
     }
 }
-}  // namespace ENG
+}  // namespace COA

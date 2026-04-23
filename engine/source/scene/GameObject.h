@@ -1,5 +1,6 @@
 /**
  * @file GameObject.h
+ * @ingroup coa_scene
  * @brief Scene node with a 3D transform and an attachable component list.
  *
  * ## Scene graph overview
@@ -35,7 +36,7 @@
 #include "Types.h"
 #include "scene/Component.h"
 
-namespace ENG
+namespace COA
 {
 class Scene;
 
@@ -176,4 +177,4 @@ private:
     friend class Scene;
 };
 
-}  // namespace ENG
+}  // namespace COA

@@ -1,5 +1,6 @@
 /**
  * @file Common.h
+ * @ingroup coa_types
  * @brief Lightweight data-transfer structs shared across subsystems.
  *
  * These plain structs carry per-frame camera and light state from the Scene
@@ -18,7 +19,7 @@
 #include "Types.h"
 #include "render/Material.h"
 
-namespace ENG
+namespace COA
 {
 
 /**
@@ -46,4 +47,4 @@ struct LightData
     vec3 position;  ///< World-space origin of the light source.
 };
 
-}  // namespace ENG
+}  // namespace COA

@@ -1,5 +1,5 @@
 /**
- * @file ENG.h
+ * @file COA.h
  * @brief Umbrella include for the entire Engine library.
  *
  * Game / application code should include only this header.

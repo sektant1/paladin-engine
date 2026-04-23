@@ -2,7 +2,7 @@
 
 #include "Log.h"
 
-namespace ENG
+namespace COA
 {
 
 void InputManager::SetKeyPressed(int key, bool pressed)
@@ -61,4 +61,4 @@ const vec2 InputManager::GetMousePositionCurrent() const
     return m_mousePositionCurrent;
 }
 
-}  // namespace ENG
+}  // namespace COA

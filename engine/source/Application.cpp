@@ -1,6 +1,6 @@
 #include "Application.h"
 
-namespace ENG
+namespace COA
 {
 
 void Application::SetNeedsToBeClosed(bool value)
@@ -13,4 +13,4 @@ bool Application::NeedsToBeClosed() const
     return m_needsToBeClosed;
 }
 
-}  // namespace ENG
+}  // namespace COA

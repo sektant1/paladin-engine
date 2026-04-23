@@ -12,11 +12,11 @@
 #include "render/RenderQueue.h"
 #include "scene/components/CameraComponent.h"
 
-namespace ENG
+namespace COA
 {
 void KeyCallback(GLFWwindow *window, int key, int, int action, int)
 {
-    auto &inputManager = ENG::Engine::GetInstance().GetInputManager();
+    auto &inputManager = COA::Engine::GetInstance().GetInputManager();
     if (action == GLFW_PRESS)
     {
         inputManager.SetKeyPressed(key, true);
@@ -28,7 +28,7 @@ void KeyCallback(GLFWwindow *window, int key, int, int action, int)
 
 void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
 {
-    auto &inputManager = ENG::Engine::GetInstance().GetInputManager();
+    auto &inputManager = COA::Engine::GetInstance().GetInputManager();
     if (action == GLFW_PRESS)
     {
         inputManager.SetMouseButtonPressed(button, true);
@@ -40,7 +40,7 @@ void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
 
 void CursorPositionCallback(GLFWwindow *window, f64 xpos, f64 ypos)
 {
-    auto &inputManager = ENG::Engine::GetInstance().GetInputManager();
+    auto &inputManager = COA::Engine::GetInstance().GetInputManager();
 
     inputManager.SetMousePositionOld(inputManager.GetMousePositionCurrent());
 
@@ -92,12 +92,20 @@ bool Engine::Init(int width, int height)
     glfwMakeContextCurrent(m_window);
 
     glewExperimental = GL_TRUE;
-    if (glewInit() != GLEW_OK)
+    GLenum glewStatus = glewInit();
+#ifdef GLEW_ERROR_NO_GLX_DISPLAY
+    if (glewStatus == GLEW_ERROR_NO_GLX_DISPLAY)
     {
-        LOG_ERROR("Failed to initialize GLEW");
+        glewStatus = GLEW_OK;
+    }
+#endif
+    if (glewStatus != GLEW_OK)
+    {
+        LOG_ERROR("Failed to initialize GLEW: %s", reinterpret_cast<const char *>(glewGetErrorString(glewStatus)));
         glfwTerminate();
         return false;
     }
+    while (glGetError() != GL_NO_ERROR) {}
     LOG_INFO("GLEW initialized (GL %s)", reinterpret_cast<const char *>(glGetString(GL_VERSION)));
 
     m_graphicsAPI.Init();
@@ -231,4 +239,4 @@ FileSystem &Engine::GetFileSystem()
     return m_fileSystem;
 }
 
-}  // namespace ENG
+}  // namespace COA

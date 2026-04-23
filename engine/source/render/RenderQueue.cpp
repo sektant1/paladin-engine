@@ -7,7 +7,7 @@
 #include "render/Material.h"
 #include "render/Mesh.h"
 
-namespace ENG
+namespace COA
 {
 
 void RenderQueue::Submit(const RenderCommand &command)
@@ -55,4 +55,4 @@ void RenderQueue::Draw(GraphicsAPI &graphicsAPI, const CameraData &cameraData, c
     m_commands.clear();
 }
 
-}  // namespace ENG
+}  // namespace COA

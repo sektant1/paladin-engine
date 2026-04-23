@@ -10,7 +10,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-namespace ENG
+namespace COA
 {
 
 Texture::Texture(int width, int height, int numChannels, unsigned char *data)
@@ -100,4 +100,4 @@ std::shared_ptr<Texture> Texture::Load(const std::string &path)
     return result;
 }
 
-}  // namespace ENG
+}  // namespace COA

@@ -1,5 +1,6 @@
 /**
  * @file CameraComponent.h
+ * @ingroup coa_components
  * @brief Perspective camera that drives the scene's view and projection matrices.
  *
  * Attach this component to a GameObject and call Scene::SetMainCamera() on
@@ -18,7 +19,7 @@
 #include "Types.h"
 #include "scene/Component.h"
 
-namespace ENG
+namespace COA
 {
 
 /**
@@ -61,4 +62,4 @@ private:
     f32 m_farPlane  = 1000.0F;  ///< Distance to the far clip plane.
 };
 
-}  // namespace ENG
+}  // namespace COA

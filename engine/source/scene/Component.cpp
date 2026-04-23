@@ -1,6 +1,6 @@
 #include "scene/Component.h"
 
-namespace ENG
+namespace COA
 {
 
 usize Component::nextId = 1;
@@ -10,4 +10,4 @@ GameObject *Component::GetOwner()
     return m_owner;
 }
 
-}  // namespace ENG
+}  // namespace COA

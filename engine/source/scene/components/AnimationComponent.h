@@ -1,5 +1,6 @@
 /**
  * @file AnimationComponent.h
+ * @ingroup coa_components
  * @brief Skeletal / transform animation system driven by GLTF keyframe data.
  *
  * ## Data model
@@ -42,7 +43,7 @@
 
 #include "scene/Component.h"
 
-namespace ENG
+namespace COA
 {
 
 /**
@@ -166,4 +167,4 @@ private:
     std::unordered_map<GameObject *, std::unique_ptr<ObjectBinding>> m_bindings; ///< Track-to-object bindings built at play time.
 };
 
-}  // namespace ENG
+}  // namespace COA

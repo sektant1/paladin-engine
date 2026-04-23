@@ -20,76 +20,76 @@ bool Game::Init()
 {
     LOG_INFO("Game::Init");
 
-    auto &fs      = ENG::Engine::GetInstance().GetFileSystem();
-    auto  texture = ENG::Texture::Load("textures/brick.png");
+    auto &fs      = COA::Engine::GetInstance().GetFileSystem();
+    auto  texture = COA::Texture::Load("textures/brick.png");
 
-    m_scene = new ENG::Scene();
+    m_scene = new COA::Scene();
 
-    ENG::Engine::GetInstance().SetScene(m_scene);
+    COA::Engine::GetInstance().SetScene(m_scene);
 
     m_mainCamera = m_scene->CreateObject("Main Camera");
-    m_mainCamera->AddComponent(new ENG::CameraComponent());
-    m_mainCamera->SetPosition(ENG::vec3(0.0F, 0.0F, 2.0F));
-    m_mainCamera->AddComponent(new ENG::PlayerControllerComponent());
+    m_mainCamera->AddComponent(new COA::CameraComponent());
+    m_mainCamera->SetPosition(COA::vec3(0.0F, 0.0F, 2.0F));
+    m_mainCamera->AddComponent(new COA::PlayerControllerComponent());
 
     m_altCamera = m_scene->CreateObject("Alt Camera");
-    m_altCamera->AddComponent(new ENG::CameraComponent());
-    m_altCamera->SetPosition(ENG::vec3(4.0F, 2.0F, 4.0F));
-    m_altCamera->AddComponent(new ENG::PlayerControllerComponent());
+    m_altCamera->AddComponent(new COA::CameraComponent());
+    m_altCamera->SetPosition(COA::vec3(4.0F, 2.0F, 4.0F));
+    m_altCamera->AddComponent(new COA::PlayerControllerComponent());
 
     m_scene->SetMainCamera(m_mainCamera);
 
     m_scene->CreateObject<TestObject>("TestObject");
 
-    auto material = ENG::Material::Load("materials/brick.mat");
+    auto material = COA::Material::Load("materials/brick.mat");
 
     // Build cube once -> single GPU upload. Shared across all instances below.
-    auto mesh = ENG::Mesh::CreateCube();
+    auto mesh = COA::Mesh::CreateCube();
 
     auto objectB = m_scene->CreateObject("ObjectB");
-    objectB->AddComponent(new ENG::MeshComponent(material, mesh));
-    objectB->SetPosition(ENG::vec3(1.0F, 2.0F, 2.0F));
-    objectB->SetRotation(ENG::vec3(0.0F, 2.0F, 0.0F));
+    objectB->AddComponent(new COA::MeshComponent(material, mesh));
+    objectB->SetPosition(COA::vec3(1.0F, 2.0F, 2.0F));
+    objectB->SetRotation(COA::vec3(0.0F, 2.0F, 0.0F));
 
     // Orbit system: child parented to parent. Rotating parent -> child orbits.
     m_orbitParent = m_scene->CreateObject("OrbitParent");
-    m_orbitParent->AddComponent(new ENG::MeshComponent(material, mesh));
-    m_orbitParent->SetPosition(ENG::vec3(3.0F, 0.0F, -3.0F));
-    m_orbitParent->SetScale(ENG::vec3(1.0F));
+    m_orbitParent->AddComponent(new COA::MeshComponent(material, mesh));
+    m_orbitParent->SetPosition(COA::vec3(3.0F, 0.0F, -3.0F));
+    m_orbitParent->SetScale(COA::vec3(1.0F));
 
     auto moon = m_scene->CreateObject("Moon", m_orbitParent);
-    moon->AddComponent(new ENG::MeshComponent(material, mesh));
-    moon->SetPosition(ENG::vec3(2.5F, 0.0F, 0.0F));  // orbit radius in parent-local space
-    moon->SetScale(ENG::vec3(0.3F));
+    moon->AddComponent(new COA::MeshComponent(material, mesh));
+    moon->SetPosition(COA::vec3(2.5F, 0.0F, 0.0F));  // orbit radius in parent-local space
+    moon->SetScale(COA::vec3(0.3F));
 
     // Planet: slow self-rotation on tilted axis -> continuous quat accumulation.
     m_planet = m_scene->CreateObject("Planet");
-    m_planet->AddComponent(new ENG::MeshComponent(material, mesh));
-    m_planet->SetPosition(ENG::vec3(-4.0F, 1.0F, -2.0F));
-    m_planet->SetScale(ENG::vec3(1.2F));
+    m_planet->AddComponent(new COA::MeshComponent(material, mesh));
+    m_planet->SetPosition(COA::vec3(-4.0F, 1.0F, -2.0F));
+    m_planet->SetScale(COA::vec3(1.2F));
 
     auto objectC = m_scene->CreateObject("ObjectC");
-    objectC->AddComponent(new ENG::MeshComponent(material, mesh));
-    objectC->SetPosition(ENG::vec3(-2.0F, 0.0F, 0.0F));
-    objectC->SetRotation(ENG::vec3(1.0F, 0.0F, -5.0F));
-    objectC->SetScale(ENG::vec3(1.5F, 1.5F, 1.5F));
+    objectC->AddComponent(new COA::MeshComponent(material, mesh));
+    objectC->SetPosition(COA::vec3(-2.0F, 0.0F, 0.0F));
+    objectC->SetRotation(COA::vec3(1.0F, 0.0F, -5.0F));
+    objectC->SetScale(COA::vec3(1.5F, 1.5F, 1.5F));
 
-    // auto suzanneMesh     = ENG::Mesh::Load("models/suzanne/Suzanne.gltf");
-    // auto suzanneMaterial = ENG::Material::Load("materials/suzanne.mat");
+    // auto suzanneMesh     = COA::Mesh::Load("models/suzanne/Suzanne.gltf");
+    // auto suzanneMaterial = COA::Material::Load("materials/suzanne.mat");
     // auto suzanneObj      = m_scene->CreateObject("Suzanne");
 
-    // suzanneObj->AddComponent(new ENG::MeshComponent(suzanneMaterial, suzanneMesh));
-    // suzanneObj->SetPosition(ENG::vec3(0.0F, 0.0F, -5.0F));
+    // suzanneObj->AddComponent(new COA::MeshComponent(suzanneMaterial, suzanneMesh));
+    // suzanneObj->SetPosition(COA::vec3(0.0F, 0.0F, -5.0F));
 
-    auto suzanneObject = ENG::GameObject::LoadGLTF("models/suzanne/Suzanne.gltf");
-    suzanneObject->SetPosition(ENG::vec3(0.0F, 0.0F, -5.0F));
+    auto suzanneObject = COA::GameObject::LoadGLTF("models/suzanne/Suzanne.gltf");
+    suzanneObject->SetPosition(COA::vec3(0.0F, 0.0F, -5.0F));
 
-    auto gun = ENG::GameObject::LoadGLTF("models/carbine/scene.gltf");
+    auto gun = COA::GameObject::LoadGLTF("models/carbine/scene.gltf");
     gun->SetParent(m_mainCamera);
-    gun->SetPosition(ENG::vec3(0.75f, -0.5f, -0.75f));
-    gun->SetScale(ENG::vec3(-1.0f, 1.0f, 1.0f));
+    gun->SetPosition(COA::vec3(0.75f, -0.5f, -0.75f));
+    gun->SetScale(COA::vec3(-1.0f, 1.0f, 1.0f));
 
-    if (auto anim = gun->GetComponent<ENG::AnimationComponent>())
+    if (auto anim = gun->GetComponent<COA::AnimationComponent>())
     {
         if (auto bullet = gun->FindChildByName("bullet_33"))
         {
@@ -104,14 +104,14 @@ bool Game::Init()
         anim->Play("shoot", false);
     }
 
-    auto knight = ENG::GameObject::LoadGLTF("models/knight/knight.gltf");
-    knight->SetPosition(ENG::vec3(0.75f, -0.5f, -0.75f));
+    auto knight = COA::GameObject::LoadGLTF("models/knight/knight.gltf");
+    knight->SetPosition(COA::vec3(0.75f, -0.5f, -0.75f));
 
     auto light          = m_scene->CreateObject("Light");
-    auto lightComponent = new ENG::LightComponent();
-    lightComponent->SetColor(ENG::vec3(1.0f));
+    auto lightComponent = new COA::LightComponent();
+    lightComponent->SetColor(COA::vec3(1.0f));
     light->AddComponent(lightComponent);
-    light->SetPosition(ENG::vec3(0.0f, 5.0f, 0.0f));
+    light->SetPosition(COA::vec3(0.0f, 5.0f, 0.0f));
 
     return true;
 }
@@ -120,7 +120,7 @@ void Game::Update(float deltaTime)
 {
     m_scene->Update(deltaTime);
 
-    auto &inputManager = ENG::Engine::GetInstance().GetInputManager();
+    auto &inputManager = COA::Engine::GetInstance().GetInputManager();
 
     bool toggleKeyNow = inputManager.IsKeyPressed(GLFW_KEY_C);
     if (toggleKeyNow && !m_toggleKeyPrev)
@@ -132,12 +132,12 @@ void Game::Update(float deltaTime)
 
     // Spin only parent. Child inherits world transform -> orbits.
     m_orbitAngle += deltaTime * 1.5F;
-    m_orbitParent->SetRotation(ENG::angleAxis(m_orbitAngle, ENG::vec3(0.0F, 1.0F, 0.0F)));
+    m_orbitParent->SetRotation(COA::angleAxis(m_orbitAngle, COA::vec3(0.0F, 1.0F, 0.0F)));
 
     // Planet: accumulate rotation via quat multiplication each frame.
     // delta = small quat about tilted axis. newRot = delta * oldRot. Normalize -> drift-free.
-    ENG::vec3 tiltedAxis = normalize(ENG::vec3(0.3F, 1.0F, 0.1F));
-    ENG::quat delta      = ENG::angleAxis(deltaTime * 0.3F, tiltedAxis);
+    COA::vec3 tiltedAxis = normalize(COA::vec3(0.3F, 1.0F, 0.1F));
+    COA::quat delta      = COA::angleAxis(deltaTime * 0.3F, tiltedAxis);
     m_planet->SetRotation(normalize(delta * m_planet->GetRotation()));
 }
 

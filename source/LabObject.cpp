@@ -10,8 +10,8 @@ LabObject::LabObject()
     LOG_INFO("LabObject constructing");
 
     // load shaders
-    ENG::FileReader vertShader("assets/shaders/cool.vert");
-    ENG::FileReader fragShader("assets/shaders/green.frag");
+    COA::FileReader vertShader("assets/shaders/cool.vert");
+    COA::FileReader fragShader("assets/shaders/green.frag");
     auto            vs = vertShader.ReadToString();
     auto            fs = fragShader.ReadToString();
 
@@ -19,26 +19,26 @@ LabObject::LabObject()
         LOG_ERROR("LabObject shader source is empty (vert=%zu frag=%zu bytes)", vs.size(), fs.size());
     }
 
-    auto &gfx  = ENG::Engine::GetInstance().GetGraphicsAPI();
+    auto &gfx  = COA::Engine::GetInstance().GetGraphicsAPI();
     auto  prog = gfx.CreateShaderProgram(vs, fs);
     if (!prog) {
         LOG_ERROR("LabObject failed to create shader program");
     }
 
-    m_material = std::make_shared<ENG::Material>();
+    m_material = std::make_shared<COA::Material>();
     m_material->SetShaderProgram(prog);
 
-    auto mesh = ENG::Builder::CreateFullscreenQuad().buildMesh();
-    AddComponent(new ENG::MeshComponent(m_material, mesh));
+    auto mesh = COA::Builder::CreateFullscreenQuad().buildMesh();
+    AddComponent(new COA::MeshComponent(m_material, mesh));
     LOG_INFO("LabObject constructed");
 }
 
-void LabObject::Update(ENG::f32 deltaTime)
+void LabObject::Update(COA::f32 deltaTime)
 {
-    ENG::GameObject::Update(deltaTime);
+    COA::GameObject::Update(deltaTime);
 
     auto  position = GetPosition();
-    auto &input    = ENG::Engine::GetInstance().GetInputManager();
+    auto &input    = COA::Engine::GetInstance().GetInputManager();
     if (input.IsKeyPressed(GLFW_KEY_1)) {
         m_timeScale = 0.25F;
     }

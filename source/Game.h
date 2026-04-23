@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ENG.h"
+#include "COA.h"
 
-class Game : public ENG::Application
+class Game : public COA::Application
 {
 public:
     bool Init() override;
@@ -10,11 +10,11 @@ public:
     void Destroy() override;
 
 private:
-    ENG::Scene      *m_scene          = nullptr;
-    ENG::GameObject *m_mainCamera     = nullptr;
-    ENG::GameObject *m_altCamera      = nullptr;
+    COA::Scene      *m_scene          = nullptr;
+    COA::GameObject *m_mainCamera     = nullptr;
+    COA::GameObject *m_altCamera      = nullptr;
     bool             m_toggleKeyPrev  = false;
-    ENG::GameObject *m_orbitParent    = nullptr;
+    COA::GameObject *m_orbitParent    = nullptr;
     float            m_orbitAngle     = 0.0F;
-    ENG::GameObject *m_planet         = nullptr;
+    COA::GameObject *m_planet         = nullptr;
 };

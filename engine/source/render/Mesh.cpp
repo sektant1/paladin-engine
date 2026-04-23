@@ -8,7 +8,7 @@
 #include "graphics/GraphicsAPI.h"
 #include "graphics/VertexLayout.h"
 
-namespace ENG
+namespace COA
 {
 
 Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const std::vector<uint32_t> &indices)
@@ -335,4 +335,4 @@ std::shared_ptr<Mesh> Mesh::Load(const str &path)
     return result;
 }
 #endif
-}  // namespace ENG
+}  // namespace COA

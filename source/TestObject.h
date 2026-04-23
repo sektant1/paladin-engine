@@ -1,13 +1,13 @@
 #pragma once
 
-#include "ENG.h"
+#include "COA.h"
 
-class TestObject : public ENG::GameObject
+class TestObject : public COA::GameObject
 {
 public:
     TestObject();
 
-    void Update(ENG::f32 deltaTime) override;
+    void Update(COA::f32 deltaTime) override;
 
 private:
 };

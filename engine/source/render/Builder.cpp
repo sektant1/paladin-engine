@@ -4,7 +4,7 @@
 
 #include "render/Mesh.h"
 
-namespace ENG
+namespace COA
 {
 
 std::shared_ptr<Mesh> MeshData::buildMesh()
@@ -167,4 +167,4 @@ MeshData Builder::CreateFullscreenQuad()
     data.layout.stride = sizeof(f32) * 6;
     return data;
 }
-}  // namespace ENG
+}  // namespace COA

@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(paladin-engine)
+project(coagula-engine)
 
 set(PROJECT_SOURCE_FILES
     source/main.cpp

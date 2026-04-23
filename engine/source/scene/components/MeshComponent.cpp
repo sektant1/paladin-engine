@@ -7,7 +7,7 @@
 #include "render/RenderQueue.h"
 #include "scene/GameObject.h"
 
-namespace ENG
+namespace COA
 {
 
 MeshComponent::MeshComponent(const std::shared_ptr<Material> &material, const std::shared_ptr<Mesh> &mesh)
@@ -36,4 +36,4 @@ void MeshComponent::Update(f32 deltaTime)
     auto &renderQueue = Engine::GetInstance().GetRenderQueue();
     renderQueue.Submit(command);
 }
-}  // namespace ENG
+}  // namespace COA

@@ -1,4 +1,4 @@
-#include "ENG.h"
+#include "COA.h"
 #include "Game.h"
 
 int main()
@@ -7,7 +7,7 @@ int main()
 
     Game *game = new Game();
 
-    ENG::Engine &engine = ENG::Engine::GetInstance();
+    COA::Engine &engine = COA::Engine::GetInstance();
 
     engine.SetApplication(game);
 

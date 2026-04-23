@@ -1,5 +1,6 @@
 /**
  * @file Component.h
+ * @ingroup coa_scene
  * @brief Abstract base for all GameObject components and the COMPONENT macro.
  *
  * ## Entity-Component pattern
@@ -15,10 +16,10 @@
  * 4. Attach via GameObject::AddComponent(new MyComponent(...)).
  *
  * @code
- *   class SpinComponent : public ENG::Component {
+ *   class SpinComponent : public COA::Component {
  *       COMPONENT(SpinComponent)
  *   public:
- *       void Update(ENG::f32 dt) override { m_owner->SetRotation(...); }
+ *       void Update(COA::f32 dt) override { m_owner->SetRotation(...); }
  *   };
  * @endcode
  *
@@ -29,7 +30,7 @@
 
 #include "Types.h"
 
-namespace ENG
+namespace COA
 {
 
 class GameObject;
@@ -103,4 +104,4 @@ static usize TypeId() { return Component::StaticTypeId<ComponentClass>(); } \
 usize GetTypeId() const override {return TypeId();} \
 
 
-}  // namespace ENG
+}  // namespace COA

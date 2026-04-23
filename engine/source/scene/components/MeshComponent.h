@@ -1,5 +1,6 @@
 /**
  * @file MeshComponent.h
+ * @ingroup coa_components
  * @brief Bridges the scene graph with the render pipeline by submitting a RenderCommand each frame.
  *
  * Attaching a MeshComponent to a GameObject makes it visible. On each
@@ -23,7 +24,7 @@
 #include "Types.h"
 #include "scene/Component.h"
 
-namespace ENG
+namespace COA
 {
 
 class Material;
@@ -58,4 +59,4 @@ private:
     std::shared_ptr<Mesh>     m_mesh;      ///< Shared GPU geometry.
 };
 
-}  // namespace ENG
+}  // namespace COA

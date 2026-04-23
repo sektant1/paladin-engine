@@ -5,7 +5,7 @@
 #include "Types.h"
 #include "input/InputManager.h"
 
-namespace ENG
+namespace COA
 {
 
 void PlayerControllerComponent::Update(f32 deltaTime)
@@ -63,4 +63,4 @@ void PlayerControllerComponent::Update(f32 deltaTime)
     }
     m_owner->SetPosition(position);
 }
-}  // namespace ENG
+}  // namespace COA

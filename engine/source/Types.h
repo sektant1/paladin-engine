@@ -1,5 +1,6 @@
 /**
  * @file Types.h
+ * @ingroup coa_types
  * @brief Engine-wide primitive type aliases and GLM math imports.
  *
  * Every engine subsystem uses these aliases instead of raw stdint or GLM types.
@@ -30,7 +31,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
 
-namespace ENG
+namespace COA
 {
 
 /// @defgroup Types Primitive Type Aliases
@@ -98,6 +99,6 @@ using glm::value_ptr;
 
 /// @}
 
-}  // namespace ENG
+}  // namespace COA
 
 #endif  // TYPES_H

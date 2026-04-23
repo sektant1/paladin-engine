@@ -1,5 +1,6 @@
 /**
  * @file Scene.h
+ * @ingroup coa_scene
  * @brief Owns the game object tree and provides per-frame update + light collection.
  *
  * The Scene is the top-level container for all GameObjects. It owns them
@@ -38,7 +39,7 @@
 #include "Types.h"
 #include "scene/GameObject.h"
 
-namespace ENG
+namespace COA
 {
 
 /**
@@ -131,4 +132,4 @@ private:
     GameObject *m_mainCamera = nullptr;  ///< Non-owning pointer to the active camera object.
 };
 
-}  // namespace ENG
+}  // namespace COA

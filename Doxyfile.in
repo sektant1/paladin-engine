@@ -1,5 +1,5 @@
-PROJECT_NAME           = "Paladin Engine"
-PROJECT_BRIEF          = "OpenGL Game Engine"
+PROJECT_NAME           = "Coagula Engine"
+PROJECT_BRIEF          = "Educational OpenGL game engine — C++17 · GLFW · component-based scene graph"
 PROJECT_NUMBER         = "dev"
 OUTPUT_DIRECTORY       = @CMAKE_SOURCE_DIR@/docs
 INPUT                  = @CMAKE_SOURCE_DIR@/engine/source @CMAKE_SOURCE_DIR@/source @CMAKE_SOURCE_DIR@/README.md
@@ -8,31 +8,97 @@ RECURSIVE              = YES
 FILE_PATTERNS          = *.h *.cpp *.md
 EXCLUDE_PATTERNS       = */thirdparty/* */build/* */bin/*
 
+# ----------------------------------------------------------------
+# Extraction
+# ----------------------------------------------------------------
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES
 EXTRACT_LOCAL_CLASSES  = YES
-EXTRACT_ANON_NSPACES   = YES
+EXTRACT_ANON_NSPACES   = NO
 
+# ----------------------------------------------------------------
+# Parsing
+# ----------------------------------------------------------------
 JAVADOC_AUTOBRIEF      = YES
 QT_AUTOBRIEF           = YES
 MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
 BUILTIN_STL_SUPPORT    = YES
+CPP_CLI_SUPPORT        = NO
+STRIP_CODE_COMMENTS    = NO
 
+# Expand the COMPONENT(T) macro so the generated class page is clean
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = "COMPONENT(T)="
+
+# ----------------------------------------------------------------
+# Source browser
+# ----------------------------------------------------------------
 SOURCE_BROWSER         = YES
 INLINE_SOURCES         = NO
 REFERENCED_BY_RELATION = YES
 REFERENCES_RELATION    = YES
+VERBATIM_HEADERS       = YES
 
+# ----------------------------------------------------------------
+# Sorting / organisation
+# ----------------------------------------------------------------
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = YES
+SORT_GROUP_NAMES       = YES
+SORT_BY_SCOPE_NAME     = NO
+SHOW_GROUPED_MEMB_INC  = YES
+SHOW_INCLUDE_FILES     = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = YES
+GENERATE_TODOLIST      = YES
+GENERATE_DEPRECATEDLIST = YES
+GENERATE_BUGLIST       = YES
+
+# ----------------------------------------------------------------
+# HTML output
+# ----------------------------------------------------------------
 GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
 HTML_OUTPUT            = html
+
+# Navigation
 GENERATE_TREEVIEW      = YES
 DISABLE_INDEX          = NO
 FULL_SIDEBAR           = NO
-HTML_COLORSTYLE        = LIGHT
-SEARCHENGINE           = YES
+TREEVIEW_WIDTH         = 260
 
+# Theme
+HTML_COLORSTYLE        = DARK
+HTML_COLORSTYLE_HUE    = 209
+HTML_COLORSTYLE_SAT    = 80
+HTML_COLORSTYLE_GAMMA  = 90
+
+# Custom stylesheet — dark game-engine theme
+HTML_EXTRA_STYLESHEET  = @CMAKE_SOURCE_DIR@/docs/custom.css
+
+# Search
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+
+# ----------------------------------------------------------------
+# Dot / diagrams
+# ----------------------------------------------------------------
 HAVE_DOT               = NO
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+DOT_IMAGE_FORMAT       = svg
+
+# ----------------------------------------------------------------
+# Miscellaneous
+# ----------------------------------------------------------------
 QUIET                  = YES
 WARN_IF_UNDOCUMENTED   = NO
+WARN_NO_PARAMDOC       = NO
+ALPHABETICAL_INDEX     = YES

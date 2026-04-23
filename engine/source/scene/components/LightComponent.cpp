@@ -1,6 +1,6 @@
 #include "scene/components/LightComponent.h"
 
-namespace ENG
+namespace COA
 {
 void LightComponent::Update(f32 deltaTime) {}
 
@@ -14,4 +14,4 @@ const vec3 &LightComponent::GetColor() const
     return m_color;
 }
 
-}  // namespace ENG
+}  // namespace COA

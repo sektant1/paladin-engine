@@ -16,7 +16,7 @@
 #    include "unistd.h"
 #endif
 
-namespace ENG
+namespace COA
 {
 
 std::filesystem::path FileSystem::GetExecutableFolder() const
@@ -81,4 +81,4 @@ std::string FileSystem::LoadAssetFileText(const std::string &relativePath)
     return std::string(buffer.begin(), buffer.end());
 }
 
-}  // namespace ENG
+}  // namespace COA

@@ -10,7 +10,7 @@
 #include "scene/GameObject.h"
 #include "scene/components/LightComponent.h"
 
-namespace ENG
+namespace COA
 {
 
 void Scene::Update(f32 deltaTime)
@@ -210,4 +210,4 @@ bool Scene::SetParent(GameObject *obj, GameObject *parent)
 
     return result;
 }
-}  // namespace ENG
+}  // namespace COA

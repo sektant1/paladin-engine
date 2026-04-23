@@ -1,5 +1,6 @@
 /**
  * @file GraphicsAPI.h
+ * @ingroup coa_graphics
  * @brief Thin wrapper around raw OpenGL 3.3 Core Profile calls.
  *
  * GraphicsAPI sits between the application and GLEW/GL. It creates and
@@ -20,7 +21,7 @@
 
 #include "GL/glew.h"
 
-namespace ENG
+namespace COA
 {
 
 class ShaderProgram;
@@ -118,4 +119,4 @@ private:
     std::shared_ptr<ShaderProgram> m_defaultShaderProgram;
 };
 
-}  // namespace ENG
+}  // namespace COA

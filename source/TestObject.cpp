@@ -10,8 +10,8 @@ TestObject::TestObject()
 {
     LOG_INFO("TestObject constructing");
 
-    ENG::FileReader vertShader("assets/shaders/lab.vert");
-    ENG::FileReader fragShader("assets/shaders/lab.frag");
+    COA::FileReader vertShader("assets/shaders/lab.vert");
+    COA::FileReader fragShader("assets/shaders/lab.frag");
     std::string     vertexShaderSource   = vertShader.ReadToString();
     std::string     fragmentShaderSource = fragShader.ReadToString();
 
@@ -21,30 +21,30 @@ TestObject::TestObject()
                   fragmentShaderSource.size());
     }
 
-    auto &graphicsAPI   = ENG::Engine::GetInstance().GetGraphicsAPI();
+    auto &graphicsAPI   = COA::Engine::GetInstance().GetGraphicsAPI();
     auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
     if (!shaderProgram) {
         LOG_ERROR("TestObject failed to create shader program");
     }
 
-    auto material = std::make_shared<ENG::Material>();
+    auto material = std::make_shared<COA::Material>();
     material->SetShaderProgram(shaderProgram);
 
-    auto mesh = ENG::Builder::CreateCube(1.0F, 1.0F).buildMesh();
+    auto mesh = COA::Builder::CreateCube(1.0F, 1.0F).buildMesh();
 
-    AddComponent(new ENG::MeshComponent(material, mesh));
+    AddComponent(new COA::MeshComponent(material, mesh));
 
     LOG_INFO("TestObject constructed");
 }
 
-void TestObject::Update(ENG::f32 deltaTime)
+void TestObject::Update(COA::f32 deltaTime)
 {
-    ENG::GameObject::Update(deltaTime);
+    COA::GameObject::Update(deltaTime);
 
 #if 0
     auto position = GetPosition();
 
-    auto &input = ENG::Engine::GetInstance().GetInputManager();
+    auto &input = COA::Engine::GetInstance().GetInputManager();
     if (input.IsKeyPressed(GLFW_KEY_W)) {
         position.y += 1.0F * deltaTime;
     }

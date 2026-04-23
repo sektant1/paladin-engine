@@ -1,5 +1,6 @@
 /**
  * @file Engine.h
+ * @ingroup coa_core
  * @brief Central singleton that owns and coordinates all engine subsystems.
  *
  * ## Startup sequence (see main.cpp)
@@ -39,7 +40,7 @@
 
 struct GLFWwindow;
 
-namespace ENG
+namespace COA
 {
 class Application;
 
@@ -137,4 +138,4 @@ private:
     std::unique_ptr<Scene>                m_currentScene;   ///< Active scene graph.
 };
 
-}  // namespace ENG
+}  // namespace COA

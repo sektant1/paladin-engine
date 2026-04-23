@@ -1,5 +1,6 @@
 /**
  * @file Texture.h
+ * @ingroup coa_graphics
  * @brief 2D texture resource and a path-keyed cache (TextureManager).
  *
  * ## Loading a texture
@@ -26,7 +27,7 @@
 
 #include "graphics/GraphicsAPI.h"
 
-namespace ENG
+namespace COA
 {
 
 /**
@@ -95,4 +96,4 @@ private:
     std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
 };
 
-}  // namespace ENG
+}  // namespace COA

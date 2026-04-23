@@ -1,7 +1,7 @@
 
 #include "io/FileReader.h"
 
-namespace ENG
+namespace COA
 {
 
 bool FileReader::Exists()
@@ -86,4 +86,4 @@ std::string FileReader::GetPath()
     return m_filePath;
 }
 
-}  // namespace ENG
+}  // namespace COA

@@ -1,0 +1,82 @@
+/**
+ * @defgroup coa_core Engine Core
+ * @brief Singleton engine lifecycle, application base class, and main loop.
+ *
+ * The two classes that form the entry point of every Coagula Engine program:
+ * - **Engine** — singleton that owns all subsystems and drives the main loop.
+ * - **Application** — user-subclassed interface (Init / Update / Destroy).
+ *
+ * Typical startup:
+ * @code
+ *   Engine &e = Engine::GetInstance();
+ *   e.SetApplication(new MyGame());
+ *   e.Init(1280, 720);
+ *   e.Run();
+ *   e.Destroy();
+ * @endcode
+ */
+
+/**
+ * @defgroup coa_types Types & Utilities
+ * @brief Primitive type aliases, GLM math types, and logging macros.
+ *
+ * - **Types.h** — short-hand aliases (`u32`, `f32`, `vec3`, `mat4`, …) and
+ *   imported GLM functions (`normalize`, `cross`, `perspective`, …).
+ * - **Log.h** — `LOG_INFO` / `LOG_WARN` / `LOG_ERROR` / `LOG_FATAL` macros.
+ * - **Common.h** — plain-data structs (`CameraData`, `LightData`) shared
+ *   between the scene graph and the render pipeline.
+ */
+
+/**
+ * @defgroup coa_graphics Graphics (Low-level GL)
+ * @brief OpenGL resource wrappers: shaders, textures, vertex layouts.
+ *
+ * Sits directly on top of GLEW / OpenGL 3.3 Core. Higher-level code in the
+ * @ref coa_render group goes through these wrappers rather than calling
+ * `gl*` functions directly.
+ */
+
+/**
+ * @defgroup coa_render Rendering
+ * @brief Mesh, Material, Builder, and RenderQueue — the draw abstraction layer.
+ *
+ * - **Mesh** / **Material** — GPU geometry and shader-parameter bundles.
+ * - **Builder** — factory for procedural meshes (cube, rectangle, …).
+ * - **RenderQueue** — collects `RenderCommand`s each frame and flushes them
+ *   through `GraphicsAPI` in a single `Draw()` call.
+ */
+
+/**
+ * @defgroup coa_scene Scene Graph
+ * @brief Scene, GameObject, and the Component base class.
+ *
+ * Objects in the world are `GameObject`s owned by a `Scene`. Behaviour is
+ * added via `Component` subclasses (see @ref coa_components). The engine
+ * holds one active Scene and calls `Scene::Update()` every frame.
+ */
+
+/**
+ * @defgroup coa_components Components
+ * @brief Built-in Component implementations.
+ *
+ * Each component encapsulates a single, self-contained behaviour that can be
+ * attached to any `GameObject` via `GameObject::AddComponent<T>()`.
+ *
+ * | Component                  | Responsibility                                  |
+ * |----------------------------|-------------------------------------------------|
+ * | CameraComponent            | Perspective view + projection matrices          |
+ * | LightComponent             | Point-light colour for the Phong shader         |
+ * | MeshComponent              | Submits geometry + material to the RenderQueue  |
+ * | AnimationComponent         | glTF skeletal / transform-track animation       |
+ * | PlayerControllerComponent  | First-person WASD + mouse-look                  |
+ */
+
+/**
+ * @defgroup coa_input Input
+ * @brief Keyboard and mouse state, updated each frame via GLFW callbacks.
+ */
+
+/**
+ * @defgroup coa_io I/O
+ * @brief Asset-path resolution and file loading utilities.
+ */
