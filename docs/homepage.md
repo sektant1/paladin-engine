@@ -7,16 +7,16 @@
  / /      / / / /   / /| |  / / __   / / / /  / /      / /| |
 / /___   / /_/ /   / ___ | / /_/ /  / /_/ /  / /___   / ___ |
 \____/   \____/   /_/  |_| \____/   \____/  /_____/  /_/  |_|
+
+       -=[ solvet  ::  et  ::  coagula ]=-
 </pre>
 @endhtmlonly
 
-> _Stoke the forge. Strike the iron. Ship the engine._
-> Small C++17 game engine for learning.
-> **OpenGL 3.3 · GLFW · GLEW · Bullet · glm**
+> _Visita Interiora Terrae Rectificando Invenies Occultum Lapidem._
 
-Coagula is a tiny, component-based engine built as a teaching codebase:
-small enough to read end-to-end, large enough to ship a playable
-first-person sandbox with physics, glTF models, and JSON scenes.
+Coagula is a teaching/learning codebase. A digital grimoire.
+It reduces the complexity of 3D engines to their base essence.
+Small enough to see the whole. Large enough to manifest a world.
 
 @htmlonly<div class="coa-divider" aria-hidden="true"></div>@endhtmlonly
 
@@ -24,8 +24,10 @@ first-person sandbox with physics, glTF models, and JSON scenes.
 
 @htmlonly
 <pre class="coa-ascii" aria-hidden="true">
-+--[ THE WORKSHOP ]-----------------------------------+
-|  pick a bench, grab a tool, start hammering.        |
++--[ Coagula (Coagulate/Bind): ]----------------------+
+    The act of binding, solidifying, or synthesizing
+    the purified components back together into a new,
+    more perfect, and fixed form.
 +-----------------------------------------------------+
 </pre>
 @endhtmlonly
@@ -48,9 +50,9 @@ first-person sandbox with physics, glTF models, and JSON scenes.
 
 @htmlonly
 <pre class="coa-ascii" aria-hidden="true">
-+--[ ONE-MINUTE SETUP ]-------------------------------+
-|  boot the engine in under twenty lines of C++.      |
-+-----------------------------------------------------+
++--[ ONE-MINUTE-TOUR ]------------------------------+
+|  When the student is ready, the code speaks.      |
++---------------------------------------------------+
 </pre>
 @endhtmlonly
 
@@ -94,11 +96,6 @@ input, scene graph — is driven by the `Scene` and its `Component`s.
 ## Features at a glance
 
 @htmlonly
-<pre class="coa-ascii" aria-hidden="true">
-+--[ FEATURES ]---------------------------------------+
-|  what the engine forges.                            |
-+-----------------------------------------------------+
-</pre>
 @endhtmlonly
 
 - **Singleton engine** with window, GL context, input, render queue, physics.

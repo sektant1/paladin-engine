@@ -87,7 +87,7 @@ html {
     "Pirata One", "Uncial Antiqua", "Metamorphous", "MedievalSharp", Georgia,
     serif;
   --font-family-subheading:
-    "Metamorphous", "Cinzel", "MedievalSharp", "IM Fell English SC", Georgia,
+    "Pirata One", "Uncial Antiqua", "Metamorphous", "MedievalSharp", Georgia,
     serif;
   --font-family-micro-head:
     "Fira Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
@@ -104,23 +104,25 @@ body {
 }
 
 body,
-p,
 li,
-td,
 th,
 dd,
 dt,
 .contents,
 .textblock,
-.memdoc,
 .fieldtable,
 .directory,
 .navpath,
 #nav-tree {
   font-family: var(--font-family-normal);
   line-height: 1.62;
+  font-size: 18px;
 }
-
+.memdoc {
+  font-family: var(--font-family-monospace);
+  line-height: 1.62;
+  font-size: 18px;
+}
 body {
   color: var(--page-foreground-color);
   background-color: transparent;
@@ -274,7 +276,7 @@ h5 a {
 }
 #titlearea::after {
   right: 22px;
-  content: "\2694";
+  content: "\25A7";
   color: var(--accent-iron-light);
 }
 
@@ -292,31 +294,32 @@ h5 a {
   overflow-wrap: anywhere;
 }
 #projectname::before {
-  content: "\269A  ";
-  color: var(--accent-rune);
+  content: "\25A7  ";
+  color: var(--primary-color);
   opacity: 0.9;
-  text-shadow: 0 0 6px rgba(111, 191, 90, 0.6);
+  text-shadow: 0 0 6px var(--page-background-color);
 }
 #projectname::after {
+  display: none;
   content: "  \269A";
-  color: var(--accent-rune);
+  color: var(--primary-color);
   opacity: 0.9;
-  text-shadow: 0 0 6px rgba(111, 191, 90, 0.6);
+  text-shadow: 0 0 6px var(--page-background-color);
 }
 #projectbrief {
   font-family: var(--font-family-subheading);
   color: var(--page-secondary-foreground-color);
   font-style: italic;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   text-shadow: none;
-  font-size: 0.95em;
+  font-size: 1.25em;
   line-height: 1.4;
 }
 #projectnumber {
   font-family: var(--font-family-monospace);
   color: var(--primary-color);
   font-size: 0.55em;
-  opacity: 0.8;
+  opacity: 0.97;
   letter-spacing: 1px;
 }
 
@@ -326,12 +329,12 @@ div.header .title {
   font-family: var(--font-family-display) !important;
   color: var(--primary-light-color) !important;
   letter-spacing: 1px;
+  font-size: 4em;
   line-height: 1.25;
   text-shadow:
     0 0 8px rgba(240, 160, 64, 0.3),
     1px 1px 0 rgba(0, 0, 0, 0.6);
   border: none;
-  margin: 1.2em 0 0.6em;
   overflow-wrap: anywhere;
 }
 h2,
@@ -388,9 +391,9 @@ h1::before {
 }
 h2::before {
   content: "\269A ";
-  color: var(--accent-rune);
+  color: var(--primary-color);
   opacity: 0.85;
-  text-shadow: 0 0 4px rgba(111, 191, 90, 0.5);
+  text-shadow: 0 0 4px var(--page-background-color);
 }
 h3::before {
   content: "> ";
@@ -412,7 +415,7 @@ h4 code,
   font-family: var(--font-family-monospace);
   font-size: 0.78em;
   background: #1a1712;
-  border: 1px solid var(--primary-dark-color);
+  border: 1px solid var(--page-foreground-color);
   color: var(--primary-color);
   padding: 1px 8px;
   text-shadow: none;
@@ -441,12 +444,22 @@ div.contents {
     rgba(240, 160, 64, 0.05),
     transparent 220px
   );
-  font-size: 14.5px;
+  font-size: 17.5px;
   line-height: 1.55;
+  padding-left: 2px;
+}
+
+#nav-tree .label {
+  margin: 0px;
+  padding: 0px;
+  font-size: 18px;
+  line-height: normal;
+  line-height: 22px;
 }
 #nav-tree .item {
+  margin: auto;
   color: var(--page-foreground-color);
-  padding: 2px 0;
+  padding: 3px 0;
 }
 #nav-tree .selected {
   background-image: none;
@@ -454,27 +467,30 @@ div.contents {
   color: var(--primary-light-color);
   border-left: 3px solid var(--primary-color);
   box-shadow: inset 0 0 12px rgba(240, 160, 64, 0.14);
+  border-radius: 0px;
 }
+
 #nav-tree .item:hover {
   color: var(--primary-light-color);
 }
 #nav-tree .arrow {
   color: var(--primary-dark-color);
+  padding-left: 5px;
 }
-/* #nav-tree::before { */
-/*   content: "\2692"; */
-/*   display: block; */
-/*   height: 56px; */
-/*   margin: 14px auto 10px; */
-/*   text-align: center; */
-/*   font-size: 36px; */
-/*   line-height: 56px; */
-/*   color: var(--accent-copper-light); */
-/*   text-shadow: */
-/*     0 0 10px rgba(240, 160, 64, 0.5), */
-/*     0 0 20px rgba(217, 74, 46, 0.25); */
-/*   opacity: 0.9; */
-/* } */
+#nav-tree::before {
+  content: "\2692";
+  display: none;
+  height: 56px;
+  margin: 14px auto 10px;
+  text-align: center;
+  font-size: 36px;
+  line-height: 56px;
+  color: var(--accent-copper-light);
+  text-shadow:
+    0 0 10px rgba(240, 160, 64, 0.5),
+    0 0 20px rgba(217, 74, 46, 0.25);
+  opacity: 0.9;
+}
 
 div.fragment,
 pre.fragment {
@@ -517,13 +533,13 @@ div.fragment::after {
   opacity: 0.75;
 }
 div.fragment::before {
-  top: -1px;
-  right: -1px;
+  top: 0px;
+  right: 0px;
   border-width: 2px 2px 0 0;
 }
 div.fragment::after {
-  bottom: -1px;
-  right: -1px;
+  bottom: 0px;
+  right: 0px;
   border-width: 0 2px 2px 0;
 }
 
@@ -642,6 +658,7 @@ div.memproto,
 }
 div.memproto::before {
   content: "\2699  ";
+  display: none;
   color: var(--accent-copper-light);
   opacity: 0.9;
 }
@@ -713,6 +730,9 @@ span.mlabel {
 .tablist li a:hover {
   color: var(--primary-light-color) !important;
   background-image: none;
+}
+
+table.doxtable {
 }
 
 table.markdownTable,
@@ -1055,203 +1075,5 @@ h4.coa-revealed {
   }
   .coa-ascii {
     font-size: 9px;
-  }
-}
-
-/* === SYMBOL OVERRIDES (dark fantasy / dungeon) === */
-
-/* Title area symbols */
-#titlearea::before {
-  content: "\2620"; /* skull */
-}
-#titlearea::after {
-  content: "\2694"; /* crossed swords */
-}
-
-/* Project name runes */
-#projectname::before {
-  content: "\2720  "; /* maltese cross */
-}
-#projectname::after {
-  content: "  \2720";
-}
-
-/* Headings */
-h1::before {
-  content: "\2620 "; /* skull */
-}
-h2::before {
-  content: "\2720 "; /* rune cross */
-}
-h3::before {
-  content: "\2694 "; /* swords */
-}
-h4::before {
-  content: "\2020 "; /* dagger */
-}
-
-/* Member prototype (function headers) */
-div.memproto::before {
-  content: "\26E7  "; /* shield */
-}
-
-/* Divider */
-.coa-divider::after {
-  content: "\2620"; /* skull */
-}
-
-/* List markers */
-.textblock ul li::marker,
-.contents ul li::marker,
-.memdoc ul li::marker {
-  content: "\276F  "; /* sharp arrow */
-}
-
-/* Optional: stronger “ritual” feel for ordered lists */
-.textblock ol li::marker,
-.contents ol li::marker {
-  content: counter(list-item) ". ";
-}
-
-#titlearea {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px 72px; /* space for torches */
-  min-height: 140px;
-}
-
-/* kill table layout influence */
-#titlearea table,
-#titlearea tbody,
-#titlearea tr {
-  display: block;
-  width: 100%;
-}
-
-#projectrow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  width: 100%;
-}
-
-/* center main content better */
-#projectalign {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  max-width: 900px;
-}
-
-/* =========================
-   TYPOGRAPHY FIX
-   ========================= */
-
-#projectname {
-  font-size: 2.6em; /* bigger */
-  line-height: 1.2;
-  letter-spacing: 1.5px;
-}
-
-#projectbrief {
-  font-size: 1.15em; /* was too small */
-  line-height: 1.5;
-  max-width: 70ch;
-}
-
-#projectnumber {
-  font-size: 0.65em;
-}
-
-/* =========================
-   SEARCH BOX ALIGNMENT
-   ========================= */
-
-#titlearea td {
-  vertical-align: middle;
-}
-
-#MSearchBox {
-  margin-left: auto;
-}
-
-/* =========================
-   TORCH FIX (NO OVERLAP)
-   ========================= */
-
-.coa-torch {
-  top: 50%;
-  transform: translateY(-50%);
-  width: 26px;
-  height: 120px;
-  z-index: 0; /* behind content */
-  opacity: 0.85;
-}
-
-.coa-torch--left {
-  left: 16px;
-}
-
-.coa-torch--right {
-  right: 16px;
-}
-
-/* ensure content stays above torches */
-#projectrow,
-#projectalign,
-#projectname,
-#projectbrief {
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================
-   GLOBAL FONT SCALING FIX
-   ========================= */
-
-/* increase overall readability */
-html {
-  --page-font-size: 19.5px; /* bump again */
-}
-
-/* nav tree was too small */
-#nav-tree {
-  font-size: 15.5px;
-}
-
-/* code readability */
-div.fragment,
-pre.fragment {
-  font-size: 0.95em;
-}
-
-/* =========================
-   MOBILE FIX
-   ========================= */
-
-@media (max-width: 900px) {
-  #titlearea {
-    padding: 16px 20px;
-  }
-
-  #projectrow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  #projectname {
-    font-size: 1.8em;
-  }
-
-  #projectbrief {
-    font-size: 1em;
-  }
-
-  .coa-torch {
-    display: none;
   }
 }
