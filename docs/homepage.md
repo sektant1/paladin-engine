@@ -107,6 +107,15 @@ input, scene graph — is driven by the `Scene` and its `Component`s.
 
 @htmlonly<div class="coa-divider" aria-hidden="true"></div>@endhtmlonly
 
-## Status
+## Status of the Work
 
+**Educational by design.** No warranty, no bloat, no black boxes.  
+The code is the teacher. The student is the stone. The engine is the fire.
+
+Read it. Rectify it. Coagulate something greater.
+
+**To the pure all things are pure.**
+
+— *Coagula Engine*  
+*Solve et Coagula*
 Educational. No warranty. See @ref license.
