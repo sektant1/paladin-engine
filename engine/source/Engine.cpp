@@ -262,6 +262,11 @@ TextureManager &Engine::GetTextureManager()
     return m_textureManager;
 }
 
+AudioManager &Engine::GetAudioManager()
+{
+    return m_audioManager;
+}
+
 PhysicsManager &Engine::GetPhysicsManager()
 {
     return m_physicsManager;

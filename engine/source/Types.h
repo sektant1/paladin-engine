@@ -11,16 +11,13 @@
  * directly to any OpenGL uniform upload helper in ShaderProgram.
  */
 
-#ifndef TYPES_H
-#define TYPES_H
+#pragma once
 
 #include <cstddef>
 #include <cstdint>
 #include <string>
-#include <vector>
 
 #include <glm/ext/matrix_transform.hpp>
-#include <glm/ext/quaternion_trigonometric.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -95,5 +92,3 @@ using glm::value_ptr;
 /// @}
 
 }  // namespace COA
-
-#endif  // TYPES_H

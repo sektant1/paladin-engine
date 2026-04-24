@@ -31,6 +31,7 @@
 #include <chrono>
 #include <memory>
 
+#include "audio/AudioManager.h"
 #include "graphics/GraphicsAPI.h"
 #include "graphics/Texture.h"
 #include "input/InputManager.h"
@@ -120,6 +121,8 @@ public:
 
     PhysicsManager &GetPhysicsManager();
 
+    AudioManager &GetAudioManager();
+
     /**
      * @brief Replace the active scene (takes ownership).
      * @param scene Heap-allocated Scene. Previous scene is destroyed.
@@ -138,6 +141,7 @@ private:
     RenderQueue                           m_renderQueue;       ///< Per-frame render command list.
     FileSystem                            m_fileSystem;        ///< Asset path resolver.
     TextureManager                        m_textureManager;    ///< Texture cache.
+    AudioManager                          m_audioManager;
 
     PhysicsManager         m_physicsManager;
     std::unique_ptr<Scene> m_currentScene;  ///< Active scene graph.

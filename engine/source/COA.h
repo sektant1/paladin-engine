@@ -39,6 +39,7 @@
 #include "Engine.h"
 #include "Log.h"
 #include "Types.h"
+#include "audio/AudioManager.h"
 #include "graphics/GraphicsAPI.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/Texture.h"

@@ -1,11 +1,11 @@
 {
-  "name": "MyScene",
+  "name": "Dungeon",
   "camera": "MainPlayer",
   "objects": [
     {
       "name": "MainPlayer",
       "type": "Player",
-      "position": { "x": 0, "y": 2, "z": 7 },
+      "position": { "x": 0, "y": 2, "z": 0 },
       "components": [
         { "type": "CameraComponent" },
         { "type": "PlayerControllerComponent" }
@@ -20,136 +20,272 @@
         }
       ]
     },
+
     {
-      "name": "Ground2",
-      "position": { "x": 0, "y": -50, "z": 0 },
+      "name": "Floor",
+      "position": { "x": 0, "y": 0, "z": 0 },
       "components": [
         {
           "type": "MeshComponent",
-          "mesh": {
-            "type": "box",
-            "x": 200,
-            "y": 2,
-            "z": 200
-          },
-          "material": "materials/brick.mat"
+          "mesh": { "type": "box", "x": 40, "y": 1, "z": 40 },
+          "material": "materials/dungeon_floor.mat"
         },
         {
           "type": "PhysicsComponent",
-          "collider": {
-            "type": "box",
-            "x": 200,
-            "y": 2,
-            "z": 200
-          },
-          "body": {
-            "mass": 0,
-            "friction": 0.5,
-            "type": "static"
-          }
+          "collider": { "type": "box", "x": 40, "y": 1, "z": 40 },
+          "body": { "mass": 0, "friction": 0.8, "type": "static" }
         }
       ]
     },
     {
-      "name": "Ground",
-      "position": { "x": 0, "y": -5, "z": 0 },
+      "name": "Ceiling",
+      "position": { "x": 0, "y": 9, "z": 0 },
       "components": [
         {
           "type": "MeshComponent",
-          "mesh": {
-            "type": "box",
-            "x": 20,
-            "y": 2,
-            "z": 20
-          },
-          "material": "materials/brick.mat"
+          "mesh": { "type": "box", "x": 40, "y": 1, "z": 40 },
+          "material": "materials/dungeon_ceiling.mat"
         },
         {
           "type": "PhysicsComponent",
-          "collider": {
-            "type": "box",
-            "x": 20,
-            "y": 2,
-            "z": 20
-          },
-          "body": {
-            "mass": 0,
-            "friction": 0.5,
-            "type": "static"
-          }
+          "collider": { "type": "box", "x": 40, "y": 1, "z": 40 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
+        }
+      ]
+    },
+
+    {
+      "name": "WallNorth",
+      "position": { "x": 0, "y": 4.5, "z": -20 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 40, "y": 8, "z": 1 },
+          "material": "materials/dungeon_wall.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 40, "y": 8, "z": 1 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
         }
       ]
     },
     {
-      "name": "ObjectCollide2",
-      "position": { "x": 6, "y": 7, "z": 2 },
-      "rotation": { "x": 1, "y": 2, "z": 0, "w": 1 },
+      "name": "WallSouth",
+      "position": { "x": 0, "y": 4.5, "z": 20 },
       "components": [
         {
           "type": "MeshComponent",
-          "mesh": {
-            "type": "box",
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "material": "materials/brick.mat"
+          "mesh": { "type": "box", "x": 40, "y": 8, "z": 1 },
+          "material": "materials/dungeon_wall.mat"
         },
         {
           "type": "PhysicsComponent",
-          "collider": {
-            "type": "box",
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "body": {
-            "mass": 5,
-            "friction": 0.5,
-            "type": "dynamic"
-          }
+          "collider": { "type": "box", "x": 40, "y": 8, "z": 1 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
         }
       ]
     },
     {
-      "name": "ObjectCollide",
-      "position": { "x": 0, "y": 7, "z": 0 },
-      "rotation": { "x": 1, "y": 2, "z": 0, "w": 1 },
+      "name": "WallEast",
+      "position": { "x": 20, "y": 4.5, "z": 0 },
       "components": [
         {
           "type": "MeshComponent",
-          "mesh": {
-            "type": "box",
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "material": "materials/brick.mat"
+          "mesh": { "type": "box", "x": 1, "y": 8, "z": 40 },
+          "material": "materials/dungeon_wall.mat"
         },
         {
           "type": "PhysicsComponent",
-          "collider": {
-            "type": "box",
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "body": {
-            "mass": 5,
-            "friction": 0.5,
-            "type": "dynamic"
-          }
+          "collider": { "type": "box", "x": 1, "y": 8, "z": 40 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
         }
       ]
     },
     {
-      "name": "Light",
-      "position": { "x": 0, "y": 5, "z": 0 },
+      "name": "WallWest",
+      "position": { "x": -20, "y": 4.5, "z": 0 },
       "components": [
         {
-          "type": "LightComponent",
-          "color": { "r": 1, "g": 1, "b": 1 }
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 1, "y": 8, "z": 40 },
+          "material": "materials/dungeon_wall.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 1, "y": 8, "z": 40 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
         }
+      ]
+    },
+
+    {
+      "name": "DividerWallLeft",
+      "position": { "x": -13, "y": 4.5, "z": -5 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 14, "y": 8, "z": 1 },
+          "material": "materials/dungeon_wall.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 14, "y": 8, "z": 1 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
+        }
+      ]
+    },
+    {
+      "name": "DividerWallRight",
+      "position": { "x": 13, "y": 4.5, "z": -5 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 14, "y": 8, "z": 1 },
+          "material": "materials/dungeon_wall.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 14, "y": 8, "z": 1 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
+        }
+      ]
+    },
+
+    {
+      "name": "PillarNE",
+      "position": { "x": 10, "y": 4.5, "z": -10 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "material": "materials/dungeon_pillar.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
+        }
+      ]
+    },
+    {
+      "name": "PillarNW",
+      "position": { "x": -10, "y": 4.5, "z": -10 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "material": "materials/dungeon_pillar.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
+        }
+      ]
+    },
+    {
+      "name": "PillarSE",
+      "position": { "x": 10, "y": 4.5, "z": 10 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "material": "materials/dungeon_pillar.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
+        }
+      ]
+    },
+    {
+      "name": "PillarSW",
+      "position": { "x": -10, "y": 4.5, "z": 10 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "material": "materials/dungeon_pillar.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 2, "y": 8, "z": 2 },
+          "body": { "mass": 0, "friction": 0.5, "type": "static" }
+        }
+      ]
+    },
+
+    {
+      "name": "Crate1",
+      "position": { "x": 5, "y": 2, "z": 5 },
+      "rotation": { "x": 0, "y": 1, "z": 0, "w": 1 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 1.2, "y": 1.2, "z": 1.2 },
+          "material": "materials/dungeon_pillar.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 1.2, "y": 1.2, "z": 1.2 },
+          "body": { "mass": 5, "friction": 0.7, "type": "dynamic" }
+        }
+      ]
+    },
+    {
+      "name": "Crate2",
+      "position": { "x": -6, "y": 2, "z": 3 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 1.2, "y": 1.2, "z": 1.2 },
+          "material": "materials/dungeon_pillar.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 1.2, "y": 1.2, "z": 1.2 },
+          "body": { "mass": 5, "friction": 0.7, "type": "dynamic" }
+        }
+      ]
+    },
+    {
+      "name": "Crate3",
+      "position": { "x": 7, "y": 2, "z": -12 },
+      "components": [
+        {
+          "type": "MeshComponent",
+          "mesh": { "type": "box", "x": 1.2, "y": 1.2, "z": 1.2 },
+          "material": "materials/dungeon_pillar.mat"
+        },
+        {
+          "type": "PhysicsComponent",
+          "collider": { "type": "box", "x": 1.2, "y": 1.2, "z": 1.2 },
+          "body": { "mass": 5, "friction": 0.7, "type": "dynamic" }
+        }
+      ]
+    },
+
+    {
+      "name": "TorchLight1",
+      "position": { "x": 0, "y": 6, "z": 0 },
+      "components": [
+        { "type": "LightComponent", "color": { "r": 1, "g": 0.8, "b": 0.5 } }
+      ]
+    },
+    {
+      "name": "TorchLight2",
+      "position": { "x": 0, "y": 6, "z": -15 },
+      "components": [
+        { "type": "LightComponent", "color": { "r": 1, "g": 0.7, "b": 0.4 } }
+      ]
+    },
+    {
+      "name": "TorchLight3",
+      "position": { "x": 0, "y": 6, "z": 15 },
+      "components": [
+        { "type": "LightComponent", "color": { "r": 0.8, "g": 0.7, "b": 1 } }
       ]
     }
   ]

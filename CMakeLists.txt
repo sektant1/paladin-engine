@@ -26,6 +26,16 @@ include_directories(engine/source)
 include_directories(engine/thirdparty/stb_image)
 target_link_libraries(${PROJECT_NAME} Engine)
 
+# Symlink compile_commands.json into the repo root so clangd / IDEs find it
+# regardless of which machine or build directory (bin/debug, bin/release) is used.
+add_custom_command(
+  TARGET ${PROJECT_NAME}
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E create_symlink
+          "${CMAKE_BINARY_DIR}/compile_commands.json"
+          "${CMAKE_SOURCE_DIR}/compile_commands.json"
+  VERBATIM)
+
 configure_file("scripts/build_config.sh" "${CMAKE_BINARY_DIR}/build_config.sh"
                @ONLY)
 

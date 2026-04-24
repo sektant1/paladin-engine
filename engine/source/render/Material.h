@@ -59,11 +59,11 @@ public:
     /// @name Uniform Parameter Setters
     /// Store a named uniform value. Uploaded to the GPU in Bind().
     /// @{
-    void SetParam(const std::string &name, float value);                                         ///< Set a float uniform.
-    void SetParam(const std::string &name, float v0, float v1);                                  ///< Set a vec2 uniform.
-    void SetParam(const std::string &name, float v0, float v1, float v2);                        ///< Set a vec3 uniform.
-    void SetParam(const std::string &name, float v0, float v1, float v2, float v3);              ///< Set a vec4 uniform.
-    void SetParam(const std::string &name, const std::shared_ptr<Texture> &texture);             ///< Set a sampler2D uniform.
+    void SetParam(const std::string &name, float value);                              ///< Set a float uniform.
+    void SetParam(const std::string &name, float v0, float v1);                       ///< Set a vec2 uniform.
+    void SetParam(const std::string &name, float v0, float v1, float v2);             ///< Set a vec3 uniform.
+    void SetParam(const std::string &name, float v0, float v1, float v2, float v3);   ///< Set a vec4 uniform.
+    void SetParam(const std::string &name, const std::shared_ptr<Texture> &texture);  ///< Set a sampler2D uniform.
     /// @}
 
     /**
@@ -85,9 +85,9 @@ public:
     static std::shared_ptr<Material> Load(const str &path);
 
 private:
-    std::shared_ptr<ShaderProgram>                                          m_shaderProgram;  ///< GLSL program used for rendering.
-    std::unordered_map<std::string, float>                                  m_floatParams;    ///< float uniforms.
-    std::unordered_map<std::string, std::tuple<float, float>>               m_float2Params;  ///< vec2 uniforms.
+    std::shared_ptr<ShaderProgram>                            m_shaderProgram;  ///< GLSL program used for rendering.
+    std::unordered_map<std::string, float>                    m_floatParams;    ///< float uniforms.
+    std::unordered_map<std::string, std::tuple<float, float>> m_float2Params;   ///< vec2 uniforms.
     std::unordered_map<std::string, std::tuple<float, float, float>>        m_float3Params;  ///< vec3 uniforms.
     std::unordered_map<std::string, std::tuple<float, float, float, float>> m_float4Params;  ///< vec4 uniforms.
     std::unordered_map<std::string, std::shared_ptr<Texture>>               m_textures;      ///< Sampler2D uniforms.
