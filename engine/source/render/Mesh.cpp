@@ -339,43 +339,45 @@ std::shared_ptr<Mesh> Mesh::Load(const str &path)
     std::shared_ptr<Mesh> Mesh::CreateBox(const glm::vec3& extents)
     {
         const glm::vec3 half = extents * 0.5f;
+        // UVs tile one repeat per world unit on each face's tangent axes.
+        const float ux = extents.x, uy = extents.y, uz = extents.z;
         std::vector<float> vertices =
         {
-            // Front face
-            half.x, half.y, half.z, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-            -half.x, half.y, half.z, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+            // Front face (tangent axes: x, y)
+            half.x, half.y, half.z, 1.0f, 0.0f, 0.0f,   ux,   uy, 0.0f, 0.0f, 1.0f,
+            -half.x, half.y, half.z, 0.0f, 1.0f, 0.0f, 0.0f,   uy, 0.0f, 0.0f, 1.0f,
             -half.x, -half.y, half.z, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-            half.x, -half.y, half.z, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            half.x, -half.y, half.z, 1.0f, 1.0f, 0.0f,   ux, 0.0f, 0.0f, 0.0f, 1.0f,
 
-            // Top face 
-            half.x, half.y, -half.z, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-            -half.x, half.y, -half.z, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+            // Top face (tangent axes: x, z)
+            half.x, half.y, -half.z, 1.0f, 0.0f, 0.0f,   ux,   uz, 0.0f, 1.0f, 0.0f,
+            -half.x, half.y, -half.z, 0.0f, 1.0f, 0.0f, 0.0f,   uz, 0.0f, 1.0f, 0.0f,
             -half.x, half.y, half.z, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-            half.x, half.y, half.z, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+            half.x, half.y, half.z, 1.0f, 1.0f, 0.0f,   ux, 0.0f, 0.0f, 1.0f, 0.0f,
 
-            // Right face
-            half.x, half.y, -half.z, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-            half.x, half.y, half.z, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+            // Right face (tangent axes: z, y)
+            half.x, half.y, -half.z, 1.0f, 0.0f, 0.0f,   uz,   uy, 1.0f, 0.0f, 0.0f,
+            half.x, half.y, half.z, 0.0f, 1.0f, 0.0f, 0.0f,   uy, 1.0f, 0.0f, 0.0f,
             half.x, -half.y, half.z, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-            half.x, -half.y, -half.z, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            half.x, -half.y, -half.z, 1.0f, 1.0f, 0.0f,   uz, 0.0f, 1.0f, 0.0f, 0.0f,
 
-            // Left face
-            -half.x, half.y, half.z, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f,
-            -half.x, half.y, -half.z, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,
+            // Left face (tangent axes: z, y)
+            -half.x, half.y, half.z, 1.0f, 0.0f, 0.0f,   uz,   uy, -1.0f, 0.0f, 0.0f,
+            -half.x, half.y, -half.z, 0.0f, 1.0f, 0.0f, 0.0f,   uy, -1.0f, 0.0f, 0.0f,
             -half.x, -half.y, -half.z, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-            -half.x, -half.y, half.z, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+            -half.x, -half.y, half.z, 1.0f, 1.0f, 0.0f,   uz, 0.0f, -1.0f, 0.0f, 0.0f,
 
-            // Bottom face
-            half.x, -half.y, half.z, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, -1.0f, 0.0f,
-            -half.x, -half.y, half.z, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f,
+            // Bottom face (tangent axes: x, z)
+            half.x, -half.y, half.z, 1.0f, 0.0f, 0.0f,   ux,   uz, 0.0f, -1.0f, 0.0f,
+            -half.x, -half.y, half.z, 0.0f, 1.0f, 0.0f, 0.0f,   uz, 0.0f, -1.0f, 0.0f,
             -half.x, -half.y, -half.z, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f,
-            half.x, -half.y, -half.z, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f,
+            half.x, -half.y, -half.z, 1.0f, 1.0f, 0.0f,   ux, 0.0f, 0.0f, -1.0f, 0.0f,
 
-            // Back face
-            -half.x, half.y, -half.z, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
-            half.x, half.y, -half.z, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+            // Back face (tangent axes: x, y)
+            -half.x, half.y, -half.z, 1.0f, 0.0f, 0.0f,   ux,   uy, 0.0f, 0.0f, -1.0f,
+            half.x, half.y, -half.z, 0.0f, 1.0f, 0.0f, 0.0f,   uy, 0.0f, 0.0f, -1.0f,
             half.x, -half.y, -half.z, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f,
-            -half.x, -half.y, -half.z, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f
+            -half.x, -half.y, -half.z, 1.0f, 1.0f, 0.0f,   ux, 0.0f, 0.0f, 0.0f, -1.0f
         };
 
         std::vector<unsigned int> indices =

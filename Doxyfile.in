@@ -104,8 +104,7 @@ HTML_COLORSTYLE_GAMMA  = 100
 
 # Custom stylesheet — forge & deep-hall theme baked into Doxygen vars to
 # avoid selector conflicts with Doxygen's own layout/markdown rules.
-HTML_EXTRA_STYLESHEET  = @CMAKE_SOURCE_DIR@/docs/custom.css \
-                         @CMAKE_SOURCE_DIR@/docs/header-fix.css
+HTML_EXTRA_STYLESHEET  = @CMAKE_SOURCE_DIR@/docs/custom.css
 HTML_HEADER            = @CMAKE_SOURCE_DIR@/docs/header.html
 HTML_EXTRA_FILES       = @CMAKE_SOURCE_DIR@/docs/unescape-headings.js \
                          @CMAKE_SOURCE_DIR@/docs/torch-flicker.js \

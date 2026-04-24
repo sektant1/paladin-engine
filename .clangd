@@ -3,13 +3,17 @@ CompileFlags:
   Add:
     - -xc++
     - -std=c++17
-    - -I/home/gfe/Personal/coagula-engine/source
-    - -I/home/gfe/Personal/coagula-engine/engine/source
-    - -I/home/gfe/Personal/coagula-engine/engine/thirdparty/glew/include
-    - -I/home/gfe/Personal/coagula-engine/engine/thirdparty/glfw-3.4/include
-    - -I/home/gfe/Personal/coagula-engine/engine/thirdparty/stb_image
-    - -I/home/gfe/Personal/coagula-engine/engine/thirdparty/cgltf
-    - -I/home/gfe/Personal/coagula-engine/engine/thirdparty/json
-    - -I/home/gfe/Personal/coagula-engine/engine/thirdparty/bullet/src
-    - -I/home/gfe/Personal/coagula-engine/build/engine_build
-  CompilationDatabase: build
+    - -DGLEW_STATIC
+    - -DGLEW_NO_GLU
+    - -Isource
+    - -Iengine/source
+    - -Iengine/thirdparty/glew/include
+    - -Iengine/thirdparty/glfw-3.4/include
+    - -Iengine/thirdparty/glm
+    - -Iengine/thirdparty/stb_image
+    - -Iengine/thirdparty/cgltf
+    - -Iengine/thirdparty/json
+    - -Iengine/thirdparty/miniaudio
+    - -Ibuild/engine_build
+    - -Ibin/debug/engine_build
+  CompilationDatabase: .

@@ -1,5 +1,7 @@
-/**
- * @file Types.h
+#ifndef TYPES_H
+#define TYPES_H
+
+/** @file Types.h
  * @ingroup coa_types
  * @brief Engine-wide primitive type aliases and GLM math imports.
  *
@@ -11,17 +13,12 @@
  * directly to any OpenGL uniform upload helper in ShaderProgram.
  */
 
-#pragma once
-
 #include <cstddef>
 #include <cstdint>
 #include <string>
 
-#include <glm/ext/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
-#define GLM_ENABLE_EXPERIMENTAL
 
 namespace COA
 {
@@ -92,3 +89,5 @@ using glm::value_ptr;
 /// @}
 
 }  // namespace COA
+
+#endif
