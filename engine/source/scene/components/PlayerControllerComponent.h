@@ -43,6 +43,12 @@ public:
     void SetMS(f32 ms);
     f32  GetMS();
 
+    [[nodiscard]] f32 GetSensitivity() const { return m_sensitivity; }
+    [[nodiscard]] f32 GetJumpSpeed() const { return m_jumpSpeed; }
+
+    void SetSensitivity(f32 s) { m_sensitivity = s; }
+    void SetJumpSpeed(f32 s) { m_jumpSpeed = s; }
+
 private:
     f32 m_sensitivity = 15.0F;  ///< Mouse-look sensitivity multiplier (degrees per pixel).
     f32 m_moveSpeed   = 5.0F;   ///< Translation speed in world units per second.

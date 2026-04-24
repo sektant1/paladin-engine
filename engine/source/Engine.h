@@ -32,7 +32,10 @@
 #include <memory>
 
 #include "audio/AudioManager.h"
+#include "editor/Editor.h"
 #include "graphics/GraphicsAPI.h"
+#include "graphics/RenderSettings.h"
+#include "graphics/RenderTarget.h"
 #include "graphics/Texture.h"
 #include "input/InputManager.h"
 #include "io/FileSystem.h"
@@ -132,6 +135,17 @@ public:
     /// Returns the currently active scene, or nullptr if none is set.
     Scene *GetScene();
 
+    /// ImGui-based editor overlay.
+    Editor &GetEditor() { return m_editor; }
+
+    /// Mutable render settings edited by the Editor's Render panel.
+    RenderSettings &GetRenderSettings() { return m_renderSettings; }
+
+    /// Offscreen low-res render target (only active when RenderSettings::useInternalRes is true).
+    RenderTarget &GetSceneTarget() { return m_sceneTarget; }
+
+    GLFWwindow *GetWindow() { return m_window; }
+
 private:
     std::unique_ptr<Application>          m_application;       ///< The user game/lab instance.
     std::chrono::steady_clock::time_point m_lastTimePoint;     ///< Timestamp of the previous frame.
@@ -145,6 +159,10 @@ private:
 
     PhysicsManager         m_physicsManager;
     std::unique_ptr<Scene> m_currentScene;  ///< Active scene graph.
+
+    Editor         m_editor;          ///< ImGui overlay.
+    RenderTarget   m_sceneTarget;     ///< Low-res FBO for pixelated look.
+    RenderSettings m_renderSettings;  ///< Editor-tweakable render params.
 };
 
 }  // namespace COA

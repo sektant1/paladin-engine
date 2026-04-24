@@ -128,6 +128,12 @@ bool Engine::Init(int width, int height)
         LOG_ERROR("AudioManager Init failed");
     }
 
+    m_sceneTarget.Create(m_renderSettings.internalW, m_renderSettings.internalH);
+    if (!m_editor.Init(m_window))
+    {
+        LOG_ERROR("Editor Init failed");
+    }
+
     bool appOk = m_application->Init();
     if (!appOk)
     {
@@ -153,6 +159,7 @@ void Engine::Run()
     while ((glfwWindowShouldClose(m_window) == 0) && !m_application->NeedsToBeClosed())
     {
         glfwPollEvents();
+        m_editor.BeginFrame();
 
         auto  now       = std::chrono::steady_clock::now();
         float deltaTime = std::chrono::duration<float>(now - m_lastTimePoint).count();
@@ -161,7 +168,24 @@ void Engine::Run()
         m_physicsManager.Update(deltaTime);
         m_application->Update(deltaTime);
 
-        m_graphicsAPI.SetClearColor(1.0F, 1.0F, 1.0F, 1.0F);
+        // Bind scene target (offscreen low-res) or default framebuffer for the scene pass.
+        int winW = 0, winH = 0;
+        glfwGetFramebufferSize(m_window, &winW, &winH);
+
+        if (m_renderSettings.useInternalRes)
+        {
+            m_sceneTarget.Resize(m_renderSettings.internalW, m_renderSettings.internalH);
+            m_sceneTarget.Bind();
+        }
+        else
+        {
+            RenderTarget::BindDefault(winW, winH);
+        }
+
+        m_graphicsAPI.SetClearColor(m_renderSettings.clearColor.r,
+                                    m_renderSettings.clearColor.g,
+                                    m_renderSettings.clearColor.b,
+                                    m_renderSettings.clearColor.a);
         m_graphicsAPI.ClearBuffers();
 
         CameraData             cameraData;
@@ -208,6 +232,17 @@ void Engine::Run()
 
         m_renderQueue.Draw(m_graphicsAPI, cameraData, lights);
 
+        // Blit offscreen low-res target to default framebuffer with nearest-neighbor upscale.
+        if (m_renderSettings.useInternalRes && m_sceneTarget.IsValid())
+        {
+            RenderTarget::BindDefault(winW, winH);
+            BlitNearest(m_sceneTarget.ColorTex(), winW, winH);
+        }
+
+        // Editor overlays the scene on the default framebuffer.
+        m_editor.Draw();
+        m_editor.EndFrame();
+
         glfwSwapBuffers(m_window);
 
         m_inputManager.SetMousePositionOld(m_inputManager.GetMousePositionCurrent());
@@ -221,6 +256,8 @@ void Engine::Destroy()
     LOG_INFO("Engine::Destroy requested");
     if (m_application)
     {
+        m_editor.Shutdown();
+        m_sceneTarget.Destroy();
         m_application->Destroy();
         m_application.reset();
         glfwTerminate();

@@ -1,8 +1,11 @@
 #include "render/RenderQueue.h"
 
 #include "Common.h"
+#include "Engine.h"
 #include "Log.h"
+#include "editor/Editor.h"
 #include "graphics/GraphicsAPI.h"
+#include "graphics/RenderSettings.h"
 #include "graphics/ShaderProgram.h"
 #include "render/Material.h"
 #include "render/Mesh.h"
@@ -23,6 +26,9 @@ void RenderQueue::Submit(const RenderCommand &command)
 
 void RenderQueue::Draw(GraphicsAPI &graphicsAPI, const CameraData &cameraData, const std::vector<LightData> &lights)
 {
+    const RenderSettings &rs = Engine::GetInstance().GetRenderSettings();
+    int                   drawn = 0;
+
     for (auto &command : m_commands)
     {
         if (!command.material)
@@ -48,11 +54,24 @@ void RenderQueue::Draw(GraphicsAPI &graphicsAPI, const CameraData &cameraData, c
             program->SetUniform("uLight.position", light.position);
         }
 
+        // Editor-controlled PSX shader uniforms. ShaderProgram::SetUniform is a no-op
+        // for shaders that don't declare the uniform, so this is safe across materials.
+        program->SetUniform("uSnapResolutionX", rs.snapX);
+        program->SetUniform("uSnapResolutionY", rs.snapY);
+        program->SetUniform("uFogStart",        rs.fogStart);
+        program->SetUniform("uFogEnd",          rs.fogEnd);
+        program->SetUniform("uAmbient",         rs.ambient);
+        program->SetUniform("uLightDir",        rs.lightDir);
+        program->SetUniform("uColorDepth",      rs.colorDepth);
+        program->SetUniform("uDitherStrength",  rs.ditherStrength);
+
         graphicsAPI.BindMesh(command.mesh);
         graphicsAPI.DrawMesh(command.mesh);
+        ++drawn;
     }
 
     m_commands.clear();
+    Engine::GetInstance().GetEditor().NotifyDrawCount(drawn);
 }
 
 }  // namespace COA

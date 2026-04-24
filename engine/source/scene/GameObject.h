@@ -206,6 +206,12 @@ public:
      */
     GameObject *FindChildByName(const std::string &name);
 
+    /// Editor access: iterate immediate children (non-owning).
+    const std::vector<std::unique_ptr<GameObject>> &GetChildren() const { return m_children; }
+
+    /// Editor access: iterate attached components (non-owning).
+    const std::vector<std::unique_ptr<Component>> &GetComponents() const { return m_components; }
+
 protected:
     GameObject() = default;
 

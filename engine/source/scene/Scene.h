@@ -126,6 +126,9 @@ public:
     std::vector<LightData>        CollectLight();
     static std::shared_ptr<Scene> Load(const str &path);
 
+    /// Editor access: iterate root GameObjects (non-owning).
+    const std::vector<std::unique_ptr<GameObject>> &GetRootObjects() const { return m_objects; }
+
 private:
     /// Recursive DFS helper used by CollectLight().
     void CollectLightsRecursive(GameObject *obj, std::vector<LightData> &out);
