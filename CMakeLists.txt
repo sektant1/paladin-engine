@@ -42,6 +42,15 @@ configure_file("scripts/build_config.sh" "${CMAKE_BINARY_DIR}/build_config.sh"
 # Doxygen documentation target
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
+  include(FetchContent)
+  FetchContent_Declare(
+    doxygen-awesome-css
+    GIT_REPOSITORY https://github.com/jothepro/doxygen-awesome-css.git
+    GIT_TAG        v2.3.4
+  )
+  FetchContent_MakeAvailable(doxygen-awesome-css)
+  FetchContent_GetProperties(doxygen-awesome-css SOURCE_DIR DOXYGEN_AWESOME_CSS_DIR)
+  set(DOXYGEN_AWESOME_CSS_DIR "${DOXYGEN_AWESOME_CSS_DIR}" CACHE INTERNAL "")
   configure_file("${CMAKE_SOURCE_DIR}/Doxyfile.in"
                  "${CMAKE_BINARY_DIR}/Doxyfile" @ONLY)
   add_custom_target(

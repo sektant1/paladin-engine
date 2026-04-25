@@ -89,24 +89,30 @@ HTML_DYNAMIC_SECTIONS  = YES
 HTML_INDEX_NUM_ENTRIES = 200
 HTML_COPY_CLIPBOARD    = YES
 
-# Navigation — sidebar tree, top index tabs, both enabled for best discovery
+# Navigation — sidebar-only layout (recommended by doxygen-awesome-css).
 GENERATE_TREEVIEW      = YES
 DISABLE_INDEX          = NO
 FULL_SIDEBAR           = NO
-TREEVIEW_WIDTH         = 280
+TREEVIEW_WIDTH         = 335
 
-# Theme — forge & deep-hall (see docs/custom.css).
-# Base Doxygen colorstyle is DARK; custom.css repaints everything.
-HTML_COLORSTYLE        = DARK
-HTML_COLORSTYLE_HUE    = 32
-HTML_COLORSTYLE_SAT    = 80
-HTML_COLORSTYLE_GAMMA  = 100
+# Theme — doxygen-awesome-css base + Coagula "Deep-Hall & Forge" overlay.
+HTML_COLORSTYLE        = LIGHT
 
-# Custom stylesheet — forge & deep-hall theme baked into Doxygen vars to
-# avoid selector conflicts with Doxygen's own layout/markdown rules.
-HTML_EXTRA_STYLESHEET  = @CMAKE_SOURCE_DIR@/docs/custom.css
+# Stylesheets stack: awesome (base) → awesome-sidebar-only (layout)
+#                  → awesome-sidebar-only-darkmode-toggle (theme switch)
+#                  → coa-forge (Coagula dwarven overlay).
+HTML_EXTRA_STYLESHEET  = @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome.css \
+                         @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome-sidebar-only.css \
+                         @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome-sidebar-only-darkmode-toggle.css \
+                         @CMAKE_SOURCE_DIR@/docs/custom.css
+
 HTML_HEADER            = @CMAKE_SOURCE_DIR@/docs/header.html
-HTML_EXTRA_FILES       = @CMAKE_SOURCE_DIR@/docs/coa-forge.js
+HTML_EXTRA_FILES       = @CMAKE_SOURCE_DIR@/docs/coa-forge.js \
+                         @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome-darkmode-toggle.js \
+                         @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome-fragment-copy-button.js \
+                         @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome-paragraph-link.js \
+                         @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome-interactive-toc.js \
+                         @DOXYGEN_AWESOME_CSS_DIR@/doxygen-awesome-tabs.js
 
 # Image path — kept for future @image html references.
 IMAGE_PATH             = @CMAKE_SOURCE_DIR@/docs/images

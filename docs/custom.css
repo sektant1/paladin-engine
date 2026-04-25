@@ -1,748 +1,571 @@
 /* =====================================================================
-   Coagula Engine — "Deep-Hall & Forge" Doxygen theme
-   Dwarven dark-fantasy grimoire. Basalt black, molten gold, ember orange.
-   Override Doxygen's CSS variables first, then reshape components.
+   Coagula Engine — "Deep-Hall & Forge" overlay on doxygen-awesome-css.
+   Only overrides awesome's CSS variables + adds atmosphere layers and
+   ornaments. NEVER touches awesome's structural rules — keeps layout,
+   navigation, and dark-mode toggle fully working.
    ===================================================================== */
 
-:root,
+/* ---------------------------------------------------------------------
+   1. Web fonts (heading: Cinzel, body: EB Garamond, mono: JetBrains Mono)
+   --------------------------------------------------------------------- */
+:root {
+  --coa-font-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --coa-font-body:    "EB Garamond", "Iowan Old Style", Georgia, serif;
+  --coa-font-mono:    "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---- Undercity / cobblestone master palette ---- */
+  --und-cobble-0:    #0c0e10;   /* deepest crypt */
+  --und-cobble-1:    #14171a;   /* primary surface */
+  --und-cobble-2:    #1c2024;   /* lifted stone */
+  --und-cobble-3:    #262a30;   /* hover / borders */
+  --und-mortar:      #3a3f48;   /* wet mortar */
+  --und-iron:        #4d525c;
+  --und-bone:        #c4bfa8;   /* primary text — bone-yellow */
+  --und-bone-dim:    #948f78;
+  --und-bile:        #7a9c34;   /* sickly green chemical */
+  --und-bile-glow:   #aed957;   /* bright bile highlight */
+  --und-bile-deep:   #3d4d18;
+  --und-rot:         #5a7a44;   /* moss / rot accent */
+  --und-poison:      #5cb89e;   /* alchemy teal-mint */
+  --und-rust:        #8a4a26;   /* dried-blood rust */
+  --und-blood:       #6a1818;
+  --und-arcane:      #7a4ea8;   /* shadow-magic purple */
+  --und-arcane-bg:   #1c1428;
+}
+
+/* ---------------------------------------------------------------------
+   2. doxygen-awesome variable overrides — LIGHT-MODE values.
+   The user-visible default site is dark (forge), so we make light feel
+   like polished parchment over warm stone.
+   --------------------------------------------------------------------- */
+html {
+  /* Palette (light / cobblestone-grey daylight crypt) */
+  --primary-color:               #5d7a1e;   /* moss-bile */
+  --primary-dark-color:          #425814;
+  --primary-light-color:         #7a9c34;
+  --primary-lighter-color:       #d4d8c4;
+  --primary-lightest-color:      #e6e8d8;
+
+  --page-background-color:       #c4c0b4;   /* weathered stone */
+  --page-foreground-color:       #1a1d20;
+  --page-secondary-foreground-color: #4a4d54;
+
+  --separator-color:             #8a8e88;
+  --side-nav-background:         #a8a8a0;
+  --side-nav-foreground:         #1a1d20;
+
+  --code-background:             #b4b0a4;
+  --code-foreground:             #1a1d20;
+
+  --fragment-background:         #b8b4a8;
+  --fragment-foreground:         #1a1d20;
+  --fragment-keyword:            #425814;
+  --fragment-keywordtype:        #2a5a4e;
+  --fragment-keywordflow:        #6a3818;
+  --fragment-token:              #1a1d20;
+  --fragment-comment:            #6a6a5a;
+  --fragment-link:               #425814;
+  --fragment-preprocessor:       #4a3a6a;
+  --fragment-linenumber-color:   #6a6a5a;
+  --fragment-linenumber-background: #b0aca0;
+  --fragment-linenumber-border:  #8a8e88;
+
+  --tablehead-background:        #aeae9c;
+  --tablehead-foreground:        #1a1d20;
+
+  --memdef-border-color:         #8a8e88;
+  --memdef-title-background:     #aeae9c;
+  --memdef-title-foreground:     #1a1d20;
+  --memdef-proto-background:     #b8b4a8;
+  --memdef-proto-foreground:     #1a1d20;
+  --memdef-doc-background:       #c4c0b4;
+
+  --header-background:           #a8a8a0;
+  --header-foreground:           #1a1d20;
+
+  --searchbar-background:        #d0ccc0;
+  --searchbar-foreground:        #1a1d20;
+  --searchbar-border-color:      #8a8e88;
+
+  --tab-background-color:        #a8a8a0;
+  --tab-foreground-color:        #4a4d54;
+  --tab-hover-background:        #aeae9c;
+  --tab-hover-foreground:        #425814;
+  --tab-selected-background:     #c4c0b4;
+  --tab-selected-foreground:     #5d7a1e;
+
+  --warning-color-bg:            #d4cfa8;
+  --warning-color-hl:            #6a5818;
+  --warning-color-text:          #1a1d20;
+  --note-color-bg:               #b8c8c4;
+  --note-color-hl:               #2a5a4e;
+  --note-color-text:             #1a2624;
+  --todo-color-bg:               #c8d0a8;
+  --todo-color-hl:               #5d7a1e;
+  --deprecated-color-bg:         #d0bcb8;
+  --bug-color-bg:                #d0bcb8;
+  --invariant-color-bg:          #b8c8c4;
+
+  /* Type */
+  --content-maxwidth:            1100px;
+  --font-family:                 var(--coa-font-body);
+  --font-family-monospace:       var(--coa-font-mono);
+  --page-font-size:              17px;
+  --content-line-height:         1.7;
+  --code-font-size:              14px;
+  --title-font-size:             32px;
+
+  /* Spacing — slightly more generous so the parchment feels deliberate */
+  --spacing-large:               28px;
+  --spacing-medium:              14px;
+  --spacing-small:               8px;
+}
+
+/* ---------------------------------------------------------------------
+   3. Dark mode — the dwarven forge default. Uses doxygen-awesome's
+      `html.dark-mode` selector (set by the toggle).
+   --------------------------------------------------------------------- */
 html.dark-mode {
-  /* ---- palette ---- */
-  --coa-basalt:        #0d0a08;   /* deepest stone */
-  --coa-stone:         #161210;   /* primary surface */
-  --coa-stone-2:       #1d1815;   /* lifted surface */
-  --coa-stone-3:       #251e19;   /* hover / borders */
-  --coa-mortar:        #3a2f25;
-  --coa-iron:          #5a4a3c;
-  --coa-bone:          #d8c8a8;   /* primary text — warm parchment */
-  --coa-bone-soft:     #b8a888;
-  --coa-gold:          #d4a24c;   /* heading / accent */
-  --coa-gold-bright:   #f0c46a;
-  --coa-ember:         #d8632a;   /* primary action */
-  --coa-ember-bright:  #ff8a3d;
-  --coa-blood:         #8a2a1a;
-  --coa-rune:          #74d4c8;   /* cool counter-accent (rune-glow) */
-  --coa-rune-deep:     #2a6b66;
-  --coa-parchment:     #e8d8b0;
-  --coa-parchment-bg:  #1a140f;
+  --primary-color:               #aed957;   /* bile-glow accent */
+  --primary-dark-color:          #7a9c34;
+  --primary-light-color:         #c8e87a;
+  --primary-lighter-color:       #1a2210;
+  --primary-lightest-color:      #14180c;
 
-  /* ---- Doxygen overrides (1.9.x dark vars) ---- */
-  --primary-color:               var(--coa-ember);
-  --primary-dark-color:           var(--coa-blood);
-  --primary-light-color:          var(--coa-ember-bright);
-  --primary-lighter-color:        #2a1a12;
-  --primary-lightest-color:       #1a100c;
+  --page-background-color:       #0c0e10;
+  --page-foreground-color:       #c4bfa8;
+  --page-secondary-foreground-color: #948f78;
 
-  --page-background-color:        var(--coa-basalt);
-  --page-foreground-color:        var(--coa-bone);
-  --page-secondary-foreground-color: var(--coa-bone-soft);
+  --separator-color:             #2a2e34;
+  --side-nav-background:         #0a0c0e;
+  --side-nav-foreground:         #948f78;
 
-  --separator-color:              #2a221c;
+  --code-background:             #14171a;
+  --code-foreground:             #c4bfa8;
 
-  --side-nav-background:          #0a0807;
-  --side-nav-foreground:          var(--coa-bone-soft);
-  --code-background:              #120e0b;
-  --code-foreground:              var(--coa-parchment);
+  --fragment-background:         #10131580;
+  --fragment-foreground:         #c4bfa8;
+  --fragment-keyword:            #aed957;   /* bile */
+  --fragment-keywordtype:        #5cb89e;   /* poison teal */
+  --fragment-keywordflow:        #c98a52;   /* rust */
+  --fragment-token:              #c4bfa8;
+  --fragment-comment:            #5a5e54;
+  --fragment-link:               #aed957;
+  --fragment-preprocessor:       #9c7eb8;   /* arcane */
+  --fragment-linenumber-color:   #4d525c;
+  --fragment-linenumber-background: #0c0e10;
+  --fragment-linenumber-border:  #2a2e34;
 
-  --tablehead-background:         #1a130d;
-  --tablehead-foreground:         var(--coa-gold);
+  --tablehead-background:        #181c20;
+  --tablehead-foreground:        #aed957;
 
-  --warning-color-bg:             #2a1a08;
-  --warning-color-hl:             #f0c46a;
-  --warning-color-text:           var(--coa-bone);
-  --note-color-bg:                #0e1a1a;
-  --note-color-hl:                var(--coa-rune);
-  --note-color-text:              var(--coa-bone);
-  --todo-color-bg:                #1a0a0a;
-  --todo-color-hl:                #ff8a3d;
-  --deprecated-color-bg:          #1a1208;
-  --bug-color-bg:                 #1a0808;
+  --memdef-border-color:         #2a2e34;
+  --memdef-title-background:     #181c20;
+  --memdef-title-foreground:     #aed957;
+  --memdef-proto-background:     #14171a;
+  --memdef-proto-foreground:     #c4bfa8;
+  --memdef-doc-background:       #10131580;
 
-  --memdef-border-color:          #3a2a1c;
-  --memdef-title-background:      linear-gradient(180deg, #1f1813 0%, #14100c 100%);
-  --memdef-title-foreground:      var(--coa-gold);
-  --memdef-proto-background:      #1a140f;
-  --memdef-proto-foreground:      var(--coa-bone);
-  --memdef-doc-background:        #100c0a;
+  --header-background:           #14171a;
+  --header-foreground:           #aed957;
 
-  --fragment-background:          #100b08;
-  --fragment-foreground:          var(--coa-parchment);
-  --fragment-keyword:             #f0c46a;
-  --fragment-keywordtype:         #74d4c8;
-  --fragment-keywordflow:         #ff8a3d;
-  --fragment-token:               #d8c8a8;
-  --fragment-comment:             #6a5a48;
-  --fragment-link:                #ff8a3d;
-  --fragment-preprocessor:        #c97b4a;
-  --fragment-linenumber-color:    #5a4a3c;
-  --fragment-linenumber-background: #14100c;
-  --fragment-linenumber-border:   #2a201a;
+  --searchbar-background:        #14171a;
+  --searchbar-foreground:        #c4bfa8;
+  --searchbar-border-color:      #2a2e34;
 
-  --tab-background-color:         #14100c;
-  --tab-foreground-color:         var(--coa-bone-soft);
-  --tab-hover-background:         #1f1813;
-  --tab-hover-foreground:         var(--coa-gold-bright);
-  --tab-selected-background:      #1f1813;
-  --tab-selected-foreground:      var(--coa-gold);
+  --tab-background-color:        #14171a;
+  --tab-foreground-color:        #948f78;
+  --tab-hover-background:        #1c2024;
+  --tab-hover-foreground:        #aed957;
+  --tab-selected-background:     #1c2024;
+  --tab-selected-foreground:     #aed957;
 
-  --searchbar-background:         #14100c;
-  --searchbar-foreground:         var(--coa-bone);
-  --searchbar-border-color:       #3a2a1c;
-
-  --header-background:            #0d0a08;
-  --header-foreground:            var(--coa-gold);
-  --header-gradient-image:        linear-gradient(180deg, #1a130d 0%, #0d0a08 100%);
-
-  --content-maxwidth:             1180px;
-  --spacing-large:                28px;
-  --spacing-medium:                14px;
-  --spacing-small:                 8px;
-
-  --font-family:                  "EB Garamond", "Iowan Old Style", Georgia, serif;
-  --font-family-monospace:        "JetBrains Mono", "Fira Code", ui-monospace, monospace;
-  --font-family-title:            "Cinzel", "Trajan Pro", serif;
-  --font-family-search:           "EB Garamond", serif;
-  --font-family-icon:             "JetBrains Mono", monospace;
-  --font-family-tooltip:          "EB Garamond", serif;
-
-  --page-font-size:               17px;
-  --navigation-font-size:         15px;
-  --code-font-size:               14px;
-  --title-font-size:              30px;
+  --warning-color-bg:            #2a1f08;
+  --warning-color-hl:            #d4a24c;
+  --warning-color-text:          #c4bfa8;
+  --note-color-bg:               #0e1a1a;
+  --note-color-hl:               #5cb89e;
+  --note-color-text:             #c4bfa8;
+  --todo-color-bg:               #1a2210;
+  --todo-color-hl:               #aed957;
+  --deprecated-color-bg:         #1c1428;
+  --bug-color-bg:                #1a0a0a;
+  --invariant-color-bg:          #0e1a1a;
 
   color-scheme: dark;
 }
 
-/* =====================================================================
-   Global atmosphere
-   ===================================================================== */
-
-html, body {
-  background: var(--coa-basalt);
-  color: var(--coa-bone);
-  font-family: var(--font-family);
-  font-size: var(--page-font-size);
-  line-height: 1.65;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "liga","kern","onum","dlig";
-}
-
-/* Layered stone background — radial forge-glow + dotted veins */
-body {
+/* ---------------------------------------------------------------------
+   4. Atmosphere layers (banner, ember canvas, grain, vignette).
+   These sit BEHIND awesome's content via z-index.
+   --------------------------------------------------------------------- */
+html.dark-mode body {
+  background-color: #0c0e10;
   background-image:
-    radial-gradient(ellipse 1100px 700px at 20% -10%, rgba(216,99,42,.12), transparent 60%),
-    radial-gradient(ellipse 900px 600px at 100% 110%, rgba(116,212,200,.06), transparent 65%),
-    radial-gradient(circle at 50% 50%, rgba(212,162,76,.03), transparent 70%),
-    repeating-linear-gradient(115deg, rgba(255,255,255,.012) 0 1px, transparent 1px 7px),
-    linear-gradient(180deg, #0a0806 0%, #0d0a08 40%, #0a0806 100%);
+    radial-gradient(ellipse 1300px 900px at 18% -12%, rgba(174,217,87,.07), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 105% 115%, rgba(92,184,158,.05), transparent 65%),
+    radial-gradient(ellipse 800px 600px at 50% 50%, rgba(122,78,168,.025), transparent 70%),
+    /* faint masonry hatching */
+    repeating-linear-gradient(0deg, rgba(255,255,255,.008) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.006) 0 1px, transparent 1px 96px);
   background-attachment: fixed;
-  min-height: 100vh;
+}
+body {
+  background-color: #c4c0b4;
+  background-image:
+    radial-gradient(ellipse 1100px 700px at 20% -10%, rgba(93,122,30,.10), transparent 60%),
+    radial-gradient(ellipse 900px 600px at 100% 110%, rgba(42,90,78,.06), transparent 65%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.025) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.02) 0 1px, transparent 1px 84px);
+  background-attachment: fixed;
 }
 
-/* Grain overlay — fine SVG noise, multiplied over everything */
+#coa-embers {
+  position: fixed; inset: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+html.dark-mode #coa-embers { opacity: .9; }
+
 .coa-grain {
-  position: fixed; inset: 0; pointer-events: none; z-index: 1;
-  opacity: .35; mix-blend-mode: overlay;
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .25;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.78  0 0 0 0 0.6  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
+html.dark-mode .coa-grain { opacity: .35; }
 
-/* Vignette — pulls eye to the center column */
 .coa-vignette {
-  position: fixed; inset: 0; pointer-events: none; z-index: 2;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.55) 100%);
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.45) 100%);
+  opacity: 0;
+}
+html.dark-mode .coa-vignette { opacity: 1; }
+
+/* Make sure awesome's content paints above atmosphere */
+#top, #side-nav, #nav-tree, #doc-content, #nav-path,
+.coa-banner, .header, .contents, #titlearea {
+  z-index: 2;
 }
 
-/* Ember canvas — sits behind content but above background */
-#coa-embers {
-  position: fixed; inset: 0; pointer-events: none; z-index: 1;
-  width: 100vw; height: 100vh;
-  opacity: .9;
+/* ---------------------------------------------------------------------
+   Layout — embrace doxygen-awesome-css's sidebar-only model:
+   • #top (sidebar header) holds our small sigil + project title +
+     project number + tabs, all stacked inside the 320px sidebar zone
+   • .coa-strip is a full-width runic ribbon pinned to the very top of
+     the right (content) pane
+   • --top-height covers all stacked sidebar header rows
+   --------------------------------------------------------------------- */
+:root, html.dark-mode {
+  --top-height: 200px;             /* sigil ~46 + titlearea ~92 + tabs ~46 */
+  --side-nav-fixed-width: 320px;
 }
 
-/* Make sure doxygen content paints above the atmosphere layers */
-#top, #titlearea, .header, .contents, #nav-tree, #side-nav, #main-nav,
-#nav-path, .footer, .coa-banner {
-  position: relative; z-index: 10;
+#doc-content {
+  height: auto !important;
+  min-height: calc(100vh - 31px);
+  overflow: visible !important;
 }
 
-/* =====================================================================
-   Top runic banner
-   ===================================================================== */
+/* ---------------------------------------------------------------------
+   5a. Sidebar-top sigil — sits inside #top above #titlearea (320px wide)
+   --------------------------------------------------------------------- */
 .coa-banner {
-  display: flex; align-items: center; gap: 18px;
-  padding: 10px 28px;
-  background: linear-gradient(180deg, #06040303 0%, #0a0806 100%);
-  border-bottom: 1px solid #1d1612;
-  color: var(--coa-gold);
-  font-family: var(--font-family-title);
-  letter-spacing: .35em;
-  font-size: 12px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 20px 6px;
+  color: var(--primary-color);
+  font-family: var(--coa-font-display);
+  letter-spacing: .3em;
+  font-size: 10px;
   text-transform: uppercase;
-}
-.coa-banner__rule {
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%, #3a2a1c 8%,
-    #d4a24c 50%, #3a2a1c 92%, transparent 100%);
-  box-shadow: 0 0 8px rgba(212,162,76,.25);
+  border-bottom: 1px dashed var(--separator-color);
 }
 .coa-banner__sigil {
-  color: var(--coa-gold);
-  filter: drop-shadow(0 0 6px rgba(216,99,42,.4));
+  color: var(--primary-color);
+  filter: drop-shadow(0 0 4px rgba(174,217,87,.35));
   animation: coa-flicker 4.3s ease-in-out infinite;
+  flex-shrink: 0;
 }
 .coa-banner__motto {
   white-space: nowrap;
-  text-shadow: 0 0 14px rgba(212,162,76,.3);
+  text-shadow: 0 0 14px rgba(174,217,87,.18);
 }
-.coa-rune { color: var(--coa-rune); margin: 0 .35em; font-size: 15px; }
 
 @keyframes coa-flicker {
-  0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px rgba(216,99,42,.4)); }
-  47%      { opacity: .82; filter: drop-shadow(0 0 12px rgba(216,99,42,.7)); }
-  53%      { opacity: .95; filter: drop-shadow(0 0 4px rgba(216,99,42,.3)); }
+  0%, 100% { opacity: 1; }
+  47%      { opacity: .82; filter: drop-shadow(0 0 10px rgba(174,217,87,.55)); }
+  53%      { opacity: .95; filter: drop-shadow(0 0 4px rgba(174,217,87,.25)); }
 }
 
-/* =====================================================================
-   Title area / header
-   ===================================================================== */
-#titlearea {
-  background: linear-gradient(180deg, #14100c 0%, #0d0a08 100%);
-  border-bottom: 1px solid #2a201a;
-  box-shadow:
-    0 0 0 1px #0a0806 inset,
-    0 1px 0 rgba(212,162,76,.06) inset,
-    0 -2px 0 rgba(216,99,42,.08) inset;
-  padding: 6px 20px 4px;
-}
-#projectname {
-  font-family: var(--font-family-title);
-  font-weight: 800;
-  font-size: 36px;
-  letter-spacing: .08em;
-  color: var(--coa-gold);
-  text-shadow:
-    0 0 18px rgba(216,99,42,.25),
-    0 1px 0 #000,
-    0 2px 6px rgba(0,0,0,.7);
+/* ---------------------------------------------------------------------
+   5b. Full-width runic strip — pinned to top of right (content) pane.
+   Sits at top:0 of viewport, left = sidebar width, right = 0.
+   --------------------------------------------------------------------- */
+.coa-strip {
+  position: fixed;
+  top: 0;
+  left: var(--side-nav-fixed-width);
+  right: 0;
+  height: 36px;
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 28px;
+  background: linear-gradient(180deg,
+    var(--page-background-color) 0%,
+    color-mix(in srgb, var(--page-background-color), transparent 30%) 80%,
+    transparent 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 30;
+  pointer-events: none;
+  font-family: var(--coa-font-display);
+  font-size: 10px;
+  letter-spacing: .4em;
   text-transform: uppercase;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--separator-color);
+}
+.coa-strip__rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, var(--separator-color) 8%,
+    var(--primary-color) 50%, var(--separator-color) 92%, transparent 100%);
+  box-shadow: 0 0 6px rgba(174,217,87,.2);
+}
+.coa-strip__motto {
+  white-space: nowrap;
+  text-shadow: 0 0 14px rgba(174,217,87,.25);
+}
+.coa-rune {
+  color: var(--primary-light-color);
+  margin: 0 .35em;
+  letter-spacing: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .coa-strip { display: none; }
+}
+
+/* Push #doc-content down so its content clears the strip */
+@media screen and (min-width: 768px) {
+  #doc-content { padding-top: 60px !important; }
+}
+
+/* ---------------------------------------------------------------------
+   6. Typography — display heading font (Cinzel) for project name and
+   awesome's `.title` / heading classes. Body stays Garamond.
+   --------------------------------------------------------------------- */
+body, .contents, .memdoc, .textblock, p, li, td, dd {
+  font-family: var(--coa-font-body) !important;
+}
+
+#projectname,
+h1, h2, h3, h4, .title, .header .headertitle,
+.tablist a, .summary, #nav-path li {
+  font-family: var(--coa-font-display) !important;
+}
+/* Force titlearea cells to wrap so the project number drops below the
+   name instead of overflowing the 320px sidebar. */
+#titlearea, #titlearea table, #titlearea tbody, #titlearea tr,
+#titlearea td, #projectalign {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+#titlearea { padding: 6px 18px 10px !important; }
+
+#projectname {
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  font-size: 20px !important;
+  color: var(--primary-color);
+  line-height: 1.1;
+  display: block;
+  white-space: normal !important;
+  word-break: break-word;
+  margin: 0;
+  padding-bottom: 4px;
+}
+html.dark-mode #projectname {
+  text-shadow:
+    0 0 18px rgba(174,217,87,.25),
+    0 1px 0 #000;
 }
 #projectnumber {
-  font-family: var(--font-family-monospace);
-  font-size: 12px;
-  color: var(--coa-rune);
-  letter-spacing: .25em;
+  display: inline-block;
+  font-family: var(--coa-font-mono) !important;
+  font-size: 9px;
+  letter-spacing: .3em;
   vertical-align: middle;
-  padding: 2px 8px;
-  margin-left: 12px;
-  border: 1px solid var(--coa-rune-deep);
+  padding: 2px 7px;
+  margin: 4px 0 0 0 !important;
+  border: 1px solid var(--separator-color);
   border-radius: 2px;
-  background: rgba(116,212,200,.05);
+  color: var(--page-secondary-foreground-color);
+  background: rgba(174,217,87,.05);
+  white-space: nowrap;
+}
+#projectnumber::before {
+  content: "v";
+  opacity: .55;
+  margin-right: 1px;
 }
 #projectbrief {
   font-style: italic;
-  color: var(--coa-bone-soft);
-  font-size: 14px;
-  letter-spacing: .04em;
-}
-
-/* =====================================================================
-   Main navigation tabs (top index)
-   ===================================================================== */
-.tabs, .tabs2, .tabs3, #main-nav {
-  background: linear-gradient(180deg, #100c0a 0%, #0a0806 100%);
-  border-top: 1px solid #2a201a;
-  border-bottom: 1px solid #2a201a;
-  box-shadow: 0 4px 20px rgba(0,0,0,.5);
-}
-.tablist {
-  display: flex; gap: 2px;
-  padding: 4px 12px;
-}
-.tablist li, .tablist li.current {
-  background: transparent !important;
-  border: 0; box-shadow: none;
-}
-.tablist a, .tablist li a, .tablist li.current a {
-  background: transparent !important;
-  color: var(--coa-bone-soft) !important;
-  font-family: var(--font-family-title);
-  font-weight: 600;
+  font-family: var(--coa-font-body) !important;
+  color: var(--page-secondary-foreground-color);
   font-size: 12px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  padding: 10px 16px;
-  text-shadow: 0 1px 0 #000;
-  border-radius: 2px;
-  transition: color .2s ease, background .2s ease, text-shadow .25s ease;
-  position: relative;
-}
-.tablist a:hover, .tablist li.current a {
-  color: var(--coa-gold-bright) !important;
-  background: rgba(212,162,76,.06) !important;
-  text-shadow: 0 0 14px rgba(216,99,42,.5);
-}
-.tablist li.current a::after {
-  content: ""; position: absolute;
-  left: 16px; right: 16px; bottom: 4px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--coa-ember), transparent);
-  box-shadow: 0 0 8px var(--coa-ember);
+  line-height: 1.35;
+  letter-spacing: .02em;
+  margin-top: 6px;
+  white-space: normal !important;
+  word-break: break-word;
 }
 
-/* =====================================================================
-   Side navigation tree
-   ===================================================================== */
-#side-nav {
-  background: linear-gradient(180deg, #0a0806 0%, #060403 100%);
-  border-right: 1px solid #1d1612;
-  box-shadow: inset -1px 0 0 rgba(212,162,76,.04);
-}
-#nav-tree, #nav-tree-contents {
-  background: transparent;
-  font-family: var(--font-family-title);
-  font-size: 13px;
+h1, h2, h3, .title, .header .headertitle .title {
   letter-spacing: .04em;
 }
-#nav-tree .item {
-  color: var(--coa-bone-soft);
-  line-height: 1.85;
-}
-#nav-tree .item:hover { color: var(--coa-gold-bright); }
-#nav-tree a { color: inherit; text-decoration: none; }
-#nav-tree a:hover {
-  color: var(--coa-gold-bright);
-  text-shadow: 0 0 8px rgba(216,99,42,.4);
-}
-#nav-tree .selected {
-  background: linear-gradient(90deg, rgba(216,99,42,.18), transparent 80%) !important;
-  border-left: 2px solid var(--coa-ember);
-  box-shadow: inset 0 0 12px rgba(216,99,42,.1);
-}
-#nav-tree .selected a, #nav-tree .selected .item { color: var(--coa-gold-bright) !important; }
-
-#nav-sync img, .arrow { filter: hue-rotate(-10deg) saturate(1.3) brightness(1.3); }
-
-/* Resizer (between sidebar and content) */
-.ui-resizable-e {
-  background: linear-gradient(180deg, transparent, #2a201a, transparent) !important;
-  width: 2px !important;
-}
-
-/* =====================================================================
-   Content surface
-   ===================================================================== */
-div.contents {
-  max-width: var(--content-maxwidth);
-  margin: 28px auto;
-  padding: 36px 48px 64px;
-  background:
-    linear-gradient(180deg, rgba(26,20,16,.65) 0%, rgba(13,10,8,.85) 100%);
-  border: 1px solid #1d1612;
-  border-radius: 4px;
-  box-shadow:
-    0 0 0 1px rgba(212,162,76,.04) inset,
-    0 1px 0 rgba(212,162,76,.06) inset,
-    0 30px 80px -20px rgba(0,0,0,.7),
-    0 0 60px -20px rgba(216,99,42,.15);
-  position: relative;
-}
-/* Forged-corner ornaments */
-div.contents::before,
-div.contents::after {
-  content: ""; position: absolute; width: 24px; height: 24px;
-  border: 1px solid var(--coa-gold);
-  opacity: .35;
-  pointer-events: none;
-}
-div.contents::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-div.contents::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-
-/* =====================================================================
-   Typography
-   ===================================================================== */
-h1, h2, h3, h4, h5, h6,
-.title, div.title, .header .headertitle, .header .summary {
-  font-family: var(--font-family-title);
-  color: var(--coa-gold);
-  letter-spacing: .04em;
-  text-shadow: 0 1px 0 #000, 0 0 22px rgba(216,99,42,.18);
-}
-
-h1, .title {
-  font-size: 34px; font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  border-bottom: 1px solid #2a201a;
-  padding-bottom: 14px;
-  margin-bottom: 22px;
-  position: relative;
-}
-h1::before, .title::before {
+h1, .title { text-transform: uppercase; letter-spacing: .07em; }
+h1::before, div.contents > .title::before {
   content: "";
   display: inline-block;
-  width: 10px; height: 10px;
-  margin-right: 14px; vertical-align: middle;
-  background: var(--coa-ember);
+  width: 9px; height: 9px;
+  margin-right: 12px;
+  vertical-align: 4px;
+  background: var(--primary-color);
   transform: rotate(45deg);
   box-shadow:
-    0 0 0 1px var(--coa-gold),
-    0 0 14px var(--coa-ember);
-}
-h2 {
-  font-size: 24px; font-weight: 700;
-  margin-top: 36px; margin-bottom: 14px;
-  border-bottom: 1px dashed #2a201a;
-  padding-bottom: 8px;
+    0 0 0 1px var(--primary-dark-color),
+    0 0 12px var(--primary-color);
 }
 h2::before {
   content: "✦  ";
-  color: var(--coa-rune);
-  font-size: 14px;
-  vertical-align: middle;
-}
-h3 { font-size: 20px; font-weight: 600; color: var(--coa-gold-bright); }
-h4 { font-size: 17px; font-weight: 600; color: var(--coa-bone); letter-spacing: .12em; text-transform: uppercase; }
-
-p, li, dd, td {
-  color: var(--coa-bone);
-  font-size: var(--page-font-size);
-  line-height: 1.72;
-}
-p { margin: 0 0 1em; }
-
-a, a:link, a:visited {
-  color: var(--coa-ember-bright);
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(255,138,61,.35);
-  transition: color .2s, border-color .25s, text-shadow .25s;
-}
-a:hover {
-  color: var(--coa-gold-bright);
-  border-bottom-color: var(--coa-gold);
-  text-shadow: 0 0 10px rgba(216,99,42,.5);
+  color: var(--primary-light-color);
+  font-size: .9em;
 }
 
-/* Selection — molten */
-::selection {
-  background: rgba(216,99,42,.45);
-  color: #fff;
-  text-shadow: 0 0 10px rgba(216,99,42,.7);
+/* Code surfaces — keep awesome's structure, retint to forge */
+code, .tt, tt, kbd {
+  font-family: var(--coa-font-mono) !important;
+}
+div.fragment, pre.fragment {
+  border-left: 3px solid var(--primary-color) !important;
+  position: relative;
+}
+div.fragment::after, pre.fragment::after {
+  content: "// forged";
+  position: absolute; top: 6px; right: 14px;
+  font-family: var(--coa-font-mono);
+  font-size: 10px;
+  color: var(--page-secondary-foreground-color);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  opacity: .55;
+  pointer-events: none;
 }
 
-/* Italics: subtle gold tint — feels like a margin-gloss in a grimoire */
-em, i { color: var(--coa-bone); font-style: italic; }
-
-/* Block quotes — engraved tablet */
+/* Block-quote ornament */
 blockquote {
-  margin: 22px 0;
-  padding: 14px 22px;
-  border-left: 3px solid var(--coa-gold);
-  background:
-    linear-gradient(90deg, rgba(212,162,76,.06), transparent 60%);
+  border-left: 3px solid var(--primary-color) !important;
+  background: linear-gradient(90deg, rgba(174,217,87,.08), transparent 60%);
   font-style: italic;
-  color: var(--coa-parchment);
+  padding: 14px 22px !important;
   position: relative;
 }
 blockquote::before {
   content: "“";
-  position: absolute; top: -8px; left: 8px;
-  font-family: var(--font-family-title);
-  font-size: 38px; color: var(--coa-gold);
+  position: absolute; top: -10px; left: 8px;
+  font-family: var(--coa-font-display);
+  font-size: 38px;
+  color: var(--primary-color);
   opacity: .45;
 }
 
-/* =====================================================================
-   Code — parchment forge-paper
-   ===================================================================== */
-code, tt, .tt, kbd {
-  font-family: var(--font-family-monospace);
-  font-size: .92em;
-  background: #14100c;
-  color: var(--coa-parchment);
-  padding: 1px 6px;
-  border: 1px solid #2a201a;
-  border-radius: 2px;
-  box-shadow: 0 1px 0 rgba(212,162,76,.05) inset;
+/* ---------------------------------------------------------------------
+   7. Sidebar polish — dwarven runic feel without breaking awesome's
+   sidebar-only layout.
+   --------------------------------------------------------------------- */
+#side-nav {
+  border-right: 1px solid var(--separator-color);
 }
-
-pre, div.fragment, pre.fragment {
-  background:
-    linear-gradient(180deg, #100b08 0%, #0a0705 100%) !important;
-  color: var(--coa-parchment) !important;
-  border: 1px solid #2a201a !important;
-  border-left: 3px solid var(--coa-ember) !important;
-  border-radius: 3px;
-  padding: 16px 18px !important;
-  margin: 18px 0;
-  font-family: var(--font-family-monospace) !important;
-  font-size: var(--code-font-size) !important;
-  line-height: 1.6;
-  overflow-x: auto;
-  box-shadow:
-    inset 0 0 0 1px rgba(212,162,76,.04),
-    0 0 30px -8px rgba(216,99,42,.18),
-    0 4px 16px rgba(0,0,0,.6);
-  position: relative;
-}
-/* "FORGED IN..." label on code blocks */
-div.fragment::before, pre.fragment::before {
-  content: "// forged";
-  position: absolute; top: 6px; right: 12px;
-  font-family: var(--font-family-monospace);
-  font-size: 10px;
-  color: #5a4a3c;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-}
-
-/* Doxygen syntax-highlight classes */
-span.keyword       { color: var(--fragment-keyword) !important; font-weight: 600; }
-span.keywordtype   { color: var(--fragment-keywordtype) !important; }
-span.keywordflow   { color: var(--fragment-keywordflow) !important; font-weight: 600; }
-span.comment       { color: var(--fragment-comment) !important; font-style: italic; }
-span.preprocessor  { color: var(--fragment-preprocessor) !important; }
-span.stringliteral { color: #c9a37a !important; }
-span.charliteral   { color: #c9a37a !important; }
-a.code, a.codeRef  { color: var(--coa-rune) !important; border-bottom: 1px dotted rgba(116,212,200,.4); }
-a.code:hover       { color: var(--coa-ember-bright) !important; }
-
-.lineno, .lineno a, .lineno span {
-  color: #5a4a3c !important;
-  background: #0a0705 !important;
-  border-right: 1px solid #2a201a;
-  user-select: none;
-}
-
-/* =====================================================================
-   Tables
-   ===================================================================== */
-table.markdownTable, table.doxtable {
-  border-collapse: collapse;
-  margin: 18px 0;
-  width: 100%;
-  border: 1px solid #2a201a;
-  background: #100c0a;
-  box-shadow: 0 0 0 1px rgba(212,162,76,.03) inset;
-}
-table.markdownTable th, table.doxtable th {
-  background: linear-gradient(180deg, #1f1813, #14100c);
-  color: var(--coa-gold);
-  font-family: var(--font-family-title);
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  font-size: 12px;
-  padding: 12px 14px;
-  border: 1px solid #2a201a;
-  text-align: left;
-}
-table.markdownTable td, table.doxtable td {
-  padding: 11px 14px;
-  border: 1px solid #1d1612;
-  color: var(--coa-bone);
-  vertical-align: top;
-}
-table.markdownTable tr:nth-child(even) td,
-table.doxtable     tr:nth-child(even) td { background: rgba(255,255,255,.012); }
-table.markdownTable tr:hover td,
-table.doxtable     tr:hover td { background: rgba(216,99,42,.06); }
-
-/* =====================================================================
-   Doxygen member definition blocks (the API gold)
-   ===================================================================== */
-.memitem {
-  margin: 26px 0;
-  border: 1px solid #2a201a;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #14100c 0%, #100c0a 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(212,162,76,.06),
-    0 0 0 1px #0a0806,
-    0 12px 28px -16px rgba(0,0,0,.7);
-  overflow: hidden;
-}
-.memproto, .memtitle {
-  background: linear-gradient(180deg, #1f1813 0%, #14100c 100%) !important;
-  color: var(--coa-bone) !important;
-  border: 0 !important;
-  border-bottom: 1px solid #2a201a !important;
-  padding: 12px 18px !important;
-  font-family: var(--font-family-monospace) !important;
-  font-size: 14px;
-  text-shadow: none !important;
-  border-radius: 0 !important;
-}
-.memproto .paramname { color: var(--coa-rune); font-style: normal; }
-.memproto .memname    { color: var(--coa-gold-bright); font-weight: 700; }
-.memproto a.el        { color: var(--coa-ember-bright); }
-.memdoc {
-  background: #100c0a !important;
-  border: 0 !important;
-  border-top: 1px solid rgba(212,162,76,.05) !important;
-  padding: 16px 20px !important;
-  color: var(--coa-bone);
-}
-.memSeparator { border-color: #2a201a !important; }
-
-.mlabels-right .mlabel,
-.mlabel {
-  background: linear-gradient(180deg, #2a1a0e, #1a100a) !important;
-  color: var(--coa-gold) !important;
-  border: 1px solid var(--coa-mortar) !important;
-  font-family: var(--font-family-title) !important;
-  letter-spacing: .14em;
-  font-size: 10px !important;
-  padding: 2px 8px !important;
-  text-transform: uppercase;
-  box-shadow: 0 0 0 1px #0a0806;
-}
-
-/* Brief member tables (class summaries) */
-.memberdecls td {
-  background: transparent;
-  color: var(--coa-bone);
-  border-color: #1d1612 !important;
-}
-.memberdecls td.memItemLeft, .memberdecls td.memTemplItemLeft {
-  font-family: var(--font-family-monospace);
-  color: var(--coa-rune);
-}
-.memberdecls td.memItemRight {
-  font-family: var(--font-family-monospace);
-  color: var(--coa-gold-bright);
-}
-.memberdecls .heading {
-  background: linear-gradient(90deg, rgba(212,162,76,.08), transparent) !important;
-  color: var(--coa-gold) !important;
-  font-family: var(--font-family-title);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  padding: 10px 12px !important;
-  border-bottom: 1px solid #2a201a !important;
-}
-.mdescLeft, .mdescRight { background: transparent !important; color: var(--coa-bone-soft) !important; font-style: italic; }
-
-/* =====================================================================
-   Note / warning / todo callout boxes
-   ===================================================================== */
-dl.note, dl.warning, dl.attention, dl.todo, dl.deprecated, dl.bug,
-dl.section.note, dl.section.warning, dl.section.attention,
-dl.section.todo, dl.section.deprecated, dl.section.bug {
-  margin: 18px 0;
-  padding: 12px 16px 12px 18px;
-  border-left: 3px solid;
-  border-radius: 0 3px 3px 0;
-  background: rgba(255,255,255,.02);
-  color: var(--coa-bone);
-}
-dl.note, dl.section.note         { border-color: var(--coa-rune); background: linear-gradient(90deg, rgba(116,212,200,.07), transparent 60%); }
-dl.warning, dl.section.warning,
-dl.attention, dl.section.attention { border-color: #f0c46a; background: linear-gradient(90deg, rgba(240,196,106,.08), transparent 60%); }
-dl.todo, dl.section.todo         { border-color: var(--coa-ember); background: linear-gradient(90deg, rgba(216,99,42,.08), transparent 60%); }
-dl.deprecated, dl.section.deprecated { border-color: #8a2a1a; background: linear-gradient(90deg, rgba(138,42,26,.12), transparent 60%); }
-dl.bug, dl.section.bug           { border-color: #b54a3a; background: linear-gradient(90deg, rgba(181,74,58,.12), transparent 60%); }
-dl.note dt, dl.warning dt, dl.attention dt, dl.todo dt, dl.deprecated dt, dl.bug dt,
-dl.section.note dt, dl.section.warning dt, dl.section.attention dt,
-dl.section.todo dt, dl.section.deprecated dt, dl.section.bug dt {
-  font-family: var(--font-family-title);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: var(--coa-gold);
-}
-
-/* =====================================================================
-   Search box — engraved iron
-   ===================================================================== */
-#MSearchBox, .left #MSearchBox {
-  background: linear-gradient(180deg, #14100c, #0a0806) !important;
-  border: 1px solid #2a201a !important;
-  border-radius: 2px;
-  box-shadow:
-    inset 0 1px 0 rgba(212,162,76,.06),
-    inset 0 0 0 1px #0a0806,
-    0 0 12px -4px rgba(216,99,42,.2);
-  height: 30px;
-}
-#MSearchField {
-  background: transparent !important;
-  color: var(--coa-bone) !important;
-  font-family: var(--font-family) !important;
-  font-style: italic;
-  font-size: 14px !important;
-}
-#MSearchSelect, #MSearchSelectExt { filter: hue-rotate(-15deg) saturate(.6) brightness(1.4); }
-#MSearchResultsWindow {
-  background: #0a0806 !important;
-  border: 1px solid var(--coa-mortar) !important;
-  box-shadow: 0 18px 44px -8px rgba(0,0,0,.85), 0 0 0 1px rgba(212,162,76,.08) inset !important;
-  border-radius: 3px;
-}
-.SRResult, .SRPage { background: transparent !important; color: var(--coa-bone) !important; }
-a.SelectItem, .SRSymbol { color: var(--coa-gold-bright) !important; font-family: var(--font-family-monospace); }
-.SRScope { color: var(--coa-rune) !important; }
-
-/* =====================================================================
-   Breadcrumb / nav-path / footer
-   ===================================================================== */
-#nav-path {
-  background: #0a0806;
-  border-top: 1px solid #1d1612;
-  border-bottom: 0;
-}
-#nav-path ul {
-  background: transparent;
-  font-family: var(--font-family-title);
-  letter-spacing: .14em;
-  font-size: 11px;
-  text-transform: uppercase;
-}
-#nav-path li, #nav-path li.navelem a {
-  background: transparent !important;
-  color: var(--coa-bone-soft) !important;
-  text-shadow: none !important;
-}
-#nav-path li.navelem a:hover { color: var(--coa-gold-bright) !important; }
-#nav-path li.footer {
-  color: #5a4a3c !important;
-  font-style: italic;
-  letter-spacing: .04em;
-  text-transform: none;
-  font-family: var(--font-family);
-}
-
-.footer, address.footer {
-  background: transparent;
-  text-align: center;
-  font-family: var(--font-family);
-  font-size: 12px;
-  color: #5a4a3c;
-  font-style: italic;
-  padding: 22px 0 30px;
+#nav-tree, #nav-tree-contents {
+  font-family: var(--coa-font-display) !important;
+  font-size: 13px;
   letter-spacing: .03em;
 }
-.footer img, address.footer img { opacity: .4; filter: sepia(.6) hue-rotate(-15deg); }
-.footer::before {
-  content: "✶  ✦  ✶";
-  display: block;
-  color: var(--coa-gold);
-  letter-spacing: 1em;
-  margin-bottom: 10px;
-  opacity: .5;
+#nav-tree .item { line-height: 1.85; }
+#nav-tree .selected {
+  background: linear-gradient(90deg,
+    var(--primary-lighter-color), transparent 80%) !important;
+  border-left: 2px solid var(--primary-color);
+}
+html.dark-mode #nav-tree .selected {
+  background: linear-gradient(90deg,
+    rgba(174,217,87,.18), transparent 80%) !important;
+}
+#nav-tree .selected a, #nav-tree .selected .item {
+  color: var(--primary-color) !important;
 }
 
-/* =====================================================================
-   Custom homepage ornaments (used in homepage.md)
-   ===================================================================== */
+/* Top tablist — capitalised dwarven runes */
+.tabs, .tabs2, .tabs3, #main-nav {
+  border-top: 1px solid var(--separator-color);
+  border-bottom: 1px solid var(--separator-color);
+}
+.tablist a {
+  font-weight: 700;
+  font-size: 11px !important;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------
+   8. Member-decl tables — gold-tinted headings
+   --------------------------------------------------------------------- */
+.memberdecls .heading {
+  font-family: var(--coa-font-display) !important;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.mlabel {
+  font-family: var(--coa-font-display) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase;
+  font-size: 10px !important;
+}
+
+/* ---------------------------------------------------------------------
+   9. Selection — molten
+   --------------------------------------------------------------------- */
+::selection {
+  background: rgba(174,217,87,.45);
+  color: #fff;
+}
+html.dark-mode ::selection {
+  background: rgba(174,217,87,.55);
+  text-shadow: 0 0 10px rgba(174,217,87,.7);
+}
+
+/* ---------------------------------------------------------------------
+   10. Custom homepage ornaments (used in homepage.md @htmlonly blocks)
+   --------------------------------------------------------------------- */
 pre.coa-ascii {
   background: transparent !important;
   border: 0 !important;
-  color: var(--coa-gold) !important;
-  font-family: var(--font-family-monospace) !important;
+  color: var(--primary-color) !important;
+  font-family: var(--coa-font-mono) !important;
   font-size: 12px !important;
   line-height: 1.25;
-  text-shadow: 0 0 12px rgba(216,99,42,.4);
+  text-shadow: 0 0 12px rgba(174,217,87,.3);
   box-shadow: none !important;
   padding: 6px 0 !important;
   margin: 18px 0 !important;
@@ -750,124 +573,59 @@ pre.coa-ascii {
   white-space: pre;
   overflow: visible;
 }
-pre.coa-ascii::before { content: ""; }
+pre.coa-ascii::after { content: "" !important; }
 
 .coa-divider {
   height: 22px;
   margin: 30px 0;
   background:
-    radial-gradient(circle at center, rgba(212,162,76,.5) 0 2px, transparent 3px),
+    radial-gradient(circle at center, var(--primary-color) 0 2px, transparent 3px),
     linear-gradient(90deg,
       transparent 0%,
-      rgba(212,162,76,.4) 12%,
-      rgba(216,99,42,.7) 50%,
-      rgba(212,162,76,.4) 88%,
+      var(--separator-color) 12%,
+      var(--primary-color) 50%,
+      var(--separator-color) 88%,
       transparent 100%);
   background-size: 100% 100%, 100% 1px;
   background-repeat: no-repeat;
   background-position: center center, center center;
-  filter: drop-shadow(0 0 6px rgba(216,99,42,.3));
+  filter: drop-shadow(0 0 6px rgba(174,217,87,.25));
 }
 
-/* =====================================================================
-   Class / file headers
-   ===================================================================== */
-.header {
-  background:
-    linear-gradient(180deg, #14100c 0%, #0d0a08 100%) !important;
-  border-bottom: 1px solid #2a201a !important;
-  padding: 18px 22px !important;
-  margin-bottom: 18px;
+/* ---------------------------------------------------------------------
+   11. Footer
+   --------------------------------------------------------------------- */
+.footer, address.footer {
+  text-align: center;
+  font-style: italic;
+  font-family: var(--coa-font-body);
+  font-size: 12px;
+  color: var(--page-secondary-foreground-color);
+  padding: 20px 0;
 }
-.header .headertitle .title {
-  font-family: var(--font-family-title);
-  font-size: 28px;
-  text-transform: none;
-  letter-spacing: .04em;
-  border: 0; padding: 0; margin: 0;
+.footer::before {
+  content: "✶  ✦  ✶";
+  display: block;
+  color: var(--primary-color);
+  letter-spacing: 1em;
+  margin-bottom: 10px;
+  opacity: .55;
 }
-.summary {
-  font-family: var(--font-family-title);
-  font-size: 11px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-.summary a {
-  color: var(--coa-bone-soft);
-  border-bottom: 0;
-  margin: 0 4px;
-}
-.summary a:hover { color: var(--coa-gold); }
+.footer img { opacity: .4; }
 
-.ingroups, .ingroups a {
-  font-family: var(--font-family-title);
-  letter-spacing: .14em; text-transform: uppercase;
-  font-size: 11px;
-  color: var(--coa-rune);
-}
-
-/* =====================================================================
-   Inheritance / dot diagrams — invert & retint to fit theme
-   ===================================================================== */
-img[src$=".png"], .image img, .dotgraph img, div.dyncontent img {
-  filter: invert(.92) hue-rotate(165deg) saturate(.7) brightness(1.05);
-}
-.dyncontent svg, .dotgraph svg { filter: drop-shadow(0 0 12px rgba(216,99,42,.15)); }
-
-/* =====================================================================
-   Misc Doxygen widgets
-   ===================================================================== */
-hr {
-  border: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #3a2a1c 20%, var(--coa-gold) 50%, #3a2a1c 80%, transparent);
-  margin: 26px 0;
-  opacity: .5;
-}
-ul, ol { padding-left: 1.6em; }
-ul li::marker { color: var(--coa-ember); content: "◆ "; }
-ol li::marker { color: var(--coa-gold); }
-
-/* Directory listings / file lists */
-.directory td.entry { font-family: var(--font-family-monospace); color: var(--coa-bone); }
-.directory td.entry a { color: var(--coa-gold-bright); border: 0; }
-.directory td.desc { color: var(--coa-bone-soft); font-style: italic; }
-.directory tr.even { background: rgba(255,255,255,.012); }
-
-/* Tooltips */
-div.ttc {
-  background: #100c0a !important;
-  border: 1px solid var(--coa-mortar) !important;
-  color: var(--coa-bone) !important;
-  font-family: var(--font-family) !important;
-  box-shadow: 0 12px 28px -8px rgba(0,0,0,.8), 0 0 0 1px rgba(212,162,76,.08) inset !important;
-}
-
-/* =====================================================================
-   Scrollbars
-   ===================================================================== */
-* { scrollbar-width: thin; scrollbar-color: var(--coa-mortar) #0a0806; }
-*::-webkit-scrollbar { width: 10px; height: 10px; }
-*::-webkit-scrollbar-track { background: #0a0806; }
-*::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--coa-mortar), #1f1813);
-  border: 2px solid #0a0806;
-  border-radius: 6px;
-}
-*::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--coa-ember), var(--coa-blood)); }
-
-/* =====================================================================
-   Responsive
-   ===================================================================== */
-@media (max-width: 900px) {
-  .coa-banner__motto { font-size: 10px; letter-spacing: .25em; }
-  div.contents { padding: 24px 18px 40px; margin: 14px 8px; }
-  #projectname { font-size: 26px; }
-  h1, .title { font-size: 26px; }
-  h2 { font-size: 20px; }
-}
-
+/* ---------------------------------------------------------------------
+   12. Reduced motion
+   --------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .coa-banner__sigil { animation: none; }
   #coa-embers { display: none; }
+}
+
+/* ---------------------------------------------------------------------
+   13. Mobile — hide banner motto on narrow widths
+   --------------------------------------------------------------------- */
+@media (max-width: 700px) {
+  .coa-banner { padding: 6px 12px; gap: 10px; }
+  .coa-banner__motto { font-size: 9px; letter-spacing: .25em; }
+  #projectname { font-size: 22px; }
 }

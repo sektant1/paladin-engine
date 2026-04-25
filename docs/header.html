@@ -21,6 +21,31 @@
 <!--END DISABLE_INDEX-->
 <script type="text/javascript" src="$relpath^jquery.js"></script>
 <script type="text/javascript" src="$relpath^dynsections.js"></script>
+
+<!-- doxygen-awesome-css companion scripts -->
+<script type="text/javascript" src="$relpath^doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="$relpath^doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="$relpath^doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="$relpath^doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="$relpath^doxygen-awesome-tabs.js"></script>
+<script type="text/javascript">
+  // Default to the dwarven forge (dark) on first visit; respect any
+  // saved user preference afterwards.
+  (function () {
+    try {
+      if (!localStorage.getItem("prefers-color-scheme")) {
+        localStorage.setItem("prefers-color-scheme", "dark");
+        document.documentElement.classList.add("dark-mode");
+      }
+    } catch (e) {}
+  })();
+  DoxygenAwesomeDarkModeToggle.init()
+  DoxygenAwesomeFragmentCopyButton.init()
+  DoxygenAwesomeParagraphLink.init()
+  DoxygenAwesomeInteractiveToc.init()
+  DoxygenAwesomeTabs.init()
+</script>
+
 $treeview
 $search
 $mathjax
@@ -30,31 +55,36 @@ $extrastylesheet
 </head>
 <body>
 
-<!-- Forge atmosphere: ember canvas + grain overlay + vignette -->
+<!-- Forge atmosphere -->
 <canvas id="coa-embers" aria-hidden="true"></canvas>
 <div class="coa-grain" aria-hidden="true"></div>
 <div class="coa-vignette" aria-hidden="true"></div>
 
-<!-- Runic top-banner: hammered into every page above the standard titlearea -->
+<!-- Full-width runic strip pinned to the top of the right (content) pane -->
+<div class="coa-strip" aria-hidden="true">
+  <div class="coa-strip__rule"></div>
+  <div class="coa-strip__motto">
+    <span class="coa-rune">&#x16A0;</span>
+    SOLVE &nbsp;&middot;&nbsp; ET &nbsp;&middot;&nbsp; COAGULA
+    <span class="coa-rune">&#x16B1;</span>
+  </div>
+  <div class="coa-strip__rule"></div>
+</div>
+
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+
+<!-- Sidebar-top sigil (sits inside #top, above #titlearea) -->
 <div class="coa-banner" aria-hidden="true">
-  <div class="coa-banner__rule"></div>
   <div class="coa-banner__sigil">
-    <svg viewBox="0 0 64 64" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6">
+    <svg viewBox="0 0 64 64" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
       <circle cx="32" cy="32" r="26"/>
       <path d="M32 6 L32 58 M6 32 L58 32 M14 14 L50 50 M50 14 L14 50"/>
       <circle cx="32" cy="32" r="9" fill="currentColor" fill-opacity=".15"/>
       <path d="M24 32 L40 32 M32 24 L32 40" stroke-width="2"/>
     </svg>
   </div>
-  <div class="coa-banner__motto">
-    <span class="coa-rune">&#x16A0;</span>
-    SOLVE &nbsp;&middot;&nbsp; ET &nbsp;&middot;&nbsp; COAGULA
-    <span class="coa-rune">&#x16B1;</span>
-  </div>
-  <div class="coa-banner__rule"></div>
+  <div class="coa-banner__motto">DEEP &middot; HALL &middot; CODEX</div>
 </div>
-
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 
 <!--BEGIN TITLEAREA-->
 <div id="titlearea">
