@@ -35,7 +35,7 @@ void Scene::RegisterTypes()
 
 void Scene::Update(f32 deltaTime)
 {
-    m_objects.erase(std::remove_if(m_objects.begin(), m_objects.end(), [](auto &obj) { return obj->IsAlive(); }),
+    m_objects.erase(std::remove_if(m_objects.begin(), m_objects.end(), [](auto &obj) { return !obj->IsAlive(); }),
                     m_objects.end());
 
     for (auto &obj : m_objectsToAdd)
@@ -112,7 +112,7 @@ GameObject *Scene::CreateObject(const std::string &type, const std::string &name
         obj->m_scene = this;
         if (m_isUpdating)
         {
-            m_objectsToAdd.push_back({obj, parent})
+            m_objectsToAdd.push_back({obj, parent});
         } else
         {
             SetParent(obj, parent);
@@ -128,27 +128,29 @@ GameObject *Scene::CreateObject(const std::string &name, GameObject *parent)
     obj->m_scene = this;
     if (m_isUpdating)
     {
-        m_objectsToAdd.push_back({obj, parent})
+        m_objectsToAdd.push_back({obj, parent});
     } else
     {
         SetParent(obj, parent);
     }
-    LOG_INFO("Created GameObject '%s' (parent=%s)", name.c_str(), parent ? parent->GetName().c_str() : "<root>");
+    LOG_INFO("Created GameObject '%s' (parent=%s)",
+             name.c_str(),
+             parent ? parent->GetName().c_str() : kRootObjectLabel);
     return obj;
 }
 
 void Scene::LoadObject(const nlohmann::json &jsonObject, GameObject *parent)
 {
-    const str name = jsonObject.value("name", "Object");
+    const str name = jsonObject.value(kJsonKeyName, kDefaultObjectName);
 
     GameObject *gameObject = nullptr;
 
-    if (jsonObject.contains("type"))
+    if (jsonObject.contains(kJsonKeyType))
     {
-        const std::string type = jsonObject.value("type", "");
-        if (type == "gltf")
+        const std::string type = jsonObject.value(kJsonKeyType, "");
+        if (type == kSceneTypeGltf)
         {
-            std::string path = jsonObject.value("path", "");
+            std::string path = jsonObject.value(kJsonKeyPath, "");
             gameObject       = GameObject::LoadGLTF(path, this);
             if (gameObject)
             {
@@ -177,48 +179,45 @@ void Scene::LoadObject(const nlohmann::json &jsonObject, GameObject *parent)
     }
 
     // Read transform
-    if (jsonObject.contains("position"))
+    if (jsonObject.contains(kJsonKeyPosition))
     {
-        auto      posObj = jsonObject["position"];
+        auto      posObj = jsonObject[kJsonKeyPosition];
         glm::vec3 pos;
-        pos.x = posObj.value("x", 0.0f);
-        pos.y = posObj.value("y", 0.0f);
-        pos.z = posObj.value("z", 0.0f);
+        pos.x = posObj.value(kJsonKeyX, 0.0f);
+        pos.y = posObj.value(kJsonKeyY, 0.0f);
+        pos.z = posObj.value(kJsonKeyZ, 0.0f);
         gameObject->SetPosition(pos);
-        // gameObject->LoadProperties(posObj);
     }
 
-    if (jsonObject.contains("rotation"))
+    if (jsonObject.contains(kJsonKeyRotation))
     {
-        auto      rotObj = jsonObject["rotation"];
+        auto      rotObj = jsonObject[kJsonKeyRotation];
         glm::quat rot;
-        rot.x = rotObj.value("x", 0.0f);
-        rot.y = rotObj.value("y", 0.0f);
-        rot.z = rotObj.value("z", 0.0f);
-        rot.w = rotObj.value("w", 1.0f);
+        rot.x = rotObj.value(kJsonKeyX, 0.0f);
+        rot.y = rotObj.value(kJsonKeyY, 0.0f);
+        rot.z = rotObj.value(kJsonKeyZ, 0.0f);
+        rot.w = rotObj.value(kJsonKeyW, 1.0f);
         gameObject->SetRotation(rot);
-        // gameObject->LoadProperties(rotObj);
     }
 
-    if (jsonObject.contains("scale"))
+    if (jsonObject.contains(kJsonKeyScale))
     {
-        auto      scaleObj = jsonObject["scale"];
+        auto      scaleObj = jsonObject[kJsonKeyScale];
         glm::vec3 scale;
-        scale.x = scaleObj.value("x", 1.0f);
-        scale.y = scaleObj.value("y", 1.0f);
-        scale.z = scaleObj.value("z", 1.0f);
+        scale.x = scaleObj.value(kJsonKeyX, 1.0f);
+        scale.y = scaleObj.value(kJsonKeyY, 1.0f);
+        scale.z = scaleObj.value(kJsonKeyZ, 1.0f);
         gameObject->SetScale(scale);
-        // gameObject->LoadProperties(scaleObj);
     }
 
     gameObject->LoadProperties(jsonObject);
 
-    if (jsonObject.contains("components") && jsonObject["components"].is_array())
+    if (jsonObject.contains(kJsonKeyComponents) && jsonObject[kJsonKeyComponents].is_array())
     {
-        const auto &components = jsonObject["components"];
+        const auto &components = jsonObject[kJsonKeyComponents];
         for (const auto &comp : components)
         {
-            const std::string type      = comp.value("type", "");
+            const std::string type      = comp.value(kJsonKeyType, "");
             Component        *component = ComponentFactory::GetInstance().CreateComponent(type);
             if (component)
             {
@@ -233,9 +232,9 @@ void Scene::LoadObject(const nlohmann::json &jsonObject, GameObject *parent)
         }
     }
 
-    if (jsonObject.contains("children") && jsonObject["children"].is_array())
+    if (jsonObject.contains(kJsonKeyChildren) && jsonObject[kJsonKeyChildren].is_array())
     {
-        const auto &children = jsonObject["children"];
+        const auto &children = jsonObject[kJsonKeyChildren];
         for (const auto &child : children)
         {
             LoadObject(child, gameObject);
@@ -272,10 +271,10 @@ std::shared_ptr<Scene> Scene::Load(const str &path)
 
     auto result = std::make_shared<Scene>();
 
-    const str sceneName = json.value("name", "noname");
-    if (json.contains("objects") && json["objects"].is_array())
+    const str sceneName = json.value(kJsonKeyName, kDefaultSceneName);
+    if (json.contains(kJsonKeyObjects) && json[kJsonKeyObjects].is_array())
     {
-        const auto &objects = json["objects"];
+        const auto &objects = json[kJsonKeyObjects];
         for (const auto &obj : objects)
         {
             result->LoadObject(obj, nullptr);
@@ -285,9 +284,9 @@ std::shared_ptr<Scene> Scene::Load(const str &path)
         LOG_WARN("Scene '%s' has no 'objects' array", sceneName.c_str());
     }
 
-    if (json.contains("camera"))
+    if (json.contains(kJsonKeyCamera))
     {
-        str cameraObjName = json.value("camera", "");
+        str cameraObjName = json.value(kJsonKeyCamera, "");
         for (const auto &child : result->m_objects)
         {
             if (auto object = child->FindChildByName(cameraObjName))

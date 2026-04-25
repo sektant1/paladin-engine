@@ -3,6 +3,7 @@
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 
+#include "Constants.h"
 #include "physics/RigidBody.h"
 
 namespace COA
@@ -20,14 +21,12 @@ void PhysicsManager::Init()
     m_world           = std::make_unique<btDiscreteDynamicsWorld>(
         m_dispatcher.get(), m_broadphase.get(), m_solver.get(), m_collisionConfig.get());
 
-    m_world->setGravity(btVector3(0, -9.81f, 0));
+    m_world->setGravity(btVector3(0, kGravity, 0));
 }
 
 void PhysicsManager::Update(float deltaTime)
 {
-    const btScalar fixedTimeStep = 1.0f / 60.0f;
-    const int      maxSubsteps   = 4;
-    m_world->stepSimulation(deltaTime, maxSubsteps, fixedTimeStep);
+    m_world->stepSimulation(deltaTime, kMaxSubSteps, kFixedTimeStep);
 }
 
 void PhysicsManager::AddRigidBody(RigidBody *body)

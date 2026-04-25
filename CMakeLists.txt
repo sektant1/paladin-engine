@@ -11,7 +11,7 @@ if(CCACHE_PROGRAM)
   set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
 endif()
 
-set(PROJECT_SOURCE_FILES source/main.cpp source/Game.h source/Game.cpp source/Player.h source/Player.cpp)
+set(PROJECT_SOURCE_FILES source/main.cpp source/Game.h source/Game.cpp source/Player.h source/Player.cpp source/Bullet.h source/Bullet.cpp)
 # Add the application
 include_directories(source)
 include_directories(engine/thirdparty/glew/include)

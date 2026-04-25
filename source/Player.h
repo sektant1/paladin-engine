@@ -1,26 +1,24 @@
-
 #pragma once
-#include <COA.h>
 
-#include "scene/GameObject.h"
-#include "scene/components/AudioComponent.h"
+#include "COA.h"
 
 namespace COA
 {
-
 class AnimationComponent;
+class AudioComponent;
+class PlayerControllerComponent;
+}  // namespace COA
 
-class Player : public GameObject
+class Player : public COA::GameObject
 {
     GAMEOBJECT(Player)
 public:
     Player() = default;
     void Init();
-    void Update(f32 deltaTime) override;
+    void Update(COA::f32 deltaTime) override;
 
 private:
-    AnimationComponent        *m_animationComponent        = nullptr;
-    AudioComponent            *m_audioComponent            = nullptr;
-    PlayerControllerComponent *m_playerControllerComponent = nullptr;
+    COA::AnimationComponent        *m_animationComponent        = nullptr;
+    COA::AudioComponent            *m_audioComponent            = nullptr;
+    COA::PlayerControllerComponent *m_playerControllerComponent = nullptr;
 };
-}  // namespace COA

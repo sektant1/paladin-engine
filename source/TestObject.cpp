@@ -2,7 +2,12 @@
 
 #include <memory>
 
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
+
+#include "Engine.h"
+#include "GameConstants.h"
+#include "graphics/GraphicsAPI.h"
+#include "render/Builder.h"
 #include "render/Material.h"
 #include "scene/components/MeshComponent.h"
 
@@ -10,8 +15,8 @@ TestObject::TestObject()
 {
     LOG_INFO("TestObject constructing");
 
-    COA::FileReader vertShader("assets/shaders/lab.vert");
-    COA::FileReader fragShader("assets/shaders/lab.frag");
+    COA::FileReader vertShader(kLabVertShaderPath);
+    COA::FileReader fragShader(kLabFragShaderPath);
     std::string     vertexShaderSource   = vertShader.ReadToString();
     std::string     fragmentShaderSource = fragShader.ReadToString();
 
@@ -45,16 +50,16 @@ void TestObject::Update(COA::f32 deltaTime)
     auto position = GetPosition();
 
     auto &input = COA::Engine::GetInstance().GetInputManager();
-    if (input.IsKeyPressed(GLFW_KEY_W)) {
+    if (input.IsKeyPressed(COA::Key::W)) {
         position.y += 1.0F * deltaTime;
     }
-    if (input.IsKeyPressed(GLFW_KEY_A)) {
+    if (input.IsKeyPressed(COA::Key::A)) {
         position.x -= 1.0F * deltaTime;
     }
-    if (input.IsKeyPressed(GLFW_KEY_S)) {
+    if (input.IsKeyPressed(COA::Key::S)) {
         position.y -= 1.0F * deltaTime;
     }
-    if (input.IsKeyPressed(GLFW_KEY_D)) {
+    if (input.IsKeyPressed(COA::Key::D)) {
         position.x += 1.0F * deltaTime;
     }
     SetPosition(position);

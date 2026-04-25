@@ -28,7 +28,7 @@ KinematicCharacterController::KinematicCharacterController(float radius, float h
 
     world->getBroadphase()->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
 
-    const btScalar stepHeight = 0.35F;
+    const btScalar stepHeight = kDefaultStepHeight;
     m_controller              = std::make_unique<btKinematicCharacterController>(m_ghost.get(), capsule, stepHeight);
 
     m_controller->setMaxSlope(btRadians(50.0F));

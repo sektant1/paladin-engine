@@ -1,7 +1,9 @@
 #include "LabObject.h"
 
+#include <GLFW/glfw3.h>
+
 #include "Engine.h"
-#include "GLFW/glfw3.h"
+#include "GameConstants.h"
 #include "graphics/GraphicsAPI.h"
 #include "render/Builder.h"
 
@@ -10,8 +12,8 @@ LabObject::LabObject()
     LOG_INFO("LabObject constructing");
 
     // load shaders
-    COA::FileReader vertShader("assets/shaders/cool.vert");
-    COA::FileReader fragShader("assets/shaders/green.frag");
+    COA::FileReader vertShader(kCoolVertShaderPath);
+    COA::FileReader fragShader(kGreenFragShaderPath);
     auto            vs = vertShader.ReadToString();
     auto            fs = fragShader.ReadToString();
 
@@ -39,37 +41,37 @@ void LabObject::Update(COA::f32 deltaTime)
 
     auto  position = GetPosition();
     auto &input    = COA::Engine::GetInstance().GetInputManager();
-    if (input.IsKeyPressed(GLFW_KEY_1)) {
-        m_timeScale = 0.25F;
+    if (input.IsKeyPressed(COA::Key::Num1)) {
+        m_timeScale = kLabTimeScale1;
     }
-    if (input.IsKeyPressed(GLFW_KEY_2)) {
-        m_timeScale = 0.5F;
+    if (input.IsKeyPressed(COA::Key::Num2)) {
+        m_timeScale = kLabTimeScale2;
     }
-    if (input.IsKeyPressed(GLFW_KEY_3)) {
-        m_timeScale = 1.0F;
+    if (input.IsKeyPressed(COA::Key::Num3)) {
+        m_timeScale = kLabTimeScale3;
     }
-    if (input.IsKeyPressed(GLFW_KEY_4)) {
-        m_timeScale = 1.5F;
+    if (input.IsKeyPressed(COA::Key::Num4)) {
+        m_timeScale = kLabTimeScale4;
     }
-    if (input.IsKeyPressed(GLFW_KEY_5)) {
-        m_timeScale = -1.5F;
+    if (input.IsKeyPressed(COA::Key::Num5)) {
+        m_timeScale = kLabTimeScale5;
     }
-    // if (input.IsKeyPressed(GLFW_KEY_A)) {
+    // if (input.IsKeyPressed(Key::A)) {
     //     m_offsetX -= 1.0F * deltaTime;
     // }
-    // if (input.IsKeyPressed(GLFW_KEY_D)) {
+    // if (input.IsKeyPressed(Key::D)) {
     //     m_offsetX += 1.0F * deltaTime;
     // }
-    // if (input.IsKeyPressed(GLFW_KEY_W)) {
+    // if (input.IsKeyPressed(Key::W)) {
     //     m_offsetY += 1.0F * deltaTime;
     // }
-    // if (input.IsKeyPressed(GLFW_KEY_S)) {
+    // if (input.IsKeyPressed(Key::S)) {
     //     m_offsetY -= 1.0F * deltaTime;
     // }
-    // if (input.IsKeyPressed(GLFW_KEY_Q)) {
+    // if (input.IsKeyPressed(Key::Q)) {
     //     m_angle += 1.0F * deltaTime;
     // }
-    // if (input.IsKeyPressed(GLFW_KEY_E)) {
+    // if (input.IsKeyPressed(Key::E)) {
     //     m_angle -= 1.0F * deltaTime;
     // }
 
@@ -84,9 +86,9 @@ void LabObject::Update(COA::f32 deltaTime)
         my = (double)h - my;
     }
 
-    m_material->SetParam("iResolution", (float)w, (float)h);
-    m_material->SetParam("iTime", m_time);
-    m_material->SetParam("iMouse", (float)mx, (float)my, 0.0F, 0.0F);
+    m_material->SetParam(kUniformResolution, (float)w, (float)h);
+    m_material->SetParam(kUniformTime, m_time);
+    m_material->SetParam(kUniformMouse, (float)mx, (float)my, 0.0F, 0.0F);
 
     SetPosition(position);
 }

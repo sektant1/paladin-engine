@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include "Constants.h"
 #include "Types.h"
 #include "scene/Component.h"
 
@@ -57,17 +58,21 @@ public:
     [[nodiscard]] mat4 GetProjectionMatrix(f32 aspect) const;
 
     [[nodiscard]] f32 GetFov() const { return m_fov; }
+
     [[nodiscard]] f32 GetNearPlane() const { return m_nearPlane; }
+
     [[nodiscard]] f32 GetFarPlane() const { return m_farPlane; }
 
     void SetFov(f32 fov) { m_fov = fov; }
+
     void SetNearPlane(f32 n) { m_nearPlane = n; }
+
     void SetFarPlane(f32 f) { m_farPlane = f; }
 
 private:
-    f32 m_fov       = 60.0F;    ///< Vertical field of view in degrees.
-    f32 m_nearPlane = 0.1F;     ///< Distance to the near clip plane (avoid setting to 0).
-    f32 m_farPlane  = 1000.0F;  ///< Distance to the far clip plane.
+    f32 m_fov       = kCameraFov;        ///< Vertical field of view in degrees.
+    f32 m_nearPlane = kCameraNearPlane;  ///< Distance to the near clip plane (avoid setting to 0).
+    f32 m_farPlane  = kCameraFarPlane;   ///< Distance to the far clip plane.
 };
 
 }  // namespace COA

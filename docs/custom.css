@@ -2,34 +2,37 @@
  * coagula-engine / GD-Engine :: Doxygen 1.9.8 theme
  * ----------------------------------------------------------------------------
  * Theme......: "Forge & Cobblestone"
- * Mood.......: Dark early-2000s fantasy RPG chrome -- Diablo II menus,
- *              Baldur's Gate II tomes, Morrowind stone UI, Neverwinter Nights.
- * Substrate..: Near-black cobblestone, iron separators, torch-amber highlights,
+ * Mood.......: Dwarven hold turned scriptorium. Iron-bound tomes, torch-lit
+ *              dungeon stone, copper rivets, faintly-glowing runes, the dim
+ *              ember-glow of a banked forge.
+ * Substrate..: Near-black stone, iron separators, torch-amber highlights,
  *              parchment-bone body text, copper accents, rune-green notes,
  *              ember-red warnings.
- * Approach...: Override Doxygen's CSS custom properties on :root/html so the
- *              built-in stylesheet does most of the heavy lifting. Add bespoke
- *              rules only for decorative chrome (headings, admonitions, fog,
- *              torches, scrollbars).
+ * Approach...: Override Doxygen's CSS custom properties so the built-in stylesheet
+ *              does most of the layout work. Add bespoke rules only for chrome
+ *              (headings, admonitions, fog, torches, scrollbars, tomes).
  * ============================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap');
 
 /* ============================================================================
  * 1. DESIGN TOKENS
  * ============================================================================ */
 html {
   /* --- Palette: Forge & Cobblestone ------------------------------------- */
-  --coa-stone-000: #08090b;
-  --coa-stone-100: #101216;
-  --coa-stone-200: #161a20;
-  --coa-stone-300: #1c2129;
-  --coa-stone-400: #242a34;
-  --coa-stone-500: #2f3643;
+  --coa-stone-000: #07080a;
+  --coa-stone-100: #0e1014;
+  --coa-stone-150: #12151b;
+  --coa-stone-200: #171b22;
+  --coa-stone-300: #1d2229;
+  --coa-stone-400: #262c36;
+  --coa-stone-500: #313845;
+  --coa-iron-700:  #3a4250;
   --coa-iron-500:  #5a6370;
   --coa-iron-300:  #7a8494;
-  --coa-bone-100:  #ded3ba;
-  --coa-bone-200:  #c7bca3;
+  --coa-bone-050:  #f3ead2;
+  --coa-bone-100:  #e6ddc5;
+  --coa-bone-200:  #cdc2a6;
   --coa-bone-300:  #9a907c;
 
   --coa-amber-300: #ffd28a;
@@ -37,17 +40,20 @@ html {
   --coa-amber-600: #d4852a;
   --coa-copper-500: #c07038;
   --coa-copper-700: #7a4620;
+  --coa-copper-900: #3d2310;
   --coa-rune-500:  #6fbf5a;
+  --coa-rune-300:  #a9d9a0;
   --coa-ember-500: #d94a2e;
   --coa-ember-300: #f07a58;
 
   /* --- Font stack ------------------------------------------------------- */
   --coa-font-display: 'Cinzel', 'Trajan Pro', 'Palatino Linotype', 'Book Antiqua', serif;
-  --coa-font-body:    'IM Fell English', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --coa-font-body:    'EB Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --coa-font-quote:   'IM Fell English', 'EB Garamond', Georgia, serif;
   --coa-font-mono:    'JetBrains Mono', 'Fira Code', ui-monospace, 'Cascadia Mono', Consolas, monospace;
 
   /* --- Doxygen variable overrides -------------------------------------- */
-  --page-background-color:    var(--coa-stone-100);
+  --page-background-color:    var(--coa-stone-150);
   --page-foreground-color:    var(--coa-bone-100);
   --page-secondary-foreground-color: var(--coa-bone-300);
 
@@ -59,48 +65,48 @@ html {
 
   --separator-color:         var(--coa-iron-500);
 
-  --side-nav-background:     #0c0e12;
+  --side-nav-background:     #0a0c10;
   --side-nav-foreground:     var(--coa-bone-200);
   --side-nav-resizer-background: var(--coa-copper-700);
 
-  --fragment-background:     var(--coa-stone-200);
-  --fragment-foreground:     var(--coa-bone-100);
+  --fragment-background:     #11141b;
+  --fragment-foreground:     var(--coa-bone-050);
   --fragment-keyword:        var(--coa-amber-500);
   --fragment-keywordtype:    #e8b765;
   --fragment-keywordflow:    var(--coa-ember-300);
-  --fragment-token:          #a9c9a0;
-  --fragment-comment:        #7a8494;
+  --fragment-token:          #b9d6a8;
+  --fragment-comment:        #7e8a9b;
   --fragment-link:           var(--coa-amber-300);
   --fragment-preprocessor:   var(--coa-copper-500);
   --fragment-linenumber-color: #5a6370;
-  --fragment-linenumber-background: #0d0f13;
-  --fragment-linenumber-border: #2a2f39;
+  --fragment-linenumber-background: #0a0d12;
+  --fragment-linenumber-border: #232935;
 
-  --code-background:         #141820;
-  --code-foreground:         var(--coa-bone-100);
+  --code-background:         #11141b;
+  --code-foreground:         var(--coa-amber-300);
 
   --tablehead-background:    #1a1307;
   --tablehead-foreground:    var(--coa-amber-300);
 
   --memdef-border-color:     var(--coa-copper-700);
-  --memdef-title-background: linear-gradient(180deg, #241a0d 0%, #1a1308 100%);
+  --memdef-title-background: linear-gradient(180deg, #2a1d0e 0%, #1a1207 100%);
   --memdef-title-foreground: var(--coa-amber-300);
-  --memdef-proto-background: #141820;
-  --memdef-proto-text-color: var(--coa-bone-100);
+  --memdef-proto-background: #11141b;
+  --memdef-proto-text-color: var(--coa-bone-050);
   --memdef-doc-background:   var(--coa-stone-200);
 
-  --blockquote-background:   #141820;
+  --blockquote-background:   #11141b;
   --blockquote-foreground:   var(--coa-bone-200);
   --blockquote-borderleft:   var(--coa-copper-500);
 
   --warning-color-bg:        #2a1410;
   --warning-color-fg:        var(--coa-ember-300);
   --warning-color-hl:        var(--coa-ember-500);
-  --note-color-bg:           #132014;
-  --note-color-fg:           var(--coa-rune-500);
+  --note-color-bg:           #122014;
+  --note-color-fg:           var(--coa-rune-300);
   --note-color-hl:           var(--coa-rune-500);
   --todo-color-bg:           #1c1a0e;
-  --todo-color-fg:           #d9c35a;
+  --todo-color-fg:           #e2cf6a;
   --todo-color-hl:           #d9c35a;
   --deprecated-color-bg:     #251511;
   --deprecated-color-fg:     var(--coa-ember-300);
@@ -108,51 +114,81 @@ html {
   --bug-color-bg:            #2a1410;
   --bug-color-fg:            var(--coa-ember-300);
   --bug-color-hl:            var(--coa-ember-500);
-  --invariant-color-bg:      #132014;
-  --invariant-color-fg:      var(--coa-rune-500);
+  --invariant-color-bg:      #122014;
+  --invariant-color-fg:      var(--coa-rune-300);
   --invariant-color-hl:      var(--coa-rune-500);
 
-  --searchbar-background:    #0c0e12;
+  --searchbar-background:    #0a0c10;
   --searchbar-foreground:    var(--coa-bone-100);
   --searchbar-border-color:  var(--coa-copper-700);
 
-  --toc-background:          var(--coa-stone-200);
+  --toc-background:          #14181f;
   --toc-foreground:          var(--coa-bone-200);
   --toc-header-color:        var(--coa-amber-300);
+
+  /* doxygen 1.9.8 reads this for body sizing — keep modest for layout sanity */
+  --page-font-size: 16.5px;
+  --navigation-font-size: 14px;
+  --code-font-size: 13.5px;
 
   color-scheme: dark;
 }
 
 /* ============================================================================
  * 2. GLOBAL BASE -- cobblestone substrate, body type, selection
+ *    NOTE: background lives on a fixed ::before so it never scales with the
+ *    page height (otherwise long doc-content scrolling looks "haunted" by
+ *    a stretched gradient). Body itself stays solid.
  * ============================================================================ */
+html, body {
+  background-color: var(--coa-stone-100);
+}
+
 body {
   font-family: var(--coa-font-body);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 16.5px;
+  line-height: 1.65;
   color: var(--coa-bone-100);
-  background-color: var(--coa-stone-100);
+  font-feature-settings: "liga", "kern", "onum";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #0c0e12;
   background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(240,160,64,0.05), transparent 60%),
-    radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.55), transparent 55%),
-    repeating-linear-gradient(
-      115deg,
-      rgba(0,0,0,0.00) 0px,
-      rgba(0,0,0,0.00) 38px,
-      rgba(0,0,0,0.35) 38px,
-      rgba(0,0,0,0.35) 40px
-    ),
-    repeating-linear-gradient(
-      25deg,
-      rgba(0,0,0,0.00) 0px,
-      rgba(0,0,0,0.00) 54px,
-      rgba(0,0,0,0.28) 54px,
-      rgba(0,0,0,0.28) 56px
-    ),
-    radial-gradient(circle at 20% 30%, #151922 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, #141820 0%, transparent 55%);
+    radial-gradient(ellipse 70% 45% at 50% 0%,
+      rgba(240,160,64,0.08), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 0% 100%,
+      rgba(192,112,56,0.05), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 100% 100%,
+      rgba(111,191,90,0.025), transparent 70%),
+    radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.55) 90%);
+  background-size: 100% 100%;
   background-attachment: fixed;
-  background-size: cover;
+}
+
+/* very subtle stone fleck on a second fixed layer (no diagonal stripes — those
+ * fight the text). */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1.2px),
+    radial-gradient(rgba(0,0,0,0.30) 1px, transparent 1.2px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+  mix-blend-mode: overlay;
 }
 
 ::selection {
@@ -172,9 +208,9 @@ hr {
   height: 2px;
   background: linear-gradient(90deg,
     transparent 0%,
-    var(--coa-iron-500) 20%,
+    var(--coa-iron-500) 18%,
     var(--coa-copper-500) 50%,
-    var(--coa-iron-500) 80%,
+    var(--coa-iron-500) 82%,
     transparent 100%);
   margin: 2rem 0;
 }
@@ -182,31 +218,31 @@ hr {
 /* ============================================================================
  * 3. LINKS -- torch amber
  * ============================================================================ */
-a,
-a.el,
-a.code,
-.contents a:visited {
+a, a.el, a.code, .contents a:visited {
   color: var(--coa-amber-500);
   text-decoration: none;
   transition: color 140ms ease, text-shadow 140ms ease;
 }
-a:hover,
-a.el:hover {
+a:hover, a.el:hover {
   color: var(--coa-amber-300);
   text-decoration: underline;
   text-decoration-color: var(--coa-copper-500);
   text-underline-offset: 3px;
 }
-a:visited { color: var(--coa-copper-500); }
+a:visited { color: #c89a64; }
 a:visited:hover { color: var(--coa-amber-300); }
 
 /* ============================================================================
  * 4. HEADER / TITLE AREA -- forge banner
  * ============================================================================ */
 #top {
-  background: linear-gradient(180deg, #0a0b0e 0%, #0f1116 100%);
+  background:
+    linear-gradient(180deg, #0a0b0e 0%, #0e1116 100%);
   border-bottom: 1px solid var(--coa-copper-700);
-  box-shadow: 0 2px 0 0 #000, 0 4px 12px rgba(0,0,0,0.6);
+  box-shadow:
+    inset 0 -1px 0 0 rgba(192,112,56,0.35),
+    0 2px 0 0 #000,
+    0 6px 18px rgba(0,0,0,0.6);
   position: relative;
   z-index: 10;
 }
@@ -214,31 +250,35 @@ a:visited:hover { color: var(--coa-amber-300); }
 #titlearea {
   background: transparent;
   border-bottom: none;
-  padding: 0.5rem 1rem;
+  padding: 14px 28px;
 }
 
 #projectname {
   font-family: var(--coa-font-display);
   font-weight: 700;
-  font-size: 34px;
-  letter-spacing: 0.08em;
+  font-size: 30px;
+  letter-spacing: 0.10em;
   color: var(--coa-amber-300);
   text-shadow:
     0 0 1px rgba(255,210,138,0.35),
-    0 0 14px rgba(240,160,64,0.35),
+    0 0 14px rgba(240,160,64,0.30),
     0 2px 0 #000;
+  line-height: 1.1;
 }
 #projectbrief {
-  font-family: var(--coa-font-body);
+  font-family: var(--coa-font-quote);
   font-style: italic;
   color: var(--coa-bone-300);
   font-size: 14px;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
 }
 #projectnumber {
   font-family: var(--coa-font-display);
   color: var(--coa-copper-500);
-  font-size: 12px;
-  letter-spacing: 0.15em;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  margin-left: 6px;
 }
 
 /* ============================================================================
@@ -250,34 +290,57 @@ a:visited:hover { color: var(--coa-amber-300); }
   color: var(--side-nav-foreground);
 }
 #nav-tree {
+  font-family: var(--coa-font-body);
+  font-size: 14.5px;
+  line-height: 1.5;
   background-image:
-    linear-gradient(180deg, rgba(240,160,64,0.03) 0%, transparent 30%),
+    linear-gradient(180deg, rgba(240,160,64,0.04) 0%, transparent 30%),
     repeating-linear-gradient(0deg,
       rgba(255,255,255,0.00) 0px,
       rgba(255,255,255,0.00) 22px,
-      rgba(255,255,255,0.015) 22px,
-      rgba(255,255,255,0.015) 23px);
+      rgba(255,255,255,0.020) 22px,
+      rgba(255,255,255,0.020) 23px);
   border-right: 1px solid var(--coa-iron-500);
   box-shadow:
-    inset -1px 0 0 0 rgba(192,112,56,0.35),
-    inset -6px 0 12px -6px rgba(0,0,0,0.8);
+    inset -1px 0 0 0 rgba(192,112,56,0.30),
+    inset -8px 0 14px -8px rgba(0,0,0,0.85);
+}
+#nav-tree .label {
+  color: var(--coa-bone-200);
 }
 #nav-tree .item:hover {
-  background: var(--coa-stone-400);
+  background: var(--coa-stone-300);
+}
+#nav-tree .item:hover .label {
   color: var(--coa-amber-300);
 }
 #nav-tree .selected,
 #nav-tree a.selected {
-  background: linear-gradient(90deg, rgba(240,160,64,0.18), transparent);
+  background: linear-gradient(90deg, rgba(240,160,64,0.20), transparent 70%);
   color: var(--coa-amber-300) !important;
-  border-left: 2px solid var(--coa-amber-500);
+  box-shadow: inset 2px 0 0 0 var(--coa-amber-500);
+}
+#nav-tree .arrow {
+  color: var(--coa-copper-500);
+  opacity: 0.85;
 }
 .ui-resizable-handle,
 #nav-tree-resize,
 .ui-resizable-e {
   background: var(--coa-copper-700) !important;
   width: 3px !important;
-  box-shadow: 0 0 6px rgba(240,160,64,0.2);
+  box-shadow: 0 0 6px rgba(240,160,64,0.25);
+}
+
+/* doxygen pads doc-content on the left to make room for #side-nav, but the
+ * content itself often sits flush against that border. give it breathing room. */
+#doc-content {
+  background: transparent;
+}
+#doc-content > .header,
+#doc-content > .contents {
+  padding-left: 28px;
+  padding-right: 28px;
 }
 
 /* ============================================================================
@@ -285,22 +348,23 @@ a:visited:hover { color: var(--coa-amber-300); }
  * ============================================================================ */
 .tabs, .tabs2, .tabs3, .navpath {
   background: #0d0f13;
-  background-image: linear-gradient(180deg, #141820 0%, #0a0c10 100%);
+  background-image: linear-gradient(180deg, #15191f 0%, #0a0c10 100%);
   border-bottom: 1px solid var(--coa-iron-500);
-  box-shadow: inset 0 -1px 0 0 rgba(192,112,56,0.25);
+  box-shadow: inset 0 -1px 0 0 rgba(192,112,56,0.30);
 }
 .tablist { margin: 0; padding: 0; }
 .tablist li { background: transparent; border: none; }
 .tablist a {
   font-family: var(--coa-font-display);
-  font-size: 13px;
-  letter-spacing: 0.12em;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--coa-bone-300) !important;
   background: transparent !important;
   text-shadow: none !important;
-  padding: 8px 14px;
+  padding: 9px 14px;
   border-right: 1px solid rgba(90,99,112,0.35);
+  font-weight: 600;
 }
 .tablist a:hover {
   color: var(--coa-amber-300) !important;
@@ -308,14 +372,24 @@ a:visited:hover { color: var(--coa-amber-300); }
 }
 .tablist li.current a {
   color: var(--coa-amber-300) !important;
-  background: linear-gradient(180deg, rgba(240,160,64,0.12), transparent) !important;
-  border-bottom: 2px solid var(--coa-amber-500);
+  background: linear-gradient(180deg, rgba(240,160,64,0.14), transparent) !important;
+  box-shadow: inset 0 -2px 0 0 var(--coa-amber-500);
 }
-.navpath ul { background: transparent; border: none; }
+
+#nav-path {
+  border-top: 1px solid var(--coa-iron-700);
+  border-bottom: none;
+}
+.navpath ul { background: transparent; border: none; height: auto; padding: 4px 12px; }
+.navpath li.navelem,
+.navpath li.footer {
+  font-family: var(--coa-font-body);
+  font-size: 13px;
+}
 .navpath li.navelem a {
   color: var(--coa-copper-500) !important;
   text-shadow: none !important;
-  font-family: var(--coa-font-body);
+  font-weight: 500;
 }
 .navpath li.navelem a:hover { color: var(--coa-amber-300) !important; }
 
@@ -328,68 +402,113 @@ h1, h2, h3, h4, h5, h6,
   color: var(--coa-amber-300);
   font-weight: 600;
   letter-spacing: 0.04em;
+  line-height: 1.25;
 }
 
 h1, .headertitle .title {
-  font-size: 32px;
-  letter-spacing: 0.08em;
+  font-size: 30px;
+  letter-spacing: 0.07em;
   padding-bottom: 0.4em;
-  margin-top: 1.4em;
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
   border-bottom: 2px solid transparent;
   border-image: linear-gradient(90deg,
-    var(--coa-copper-500) 0%,
-    var(--coa-amber-500) 30%,
+    transparent 0%,
+    var(--coa-copper-500) 8%,
+    var(--coa-amber-500) 32%,
     var(--coa-copper-500) 60%,
     transparent 100%) 1;
-  text-shadow: 0 0 10px rgba(240,160,64,0.25), 0 1px 0 #000;
+  text-shadow: 0 0 12px rgba(240,160,64,0.22), 0 1px 0 #000;
 }
 
 h2 {
-  font-size: 24px;
-  letter-spacing: 0.06em;
+  font-size: 22px;
+  letter-spacing: 0.05em;
   padding-bottom: 0.3em;
   margin-top: 1.6em;
+  margin-bottom: 0.5em;
   border-bottom: 1px solid var(--coa-iron-500);
   box-shadow: 0 1px 0 0 rgba(192,112,56,0.35);
-  text-shadow: 0 0 8px rgba(240,160,64,0.2), 0 1px 0 #000;
+  text-shadow: 0 0 8px rgba(240,160,64,0.18), 0 1px 0 #000;
 }
 
 h3 {
-  font-size: 19px;
+  font-size: 18px;
   color: var(--coa-amber-500);
   margin-top: 1.4em;
+  margin-bottom: 0.4em;
   letter-spacing: 0.03em;
 }
-h4 { font-size: 16px; color: var(--coa-copper-500); letter-spacing: 0.02em; }
+h4 { font-size: 15.5px; color: var(--coa-copper-500); letter-spacing: 0.02em; margin-top: 1.2em; }
 h5, h6 {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--coa-bone-200);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
 }
 
 .header {
-  background: linear-gradient(180deg, #12151b 0%, #0e1116 100%);
+  background: linear-gradient(180deg, #14181f 0%, #0e1116 100%);
   border-bottom: 1px solid var(--coa-iron-500);
   box-shadow: inset 0 -1px 0 0 rgba(192,112,56,0.25);
+  padding: 14px 0 6px 0;
 }
+.headertitle { padding: 0; }
 .summary, .ingroups {
   color: var(--coa-bone-300);
   font-family: var(--coa-font-body);
   font-style: italic;
+  font-size: 14px;
 }
 .summary a { color: var(--coa-copper-500); }
+.summary a:hover { color: var(--coa-amber-300); }
 
 /* ============================================================================
- * 8. CONTENT / TEXT BLOCKS
+ * 8. CONTENT / TEXT BLOCKS  (the "tome page" card)
  * ============================================================================ */
-.contents { color: var(--coa-bone-100); }
-.contents p, .textblock p, .memdoc p { line-height: 1.7; }
-.contents strong, .textblock strong { color: var(--coa-amber-300); }
+.contents {
+  color: var(--coa-bone-100);
+  font-family: var(--coa-font-body);
+  font-size: 16.5px;
+  line-height: 1.7;
+  padding: 18px 28px 36px 28px;
+  position: relative;
+}
+/* parchment-darkened reading panel: extremely subtle vignette, no card outline,
+ * keeps the dungeon mood without hiding content. */
+.contents::before {
+  content: "";
+  position: absolute;
+  inset: 6px 6px 12px 6px;
+  background:
+    linear-gradient(180deg,
+      rgba(240,160,64,0.025) 0%,
+      transparent 8%,
+      transparent 92%,
+      rgba(0,0,0,0.25) 100%),
+    radial-gradient(ellipse at 50% 0%,
+      rgba(240,160,64,0.04), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.contents p, .textblock p, .memdoc p {
+  line-height: 1.75;
+  margin: 0.6em 0 0.9em 0;
+}
+.contents strong, .textblock strong { color: var(--coa-amber-300); font-weight: 600; }
 .contents em, .textblock em { color: var(--coa-bone-200); }
 
+.contents ul, .contents ol, .textblock ul, .textblock ol {
+  padding-left: 1.4em;
+}
+.contents li, .textblock li { margin: 0.2em 0; }
+.contents ul li::marker { color: var(--coa-copper-500); }
+.contents ol li::marker { color: var(--coa-amber-500); font-family: var(--coa-font-display); }
+
 /* ============================================================================
- * 9. MEMBER ITEMS (memitem / memproto / memdoc)
+ * 9. MEMBER ITEMS (memitem / memproto / memdoc) -- iron-bound entries
  * ============================================================================ */
 .memitem {
   border: 1px solid var(--coa-copper-700);
@@ -397,38 +516,47 @@ h5, h6 {
   background: var(--coa-stone-200);
   box-shadow:
     0 0 0 1px #000 inset,
-    0 2px 0 0 #000,
-    0 8px 18px rgba(0,0,0,0.5);
-  margin-bottom: 2rem;
+    0 2px 0 0 rgba(0,0,0,0.85),
+    0 8px 18px rgba(0,0,0,0.55);
+  margin: 1.4rem 0;
   overflow: hidden;
 }
 .memtitle {
-  background: linear-gradient(180deg, #241a0d 0%, #1a1308 100%);
-  color: var(--coa-amber-300);
+  background: linear-gradient(180deg, #2a1d0e 0%, #1a1207 100%) !important;
+  color: var(--coa-amber-300) !important;
   font-family: var(--coa-font-display);
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
   border-bottom: 1px solid var(--coa-copper-700);
   text-shadow: 0 1px 0 #000;
+  padding: 7px 12px !important;
 }
 .memproto {
-  background: #141820 !important;
-  color: var(--coa-bone-100) !important;
+  background: #11141b !important;
+  color: var(--coa-bone-050) !important;
   border-bottom: 1px solid var(--coa-iron-500);
   font-family: var(--coa-font-mono);
-  font-size: 14px;
+  font-size: 13.5px;
   text-shadow: none !important;
-  box-shadow: inset 0 1px 0 0 rgba(255,210,138,0.06);
+  box-shadow: inset 0 1px 0 0 rgba(255,210,138,0.05);
+  padding: 10px 14px !important;
 }
 .memname, .memname td, .memname a {
-  color: var(--coa-amber-300);
+  color: var(--coa-amber-300) !important;
   font-family: var(--coa-font-mono);
   font-weight: 600;
+  background: transparent !important;
 }
 .memdoc {
-  background: var(--coa-stone-200);
+  background: var(--coa-stone-200) !important;
   color: var(--coa-bone-100);
   border-top: none;
-  padding: 1rem 1.2rem;
+  padding: 14px 16px !important;
+  font-family: var(--coa-font-body);
+  font-size: 16px;
+  line-height: 1.65;
 }
 .mlabels .mlabel,
 span.mlabel {
@@ -438,52 +566,105 @@ span.mlabel {
   border-radius: 2px;
   font-family: var(--coa-font-display);
   font-size: 10px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 1px 6px;
   text-shadow: none;
   box-shadow: 0 0 0 1px #000 inset;
 }
 
-.paramname { color: var(--coa-amber-300); font-style: normal; }
-.paramtype { color: #e8b765; font-style: normal; }
+.paramname { color: var(--coa-amber-300); font-style: normal; font-family: var(--coa-font-mono); }
+.paramtype { color: #e8b765; font-style: normal; font-family: var(--coa-font-mono); }
+
+/* "More..." links and member tables on summary pages */
+table.memberdecls {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0.6em 0 1.2em;
+  width: 100%;
+}
+table.memberdecls .heading td,
+table.memberdecls h2.groupheader {
+  background: linear-gradient(180deg, #2a1d0e 0%, #1a1207 100%);
+  color: var(--coa-amber-300) !important;
+  font-family: var(--coa-font-display);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border: 1px solid var(--coa-copper-700);
+  border-bottom-width: 2px;
+  text-shadow: 0 1px 0 #000;
+}
+table.memberdecls td.memItemLeft,
+table.memberdecls td.memItemRight,
+table.memberdecls td.memTemplItemLeft,
+table.memberdecls td.memTemplItemRight,
+table.memberdecls td.mdescLeft,
+table.memberdecls td.mdescRight {
+  background: var(--coa-stone-200);
+  border-top: 1px solid var(--coa-iron-700);
+  padding: 8px 12px;
+  color: var(--coa-bone-100);
+  font-family: var(--coa-font-mono);
+  font-size: 13.5px;
+}
+table.memberdecls td.mdescLeft,
+table.memberdecls td.mdescRight {
+  font-family: var(--coa-font-body);
+  font-size: 14.5px;
+  color: var(--coa-bone-200);
+  font-style: italic;
+  background: var(--coa-stone-150);
+}
+table.memberdecls .memItemLeft a.el,
+table.memberdecls .memTemplItemLeft a.el {
+  color: var(--coa-amber-300);
+}
 
 /* ============================================================================
  * 10. CODE FRAGMENTS -- inset forge plate
  * ============================================================================ */
 div.fragment,
 pre.fragment {
-  background: var(--coa-stone-200);
-  color: var(--coa-bone-100);
+  background: #11141b;
+  color: var(--coa-bone-050);
   border: 1px solid var(--coa-iron-500);
   border-left: 3px solid var(--coa-copper-500);
   border-radius: 3px;
   box-shadow:
-    inset 0 1px 0 0 rgba(0,0,0,0.6),
+    inset 0 1px 0 0 rgba(0,0,0,0.65),
     inset 0 0 22px rgba(0,0,0,0.55),
-    0 2px 0 0 #000;
-  padding: 0.9rem 1rem;
+    0 2px 0 0 rgba(0,0,0,0.85);
+  padding: 0.85rem 1rem;
   font-family: var(--coa-font-mono);
   font-size: 13.5px;
   line-height: 1.55;
   overflow-x: auto;
+  margin: 1em 0;
 }
 
 code, tt, .tt, kbd, samp {
   font-family: var(--coa-font-mono);
   font-size: 0.92em;
-  background: #141820;
+  background: #11141b;
   color: var(--coa-amber-300);
-  border: 1px solid #222832;
+  border: 1px solid #232935;
   padding: 1px 5px;
   border-radius: 2px;
+}
+kbd {
+  background: linear-gradient(180deg, #1a1f29 0%, #11141b 100%);
+  border-color: var(--coa-iron-500);
+  color: var(--coa-bone-100);
+  box-shadow: 0 1px 0 0 #000, inset 0 1px 0 0 rgba(255,255,255,0.04);
 }
 
 .line { min-height: 1.4em; }
 .lineno, span.lineno, a.lineno {
   color: #5a6370 !important;
-  background: #0d0f13 !important;
-  border-right: 1px solid #2a2f39;
+  background: #0a0d12 !important;
+  border-right: 1px solid #232935;
   padding-right: 6px;
   user-select: none;
 }
@@ -492,28 +673,68 @@ code, tt, .tt, kbd, samp {
 .keyword        { color: var(--coa-amber-500); }
 .keywordtype    { color: #e8b765; }
 .keywordflow    { color: var(--coa-ember-300); }
-.comment        { color: #7a8494; font-style: italic; }
+.comment        { color: #7e8a9b; font-style: italic; }
 .preprocessor   { color: var(--coa-copper-500); }
-.stringliteral  { color: #a9c9a0; }
+.stringliteral  { color: #b9d6a8; }
+
+/* anvil-copy button (added by anvil-copy.js) */
+.coa-copy-btn,
+button.coa-copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-family: var(--coa-font-display);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coa-bone-300);
+  background: linear-gradient(180deg, #1a1f29 0%, #0d1015 100%);
+  border: 1px solid var(--coa-iron-500);
+  border-radius: 2px;
+  padding: 3px 8px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 160ms ease, color 160ms ease, border-color 160ms ease;
+  box-shadow: 0 1px 0 0 #000;
+}
+div.fragment:hover .coa-copy-btn,
+pre.fragment:hover .coa-copy-btn,
+.coa-copy-btn:focus-visible { opacity: 1; }
+.coa-copy-btn:hover {
+  color: var(--coa-amber-300);
+  border-color: var(--coa-copper-500);
+}
 
 /* ============================================================================
  * 11. DIRECTORY / FILE LISTS
  * ============================================================================ */
 .directory {
   font-family: var(--coa-font-body);
+  font-size: 15px;
   color: var(--coa-bone-100);
 }
-.directory table { border-collapse: collapse; }
-.directory td.entry { padding: 4px 6px; }
-.directory tr.even { background: #141820; }
-.directory tr:hover { background: var(--coa-stone-400); }
+.directory table { border-collapse: collapse; width: 100%; }
+.directory td.entry { padding: 5px 8px; }
+.directory td.desc {
+  color: var(--coa-bone-300);
+  font-style: italic;
+  padding: 5px 8px;
+}
+.directory tr.even { background: var(--coa-stone-150); }
+.directory tr:hover {
+  background: var(--coa-stone-300);
+}
+.directory tr:hover td.desc { color: var(--coa-bone-200); }
 .directory .icona,
 .directory .iconfopen,
 .directory .iconfclosed,
 .directory .icondoc {
-  filter: sepia(0.4) hue-rotate(-15deg) saturate(1.2) brightness(0.9);
+  filter: sepia(0.45) hue-rotate(-12deg) saturate(1.2) brightness(0.92);
 }
-.arrow { color: var(--coa-copper-500); }
+.arrow {
+  color: var(--coa-copper-500);
+  user-select: none;
+}
 
 /* ============================================================================
  * 12. TABLES -- banded, copper headings
@@ -523,74 +744,83 @@ table.markdownTable {
   border-collapse: collapse;
   border: 1px solid var(--coa-iron-500);
   background: var(--coa-stone-200);
-  box-shadow: 0 2px 0 0 #000;
+  box-shadow: 0 2px 0 0 rgba(0,0,0,0.85);
   margin: 1em 0;
   width: 100%;
+  font-family: var(--coa-font-body);
+  font-size: 15.5px;
 }
 table.doxtable th,
 table.markdownTable th,
 table.markdownTableHead th {
-  background: linear-gradient(180deg, #241a0d 0%, #1a1307 100%);
+  background: linear-gradient(180deg, #2a1d0e 0%, #1a1307 100%);
   color: var(--coa-amber-300) !important;
   font-family: var(--coa-font-display);
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 12.5px;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   text-shadow: 0 1px 0 #000;
   border: 1px solid var(--coa-copper-700);
-  padding: 8px 10px;
+  padding: 9px 12px;
+  text-align: left;
 }
 table.doxtable td,
 table.markdownTable td {
-  border: 1px solid #2a2f39;
-  padding: 7px 10px;
+  border: 1px solid #232935;
+  padding: 8px 12px;
   color: var(--coa-bone-100);
+  vertical-align: top;
 }
 table.markdownTable tr:nth-child(even) td,
-table.doxtable tr:nth-child(even) td { background: #141820; }
+table.doxtable tr:nth-child(even) td { background: var(--coa-stone-150); }
+table.markdownTable tr:hover td,
+table.doxtable tr:hover td { background: var(--coa-stone-300); }
 
 /* ============================================================================
  * 13. ADMONITIONS -- dl.note, .warning, .attention, .todo, .deprecated
  * ============================================================================ */
 dl.note, dl.warning, dl.attention,
-dl.todo, dl.deprecated, dl.bug, dl.invariant, dl.pre, dl.post, dl.remark {
+dl.todo, dl.deprecated, dl.bug, dl.invariant, dl.pre, dl.post, dl.remark,
+dl.section.user {
   border-left: 4px solid var(--coa-iron-500);
   background: var(--coa-stone-200);
-  padding: 0.7rem 1rem;
+  padding: 0.75rem 1rem 0.85rem 1.1rem;
   margin: 1em 0;
   border-radius: 0 3px 3px 0;
-  box-shadow: inset 0 0 24px rgba(0,0,0,0.35), 0 2px 0 0 #000;
+  box-shadow: inset 0 0 24px rgba(0,0,0,0.30), 0 2px 0 0 rgba(0,0,0,0.85);
+  font-family: var(--coa-font-body);
 }
 dl.note dt, dl.warning dt, dl.attention dt,
 dl.todo dt, dl.deprecated dt, dl.bug dt, dl.invariant dt,
 dl.pre dt, dl.post dt, dl.remark dt {
   font-family: var(--coa-font-display);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-size: 12px;
-  margin-bottom: 0.3em;
+  font-size: 11.5px;
+  margin-bottom: 0.35em;
+  font-weight: 600;
 }
 dl.note {
   border-left-color: var(--coa-rune-500);
-  box-shadow: inset 0 0 24px rgba(111,191,90,0.08), 0 2px 0 0 #000;
+  box-shadow: inset 0 0 24px rgba(111,191,90,0.08), 0 2px 0 0 rgba(0,0,0,0.85);
 }
 dl.note dt {
-  color: var(--coa-rune-500);
-  text-shadow: 0 0 6px rgba(111,191,90,0.35);
+  color: var(--coa-rune-300);
+  text-shadow: 0 0 8px rgba(111,191,90,0.40);
 }
 dl.warning, dl.attention, dl.bug {
   border-left-color: var(--coa-ember-500);
-  box-shadow: inset 0 0 24px rgba(217,74,46,0.10), 0 2px 0 0 #000;
+  box-shadow: inset 0 0 24px rgba(217,74,46,0.10), 0 2px 0 0 rgba(0,0,0,0.85);
 }
 dl.warning dt, dl.attention dt, dl.bug dt {
   color: var(--coa-ember-300);
-  text-shadow: 0 0 6px rgba(217,74,46,0.40);
+  text-shadow: 0 0 8px rgba(217,74,46,0.45);
 }
 dl.todo {
   border-left-color: #d9c35a;
-  box-shadow: inset 0 0 24px rgba(217,195,90,0.08), 0 2px 0 0 #000;
+  box-shadow: inset 0 0 24px rgba(217,195,90,0.08), 0 2px 0 0 rgba(0,0,0,0.85);
 }
-dl.todo dt { color: #d9c35a; }
+dl.todo dt { color: #e2cf6a; }
 dl.deprecated {
   border-left-color: var(--coa-ember-500);
   opacity: 0.92;
@@ -600,43 +830,69 @@ dl.deprecated dt { color: var(--coa-ember-300); }
 dl.section dt {
   color: var(--coa-amber-300);
   font-family: var(--coa-font-display);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+}
+
+/* "Returns", "Parameters" etc. */
+dl.params dt, dl.retval dt, dl.exception dt, dl.tparams dt {
+  color: var(--coa-amber-300);
+  font-family: var(--coa-font-display);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
 }
 
 /* ============================================================================
- * 14. BLOCKQUOTE
+ * 14. BLOCKQUOTE -- old-tome epigraph (this gets the IM Fell English face)
  * ============================================================================ */
 blockquote {
-  background: #141820;
+  background: #11141b;
   border-left: 3px solid var(--coa-copper-500);
-  color: var(--coa-bone-200);
+  color: var(--coa-bone-100);
+  font-family: var(--coa-font-quote);
   font-style: italic;
-  padding: 0.7rem 1rem;
-  margin: 1em 0;
+  font-size: 17px;
+  line-height: 1.65;
+  padding: 0.9rem 1.2rem 0.9rem 1.4rem;
+  margin: 1.2em 0;
   border-radius: 0 3px 3px 0;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+  box-shadow: inset 0 0 24px rgba(0,0,0,0.45);
+  position: relative;
+}
+blockquote::before {
+  content: "\201C";
+  position: absolute;
+  left: 8px; top: -4px;
+  font-family: var(--coa-font-display);
+  font-size: 38px;
+  color: var(--coa-copper-500);
+  opacity: 0.55;
+  line-height: 1;
 }
 
 /* ============================================================================
  * 15. SEARCH BOX -- inset stone slot
  * ============================================================================ */
 #MSearchBox {
-  background: #0c0e12 !important;
+  background: #0a0c10 !important;
   border: 1px solid var(--coa-iron-500) !important;
   border-radius: 3px !important;
   box-shadow:
     inset 0 2px 4px rgba(0,0,0,0.8),
     inset 0 0 0 1px #000,
-    0 1px 0 rgba(192,112,56,0.2);
-  padding: 2px 4px;
+    0 1px 0 rgba(192,112,56,0.20);
+  padding: 2px 6px;
+  height: auto;
 }
 #MSearchField {
   background: transparent !important;
   color: var(--coa-bone-100) !important;
   font-family: var(--coa-font-body);
-  font-size: 14px;
+  font-size: 14.5px;
+  font-style: italic;
 }
 #MSearchField::placeholder {
   color: var(--coa-bone-300);
@@ -646,7 +902,7 @@ blockquote {
   border-color: var(--coa-amber-500) !important;
   box-shadow:
     inset 0 2px 4px rgba(0,0,0,0.8),
-    0 0 0 2px rgba(240,160,64,0.35);
+    0 0 0 2px rgba(240,160,64,0.30);
 }
 #MSearchSelect { filter: sepia(0.5) hue-rotate(-10deg) saturate(1.3); }
 
@@ -655,6 +911,7 @@ blockquote {
   border: 1px solid var(--coa-copper-700) !important;
   box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 0 1px #000;
   color: var(--coa-bone-100);
+  font-family: var(--coa-font-body);
 }
 .SRResult, .SRSymbol, .SRScope { color: var(--coa-amber-300) !important; }
 .SRSymbol:hover, .SRScope:hover { color: var(--coa-amber-500) !important; }
@@ -667,7 +924,7 @@ blockquote {
 ::-webkit-scrollbar-track {
   background: #0a0c10;
   border-left: 1px solid #000;
-  box-shadow: inset 1px 0 0 rgba(192,112,56,0.2);
+  box-shadow: inset 1px 0 0 rgba(192,112,56,0.20);
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg,
@@ -693,7 +950,7 @@ blockquote {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   opacity: 0.05;
   mix-blend-mode: screen;
   background:
@@ -710,7 +967,47 @@ blockquote {
 }
 
 /* ============================================================================
- * 18. TORCHES -- defensive styling for .coa-torch hooks
+ * 18. FORGE-SPARK CANVAS -- floating ember layer, must NOT take layout space
+ *     The JS appends <canvas class="coa-spark-canvas"> to <body>; without
+ *     position:fixed it pushes the page height by ~viewport, leaving a vast
+ *     empty band beneath the docs. Pin it.
+ * ============================================================================ */
+canvas.coa-spark-canvas {
+  position: fixed !important;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+/* ============================================================================
+ * 19. HEARTH-SCROLL PROGRESS BAR -- top-of-viewport molten strip
+ *     Same problem as the spark canvas: the JS just appends <div>, and CSS
+ *     must pin and color it. Fills width as the reader scrolls.
+ * ============================================================================ */
+.coa-hearth-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg,
+    var(--coa-copper-700) 0%,
+    var(--coa-amber-600) 35%,
+    var(--coa-amber-300) 60%,
+    var(--coa-ember-500) 100%);
+  box-shadow:
+    0 0 8px rgba(240,160,64,0.55),
+    0 0 18px rgba(217,74,46,0.30);
+  z-index: 100;
+  pointer-events: none;
+  transition: width 90ms linear;
+}
+
+/* ============================================================================
+ * 20. TORCHES -- defensive styling for .coa-torch hooks
  * ============================================================================ */
 .coa-torch {
   position: fixed;
@@ -746,7 +1043,7 @@ blockquote {
 }
 
 /* ============================================================================
- * 19. RUNE-REVEAL / FORGE-SPARK / ANVIL-COPY / HEARTH-SCROLL hooks
+ * 21. RUNE-REVEAL / SPARK / COPY / HEARTH-ENTER hooks
  * ============================================================================ */
 .coa-rune-revealed {
   animation: coa-rune-reveal 700ms ease-out both;
@@ -795,88 +1092,157 @@ blockquote {
 }
 
 /* ============================================================================
- * 20. FOOTER
+ * 22. FOOTER
  * ============================================================================ */
 address.footer,
 .footer {
   color: var(--coa-bone-300);
-  font-family: var(--coa-font-body);
+  font-family: var(--coa-font-quote);
   font-style: italic;
   font-size: 12px;
   text-align: center;
   padding: 1.5rem 1rem 2rem;
   border-top: 1px solid var(--coa-iron-500);
   box-shadow: inset 0 1px 0 0 rgba(192,112,56,0.25);
-  background: linear-gradient(180deg, transparent 0%, #0a0c10 100%);
+  background: linear-gradient(180deg, transparent 0%, #08090c 100%);
+  letter-spacing: 0.04em;
 }
 .footer a { color: var(--coa-copper-500); }
 .footer a:hover { color: var(--coa-amber-300); }
 
 /* ============================================================================
- * 21. MISC -- TOC, qindex, images
+ * 23. TOC (right-side floating + page-top), images, qindex
  * ============================================================================ */
-div.toc {
+div.toc, .contents > .toc {
   background: var(--coa-stone-200);
   border: 1px solid var(--coa-copper-700);
   border-radius: 3px;
-  box-shadow: inset 0 0 18px rgba(0,0,0,0.45), 0 2px 0 0 #000;
-  padding: 0.8rem 1rem;
+  box-shadow:
+    inset 0 0 18px rgba(0,0,0,0.45),
+    0 2px 0 0 rgba(0,0,0,0.85),
+    0 6px 14px rgba(0,0,0,0.45);
+  padding: 0.85rem 1.05rem 0.95rem 1.05rem;
+  font-family: var(--coa-font-body);
+  font-size: 14.5px;
+  max-width: 280px;
 }
-div.toc h3 {
+div.toc h3, div.toc .toctitle {
   font-family: var(--coa-font-display);
   color: var(--coa-amber-300) !important;
   border-bottom: 1px solid var(--coa-iron-500);
-  letter-spacing: 0.08em;
-  margin-top: 0;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 0.5em 0;
+  padding-bottom: 0.3em;
 }
-div.toc li { list-style: none; color: var(--coa-bone-200); }
-div.toc a { color: var(--coa-copper-500); }
-div.toc a:hover { color: var(--coa-amber-300); }
+div.toc ul { padding-left: 0.9em; margin: 0; }
+div.toc li {
+  list-style: none;
+  color: var(--coa-bone-200);
+  margin: 0.18em 0;
+  position: relative;
+}
+div.toc li::before {
+  content: "\2756"; /* small ornament */
+  color: var(--coa-copper-500);
+  position: absolute;
+  left: -0.9em;
+  font-size: 10px;
+  top: 4px;
+  opacity: 0.7;
+}
+div.toc a {
+  color: var(--coa-bone-100);
+  text-decoration: none;
+}
+div.toc a:hover {
+  color: var(--coa-amber-300);
+  text-decoration: underline;
+  text-decoration-color: var(--coa-copper-500);
+}
 
 div.image img, .image img {
   border: 1px solid var(--coa-iron-500);
   box-shadow: 0 2px 0 0 #000, 0 8px 20px rgba(0,0,0,0.55);
   background: #0a0c10;
+  max-width: 100%;
+  height: auto;
 }
 div.caption, .caption {
   color: var(--coa-bone-300);
   font-style: italic;
-  font-family: var(--coa-font-body);
+  font-family: var(--coa-font-quote);
   font-size: 13px;
+  margin-top: 0.4em;
 }
 
 .qindex {
-  background: #141820;
+  background: var(--coa-stone-200);
   border: 1px solid var(--coa-iron-500);
   color: var(--coa-bone-200);
-  padding: 4px 8px;
+  padding: 6px 10px;
   border-radius: 2px;
+  font-family: var(--coa-font-display);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+.qindex a { color: var(--coa-copper-500); padding: 0 4px; }
+.qindex a:hover { color: var(--coa-amber-300); }
+
+/* class index alphabet headers */
+.classindex dt, .glossary dt {
+  color: var(--coa-amber-300);
+  font-family: var(--coa-font-display);
+  letter-spacing: 0.08em;
+}
+
+/* dynsections expandable headers */
+.dynheader, .dyncontent {
+  color: var(--coa-bone-100);
+}
+.dynheader {
+  font-family: var(--coa-font-display);
+  letter-spacing: 0.04em;
+  color: var(--coa-amber-300);
 }
 
 /* ============================================================================
- * 22. REDUCED MOTION
+ * 24. REDUCED MOTION
  * ============================================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .coa-fog           { animation: none !important; opacity: 0.04; }
-  .coa-torch         { animation: none !important; }
-  .coa-torch-flicker { animation: none !important; }
-  .coa-rune-revealed { animation: none !important; opacity: 1; transform: none; }
-  .coa-spark         { animation: none !important; opacity: 0; }
-  .coa-hearth-in     { transition: none !important; opacity: 1; transform: none; }
+  .coa-fog              { animation: none !important; opacity: 0.04; }
+  .coa-torch            { animation: none !important; }
+  .coa-torch-flicker    { animation: none !important; }
+  .coa-rune-revealed    { animation: none !important; opacity: 1; transform: none; }
+  .coa-spark            { animation: none !important; opacity: 0; }
+  .coa-spark-canvas     { display: none !important; }
+  .coa-hearth-scroll    { transition: none !important; }
+  .coa-hearth-in        { transition: none !important; opacity: 1; transform: none; }
   * { scroll-behavior: auto !important; }
   a { transition: none !important; }
 }
 
 /* ============================================================================
- * 23. RESPONSIVE -- keep readability on narrow screens
+ * 25. RESPONSIVE -- keep readability on narrow screens
  * ============================================================================ */
+@media (max-width: 900px) {
+  #titlearea { padding: 12px 18px; }
+  #projectname { font-size: 24px; letter-spacing: 0.06em; }
+}
+
 @media (max-width: 768px) {
-  #projectname { font-size: 26px; letter-spacing: 0.06em; }
-  h1, .headertitle .title { font-size: 26px; }
-  h2 { font-size: 21px; }
   body { font-size: 15.5px; }
+  h1, .headertitle .title { font-size: 24px; }
+  h2 { font-size: 19px; }
+  h3 { font-size: 16.5px; }
   .coa-torch { display: none; }
-  div.fragment, pre.fragment { font-size: 12.5px; padding: 0.7rem 0.8rem; }
+  div.fragment, pre.fragment { font-size: 12.5px; padding: 0.7rem 0.85rem; }
+  #doc-content > .header,
+  #doc-content > .contents { padding-left: 14px; padding-right: 14px; }
+  div.toc { max-width: 100%; }
+  table.doxtable, table.markdownTable { font-size: 14px; }
 }
 
 /* ============================================================================

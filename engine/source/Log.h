@@ -17,24 +17,15 @@
 #include <deque>
 #include <string>
 
+#include "Constants.h"
 #include "Types.h"
-
-/// @cond INTERNAL — ANSI colour escape codes used only by log macros.
-#define COLOR_RESET "\033[0m"
-#define COLOR_INFO  "\033[32m"
-#define COLOR_WARN  "\033[33m"
-#define COLOR_ERROR "\033[31m"
-#define COLOR_FATAL "\033[1;31m"
-/// @endcond
 
 namespace COA
 {
 
-constexpr i32 BUFFER_SIZE = 256;
-
 inline const char *shortFile(const char *file)
 {
-    static char buffer[BUFFER_SIZE];
+    static char buffer[kLogPrefixBufSize];
 
     const char *ptr = std::strstr(file, "coagula-engine/");
     if (ptr != nullptr) {

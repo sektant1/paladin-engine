@@ -12,21 +12,23 @@ static bool EditorSwallowsInput()
     return Engine::GetInstance().GetEditor().IsVisible();
 }
 
-void InputManager::SetKeyPressed(int key, bool pressed)
+void InputManager::SetKeyPressed(Key key, bool pressed)
 {
-    if (key < 0 | key >= static_cast<int>(m_keys.size()))
+    const int index = static_cast<int>(key);
+    if (index < 0 || index >= static_cast<int>(m_keys.size()))
     {
-        LOG_WARN("SetKeyPressed out-of-range key=%d (size=%zu)", key, m_keys.size());
+        LOG_WARN("SetKeyPressed out-of-range key=%d (size=%zu)", index, m_keys.size());
         return;
     }
-    m_keys[key] = pressed;
+    m_keys[index] = pressed;
 }
 
-bool InputManager::IsKeyPressed(int key)
+bool InputManager::IsKeyPressed(Key key) const
 {
-    if (key < 0 | key >= static_cast<int>(m_keys.size()))
+    const int index = static_cast<int>(key);
+    if (index < 0 || index >= static_cast<int>(m_keys.size()))
     {
-        LOG_WARN("IsKeyPressed out-of-range key=%d (size=%zu)", key, m_keys.size());
+        LOG_WARN("IsKeyPressed out-of-range key=%d (size=%zu)", index, m_keys.size());
         return false;
     }
     if (EditorSwallowsInput())
@@ -34,21 +36,23 @@ bool InputManager::IsKeyPressed(int key)
         return false;
     }
 
-    return m_keys[key];
+    return m_keys[index];
 }
 
-void InputManager::SetMouseButtonPressed(int button, bool pressed)
+void InputManager::SetMouseButtonPressed(MouseButton button, bool pressed)
 {
-    if (button < 0 | button >= static_cast<int>(m_keys.size()))
+    const int index = static_cast<int>(button);
+    if (index < 0 || index >= static_cast<int>(m_mouseKeys.size()))
     {
         return;
     }
-    m_mouseKeys[button] = pressed;
+    m_mouseKeys[index] = pressed;
 }
 
-bool InputManager::IsMouseButtonPressed(int button)
+bool InputManager::IsMouseButtonPressed(MouseButton button) const
 {
-    if (button < 0 | button >= static_cast<int>(m_keys.size()))
+    const int index = static_cast<int>(button);
+    if (index < 0 || index >= static_cast<int>(m_mouseKeys.size()))
     {
         return false;
     }
@@ -57,7 +61,7 @@ bool InputManager::IsMouseButtonPressed(int button)
         return false;
     }
 
-    return m_mouseKeys[button];
+    return m_mouseKeys[index];
 }
 
 void InputManager::SetMousePositionOld(const vec2 &pos)

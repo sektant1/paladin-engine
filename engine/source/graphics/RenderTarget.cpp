@@ -1,5 +1,6 @@
 #include "graphics/RenderTarget.h"
 
+#include "Constants.h"
 #include "Log.h"
 
 namespace COA
@@ -112,7 +113,7 @@ GLuint CompileStage(GLenum stage, const char *src)
     glGetShaderiv(s, GL_COMPILE_STATUS, &ok);
     if (ok == 0)
     {
-        char log[512];
+        char log[kShaderInfoLogSize];
         glGetShaderInfoLog(s, sizeof(log), nullptr, log);
         LOG_ERROR("Blit shader compile failed: %s", log);
     }
@@ -135,7 +136,7 @@ void EnsureBlitResources()
     glGetProgramiv(gBlitProg, GL_LINK_STATUS, &ok);
     if (ok == 0)
     {
-        char log[512];
+        char log[kShaderInfoLogSize];
         glGetProgramInfoLog(gBlitProg, sizeof(log), nullptr, log);
         LOG_ERROR("Blit program link failed: %s", log);
     }

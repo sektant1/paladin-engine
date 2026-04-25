@@ -7,7 +7,6 @@ namespace COA
 
 namespace
 {
-constexpr size_t       kMaxLogEntries = 1024;
 std::deque<LogEntry>   g_entries;
 
 const char *LevelTag(LogLevel lv)
@@ -26,10 +25,10 @@ const char *LevelColor(LogLevel lv)
 {
     switch (lv)
     {
-        case LogLevel::Info:  return COLOR_INFO;
-        case LogLevel::Warn:  return COLOR_WARN;
-        case LogLevel::Error: return COLOR_ERROR;
-        case LogLevel::Fatal: return COLOR_FATAL;
+        case LogLevel::Info:  return kAnsiInfo;
+        case LogLevel::Warn:  return kAnsiWarn;
+        case LogLevel::Error: return kAnsiError;
+        case LogLevel::Fatal: return kAnsiFatal;
     }
     return "";
 }
@@ -37,7 +36,7 @@ const char *LevelColor(LogLevel lv)
 
 void LogEmit(LogLevel level, const char *file, int line, const char *fmt, ...)
 {
-    char    msg[1024];
+    char    msg[kLogMessageBufSize];
     va_list ap;
     va_start(ap, fmt);
     std::vsnprintf(msg, sizeof(msg), fmt, ap);
@@ -48,9 +47,9 @@ void LogEmit(LogLevel level, const char *file, int line, const char *fmt, ...)
     const char *fileTrim = shortFile(file);
 
     FILE *stream = (level == LogLevel::Info) ? stdout : stderr;
-    std::fprintf(stream, "%s[%s] %s:%d: %s%s\n", color, tag, fileTrim, line, msg, COLOR_RESET);
+    std::fprintf(stream, "%s[%s] %s:%d: %s%s\n", color, tag, fileTrim, line, msg, kAnsiReset);
 
-    char full[1280];
+    char full[kLogFullBufSize];
     std::snprintf(full, sizeof(full), "[%s] %s:%d: %s", tag, fileTrim, line, msg);
 
     g_entries.push_back({level, std::string(full)});

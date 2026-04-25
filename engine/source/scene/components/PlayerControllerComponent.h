@@ -12,6 +12,7 @@
 
 #include <memory>
 
+#include "Constants.h"
 #include "Types.h"
 #include "physics/KinematicCharacterController.h"
 #include "scene/Component.h"
@@ -40,8 +41,8 @@ public:
 
     [[nodiscard]] bool OnGround() const;
 
-    void SetMS(f32 ms);
-    f32  GetMS();
+    void SetMoveSpeed(f32 speed);
+    f32  GetMoveSpeed() const;
 
     [[nodiscard]] f32 GetSensitivity() const { return m_sensitivity; }
     [[nodiscard]] f32 GetJumpSpeed() const { return m_jumpSpeed; }
@@ -50,11 +51,11 @@ public:
     void SetJumpSpeed(f32 s) { m_jumpSpeed = s; }
 
 private:
-    f32 m_sensitivity = 15.0F;  ///< Mouse-look sensitivity multiplier (degrees per pixel).
-    f32 m_moveSpeed   = 5.0F;   ///< Translation speed in world units per second.
-    f32 m_jumpSpeed   = 0.5F;   ///< Translation speed in world units per second.
-    f32 m_yRot        = 0.0f;
-    f32 m_xRot        = 0.0f;
+    f32 m_sensitivity = kDefaultMouseSensitivity;  ///< Mouse-look sensitivity multiplier (degrees per pixel).
+    f32 m_moveSpeed   = kDefaultMoveSpeed;         ///< Translation speed in world units per second.
+    f32 m_jumpSpeed   = kDefaultJumpSpeed;         ///< Multiplier on m_moveSpeed for the jump impulse.
+    f32 m_yRot        = 0.0F;
+    f32 m_xRot        = 0.0F;
 
     std::unique_ptr<KinematicCharacterController> m_kinematicController;
 };

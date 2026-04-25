@@ -16,7 +16,9 @@
 #pragma once
 #include <array>
 
+#include "Constants.h"
 #include "Types.h"
+#include "input/Key.h"
 
 namespace COA
 {
@@ -40,31 +42,31 @@ public:
 
     /**
      * @brief Record a key press or release event.
-     * @param key     GLFW key code (0–511). Out-of-range values are ignored with a warning.
+     * @param key     Key code (out-of-range values are ignored with a warning).
      * @param pressed True when pressed, false when released.
      */
-    void SetKeyPressed(int key, bool pressed);
+    void SetKeyPressed(Key key, bool pressed);
 
     /**
      * @brief Query whether a key is currently held down.
-     * @param key GLFW key code (e.g. GLFW_KEY_W).
+     * @param key Key code (e.g. Key::W).
      * @return True if the key is pressed.
      */
-    bool IsKeyPressed(int key);
+    bool IsKeyPressed(Key key) const;
 
     /**
      * @brief Record a mouse-button press or release event.
-     * @param button  GLFW mouse-button code (0–15).
+     * @param button  Mouse-button code.
      * @param pressed True when pressed, false when released.
      */
-    void SetMouseButtonPressed(int button, bool pressed);
+    void SetMouseButtonPressed(MouseButton button, bool pressed);
 
     /**
      * @brief Query whether a mouse button is currently held down.
-     * @param button GLFW mouse-button code (e.g. GLFW_MOUSE_BUTTON_LEFT).
+     * @param button Mouse-button code (e.g. MouseButton::Left).
      * @return True if the button is pressed.
      */
-    bool IsMouseButtonPressed(int button);
+    bool IsMouseButtonPressed(MouseButton button) const;
 
     /**
      * @brief Store the cursor position from the previous frame.
@@ -98,8 +100,8 @@ public:
     [[nodiscard]] const vec2 GetMousePositionCurrent() const;
 
 private:
-    std::array<bool, 512> m_keys                 = {false};     ///< Pressed state for each GLFW key code.
-    std::array<bool, 16>  m_mouseKeys            = {false};     ///< Pressed state for each GLFW mouse button.
+    std::array<bool, kMaxKeys>         m_keys      = {false};  ///< Pressed state for each GLFW key code.
+    std::array<bool, kMaxMouseButtons> m_mouseKeys = {false};  ///< Pressed state for each GLFW mouse button.
     vec2                  m_mousePositionOld     = vec2(0.0F);  ///< Cursor position at end of previous frame.
     vec2                  m_mousePositionCurrent = vec2(0.0F);  ///< Cursor position at end of current frame.
 

@@ -44,7 +44,7 @@ bool Editor::Init(GLFWwindow *window)
         LOG_ERROR("ImGui GLFW backend init failed");
         return false;
     }
-    if (!ImGui_ImplOpenGL3_Init("#version 330 core"))
+    if (!ImGui_ImplOpenGL3_Init(kGlslVersionDirective))
     {
         LOG_ERROR("ImGui OpenGL3 backend init failed");
         return false;
@@ -400,12 +400,12 @@ static void InspectPlayer(PlayerControllerComponent *c)
     {
         return;
     }
-    f32 ms   = c->GetMS();
+    f32 ms   = c->GetMoveSpeed();
     f32 sens = c->GetSensitivity();
     f32 jump = c->GetJumpSpeed();
     if (ImGui::DragFloat("Move Speed", &ms, 0.05F, 0.0F, 1000.0F))
     {
-        c->SetMS(ms);
+        c->SetMoveSpeed(ms);
     }
     if (ImGui::DragFloat("Sensitivity", &sens, 0.1F, 0.0F, 500.0F))
     {
@@ -579,24 +579,24 @@ void Editor::DrawRender()
 
     ImGui::SeparatorText("Internal resolution (pixelation)");
     ImGui::Checkbox("Use internal resolution FBO", &rs.useInternalRes);
-    ImGui::DragInt("Internal width", &rs.internalW, 1, 16, 4096);
-    ImGui::DragInt("Internal height", &rs.internalH, 1, 16, 4096);
+    ImGui::DragInt("Internal width", &rs.internalW, 1, kInternalResMin, kInternalResMax);
+    ImGui::DragInt("Internal height", &rs.internalH, 1, kInternalResMin, kInternalResMax);
     if (ImGui::Button("160x120"))
     {
-        rs.internalW = 160;
-        rs.internalH = 120;
+        rs.internalW = kInternalPresetTinyW;
+        rs.internalH = kInternalPresetTinyH;
     }
     ImGui::SameLine();
     if (ImGui::Button("320x240"))
     {
-        rs.internalW = 320;
-        rs.internalH = 240;
+        rs.internalW = kInternalPresetLowW;
+        rs.internalH = kInternalPresetLowH;
     }
     ImGui::SameLine();
     if (ImGui::Button("640x480"))
     {
-        rs.internalW = 640;
-        rs.internalH = 480;
+        rs.internalW = kInternalPresetMedW;
+        rs.internalH = kInternalPresetMedH;
     }
     ImGui::SameLine();
     if (ImGui::Button("Native"))

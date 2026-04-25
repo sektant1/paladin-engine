@@ -9,6 +9,7 @@
 
 #include <glm/gtc/quaternion.hpp>
 
+#include "Types.h"
 #include "physics/Collider.h"
 
 class btRigidBody;
@@ -63,6 +64,8 @@ public:
     void      SetRotation(const glm::quat &rot);
     glm::quat GetRotation() const;
 
+    void ApplyImpulse(const vec3 &impulse);
+
 private:
     std::unique_ptr<btRigidBody> m_body;
     BodyType                     m_type = BodyType::Static;
@@ -72,4 +75,3 @@ private:
     bool                         m_addedToWorld = false;
 };
 }  // namespace COA
-

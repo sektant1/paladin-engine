@@ -8,6 +8,7 @@
 #pragma once
 #include <memory>
 
+#include "Constants.h"
 #include "Types.h"
 
 class btPairCachingGhostObject;
@@ -48,8 +49,8 @@ public:
     [[nodiscard]] bool OnGround() const;
 
 private:
-    float m_height = 1.2f;
-    float m_radius = 0.4f;
+    float m_height = kDefaultCapsuleHeight;
+    float m_radius = kDefaultCapsuleRadius;
 
     std::unique_ptr<btPairCachingGhostObject>       m_ghost;
     std::unique_ptr<btKinematicCharacterController> m_controller;

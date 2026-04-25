@@ -1,5 +1,6 @@
 #include "graphics/GraphicsAPI.h"
 
+#include "Constants.h"
 #include "Log.h"
 #include "graphics/ShaderProgram.h"
 #include "render/Material.h"
@@ -26,8 +27,8 @@ std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::strin
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
     if (!success)
     {
-        char infoLog[512];
-        glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+        char infoLog[kShaderInfoLogSize];
+        glGetShaderInfoLog(vertexShader, kShaderInfoLogSize, nullptr, infoLog);
         LOG_ERROR("Vertex shader compilation failed: %s", infoLog);
         return nullptr;
     }
@@ -40,8 +41,8 @@ std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::strin
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
     if (!success)
     {
-        char infoLog[512];
-        glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
+        char infoLog[kShaderInfoLogSize];
+        glGetShaderInfoLog(fragmentShader, kShaderInfoLogSize, nullptr, infoLog);
         LOG_ERROR("Fragment shader compilation failed: %s", infoLog);
         return nullptr;
     }
@@ -54,8 +55,8 @@ std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::strin
     glGetProgramiv(shaderProgramID, GL_LINK_STATUS, &success);
     if (!success)
     {
-        char infoLog[512];
-        glGetProgramInfoLog(shaderProgramID, 512, nullptr, infoLog);
+        char infoLog[kShaderInfoLogSize];
+        glGetProgramInfoLog(shaderProgramID, kShaderInfoLogSize, nullptr, infoLog);
         LOG_ERROR("Shader program linking failed: %s", infoLog);
         return nullptr;
     }

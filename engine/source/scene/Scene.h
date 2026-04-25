@@ -96,7 +96,7 @@ public:
         obj->m_scene = this;
         if (m_isUpdating)
         {
-            m_objectsToAdd.push_back({obj, parent})
+            m_objectsToAdd.push_back({obj, parent});
         } else
         {
             SetParent(obj, parent);

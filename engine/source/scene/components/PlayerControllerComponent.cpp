@@ -1,5 +1,6 @@
 #include "scene/components/PlayerControllerComponent.h"
 
+#include "Constants.h"
 #include "Engine.h"
 #include "GLFW/glfw3.h"
 #include "Types.h"
@@ -11,7 +12,8 @@ namespace COA
 
 void PlayerControllerComponent::Init()
 {
-    m_kinematicController = std::make_unique<KinematicCharacterController>(0.4F, 1.2F, m_owner->GetWorldPosition());
+    m_kinematicController = std::make_unique<KinematicCharacterController>(
+        kDefaultCapsuleRadius, kDefaultCapsuleHeight, m_owner->GetWorldPosition());
 }
 
 void PlayerControllerComponent::Update(f32 deltaTime)
@@ -37,7 +39,7 @@ void PlayerControllerComponent::Update(f32 deltaTime)
         // Pitch
         float xDeltaAngle = -deltaY * m_sensitivity * deltaTime;
         m_xRot += xDeltaAngle;
-        m_xRot         = std::clamp(m_xRot, -89.0f, 89.0f);
+        m_xRot         = std::clamp(m_xRot, -kPitchLimitDegrees, kPitchLimitDegrees);
         glm::quat xRot = glm::angleAxis(glm::radians(m_xRot), glm::vec3(1, 0, 0));
 
         // Final rotation
@@ -57,17 +59,17 @@ void PlayerControllerComponent::Update(f32 deltaTime)
         m_owner->SetPosition(m_kinematicController->GetPosition());
         return;
     }
-    if (inputManager.IsKeyPressed(GLFW_KEY_A))
+    if (inputManager.IsKeyPressed(Key::A))
     {
         move -= right;
-    } else if (inputManager.IsKeyPressed(GLFW_KEY_D))
+    } else if (inputManager.IsKeyPressed(Key::D))
     {
         move += right;
     }
-    if (inputManager.IsKeyPressed(GLFW_KEY_W))
+    if (inputManager.IsKeyPressed(Key::W))
     {
         move += front;
-    } else if (inputManager.IsKeyPressed(GLFW_KEY_S))
+    } else if (inputManager.IsKeyPressed(Key::S))
     {
         move -= front;
     }
@@ -78,7 +80,7 @@ void PlayerControllerComponent::Update(f32 deltaTime)
     }
     m_kinematicController->Walk(move * m_moveSpeed * deltaTime);
 
-    if (inputManager.IsKeyPressed(GLFW_KEY_SPACE))
+    if (inputManager.IsKeyPressed(Key::Space))
     {
         m_kinematicController->Jump(vec3(0.0f, m_moveSpeed * m_jumpSpeed, 0.0f));
     }
@@ -96,12 +98,12 @@ bool PlayerControllerComponent::OnGround() const
     return false;
 }
 
-void PlayerControllerComponent::SetMS(f32 ms)
+void PlayerControllerComponent::SetMoveSpeed(f32 speed)
 {
-    m_moveSpeed = ms;
+    m_moveSpeed = speed;
 }
 
-f32 PlayerControllerComponent::GetMS()
+f32 PlayerControllerComponent::GetMoveSpeed() const
 {
     return m_moveSpeed;
 }

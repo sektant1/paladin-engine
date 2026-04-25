@@ -4,6 +4,7 @@
 #include <btBulletDynamicsCommon.h>
 
 #include "Engine.h"
+#include "LinearMath/btVector3.h"
 
 namespace COA
 {
@@ -87,6 +88,10 @@ void RigidBody::SetPosition(const glm::vec3 &pos)
 
 glm::vec3 RigidBody::GetPosition() const
 {
+    if (!m_body)
+    {
+        return vec3(0.0f, 0.0f, 0.0f);
+    }
     const auto &pos = m_body->getWorldTransform().getOrigin();
     return glm::vec3(pos.x(), pos.y(), pos.z());
 }
@@ -109,7 +114,21 @@ void RigidBody::SetRotation(const glm::quat &rot)
 
 glm::quat RigidBody::GetRotation() const
 {
+    if (!m_body)
+    {
+        return quat(1.0f, 0.0f, 0.0f, 0.0f);
+    }
     const auto &rot = m_body->getWorldTransform().getRotation();
     return glm::quat(rot.w(), rot.x(), rot.y(), rot.z());
 }
+
+void RigidBody::ApplyImpulse(const vec3 &impulse)
+{
+    if (!m_body)
+    {
+        return;
+    }
+    m_body->applyCentralImpulse(btVector3(btScalar(impulse.x), btScalar(impulse.y), btScalar(impulse.z)));
+}
+
 }  // namespace COA

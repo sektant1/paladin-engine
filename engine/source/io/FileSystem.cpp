@@ -46,7 +46,7 @@ std::filesystem::path FileSystem::GetAssetsFolder() const
         return path;
     }
 #endif
-    return std::filesystem::weakly_canonical(GetExecutableFolder() / "assets");
+    return std::filesystem::weakly_canonical(GetExecutableFolder() / kAssetsDirName);
 }
 
 std::vector<char> FileSystem::LoadFile(const std::filesystem::path &path)

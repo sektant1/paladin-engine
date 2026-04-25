@@ -1,0 +1,314 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - table [ref=e4]:
+      - rowgroup [ref=e5]:
+        - row "Coagula Engine 0.0.1 Retro FPS Game engine | C++17 · GLFW · component-based scene graph" [ref=e6]:
+          - cell "Coagula Engine 0.0.1 Retro FPS Game engine | C++17 · GLFW · component-based scene graph" [ref=e7]:
+            - generic [ref=e8]: Coagula Engine 0.0.1
+            - generic [ref=e9]: Retro FPS Game engine | C++17 · GLFW · component-based scene graph
+    - generic:
+      - checkbox "Toggle main menu visibility" [ref=e10]
+      - generic [ref=e11] [cursor=pointer]: Toggle main menu visibility
+    - list [ref=e14]:
+      - listitem [ref=e15]:
+        - link "Main Page" [ref=e16] [cursor=pointer]:
+          - /url: index.html
+      - listitem [ref=e17]:
+        - link "Related Pages" [ref=e18] [cursor=pointer]:
+          - /url: pages.html
+      - listitem [ref=e19]:
+        - link "Topics" [ref=e20] [cursor=pointer]:
+          - /url: topics.html
+      - listitem [ref=e21]:
+        - link "Namespaces +" [ref=e22] [cursor=pointer]:
+          - /url: namespaces.html
+          - text: Namespaces
+          - generic [ref=e23]: +
+        - text: + +
+      - listitem [ref=e24]:
+        - link "Classes +" [ref=e25] [cursor=pointer]:
+          - /url: annotated.html
+          - text: Classes
+          - generic [ref=e26]: +
+        - text: + + + +
+      - listitem [ref=e27]:
+        - link "Files +" [ref=e28] [cursor=pointer]:
+          - /url: files.html
+          - text: Files
+          - generic [ref=e29]: +
+        - text: +
+      - listitem [ref=e30]:
+        - textbox "Search" [ref=e35]
+  - generic [ref=e39]:
+    - generic "click to disable panel synchronization" [ref=e41]
+    - list [ref=e44]:
+      - listitem [ref=e45]:
+        - generic [ref=e46]:
+          - link [ref=e47] [cursor=pointer]:
+            - /url: javascript:void(0)
+          - link "Coagula Engine" [ref=e51] [cursor=pointer]:
+            - /url: index.html
+        - list [ref=e52]:
+          - listitem [ref=e53]:
+            - generic [ref=e54]:
+              - link [ref=e55] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Engine Overview" [ref=e59] [cursor=pointer]:
+                - /url: overview.html
+          - listitem [ref=e60]:
+            - generic [ref=e61]:
+              - link [ref=e62] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Build" [ref=e66] [cursor=pointer]:
+                - /url: build.html
+          - listitem [ref=e67]:
+            - generic [ref=e68]:
+              - link [ref=e69] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Repository Layout" [ref=e73] [cursor=pointer]:
+                - /url: layout.html
+          - listitem [ref=e74]:
+            - generic [ref=e75]:
+              - link [ref=e76] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Starting Point" [ref=e80] [cursor=pointer]:
+                - /url: starting_point.html
+          - listitem [ref=e81]:
+            - generic [ref=e82]:
+              - link [ref=e83] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Tutorials" [ref=e87] [cursor=pointer]:
+                - /url: tutorials.html
+          - listitem [ref=e88]:
+            - generic [ref=e89]:
+              - link [ref=e90] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Recipes" [ref=e94] [cursor=pointer]:
+                - /url: recipes.html
+          - listitem [ref=e95]:
+            - generic [ref=e96]:
+              - link [ref=e97] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Guides" [ref=e101] [cursor=pointer]:
+                - /url: guides.html
+          - listitem [ref=e102]:
+            - generic [ref=e103]:
+              - link [ref=e104] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Building the Docs" [ref=e108] [cursor=pointer]:
+                - /url: build_docs.html
+          - listitem [ref=e109]:
+            - generic [ref=e110]:
+              - link [ref=e111] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "License" [ref=e115] [cursor=pointer]:
+                - /url: license.html
+          - listitem [ref=e116]:
+            - generic [ref=e117]:
+              - link [ref=e118] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Topics" [ref=e122] [cursor=pointer]:
+                - /url: topics.html
+          - listitem [ref=e123]:
+            - generic [ref=e124]:
+              - link [ref=e125] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Namespaces" [ref=e129] [cursor=pointer]:
+                - /url: namespaces.html
+          - listitem [ref=e130]:
+            - generic [ref=e131]:
+              - link [ref=e132] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Classes" [ref=e136] [cursor=pointer]:
+                - /url: annotated.html
+          - listitem [ref=e137]:
+            - generic [ref=e138]:
+              - link [ref=e139] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Files" [ref=e143] [cursor=pointer]:
+                - /url: files.html
+  - generic [ref=e147]:
+    - generic [ref=e150]: Coagula Engine
+    - generic [ref=e152]:
+      - paragraph
+      - generic [ref=e153]: "______ ______ ___ ______ __ __ __ ___ / ____/ / __ / / | / ____/ / / / / / / / | / / / / / / / /| | / / __ / / / / / / / /| | / /___ / /_/ / / ___ | / /_/ / / /_/ / / /___ / ___ | \\____/ \\____/ /_/ |_| \\____/ \\____/ /_____/ /_/ |_| -=[ solvet :: et :: coagula ]=-"
+      - paragraph
+      - blockquote [ref=e154]:
+        - paragraph [ref=e155]:
+          - emphasis [ref=e156]: Visita Interiora Terrae Rectificando Invenies Occultum Lapidem.
+      - paragraph [ref=e157]: Coagula is a teaching/learning codebase. A digital grimoire. It reduces the complexity of 3D engines to their base essence. Small enough to see the whole. Large enough to manifest a world.
+      - paragraph
+      - paragraph
+      - heading "Get going" [level=2] [ref=e158]: Get going
+      - paragraph
+      - generic [ref=e159]: "+--[ Coagula (Coagulate/Bind): ]----------------------+ The act of binding, solidifying, or synthesizing the purified components back together into a new, more perfect, and fixed form. +-----------------------------------------------------+"
+      - paragraph
+      - table [ref=e160]:
+        - rowgroup [ref=e161]:
+          - row "If you want to... Go to" [ref=e162]:
+            - columnheader "If you want to..." [ref=e163]
+            - columnheader "Go to" [ref=e164]
+          - row "Compile and run Build" [ref=e165]:
+            - cell "Compile and run" [ref=e166]
+            - cell "Build" [ref=e167]:
+              - link "Build" [ref=e168] [cursor=pointer]:
+                - /url: build.html
+          - row "Know what lives where Repository Layout" [ref=e169]:
+            - cell "Know what lives where" [ref=e170]
+            - cell "Repository Layout" [ref=e171]:
+              - link "Repository Layout" [ref=e172] [cursor=pointer]:
+                - /url: layout.html
+          - row "Understand the entrypoint Starting Point" [ref=e173]:
+            - cell "Understand the entrypoint" [ref=e174]
+            - cell "Starting Point" [ref=e175]:
+              - link "Starting Point" [ref=e176] [cursor=pointer]:
+                - /url: starting_point.html
+          - row "Follow a step-by-step walk Tutorials" [ref=e177]:
+            - cell "Follow a step-by-step walk" [ref=e178]
+            - cell "Tutorials" [ref=e179]:
+              - link "Tutorials" [ref=e180] [cursor=pointer]:
+                - /url: tutorials.html
+          - row "Copy-paste a quick snippet Recipes" [ref=e181]:
+            - cell "Copy-paste a quick snippet" [ref=e182]
+            - cell "Recipes" [ref=e183]:
+              - link "Recipes" [ref=e184] [cursor=pointer]:
+                - /url: recipes.html
+          - row "Read a longer explanation Guides" [ref=e185]:
+            - cell "Read a longer explanation" [ref=e186]
+            - cell "Guides" [ref=e187]:
+              - link "Guides" [ref=e188] [cursor=pointer]:
+                - /url: guides.html
+          - row "Regenerate this site Building the Docs" [ref=e189]:
+            - cell "Regenerate this site" [ref=e190]
+            - cell "Building the Docs" [ref=e191]:
+              - link "Building the Docs" [ref=e192] [cursor=pointer]:
+                - /url: build_docs.html
+          - row "Check the license License" [ref=e193]:
+            - cell "Check the license" [ref=e194]
+            - cell "License" [ref=e195]:
+              - link "License" [ref=e196] [cursor=pointer]:
+                - /url: license.html
+          - row "Browse the API by subsystem Engine Overview" [ref=e197]:
+            - cell "Browse the API by subsystem" [ref=e198]
+            - cell "Engine Overview" [ref=e199]:
+              - link "Engine Overview" [ref=e200] [cursor=pointer]:
+                - /url: overview.html
+      - paragraph
+      - paragraph
+      - heading "One-minute tour" [level=2] [ref=e201]: One-minute tour
+      - paragraph
+      - generic [ref=e202]: +--[ ONE-MINUTE-TOUR ]------------------------------+ | When the student is ready, the code speaks. | +---------------------------------------------------+
+      - paragraph
+      - generic [ref=e203]:
+        - generic [ref=e205]:
+          - text: "#include \""
+          - link "COA.h" [ref=e206] [cursor=pointer]:
+            - /url: COA_8h.html
+          - text: "\""
+        - generic [ref=e208]:
+          - text: class
+          - link "Game" [ref=e209] [cursor=pointer]:
+            - /url: classGame.html
+          - text: ": public"
+          - link "COA::Application" [ref=e210] [cursor=pointer]:
+            - /url: classCOA_1_1Application.html
+          - text: "{"
+        - generic [ref=e211]: "public:"
+        - generic [ref=e212]:
+          - text: bool
+          - link "Init" [ref=e213] [cursor=pointer]:
+            - /url: classGame.html#afd8da196dc85f62b8a7952fe634a1720
+          - text: "() override {"
+        - generic [ref=e214]:
+          - text: m_scene =
+          - link "COA::Scene::Load" [ref=e215] [cursor=pointer]:
+            - /url: classCOA_1_1Scene.html#a0bd22d7216714cbda07b66169d5c1729
+          - text: ("scenes/scene.json");
+        - generic [ref=e216]:
+          - link "COA::Engine::GetInstance" [ref=e217] [cursor=pointer]:
+            - /url: classCOA_1_1Engine.html#a8b2ccc02f416f005aa52619bbe533bbc
+          - text: ().
+          - link "SetScene" [ref=e218] [cursor=pointer]:
+            - /url: classCOA_1_1Engine.html#a8e9bd857392246289820e7e57a00a14e
+          - text: (m_scene.get());
+        - generic [ref=e219]: return true;
+        - generic [ref=e220]: "}"
+        - generic [ref=e221]:
+          - text: void
+          - link "RegisterTypes" [ref=e222] [cursor=pointer]:
+            - /url: classGame.html#a53faddf4786791b3560ccae4fef4f05b
+          - text: "() override {}"
+        - generic [ref=e223]:
+          - text: void
+          - link "Update" [ref=e224] [cursor=pointer]:
+            - /url: classGame.html#a8bcf6c2af098a041d84581f94f0b9b88
+          - text: "(float dt) override { m_scene->Update(dt); }"
+        - generic [ref=e225]:
+          - text: void
+          - link "Destroy" [ref=e226] [cursor=pointer]:
+            - /url: classGame.html#a3412fd18c84dec3f0b7d29d1b9f86632
+          - text: "() override {}"
+        - generic [ref=e227]: "private:"
+        - generic [ref=e228]: std::shared_ptr<COA::Scene> m_scene;
+        - generic [ref=e229]: "};"
+        - generic [ref=e231]:
+          - text: int
+          - link "main" [ref=e232] [cursor=pointer]:
+            - /url: main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4
+          - text: "() {"
+        - generic [ref=e233]:
+          - text: auto &e =
+          - link "COA::Engine::GetInstance" [ref=e234] [cursor=pointer]:
+            - /url: classCOA_1_1Engine.html#a8b2ccc02f416f005aa52619bbe533bbc
+          - text: ();
+        - generic [ref=e235]:
+          - text: e.SetApplication(new
+          - link "Game" [ref=e236] [cursor=pointer]:
+            - /url: classGame.html
+          - text: ());
+        - generic [ref=e237]: e.Init(1280, 720);
+        - generic [ref=e238]: e.Run();
+        - generic [ref=e239]: e.Destroy();
+        - generic [ref=e240]: "}"
+        - button "Copy code to clipboard" [ref=e241]: ⚒ copy
+      - paragraph [ref=e242]: "Then:"
+      - generic [ref=e243]:
+        - generic [ref=e244]: ./compile.sh
+        - button "Copy code to clipboard" [ref=e245]: ⚒ copy
+      - paragraph [ref=e246]: That is the whole boot sequence. Everything else — rendering, physics, input, scene graph — is driven by the Scene and its Components.
+      - paragraph
+      - paragraph
+      - heading "Features at a glance" [level=2] [ref=e247]: Features at a glance
+      - paragraph
+      - list [ref=e248]:
+        - listitem [ref=e249]: Singleton engine with window, GL context, input, render queue, physics.
+        - listitem [ref=e250]: Command-queue renderer — Mesh + Material paired at submit time.
+        - listitem [ref=e251]: Component scene graph — GameObject tree, JSON-loadable.
+        - listitem [ref=e252]: Bullet physics — static / dynamic / kinematic rigid bodies, capsule character controller.
+        - listitem [ref=e253]: glTF import — mesh + skeletal animation, one call.
+        - listitem [ref=e254]: Shadertoy-style shader sandbox — iTime, iResolution, iMouse uniforms wired for quick experiments.
+      - paragraph
+      - paragraph
+      - heading "Status of the Work" [level=2] [ref=e255]: Status of the Work
+      - paragraph [ref=e256]:
+        - text: Educational by design. No warranty, no bloat, no black boxes.
+        - text: The code is the teacher. The student is the stone. The engine is the fire.
+      - paragraph [ref=e257]: Read it. Rectify it. Coagulate something greater.
+      - paragraph [ref=e258]: To the pure all things are pure.
+      - paragraph [ref=e259]:
+        - text: —
+        - emphasis [ref=e260]: Coagula Engine
+        - emphasis [ref=e261]: Solve et Coagula
+        - text: Educational. No warranty. See
+        - link "License" [ref=e262] [cursor=pointer]:
+          - /url: license.html
+        - text: .
+    - link:
+      - /url: doxygen_crawl.html
+  - list [ref=e264]:
+    - listitem [ref=e265]:
+      - text: Generated by
+      - link "doxygen" [ref=e266] [cursor=pointer]:
+        - /url: https://www.doxygen.org/index.html
+        - img "doxygen" [ref=e267]
+      - text: 1.16.1

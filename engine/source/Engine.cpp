@@ -20,10 +20,10 @@ void KeyCallback(GLFWwindow *window, int key, int, int action, int)
     auto &inputManager = Engine::GetInstance().GetInputManager();
     if (action == GLFW_PRESS)
     {
-        inputManager.SetKeyPressed(key, true);
+        inputManager.SetKeyPressed(static_cast<Key>(key), true);
     } else if (action == GLFW_RELEASE)
     {
-        inputManager.SetKeyPressed(key, false);
+        inputManager.SetKeyPressed(static_cast<Key>(key), false);
     }
 }
 
@@ -32,10 +32,10 @@ void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
     auto &inputManager = Engine::GetInstance().GetInputManager();
     if (action == GLFW_PRESS)
     {
-        inputManager.SetMouseButtonPressed(button, true);
+        inputManager.SetMouseButtonPressed(static_cast<MouseButton>(button), true);
     } else if (action == GLFW_RELEASE)
     {
-        inputManager.SetMouseButtonPressed(button, false);
+        inputManager.SetMouseButtonPressed(static_cast<MouseButton>(button), false);
     }
 }
 
@@ -84,7 +84,7 @@ bool Engine::Init(int width, int height)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    m_window = glfwCreateWindow(width, height, "GL Game Engine", nullptr, nullptr);
+    m_window = glfwCreateWindow(width, height, kDefaultWindowTitle, nullptr, nullptr);
 
     if (m_window == nullptr)
     {

@@ -1,0 +1,1826 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - table [ref=e4]:
+      - rowgroup [ref=e5]:
+        - row "Coagula Engine 0.0.1 Retro FPS Game engine | C++17 · GLFW · component-based scene graph" [ref=e6]:
+          - cell "Coagula Engine 0.0.1 Retro FPS Game engine | C++17 · GLFW · component-based scene graph" [ref=e7]:
+            - generic [ref=e8]: Coagula Engine 0.0.1
+            - generic [ref=e9]: Retro FPS Game engine | C++17 · GLFW · component-based scene graph
+    - generic:
+      - checkbox "Toggle main menu visibility" [ref=e10]
+      - generic [ref=e11] [cursor=pointer]: Toggle main menu visibility
+    - list [ref=e14]:
+      - listitem [ref=e15]:
+        - link "Main Page" [ref=e16] [cursor=pointer]:
+          - /url: index.html
+      - listitem [ref=e17]:
+        - link "Related Pages" [ref=e18] [cursor=pointer]:
+          - /url: pages.html
+      - listitem [ref=e19]:
+        - link "Topics" [ref=e20] [cursor=pointer]:
+          - /url: topics.html
+      - listitem [ref=e21]:
+        - link "Namespaces +" [ref=e22] [cursor=pointer]:
+          - /url: namespaces.html
+          - text: Namespaces
+          - generic [ref=e23]: +
+        - text: + +
+      - listitem [ref=e24]:
+        - link "Classes +" [ref=e25] [cursor=pointer]:
+          - /url: annotated.html
+          - text: Classes
+          - generic [ref=e26]: +
+        - text: + + + +
+      - listitem [ref=e27]:
+        - link "Files +" [ref=e28] [cursor=pointer]:
+          - /url: files.html
+          - text: Files
+          - generic [ref=e29]: +
+        - text: +
+      - listitem [ref=e30]:
+        - textbox "Search" [ref=e35]
+  - generic [ref=e39]:
+    - generic "click to disable panel synchronization" [ref=e41]
+    - list [ref=e44]:
+      - listitem [ref=e45]:
+        - generic [ref=e46]:
+          - link [ref=e47] [cursor=pointer]:
+            - /url: javascript:void(0)
+          - link "Coagula Engine" [ref=e51] [cursor=pointer]:
+            - /url: index.html
+        - list [ref=e52]:
+          - listitem [ref=e53]:
+            - generic [ref=e54]:
+              - link [ref=e55] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Engine Overview" [ref=e59] [cursor=pointer]:
+                - /url: overview.html
+          - listitem [ref=e60]:
+            - generic [ref=e61]:
+              - link [ref=e62] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Build" [ref=e66] [cursor=pointer]:
+                - /url: build.html
+          - listitem [ref=e67]:
+            - generic [ref=e68]:
+              - link [ref=e69] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Repository Layout" [ref=e73] [cursor=pointer]:
+                - /url: layout.html
+          - listitem [ref=e74]:
+            - generic [ref=e75]:
+              - link [ref=e76] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Starting Point" [ref=e80] [cursor=pointer]:
+                - /url: starting_point.html
+          - listitem [ref=e81]:
+            - generic [ref=e82]:
+              - link [ref=e83] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Tutorials" [ref=e87] [cursor=pointer]:
+                - /url: tutorials.html
+          - listitem [ref=e88]:
+            - generic [ref=e89]:
+              - link [ref=e90] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Recipes" [ref=e94] [cursor=pointer]:
+                - /url: recipes.html
+          - listitem [ref=e95]:
+            - generic [ref=e96]:
+              - link [ref=e97] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Guides" [ref=e101] [cursor=pointer]:
+                - /url: guides.html
+          - listitem [ref=e102]:
+            - generic [ref=e103]:
+              - link [ref=e104] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Building the Docs" [ref=e108] [cursor=pointer]:
+                - /url: build_docs.html
+          - listitem [ref=e109]:
+            - generic [ref=e110]:
+              - link [ref=e111] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "License" [ref=e115] [cursor=pointer]:
+                - /url: license.html
+          - listitem [ref=e116]:
+            - generic [ref=e117]:
+              - link [ref=e118] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Topics" [ref=e122] [cursor=pointer]:
+                - /url: topics.html
+          - listitem [ref=e123]:
+            - generic [ref=e124]:
+              - link [ref=e125] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Namespaces" [ref=e129] [cursor=pointer]:
+                - /url: namespaces.html
+          - listitem [ref=e130]:
+            - generic [ref=e131]:
+              - link [ref=e132] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Classes" [ref=e136] [cursor=pointer]:
+                - /url: annotated.html
+            - list [ref=e137]:
+              - listitem [ref=e138]:
+                - generic [ref=e139]:
+                  - link [ref=e140] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - link "Class List" [ref=e144] [cursor=pointer]:
+                    - /url: annotated.html
+                - list [ref=e145]:
+                  - listitem [ref=e146]:
+                    - generic [ref=e147]:
+                      - link [ref=e148] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                      - link "COA" [ref=e152] [cursor=pointer]:
+                        - /url: namespaceCOA.html
+                    - list [ref=e153]:
+                      - listitem [ref=e154]:
+                        - generic [ref=e155]:
+                          - link [ref=e156] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "AnimationClip" [ref=e160] [cursor=pointer]:
+                            - /url: structCOA_1_1AnimationClip.html
+                      - listitem [ref=e161]:
+                        - generic [ref=e162]:
+                          - link [ref=e163] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "AnimationComponent" [ref=e167] [cursor=pointer]:
+                            - /url: classCOA_1_1AnimationComponent.html
+                      - listitem [ref=e168]:
+                        - generic [ref=e169]:
+                          - link [ref=e170] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Application" [ref=e174] [cursor=pointer]:
+                            - /url: classCOA_1_1Application.html
+                      - listitem [ref=e175]:
+                        - generic [ref=e176]:
+                          - link [ref=e177] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Audio" [ref=e181] [cursor=pointer]:
+                            - /url: classCOA_1_1Audio.html
+                      - listitem [ref=e182]:
+                        - generic [ref=e183]:
+                          - link [ref=e184] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "AudioComponent" [ref=e188] [cursor=pointer]:
+                            - /url: classCOA_1_1AudioComponent.html
+                      - listitem [ref=e189]:
+                        - generic [ref=e190]:
+                          - link [ref=e191] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "AudioListenerComponent" [ref=e195] [cursor=pointer]:
+                            - /url: classCOA_1_1AudioListenerComponent.html
+                      - listitem [ref=e196]:
+                        - generic [ref=e197]:
+                          - link [ref=e198] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "AudioManager" [ref=e202] [cursor=pointer]:
+                            - /url: classCOA_1_1AudioManager.html
+                      - listitem [ref=e203]:
+                        - generic [ref=e204]:
+                          - link [ref=e205] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "BoxCollider" [ref=e209] [cursor=pointer]:
+                            - /url: classCOA_1_1BoxCollider.html
+                      - listitem [ref=e210]:
+                        - generic [ref=e211]:
+                          - link [ref=e212] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Builder" [ref=e216] [cursor=pointer]:
+                            - /url: classCOA_1_1Builder.html
+                      - listitem [ref=e217]:
+                        - generic [ref=e218]:
+                          - link [ref=e219] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "CameraComponent" [ref=e223] [cursor=pointer]:
+                            - /url: classCOA_1_1CameraComponent.html
+                      - listitem [ref=e224]:
+                        - generic [ref=e225]:
+                          - link [ref=e226] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "CameraData" [ref=e230] [cursor=pointer]:
+                            - /url: structCOA_1_1CameraData.html
+                      - listitem [ref=e231]:
+                        - generic [ref=e232]:
+                          - link [ref=e233] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "CapsuleCollider" [ref=e237] [cursor=pointer]:
+                            - /url: classCOA_1_1CapsuleCollider.html
+                      - listitem [ref=e238]:
+                        - generic [ref=e239]:
+                          - link [ref=e240] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Collider" [ref=e244] [cursor=pointer]:
+                            - /url: classCOA_1_1Collider.html
+                      - listitem [ref=e245]:
+                        - generic [ref=e246]:
+                          - link [ref=e247] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Component" [ref=e251] [cursor=pointer]:
+                            - /url: classCOA_1_1Component.html
+                      - listitem [ref=e252]:
+                        - generic [ref=e253]:
+                          - link [ref=e254] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "ComponentCreator" [ref=e258] [cursor=pointer]:
+                            - /url: classCOA_1_1ComponentCreator.html
+                      - listitem [ref=e259]:
+                        - generic [ref=e260]:
+                          - link [ref=e261] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "ComponentCreatorBase" [ref=e265] [cursor=pointer]:
+                            - /url: classCOA_1_1ComponentCreatorBase.html
+                      - listitem [ref=e266]:
+                        - generic [ref=e267]:
+                          - link [ref=e268] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "ComponentFactory" [ref=e272] [cursor=pointer]:
+                            - /url: classCOA_1_1ComponentFactory.html
+                      - listitem [ref=e273]:
+                        - generic [ref=e274]:
+                          - link [ref=e275] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Engine" [ref=e279] [cursor=pointer]:
+                            - /url: classCOA_1_1Engine.html
+                      - listitem [ref=e280]:
+                        - generic [ref=e281]:
+                          - link [ref=e282] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "FileReader" [ref=e286] [cursor=pointer]:
+                            - /url: classCOA_1_1FileReader.html
+                      - listitem [ref=e287]:
+                        - generic [ref=e288]:
+                          - link [ref=e289] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "FileSystem" [ref=e293] [cursor=pointer]:
+                            - /url: classCOA_1_1FileSystem.html
+                      - listitem [ref=e294]:
+                        - generic [ref=e295]:
+                          - link [ref=e296] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "GameObject" [ref=e300] [cursor=pointer]:
+                            - /url: classCOA_1_1GameObject.html
+                      - listitem [ref=e301]:
+                        - generic [ref=e302]:
+                          - link [ref=e303] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "GameObjectFactory" [ref=e307] [cursor=pointer]:
+                            - /url: classCOA_1_1GameObjectFactory.html
+                      - listitem [ref=e308]:
+                        - generic [ref=e309]:
+                          - link [ref=e310] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "GraphicsAPI" [ref=e314] [cursor=pointer]:
+                            - /url: classCOA_1_1GraphicsAPI.html
+                      - listitem [ref=e315]:
+                        - generic [ref=e316]:
+                          - link [ref=e317] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "InputManager" [ref=e321] [cursor=pointer]:
+                            - /url: classCOA_1_1InputManager.html
+                      - listitem [ref=e322]:
+                        - generic [ref=e323]:
+                          - link [ref=e324] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "KeyFrameQuat" [ref=e328] [cursor=pointer]:
+                            - /url: structCOA_1_1KeyFrameQuat.html
+                      - listitem [ref=e329]:
+                        - generic [ref=e330]:
+                          - link [ref=e331] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "KeyFrameVec3" [ref=e335] [cursor=pointer]:
+                            - /url: structCOA_1_1KeyFrameVec3.html
+                      - listitem [ref=e336]:
+                        - generic [ref=e337]:
+                          - link [ref=e338] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "KinematicCharacterController" [ref=e342] [cursor=pointer]:
+                            - /url: classCOA_1_1KinematicCharacterController.html
+                      - listitem [ref=e343]:
+                        - generic [ref=e344]:
+                          - link [ref=e345] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "LightComponent" [ref=e349] [cursor=pointer]:
+                            - /url: classCOA_1_1LightComponent.html
+                      - listitem [ref=e350]:
+                        - generic [ref=e351]:
+                          - link [ref=e352] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "LightData" [ref=e356] [cursor=pointer]:
+                            - /url: structCOA_1_1LightData.html
+                      - listitem [ref=e357]:
+                        - generic [ref=e358]:
+                          - link [ref=e359] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Material" [ref=e363] [cursor=pointer]:
+                            - /url: classCOA_1_1Material.html
+                      - listitem [ref=e364]:
+                        - generic [ref=e365]:
+                          - link [ref=e366] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Mesh" [ref=e370] [cursor=pointer]:
+                            - /url: classCOA_1_1Mesh.html
+                      - listitem [ref=e371]:
+                        - generic [ref=e372]:
+                          - link [ref=e373] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "MeshComponent" [ref=e377] [cursor=pointer]:
+                            - /url: classCOA_1_1MeshComponent.html
+                      - listitem [ref=e378]:
+                        - generic [ref=e379]:
+                          - link [ref=e380] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "MeshData" [ref=e384] [cursor=pointer]:
+                            - /url: structCOA_1_1MeshData.html
+                      - listitem [ref=e385]:
+                        - generic [ref=e386]:
+                          - link [ref=e387] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "ObjectBinding" [ref=e391] [cursor=pointer]:
+                            - /url: structCOA_1_1ObjectBinding.html
+                      - listitem [ref=e392]:
+                        - generic [ref=e393]:
+                          - link [ref=e394] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "ObjectCreator" [ref=e398] [cursor=pointer]:
+                            - /url: structCOA_1_1ObjectCreator.html
+                      - listitem [ref=e399]:
+                        - generic [ref=e400]:
+                          - link [ref=e401] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "ObjectCreatorBase" [ref=e405] [cursor=pointer]:
+                            - /url: structCOA_1_1ObjectCreatorBase.html
+                      - listitem [ref=e406]:
+                        - generic [ref=e407]:
+                          - link [ref=e408] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "PhysicsComponent" [ref=e412] [cursor=pointer]:
+                            - /url: classCOA_1_1PhysicsComponent.html
+                      - listitem [ref=e413]:
+                        - generic [ref=e414]:
+                          - link [ref=e415] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "PhysicsManager" [ref=e419] [cursor=pointer]:
+                            - /url: classCOA_1_1PhysicsManager.html
+                      - listitem [ref=e420]:
+                        - generic [ref=e421]:
+                          - link [ref=e422] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Player" [ref=e426] [cursor=pointer]:
+                            - /url: classCOA_1_1Player.html
+                      - listitem [ref=e427]:
+                        - generic [ref=e428]:
+                          - link [ref=e429] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "PlayerControllerComponent" [ref=e433] [cursor=pointer]:
+                            - /url: classCOA_1_1PlayerControllerComponent.html
+                      - listitem [ref=e434]:
+                        - generic [ref=e435]:
+                          - link [ref=e436] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "RenderCommand" [ref=e440] [cursor=pointer]:
+                            - /url: structCOA_1_1RenderCommand.html
+                      - listitem [ref=e441]:
+                        - generic [ref=e442]:
+                          - link [ref=e443] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "RenderQueue" [ref=e447] [cursor=pointer]:
+                            - /url: classCOA_1_1RenderQueue.html
+                      - listitem [ref=e448]:
+                        - generic [ref=e449]:
+                          - link [ref=e450] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "RigidBody" [ref=e454] [cursor=pointer]:
+                            - /url: classCOA_1_1RigidBody.html
+                      - listitem [ref=e455]:
+                        - generic [ref=e456]:
+                          - link [ref=e457] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Scene" [ref=e461] [cursor=pointer]:
+                            - /url: classCOA_1_1Scene.html
+                      - listitem [ref=e462]:
+                        - generic [ref=e463]:
+                          - link [ref=e464] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "ShaderProgram" [ref=e468] [cursor=pointer]:
+                            - /url: classCOA_1_1ShaderProgram.html
+                      - listitem [ref=e469]:
+                        - generic [ref=e470]:
+                          - link [ref=e471] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "SphereCollider" [ref=e475] [cursor=pointer]:
+                            - /url: classCOA_1_1SphereCollider.html
+                      - listitem [ref=e476]:
+                        - generic [ref=e477]:
+                          - link [ref=e478] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "Texture" [ref=e482] [cursor=pointer]:
+                            - /url: classCOA_1_1Texture.html
+                      - listitem [ref=e483]:
+                        - generic [ref=e484]:
+                          - link [ref=e485] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "TextureManager" [ref=e489] [cursor=pointer]:
+                            - /url: classCOA_1_1TextureManager.html
+                      - listitem [ref=e490]:
+                        - generic [ref=e491]:
+                          - link [ref=e492] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "TransformTrack" [ref=e496] [cursor=pointer]:
+                            - /url: structCOA_1_1TransformTrack.html
+                      - listitem [ref=e497]:
+                        - generic [ref=e498]:
+                          - link [ref=e499] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "VertexElement" [ref=e503] [cursor=pointer]:
+                            - /url: structCOA_1_1VertexElement.html
+                      - listitem [ref=e504]:
+                        - generic [ref=e505]:
+                          - link [ref=e506] [cursor=pointer]:
+                            - /url: javascript:void(0)
+                          - link "VertexLayout" [ref=e510] [cursor=pointer]:
+                            - /url: structCOA_1_1VertexLayout.html
+                  - listitem [ref=e511]:
+                    - generic [ref=e512]:
+                      - link [ref=e513] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                      - link "Game" [ref=e517] [cursor=pointer]:
+                        - /url: classGame.html
+                  - listitem [ref=e518]:
+                    - generic [ref=e519]:
+                      - link [ref=e520] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                      - link "LabObject" [ref=e524] [cursor=pointer]:
+                        - /url: classLabObject.html
+                  - listitem [ref=e525]:
+                    - generic [ref=e526]:
+                      - link [ref=e527] [cursor=pointer]:
+                        - /url: javascript:void(0)
+                      - link "TestObject" [ref=e531] [cursor=pointer]:
+                        - /url: classTestObject.html
+              - listitem [ref=e532]:
+                - link "Class Index" [ref=e536] [cursor=pointer]:
+                  - /url: classes.html
+              - listitem [ref=e537]:
+                - generic [ref=e538]:
+                  - link [ref=e539] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - link "Class Hierarchy" [ref=e543] [cursor=pointer]:
+                    - /url: hierarchy.html
+              - listitem [ref=e544]:
+                - generic [ref=e545]:
+                  - link [ref=e546] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - link "Class Members" [ref=e550] [cursor=pointer]:
+                    - /url: functions.html
+          - listitem [ref=e551]:
+            - generic [ref=e552]:
+              - link [ref=e553] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "Files" [ref=e557] [cursor=pointer]:
+                - /url: files.html
+  - generic [ref=e559]:
+    - generic [ref=e560]:
+      - generic [ref=e563]: COA::Engine Class Reference
+      - generic [ref=e564]:
+        - paragraph [ref=e565]:
+          - text: Singleton façade that drives the full engine lifecycle.
+          - link "More..." [ref=e566] [cursor=pointer]:
+            - /url: "#details"
+        - paragraph [ref=e567]:
+          - code [ref=e568]:
+            - text: "#include <"
+            - link "Engine.h" [ref=e569] [cursor=pointer]:
+              - /url: Engine_8h_source.html
+            - text: ">"
+        - table [ref=e570]:
+          - rowgroup [ref=e571]:
+            - row "Public Member Functions" [ref=e572]:
+              - cell "Public Member Functions" [ref=e573]:
+                - heading "Public Member Functions" [level=2] [ref=e574]: Public Member Functions
+            - row "void Destroy ()" [ref=e575]:
+              - cell "void" [ref=e576]
+              - cell "Destroy ()" [ref=e577]:
+                - link "Destroy" [ref=e578] [cursor=pointer]:
+                  - /url: "#a6cab56be09551ba30c02e1d0822b8a04"
+                - text: ()
+            - row "Shut down the application and release all GL resources." [ref=e579]:
+              - cell [ref=e580]
+              - cell "Shut down the application and release all GL resources." [ref=e581]: Shut down the application and release all GL resources.
+            - row "Engine ()=default" [ref=e582]:
+              - cell [ref=e583]
+              - cell "Engine ()=default" [ref=e584]:
+                - link "Engine" [ref=e585] [cursor=pointer]:
+                  - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                - text: ()=default
+            - row "Engine (const Engine &)=delete" [ref=e586]:
+              - cell [ref=e587]
+              - cell "Engine (const Engine &)=delete" [ref=e588]:
+                - link "Engine" [ref=e589] [cursor=pointer]:
+                  - /url: "#af7e0bce7aaa0515bd93fcabde8f821b8"
+                - text: (const Engine &)=delete
+            - row "Engine (Engine &&)=delete" [ref=e590]:
+              - cell [ref=e591]
+              - cell "Engine (Engine &&)=delete" [ref=e592]:
+                - link "Engine" [ref=e593] [cursor=pointer]:
+                  - /url: "#a383a4901fb821466f487db36be37d8ce"
+                - text: (Engine &&)=delete
+            - row "Application * GetApplication ()" [ref=e594]:
+              - cell "Application *" [ref=e595]:
+                - link "Application" [ref=e596] [cursor=pointer]:
+                  - /url: classCOA_1_1Application.html
+                - text: "*"
+              - cell "GetApplication ()" [ref=e597]:
+                - link "GetApplication" [ref=e598] [cursor=pointer]:
+                  - /url: "#a2553e066d4fe671b07cdb8fa63876bf6"
+                - text: ()
+            - row "Returns a raw pointer to the active application (owned by the engine)." [ref=e599]:
+              - cell [ref=e600]
+              - cell "Returns a raw pointer to the active application (owned by the engine)." [ref=e601]: Returns a raw pointer to the active application (owned by the engine).
+            - row "AudioManager & GetAudioManager ()" [ref=e602]:
+              - cell "AudioManager &" [ref=e603]:
+                - link "AudioManager" [ref=e604] [cursor=pointer]:
+                  - /url: classCOA_1_1AudioManager.html
+                - text: "&"
+              - cell "GetAudioManager ()" [ref=e605]:
+                - link "GetAudioManager" [ref=e606] [cursor=pointer]:
+                  - /url: "#a8fa976cb580558c3fab31a15509dbaa1"
+                - text: ()
+            - row "FileSystem & GetFileSystem ()" [ref=e607]:
+              - cell "FileSystem &" [ref=e608]:
+                - link "FileSystem" [ref=e609] [cursor=pointer]:
+                  - /url: classCOA_1_1FileSystem.html
+                - text: "&"
+              - cell "GetFileSystem ()" [ref=e610]:
+                - link "GetFileSystem" [ref=e611] [cursor=pointer]:
+                  - /url: "#a1dc233cd8da97ad3ce6d1af17571c1e3"
+                - text: ()
+            - row "Returns the file system helper for asset-relative path resolution." [ref=e612]:
+              - cell [ref=e613]
+              - cell "Returns the file system helper for asset-relative path resolution." [ref=e614]: Returns the file system helper for asset-relative path resolution.
+            - row "GraphicsAPI & GetGraphicsAPI ()" [ref=e615]:
+              - cell "GraphicsAPI &" [ref=e616]:
+                - link "GraphicsAPI" [ref=e617] [cursor=pointer]:
+                  - /url: classCOA_1_1GraphicsAPI.html
+                - text: "&"
+              - cell "GetGraphicsAPI ()" [ref=e618]:
+                - link "GetGraphicsAPI" [ref=e619] [cursor=pointer]:
+                  - /url: "#a56a5b3ebb9aea63ab2fed991ea026ff1"
+                - text: ()
+            - row "Returns the low-level OpenGL wrapper used for all draw calls." [ref=e620]:
+              - cell [ref=e621]
+              - cell "Returns the low-level OpenGL wrapper used for all draw calls." [ref=e622]: Returns the low-level OpenGL wrapper used for all draw calls.
+            - row "InputManager & GetInputManager ()" [ref=e623]:
+              - cell "InputManager &" [ref=e624]:
+                - link "InputManager" [ref=e625] [cursor=pointer]:
+                  - /url: classCOA_1_1InputManager.html
+                - text: "&"
+              - cell "GetInputManager ()" [ref=e626]:
+                - link "GetInputManager" [ref=e627] [cursor=pointer]:
+                  - /url: "#a20d48b6beecea8b4e9f01fbbc146b508"
+                - text: ()
+            - row "Returns the InputManager that tracks keyboard and mouse state." [ref=e628]:
+              - cell [ref=e629]
+              - cell "Returns the InputManager that tracks keyboard and mouse state." [ref=e630]:
+                - text: Returns the
+                - link "InputManager" [ref=e631] [cursor=pointer]:
+                  - /url: classCOA_1_1InputManager.html
+                - text: that tracks keyboard and mouse state.
+            - row "PhysicsManager & GetPhysicsManager ()" [ref=e632]:
+              - cell "PhysicsManager &" [ref=e633]:
+                - link "PhysicsManager" [ref=e634] [cursor=pointer]:
+                  - /url: classCOA_1_1PhysicsManager.html
+                - text: "&"
+              - cell "GetPhysicsManager ()" [ref=e635]:
+                - link "GetPhysicsManager" [ref=e636] [cursor=pointer]:
+                  - /url: "#a18c7a6b3aad2cb5b5a85f1e4bbe440ef"
+                - text: ()
+            - row "RenderQueue & GetRenderQueue ()" [ref=e637]:
+              - cell "RenderQueue &" [ref=e638]:
+                - link "RenderQueue" [ref=e639] [cursor=pointer]:
+                  - /url: classCOA_1_1RenderQueue.html
+                - text: "&"
+              - cell "GetRenderQueue ()" [ref=e640]:
+                - link "GetRenderQueue" [ref=e641] [cursor=pointer]:
+                  - /url: "#af5eebde416ec2b153637d9f41e1ce917"
+                - text: ()
+            - row "Returns the per-frame command queue that batches and issues draw calls." [ref=e642]:
+              - cell [ref=e643]
+              - cell "Returns the per-frame command queue that batches and issues draw calls." [ref=e644]: Returns the per-frame command queue that batches and issues draw calls.
+            - row "Scene * GetScene ()" [ref=e645]:
+              - cell "Scene *" [ref=e646]:
+                - link "Scene" [ref=e647] [cursor=pointer]:
+                  - /url: classCOA_1_1Scene.html
+                - text: "*"
+              - cell "GetScene ()" [ref=e648]:
+                - link "GetScene" [ref=e649] [cursor=pointer]:
+                  - /url: "#a454aa2faa2f0aee6d392c7a192da8e24"
+                - text: ()
+            - row "Returns the currently active scene, or nullptr if none is set." [ref=e650]:
+              - cell [ref=e651]
+              - cell "Returns the currently active scene, or nullptr if none is set." [ref=e652]: Returns the currently active scene, or nullptr if none is set.
+            - row "TextureManager & GetTextureManager ()" [ref=e653]:
+              - cell "TextureManager &" [ref=e654]:
+                - link "TextureManager" [ref=e655] [cursor=pointer]:
+                  - /url: classCOA_1_1TextureManager.html
+                - text: "&"
+              - cell "GetTextureManager ()" [ref=e656]:
+                - link "GetTextureManager" [ref=e657] [cursor=pointer]:
+                  - /url: "#ad0ffbd44f7195950d50d701afb0aff61"
+                - text: ()
+            - row "Returns the TextureManager that caches loaded textures by path." [ref=e658]:
+              - cell [ref=e659]
+              - cell "Returns the TextureManager that caches loaded textures by path." [ref=e660]:
+                - text: Returns the
+                - link "TextureManager" [ref=e661] [cursor=pointer]:
+                  - /url: classCOA_1_1TextureManager.html
+                - text: that caches loaded textures by path.
+            - row "bool Init (int width, int height)" [ref=e662]:
+              - cell "bool" [ref=e663]
+              - cell "Init (int width, int height)" [ref=e664]:
+                - link "Init" [ref=e665] [cursor=pointer]:
+                  - /url: "#a72995c040a48d299eb46f975a3b5f90a"
+                - text: (int width, int height)
+            - row "Initialise the window, OpenGL context, and subsystems." [ref=e666]:
+              - cell [ref=e667]
+              - cell "Initialise the window, OpenGL context, and subsystems." [ref=e668]: Initialise the window, OpenGL context, and subsystems.
+            - row "Engine & operator= (const Engine &)=delete" [ref=e669]:
+              - cell "Engine &" [ref=e670]:
+                - link "Engine" [ref=e671] [cursor=pointer]:
+                  - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                - text: "&"
+              - cell "operator= (const Engine &)=delete" [ref=e672]:
+                - link "operator=" [ref=e673] [cursor=pointer]:
+                  - /url: "#a284b8639b03bc4e6c0c92fc3dd600d2d"
+                - text: (const
+                - link "Engine" [ref=e674] [cursor=pointer]:
+                  - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                - text: "&)=delete"
+            - row "Engine & operator= (Engine &&)=delete" [ref=e675]:
+              - cell "Engine &" [ref=e676]:
+                - link "Engine" [ref=e677] [cursor=pointer]:
+                  - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                - text: "&"
+              - cell "operator= (Engine &&)=delete" [ref=e678]:
+                - link "operator=" [ref=e679] [cursor=pointer]:
+                  - /url: "#aafba49a28da1e5fcef9cae984b79e43d"
+                - text: (
+                - link "Engine" [ref=e680] [cursor=pointer]:
+                  - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                - text: "&&)=delete"
+            - row "void Run ()" [ref=e681]:
+              - cell "void" [ref=e682]
+              - cell "Run ()" [ref=e683]:
+                - link "Run" [ref=e684] [cursor=pointer]:
+                  - /url: "#a666d1b35481020d60297eb68caca1d15"
+                - text: ()
+            - row "Enter the blocking main loop." [ref=e685]:
+              - cell [ref=e686]
+              - cell "Enter the blocking main loop." [ref=e687]: Enter the blocking main loop.
+            - row "void SetApplication (Application *app)" [ref=e688]:
+              - cell "void" [ref=e689]
+              - cell "SetApplication (Application *app)" [ref=e690]:
+                - link "SetApplication" [ref=e691] [cursor=pointer]:
+                  - /url: "#aef9afaa3b40f686deb61c8258c4adf1f"
+                - text: (
+                - link "Application" [ref=e692] [cursor=pointer]:
+                  - /url: classCOA_1_1Application.html
+                - text: "*app)"
+            - row "Transfer ownership of the application to the engine." [ref=e693]:
+              - cell [ref=e694]
+              - cell "Transfer ownership of the application to the engine." [ref=e695]: Transfer ownership of the application to the engine.
+            - row "void SetScene (Scene *scene)" [ref=e696]:
+              - cell "void" [ref=e697]
+              - cell "SetScene (Scene *scene)" [ref=e698]:
+                - link "SetScene" [ref=e699] [cursor=pointer]:
+                  - /url: "#a8e9bd857392246289820e7e57a00a14e"
+                - text: (
+                - link "Scene" [ref=e700] [cursor=pointer]:
+                  - /url: classCOA_1_1Scene.html
+                - text: "*scene)"
+            - row "Replace the active scene (takes ownership)." [ref=e701]:
+              - cell [ref=e702]
+              - cell "Replace the active scene (takes ownership)." [ref=e703]: Replace the active scene (takes ownership).
+        - table [ref=e704]:
+          - rowgroup [ref=e705]:
+            - row "Static Public Member Functions" [ref=e706]:
+              - cell "Static Public Member Functions" [ref=e707]:
+                - heading "Static Public Member Functions" [level=2] [ref=e708]: Static Public Member Functions
+            - row "static Engine & GetInstance ()" [ref=e709]:
+              - cell "static Engine &" [ref=e710]:
+                - text: static
+                - link "Engine" [ref=e711] [cursor=pointer]:
+                  - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                - text: "&"
+              - cell "GetInstance ()" [ref=e712]:
+                - link "GetInstance" [ref=e713] [cursor=pointer]:
+                  - /url: "#a8b2ccc02f416f005aa52619bbe533bbc"
+                - text: ()
+            - row "Returns the single Engine instance (created on first call)." [ref=e714]:
+              - cell [ref=e715]
+              - cell "Returns the single Engine instance (created on first call)." [ref=e716]:
+                - text: Returns the single
+                - link "Engine" [ref=e717] [cursor=pointer]:
+                  - /url: classCOA_1_1Engine.html
+                - text: instance (created on first call).
+        - heading "Detailed Description" [level=2] [ref=e718]
+        - generic [ref=e719]:
+          - paragraph [ref=e720]: Singleton façade that drives the full engine lifecycle.
+          - paragraph [ref=e721]:
+            - text: Owns one instance of every major subsystem (
+            - link "InputManager" [ref=e722] [cursor=pointer]:
+              - /url: classCOA_1_1InputManager.html
+            - text: ","
+            - link "GraphicsAPI" [ref=e723] [cursor=pointer]:
+              - /url: classCOA_1_1GraphicsAPI.html
+            - text: ","
+            - link "RenderQueue" [ref=e724] [cursor=pointer]:
+              - /url: classCOA_1_1RenderQueue.html
+            - text: ","
+            - link "FileSystem" [ref=e725] [cursor=pointer]:
+              - /url: classCOA_1_1FileSystem.html
+            - text: ","
+            - link "TextureManager" [ref=e726] [cursor=pointer]:
+              - /url: classCOA_1_1TextureManager.html
+            - text: ","
+            - link "Scene" [ref=e727] [cursor=pointer]:
+              - /url: classCOA_1_1Scene.html
+            - text: ) and the user
+            - link "Application" [ref=e728] [cursor=pointer]:
+              - /url: classCOA_1_1Application.html
+            - text: . All subsystems are reachable via the Get*() accessors from anywhere in the codebase without passing references through layers.
+          - paragraph [ref=e729]:
+            - text: Definition at line
+            - link "57" [ref=e730] [cursor=pointer]:
+              - /url: Engine_8h_source.html#l00057
+            - text: of file
+            - link "Engine.h" [ref=e731] [cursor=pointer]:
+              - /url: Engine_8h_source.html
+            - text: .
+        - heading "Constructor & Destructor Documentation" [level=2] [ref=e732]
+        - heading "◆ Engine() [1/3]" [level=2] [ref=e733]:
+          - link "◆" [ref=e735] [cursor=pointer]:
+            - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+          - text: Engine() [1/3]
+        - generic [ref=e736]:
+          - table [ref=e738]:
+            - rowgroup [ref=e739]:
+              - row "COA::Engine::Engine ( ) default" [ref=e740]:
+                - cell "COA::Engine::Engine ( )" [ref=e741]:
+                  - table [ref=e742]:
+                    - rowgroup [ref=e743]:
+                      - row "COA::Engine::Engine ( )" [ref=e744]:
+                        - cell "COA::Engine::Engine" [ref=e745]
+                        - cell "(" [ref=e746]
+                        - cell [ref=e747]:
+                          - generic:
+                            - emphasis
+                        - cell ")" [ref=e748]
+                        - cell [ref=e749]
+                - cell "default" [ref=e750]:
+                  - generic [ref=e751]: default
+          - paragraph [ref=e753]:
+            - text: Referenced by
+            - link "Engine()" [ref=e754] [cursor=pointer]:
+              - /url: "#af7e0bce7aaa0515bd93fcabde8f821b8"
+            - text: ","
+            - link "Engine()" [ref=e755] [cursor=pointer]:
+              - /url: "#a383a4901fb821466f487db36be37d8ce"
+            - text: ","
+            - link "GetInstance()" [ref=e756] [cursor=pointer]:
+              - /url: Engine_8cpp_source.html#l00053
+            - text: ","
+            - link "operator=()" [ref=e757] [cursor=pointer]:
+              - /url: "#a284b8639b03bc4e6c0c92fc3dd600d2d"
+            - text: ", and"
+            - link "operator=()" [ref=e758] [cursor=pointer]:
+              - /url: "#aafba49a28da1e5fcef9cae984b79e43d"
+            - text: .
+        - heading "◆ Engine() [2/3]" [level=2] [ref=e759]:
+          - link "◆" [ref=e761] [cursor=pointer]:
+            - /url: "#af7e0bce7aaa0515bd93fcabde8f821b8"
+          - text: Engine() [2/3]
+        - generic [ref=e762]:
+          - table [ref=e764]:
+            - rowgroup [ref=e765]:
+              - row "COA::Engine::Engine ( const Engine & ) delete" [ref=e766]:
+                - cell "COA::Engine::Engine ( const Engine & )" [ref=e767]:
+                  - table [ref=e768]:
+                    - rowgroup [ref=e769]:
+                      - row "COA::Engine::Engine ( const Engine & )" [ref=e770]:
+                        - cell "COA::Engine::Engine" [ref=e771]
+                        - cell "(" [ref=e772]
+                        - cell "const Engine &" [ref=e773]
+                        - cell [ref=e774]:
+                          - generic:
+                            - emphasis
+                        - cell ")" [ref=e775]
+                        - cell [ref=e776]
+                - cell "delete" [ref=e777]:
+                  - generic [ref=e778]: delete
+          - paragraph [ref=e780]:
+            - text: References
+            - link "Engine()" [ref=e781] [cursor=pointer]:
+              - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+            - text: .
+        - heading "◆ Engine() [3/3]" [level=2] [ref=e782]:
+          - link "◆" [ref=e784] [cursor=pointer]:
+            - /url: "#a383a4901fb821466f487db36be37d8ce"
+          - text: Engine() [3/3]
+        - generic [ref=e785]:
+          - table [ref=e787]:
+            - rowgroup [ref=e788]:
+              - row "COA::Engine::Engine ( Engine && ) delete" [ref=e789]:
+                - cell "COA::Engine::Engine ( Engine && )" [ref=e790]:
+                  - table [ref=e791]:
+                    - rowgroup [ref=e792]:
+                      - row "COA::Engine::Engine ( Engine && )" [ref=e793]:
+                        - cell "COA::Engine::Engine" [ref=e794]
+                        - cell "(" [ref=e795]
+                        - cell "Engine &&" [ref=e796]
+                        - cell [ref=e797]:
+                          - generic:
+                            - emphasis
+                        - cell ")" [ref=e798]
+                        - cell [ref=e799]
+                - cell "delete" [ref=e800]:
+                  - generic [ref=e801]: delete
+          - paragraph [ref=e803]:
+            - text: References
+            - link "Engine()" [ref=e804] [cursor=pointer]:
+              - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+            - text: .
+        - heading "Member Function Documentation" [level=2] [ref=e805]
+        - heading "◆ Destroy()" [level=2] [ref=e806]:
+          - link "◆" [ref=e808] [cursor=pointer]:
+            - /url: "#a6cab56be09551ba30c02e1d0822b8a04"
+          - text: Destroy()
+        - generic [ref=e809]:
+          - table [ref=e811]:
+            - rowgroup [ref=e812]:
+              - row "void COA::Engine::Destroy ( )" [ref=e813]:
+                - cell "void COA::Engine::Destroy" [ref=e814]
+                - cell "(" [ref=e815]
+                - cell [ref=e816]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e817]
+                - cell [ref=e818]
+          - generic [ref=e819]:
+            - paragraph [ref=e820]: Shut down the application and release all GL resources.
+            - paragraph [ref=e821]:
+              - text: Calls
+              - link "Application::Destroy()" [ref=e822] [cursor=pointer]:
+                - /url: classCOA_1_1Application.html#a14f59ac772139094cfc5ef213500be24
+              - text: ", then terminates GLFW. Must be called after"
+              - link "Run()" [ref=e823] [cursor=pointer]:
+                - /url: "#a666d1b35481020d60297eb68caca1d15"
+              - text: returns to ensure clean resource cleanup.
+            - paragraph [ref=e824]:
+              - text: Definition at line
+              - link "214" [ref=e825] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00214
+              - text: of file
+              - link "Engine.cpp" [ref=e826] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e827]:
+              - text: References
+              - link "LOG_INFO" [ref=e828] [cursor=pointer]:
+                - /url: Log_8h_source.html#l00093
+              - text: ", and"
+              - link "LOG_WARN" [ref=e829] [cursor=pointer]:
+                - /url: Log_8h_source.html#l00107
+              - text: .
+            - paragraph [ref=e830]:
+              - text: Referenced by
+              - link "main()" [ref=e831] [cursor=pointer]:
+                - /url: main_8cpp_source.html#l00004
+              - text: .
+        - heading "◆ GetApplication()" [level=2] [ref=e832]:
+          - link "◆" [ref=e834] [cursor=pointer]:
+            - /url: "#a2553e066d4fe671b07cdb8fa63876bf6"
+          - text: GetApplication()
+        - generic [ref=e835]:
+          - table [ref=e837]:
+            - rowgroup [ref=e838]:
+              - row "Application * COA::Engine::GetApplication ( )" [ref=e839]:
+                - cell "Application * COA::Engine::GetApplication" [ref=e840]:
+                  - link "Application" [ref=e841] [cursor=pointer]:
+                    - /url: classCOA_1_1Application.html
+                  - text: "* COA::Engine::GetApplication"
+                - cell "(" [ref=e842]
+                - cell [ref=e843]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e844]
+                - cell [ref=e845]
+          - generic [ref=e846]:
+            - paragraph [ref=e847]: Returns a raw pointer to the active application (owned by the engine).
+            - paragraph [ref=e848]:
+              - text: Definition at line
+              - link "235" [ref=e849] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00235
+              - text: of file
+              - link "Engine.cpp" [ref=e850] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+        - heading "◆ GetAudioManager()" [level=2] [ref=e851]:
+          - link "◆" [ref=e853] [cursor=pointer]:
+            - /url: "#a8fa976cb580558c3fab31a15509dbaa1"
+          - text: GetAudioManager()
+        - generic [ref=e854]:
+          - table [ref=e856]:
+            - rowgroup [ref=e857]:
+              - row "AudioManager & COA::Engine::GetAudioManager ( )" [ref=e858]:
+                - cell "AudioManager & COA::Engine::GetAudioManager" [ref=e859]:
+                  - link "AudioManager" [ref=e860] [cursor=pointer]:
+                    - /url: classCOA_1_1AudioManager.html
+                  - text: "& COA::Engine::GetAudioManager"
+                - cell "(" [ref=e861]
+                - cell [ref=e862]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e863]
+                - cell [ref=e864]
+          - generic [ref=e865]:
+            - paragraph [ref=e866]:
+              - text: Definition at line
+              - link "265" [ref=e867] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00265
+              - text: of file
+              - link "Engine.cpp" [ref=e868] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e869]:
+              - text: Referenced by
+              - link "COA::Audio::Load()" [ref=e870] [cursor=pointer]:
+                - /url: Audio_8cpp_source.html#l00074
+              - text: ", and"
+              - link "COA::AudioListenerComponent::Update()" [ref=e871] [cursor=pointer]:
+                - /url: AudioListenerComponent_8cpp_source.html#l00008
+              - text: .
+        - heading "◆ GetFileSystem()" [level=2] [ref=e872]:
+          - link "◆" [ref=e874] [cursor=pointer]:
+            - /url: "#a1dc233cd8da97ad3ce6d1af17571c1e3"
+          - text: GetFileSystem()
+        - generic [ref=e875]:
+          - table [ref=e877]:
+            - rowgroup [ref=e878]:
+              - row "FileSystem & COA::Engine::GetFileSystem ( )" [ref=e879]:
+                - cell "FileSystem & COA::Engine::GetFileSystem" [ref=e880]:
+                  - link "FileSystem" [ref=e881] [cursor=pointer]:
+                    - /url: classCOA_1_1FileSystem.html
+                  - text: "& COA::Engine::GetFileSystem"
+                - cell "(" [ref=e882]
+                - cell [ref=e883]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e884]
+                - cell [ref=e885]
+          - generic [ref=e886]:
+            - paragraph [ref=e887]: Returns the file system helper for asset-relative path resolution.
+            - paragraph [ref=e888]:
+              - text: Definition at line
+              - link "280" [ref=e889] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00280
+              - text: of file
+              - link "Engine.cpp" [ref=e890] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e891]:
+              - text: Referenced by
+              - link "COA::Audio::Load()" [ref=e892] [cursor=pointer]:
+                - /url: Audio_8cpp_source.html#l00074
+              - text: ","
+              - link "COA::Material::Load()" [ref=e893] [cursor=pointer]:
+                - /url: Material_8cpp_source.html#l00049
+              - text: ","
+              - link "COA::Scene::Load()" [ref=e894] [cursor=pointer]:
+                - /url: Scene_8cpp_source.html#l00219
+              - text: ","
+              - link "COA::Texture::Load()" [ref=e895] [cursor=pointer]:
+                - /url: Texture_8cpp_source.html#l00076
+              - text: ", and"
+              - link "COA::GameObject::LoadGLTF()" [ref=e896] [cursor=pointer]:
+                - /url: GameObject_8cpp_source.html#l00425
+              - text: .
+        - heading "◆ GetGraphicsAPI()" [level=2] [ref=e897]:
+          - link "◆" [ref=e899] [cursor=pointer]:
+            - /url: "#a56a5b3ebb9aea63ab2fed991ea026ff1"
+          - text: GetGraphicsAPI()
+        - generic [ref=e900]:
+          - table [ref=e902]:
+            - rowgroup [ref=e903]:
+              - row "GraphicsAPI & COA::Engine::GetGraphicsAPI ( )" [ref=e904]:
+                - cell "GraphicsAPI & COA::Engine::GetGraphicsAPI" [ref=e905]:
+                  - link "GraphicsAPI" [ref=e906] [cursor=pointer]:
+                    - /url: classCOA_1_1GraphicsAPI.html
+                  - text: "& COA::Engine::GetGraphicsAPI"
+                - cell "(" [ref=e907]
+                - cell [ref=e908]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e909]
+                - cell [ref=e910]
+          - generic [ref=e911]:
+            - paragraph [ref=e912]: Returns the low-level OpenGL wrapper used for all draw calls.
+            - paragraph [ref=e913]:
+              - text: Definition at line
+              - link "245" [ref=e914] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00245
+              - text: of file
+              - link "Engine.cpp" [ref=e915] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e916]:
+              - text: Referenced by
+              - link "LabObject::LabObject()" [ref=e917] [cursor=pointer]:
+                - /url: LabObject_8cpp_source.html#l00008
+              - text: ","
+              - link "COA::Material::Load()" [ref=e918] [cursor=pointer]:
+                - /url: Material_8cpp_source.html#l00049
+              - text: ","
+              - link "COA::Mesh::Mesh()" [ref=e919] [cursor=pointer]:
+                - /url: Mesh_8cpp_source.html#l00139
+              - text: ","
+              - link "COA::Mesh::Mesh()" [ref=e920] [cursor=pointer]:
+                - /url: Mesh_8cpp_source.html#l00014
+              - text: ", and"
+              - link "TestObject::TestObject()" [ref=e921] [cursor=pointer]:
+                - /url: TestObject_8cpp_source.html#l00009
+              - text: .
+        - heading "◆ GetInputManager()" [level=2] [ref=e922]:
+          - link "◆" [ref=e924] [cursor=pointer]:
+            - /url: "#a20d48b6beecea8b4e9f01fbbc146b508"
+          - text: GetInputManager()
+        - generic [ref=e925]:
+          - table [ref=e927]:
+            - rowgroup [ref=e928]:
+              - row "InputManager & COA::Engine::GetInputManager ( )" [ref=e929]:
+                - cell "InputManager & COA::Engine::GetInputManager" [ref=e930]:
+                  - link "InputManager" [ref=e931] [cursor=pointer]:
+                    - /url: classCOA_1_1InputManager.html
+                  - text: "& COA::Engine::GetInputManager"
+                - cell "(" [ref=e932]
+                - cell [ref=e933]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e934]
+                - cell [ref=e935]
+          - generic [ref=e936]:
+            - paragraph [ref=e937]:
+              - text: Returns the
+              - link "InputManager" [ref=e938] [cursor=pointer]:
+                - /url: classCOA_1_1InputManager.html
+              - text: that tracks keyboard and mouse state.
+            - paragraph [ref=e939]:
+              - text: Definition at line
+              - link "240" [ref=e940] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00240
+              - text: of file
+              - link "Engine.cpp" [ref=e941] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e942]:
+              - text: Referenced by
+              - link "COA::CursorPositionCallback()" [ref=e943] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00042
+              - text: ","
+              - link "COA::KeyCallback()" [ref=e944] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00018
+              - text: ","
+              - link "COA::MouseButtonCallback()" [ref=e945] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00030
+              - text: ","
+              - link "COA::Player::Update()" [ref=e946] [cursor=pointer]:
+                - /url: Player_8cpp_source.html#l00027
+              - text: ","
+              - link "COA::PlayerControllerComponent::Update()" [ref=e947] [cursor=pointer]:
+                - /url: PlayerControllerComponent_8cpp_source.html#l00016
+              - text: ","
+              - link "Game::Update()" [ref=e948] [cursor=pointer]:
+                - /url: Game_8cpp_source.html#l00025
+              - text: ","
+              - link "LabObject::Update()" [ref=e949] [cursor=pointer]:
+                - /url: LabObject_8cpp_source.html#l00036
+              - text: ", and"
+              - link "TestObject::Update()" [ref=e950] [cursor=pointer]:
+                - /url: TestObject_8cpp_source.html#l00040
+              - text: .
+        - heading "◆ GetInstance()" [level=2] [ref=e951]:
+          - link "◆" [ref=e953] [cursor=pointer]:
+            - /url: "#a8b2ccc02f416f005aa52619bbe533bbc"
+          - text: GetInstance()
+        - generic [ref=e954]:
+          - table [ref=e956]:
+            - rowgroup [ref=e957]:
+              - row "Engine & COA::Engine::GetInstance ( ) static" [ref=e958]:
+                - cell "Engine & COA::Engine::GetInstance ( )" [ref=e959]:
+                  - table [ref=e960]:
+                    - rowgroup [ref=e961]:
+                      - row "Engine & COA::Engine::GetInstance ( )" [ref=e962]:
+                        - cell "Engine & COA::Engine::GetInstance" [ref=e963]:
+                          - link "Engine" [ref=e964] [cursor=pointer]:
+                            - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                          - text: "& COA::Engine::GetInstance"
+                        - cell "(" [ref=e965]
+                        - cell [ref=e966]:
+                          - generic:
+                            - emphasis
+                        - cell ")" [ref=e967]
+                        - cell [ref=e968]
+                - cell "static" [ref=e969]:
+                  - generic [ref=e970]: static
+          - generic [ref=e971]:
+            - paragraph [ref=e972]:
+              - text: Returns the single
+              - link "Engine" [ref=e973] [cursor=pointer]:
+                - /url: classCOA_1_1Engine.html
+              - text: instance (created on first call).
+            - paragraph [ref=e974]:
+              - text: Definition at line
+              - link "53" [ref=e975] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00053
+              - text: of file
+              - link "Engine.cpp" [ref=e976] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e977]:
+              - text: References
+              - link "Engine()" [ref=e978] [cursor=pointer]:
+                - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+              - text: .
+            - paragraph [ref=e979]:
+              - text: Referenced by
+              - link "COA::CursorPositionCallback()" [ref=e980] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00042
+              - text: ","
+              - link "COA::PhysicsComponent::Init()" [ref=e981] [cursor=pointer]:
+                - /url: PhysicsComponent_8cpp_source.html#l00072
+              - text: ","
+              - link "Game::Init()" [ref=e982] [cursor=pointer]:
+                - /url: Game_8cpp_source.html#l00009
+              - text: ","
+              - link "COA::KeyCallback()" [ref=e983] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00018
+              - text: ","
+              - link "COA::KinematicCharacterController::KinematicCharacterController()" [ref=e984] [cursor=pointer]:
+                - /url: KinematicCharacterController_8cpp_source.html#l00012
+              - text: ","
+              - link "LabObject::LabObject()" [ref=e985] [cursor=pointer]:
+                - /url: LabObject_8cpp_source.html#l00008
+              - text: ","
+              - link "COA::Audio::Load()" [ref=e986] [cursor=pointer]:
+                - /url: Audio_8cpp_source.html#l00074
+              - text: ","
+              - link "COA::Material::Load()" [ref=e987] [cursor=pointer]:
+                - /url: Material_8cpp_source.html#l00049
+              - text: ","
+              - link "COA::Scene::Load()" [ref=e988] [cursor=pointer]:
+                - /url: Scene_8cpp_source.html#l00219
+              - text: ","
+              - link "COA::Texture::Load()" [ref=e989] [cursor=pointer]:
+                - /url: Texture_8cpp_source.html#l00076
+              - text: ","
+              - link "COA::GameObject::LoadGLTF()" [ref=e990] [cursor=pointer]:
+                - /url: GameObject_8cpp_source.html#l00425
+              - text: ","
+              - link "main()" [ref=e991] [cursor=pointer]:
+                - /url: main_8cpp_source.html#l00004
+              - text: ","
+              - link "COA::Mesh::Mesh()" [ref=e992] [cursor=pointer]:
+                - /url: Mesh_8cpp_source.html#l00139
+              - text: ","
+              - link "COA::Mesh::Mesh()" [ref=e993] [cursor=pointer]:
+                - /url: Mesh_8cpp_source.html#l00014
+              - text: ","
+              - link "COA::MouseButtonCallback()" [ref=e994] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00030
+              - text: ","
+              - link "COA::ParseGLTFNode()" [ref=e995] [cursor=pointer]:
+                - /url: GameObject_8cpp_source.html#l00230
+              - text: ","
+              - link "TestObject::TestObject()" [ref=e996] [cursor=pointer]:
+                - /url: TestObject_8cpp_source.html#l00009
+              - text: ","
+              - link "COA::AudioListenerComponent::Update()" [ref=e997] [cursor=pointer]:
+                - /url: AudioListenerComponent_8cpp_source.html#l00008
+              - text: ","
+              - link "COA::MeshComponent::Update()" [ref=e998] [cursor=pointer]:
+                - /url: MeshComponent_8cpp_source.html#l00019
+              - text: ","
+              - link "COA::Player::Update()" [ref=e999] [cursor=pointer]:
+                - /url: Player_8cpp_source.html#l00027
+              - text: ","
+              - link "COA::PlayerControllerComponent::Update()" [ref=e1000] [cursor=pointer]:
+                - /url: PlayerControllerComponent_8cpp_source.html#l00016
+              - text: ","
+              - link "Game::Update()" [ref=e1001] [cursor=pointer]:
+                - /url: Game_8cpp_source.html#l00025
+              - text: ","
+              - link "LabObject::Update()" [ref=e1002] [cursor=pointer]:
+                - /url: LabObject_8cpp_source.html#l00036
+              - text: ","
+              - link "TestObject::Update()" [ref=e1003] [cursor=pointer]:
+                - /url: TestObject_8cpp_source.html#l00040
+              - text: ","
+              - link "COA::KinematicCharacterController::~KinematicCharacterController()" [ref=e1004] [cursor=pointer]:
+                - /url: KinematicCharacterController_8cpp_source.html#l00043
+              - text: ", and"
+              - link "COA::RigidBody::~RigidBody()" [ref=e1005] [cursor=pointer]:
+                - /url: RigidBody_8cpp_source.html#l00044
+              - text: .
+        - heading "◆ GetPhysicsManager()" [level=2] [ref=e1006]:
+          - link "◆" [ref=e1008] [cursor=pointer]:
+            - /url: "#a18c7a6b3aad2cb5b5a85f1e4bbe440ef"
+          - text: GetPhysicsManager()
+        - generic [ref=e1009]:
+          - table [ref=e1011]:
+            - rowgroup [ref=e1012]:
+              - row "PhysicsManager & COA::Engine::GetPhysicsManager ( )" [ref=e1013]:
+                - cell "PhysicsManager & COA::Engine::GetPhysicsManager" [ref=e1014]:
+                  - link "PhysicsManager" [ref=e1015] [cursor=pointer]:
+                    - /url: classCOA_1_1PhysicsManager.html
+                  - text: "& COA::Engine::GetPhysicsManager"
+                - cell "(" [ref=e1016]
+                - cell [ref=e1017]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e1018]
+                - cell [ref=e1019]
+          - generic [ref=e1020]:
+            - paragraph [ref=e1021]:
+              - text: Definition at line
+              - link "270" [ref=e1022] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00270
+              - text: of file
+              - link "Engine.cpp" [ref=e1023] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e1024]:
+              - text: Referenced by
+              - link "COA::PhysicsComponent::Init()" [ref=e1025] [cursor=pointer]:
+                - /url: PhysicsComponent_8cpp_source.html#l00072
+              - text: ","
+              - link "COA::KinematicCharacterController::KinematicCharacterController()" [ref=e1026] [cursor=pointer]:
+                - /url: KinematicCharacterController_8cpp_source.html#l00012
+              - text: ","
+              - link "COA::KinematicCharacterController::~KinematicCharacterController()" [ref=e1027] [cursor=pointer]:
+                - /url: KinematicCharacterController_8cpp_source.html#l00043
+              - text: ", and"
+              - link "COA::RigidBody::~RigidBody()" [ref=e1028] [cursor=pointer]:
+                - /url: RigidBody_8cpp_source.html#l00044
+              - text: .
+        - heading "◆ GetRenderQueue()" [level=2] [ref=e1029]:
+          - link "◆" [ref=e1031] [cursor=pointer]:
+            - /url: "#af5eebde416ec2b153637d9f41e1ce917"
+          - text: GetRenderQueue()
+        - generic [ref=e1032]:
+          - table [ref=e1034]:
+            - rowgroup [ref=e1035]:
+              - row "RenderQueue & COA::Engine::GetRenderQueue ( )" [ref=e1036]:
+                - cell "RenderQueue & COA::Engine::GetRenderQueue" [ref=e1037]:
+                  - link "RenderQueue" [ref=e1038] [cursor=pointer]:
+                    - /url: classCOA_1_1RenderQueue.html
+                  - text: "& COA::Engine::GetRenderQueue"
+                - cell "(" [ref=e1039]
+                - cell [ref=e1040]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e1041]
+                - cell [ref=e1042]
+          - generic [ref=e1043]:
+            - paragraph [ref=e1044]: Returns the per-frame command queue that batches and issues draw calls.
+            - paragraph [ref=e1045]:
+              - text: Definition at line
+              - link "250" [ref=e1046] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00250
+              - text: of file
+              - link "Engine.cpp" [ref=e1047] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e1048]:
+              - text: Referenced by
+              - link "COA::MeshComponent::Update()" [ref=e1049] [cursor=pointer]:
+                - /url: MeshComponent_8cpp_source.html#l00019
+              - text: .
+        - heading "◆ GetScene()" [level=2] [ref=e1050]:
+          - link "◆" [ref=e1052] [cursor=pointer]:
+            - /url: "#a454aa2faa2f0aee6d392c7a192da8e24"
+          - text: GetScene()
+        - generic [ref=e1053]:
+          - table [ref=e1055]:
+            - rowgroup [ref=e1056]:
+              - row "Scene * COA::Engine::GetScene ( )" [ref=e1057]:
+                - cell "Scene * COA::Engine::GetScene" [ref=e1058]:
+                  - link "Scene" [ref=e1059] [cursor=pointer]:
+                    - /url: classCOA_1_1Scene.html
+                  - text: "* COA::Engine::GetScene"
+                - cell "(" [ref=e1060]
+                - cell [ref=e1061]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e1062]
+                - cell [ref=e1063]
+          - generic [ref=e1064]:
+            - paragraph [ref=e1065]: Returns the currently active scene, or nullptr if none is set.
+            - paragraph [ref=e1066]:
+              - text: Definition at line
+              - link "275" [ref=e1067] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00275
+              - text: of file
+              - link "Engine.cpp" [ref=e1068] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+        - heading "◆ GetTextureManager()" [level=2] [ref=e1069]:
+          - link "◆" [ref=e1071] [cursor=pointer]:
+            - /url: "#ad0ffbd44f7195950d50d701afb0aff61"
+          - text: GetTextureManager()
+        - generic [ref=e1072]:
+          - table [ref=e1074]:
+            - rowgroup [ref=e1075]:
+              - row "TextureManager & COA::Engine::GetTextureManager ( )" [ref=e1076]:
+                - cell "TextureManager & COA::Engine::GetTextureManager" [ref=e1077]:
+                  - link "TextureManager" [ref=e1078] [cursor=pointer]:
+                    - /url: classCOA_1_1TextureManager.html
+                  - text: "& COA::Engine::GetTextureManager"
+                - cell "(" [ref=e1079]
+                - cell [ref=e1080]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e1081]
+                - cell [ref=e1082]
+          - generic [ref=e1083]:
+            - paragraph [ref=e1084]:
+              - text: Returns the
+              - link "TextureManager" [ref=e1085] [cursor=pointer]:
+                - /url: classCOA_1_1TextureManager.html
+              - text: that caches loaded textures by path.
+            - paragraph [ref=e1086]:
+              - text: Definition at line
+              - link "260" [ref=e1087] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00260
+              - text: of file
+              - link "Engine.cpp" [ref=e1088] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e1089]:
+              - text: Referenced by
+              - link "COA::ParseGLTFNode()" [ref=e1090] [cursor=pointer]:
+                - /url: GameObject_8cpp_source.html#l00230
+              - text: .
+        - heading "◆ Init()" [level=2] [ref=e1091]:
+          - link "◆" [ref=e1093] [cursor=pointer]:
+            - /url: "#a72995c040a48d299eb46f975a3b5f90a"
+          - text: Init()
+        - generic [ref=e1094]:
+          - table [ref=e1096]:
+            - rowgroup [ref=e1097]:
+              - row "bool COA::Engine::Init ( int width," [ref=e1098]:
+                - cell "bool COA::Engine::Init" [ref=e1099]
+                - cell "(" [ref=e1100]
+                - cell "int" [ref=e1101]
+                - cell "width," [ref=e1102]:
+                  - emphasis [ref=e1104]: width
+                  - text: ","
+              - row "int height )" [ref=e1105]:
+                - cell [ref=e1106]
+                - cell [ref=e1107]
+                - cell "int" [ref=e1108]
+                - cell "height )" [ref=e1109]:
+                  - emphasis [ref=e1111]: height
+                  - text: )
+          - generic [ref=e1112]:
+            - paragraph [ref=e1113]: Initialise the window, OpenGL context, and subsystems.
+            - paragraph [ref=e1114]:
+              - text: "Sequence: GLFW init → window create → GLFW callbacks → GLEW init →"
+              - link "GraphicsAPI::Init()" [ref=e1115] [cursor=pointer]:
+                - /url: classCOA_1_1GraphicsAPI.html#a072cbca7a193855187112be984df578a
+              - text: →
+              - link "Application::Init()" [ref=e1116] [cursor=pointer]:
+                - /url: classCOA_1_1Application.html#ab80a6e3401b979905307242b7089bad5
+              - text: .
+            - generic [ref=e1117]:
+              - term [ref=e1118]: Parameters
+              - definition [ref=e1119]:
+                - table [ref=e1120]:
+                  - rowgroup [ref=e1121]:
+                    - row "width Framebuffer width in pixels." [ref=e1122]:
+                      - cell "width" [ref=e1123]
+                      - cell "Framebuffer width in pixels." [ref=e1124]
+                    - row "height Framebuffer height in pixels." [ref=e1125]:
+                      - cell "height" [ref=e1126]
+                      - cell "Framebuffer height in pixels." [ref=e1127]
+            - generic [ref=e1128]:
+              - term [ref=e1129]: Returns
+              - definition [ref=e1130]: true on success; false if any step fails (logged to stderr).
+            - paragraph [ref=e1131]:
+              - text: Definition at line
+              - link "59" [ref=e1132] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00059
+              - text: of file
+              - link "Engine.cpp" [ref=e1133] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e1134]:
+              - text: References
+              - link "COA::CursorPositionCallback()" [ref=e1135] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00042
+              - text: ","
+              - link "COA::KeyCallback()" [ref=e1136] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00018
+              - text: ","
+              - link "LOG_ERROR" [ref=e1137] [cursor=pointer]:
+                - /url: Log_8h_source.html#l00121
+              - text: ","
+              - link "LOG_INFO" [ref=e1138] [cursor=pointer]:
+                - /url: Log_8h_source.html#l00093
+              - text: ","
+              - link "COA::MouseButtonCallback()" [ref=e1139] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00030
+              - text: ", and"
+              - link "COA::Scene::RegisterTypes()" [ref=e1140] [cursor=pointer]:
+                - /url: Scene_8cpp_source.html#l00022
+              - text: .
+            - paragraph [ref=e1141]:
+              - text: Referenced by
+              - link "main()" [ref=e1142] [cursor=pointer]:
+                - /url: main_8cpp_source.html#l00004
+              - text: .
+        - heading "◆ operator=() [1/2]" [level=2] [ref=e1143]:
+          - link "◆" [ref=e1145] [cursor=pointer]:
+            - /url: "#a284b8639b03bc4e6c0c92fc3dd600d2d"
+          - text: operator=() [1/2]
+        - generic [ref=e1146]:
+          - table [ref=e1148]:
+            - rowgroup [ref=e1149]:
+              - row "Engine & COA::Engine::operator= ( const Engine & ) delete" [ref=e1150]:
+                - cell "Engine & COA::Engine::operator= ( const Engine & )" [ref=e1151]:
+                  - table [ref=e1152]:
+                    - rowgroup [ref=e1153]:
+                      - row "Engine & COA::Engine::operator= ( const Engine & )" [ref=e1154]:
+                        - cell "Engine & COA::Engine::operator=" [ref=e1155]:
+                          - link "Engine" [ref=e1156] [cursor=pointer]:
+                            - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                          - text: "& COA::Engine::operator="
+                        - cell "(" [ref=e1157]
+                        - cell "const Engine &" [ref=e1158]:
+                          - text: const
+                          - link "Engine" [ref=e1159] [cursor=pointer]:
+                            - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                          - text: "&"
+                        - cell [ref=e1160]:
+                          - generic:
+                            - emphasis
+                        - cell ")" [ref=e1161]
+                        - cell [ref=e1162]
+                - cell "delete" [ref=e1163]:
+                  - generic [ref=e1164]: delete
+          - paragraph [ref=e1166]:
+            - text: References
+            - link "Engine()" [ref=e1167] [cursor=pointer]:
+              - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+            - text: .
+        - heading "◆ operator=() [2/2]" [level=2] [ref=e1168]:
+          - link "◆" [ref=e1170] [cursor=pointer]:
+            - /url: "#aafba49a28da1e5fcef9cae984b79e43d"
+          - text: operator=() [2/2]
+        - generic [ref=e1171]:
+          - table [ref=e1173]:
+            - rowgroup [ref=e1174]:
+              - row "Engine & COA::Engine::operator= ( Engine && ) delete" [ref=e1175]:
+                - cell "Engine & COA::Engine::operator= ( Engine && )" [ref=e1176]:
+                  - table [ref=e1177]:
+                    - rowgroup [ref=e1178]:
+                      - row "Engine & COA::Engine::operator= ( Engine && )" [ref=e1179]:
+                        - cell "Engine & COA::Engine::operator=" [ref=e1180]:
+                          - link "Engine" [ref=e1181] [cursor=pointer]:
+                            - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                          - text: "& COA::Engine::operator="
+                        - cell "(" [ref=e1182]
+                        - cell "Engine &&" [ref=e1183]:
+                          - link "Engine" [ref=e1184] [cursor=pointer]:
+                            - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+                          - text: "&&"
+                        - cell [ref=e1185]:
+                          - generic:
+                            - emphasis
+                        - cell ")" [ref=e1186]
+                        - cell [ref=e1187]
+                - cell "delete" [ref=e1188]:
+                  - generic [ref=e1189]: delete
+          - paragraph [ref=e1191]:
+            - text: References
+            - link "Engine()" [ref=e1192] [cursor=pointer]:
+              - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+            - text: .
+        - heading "◆ Run()" [level=2] [ref=e1193]:
+          - link "◆" [ref=e1195] [cursor=pointer]:
+            - /url: "#a666d1b35481020d60297eb68caca1d15"
+          - text: Run()
+        - generic [ref=e1196]:
+          - table [ref=e1198]:
+            - rowgroup [ref=e1199]:
+              - row "void COA::Engine::Run ( )" [ref=e1200]:
+                - cell "void COA::Engine::Run" [ref=e1201]
+                - cell "(" [ref=e1202]
+                - cell [ref=e1203]:
+                  - generic:
+                    - emphasis
+                - cell ")" [ref=e1204]
+                - cell [ref=e1205]
+          - generic [ref=e1206]:
+            - paragraph [ref=e1207]: Enter the blocking main loop.
+            - paragraph [ref=e1208]: Returns when the window close button is pressed or the application calls SetNeedsToBeClosed(true). See the class-level documentation for the per-frame execution order.
+            - paragraph [ref=e1209]:
+              - text: Definition at line
+              - link "137" [ref=e1210] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00137
+              - text: of file
+              - link "Engine.cpp" [ref=e1211] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e1212]:
+              - text: References
+              - link "LOG_ERROR" [ref=e1213] [cursor=pointer]:
+                - /url: Log_8h_source.html#l00121
+              - text: ","
+              - link "LOG_INFO" [ref=e1214] [cursor=pointer]:
+                - /url: Log_8h_source.html#l00093
+              - text: ","
+              - link "LOG_WARN" [ref=e1215] [cursor=pointer]:
+                - /url: Log_8h_source.html#l00107
+              - text: ","
+              - link "COA::CameraData::position" [ref=e1216] [cursor=pointer]:
+                - /url: Common_8h_source.html#l00035
+              - text: ","
+              - link "COA::CameraData::projectionMatrix" [ref=e1217] [cursor=pointer]:
+                - /url: Common_8h_source.html#l00034
+              - text: ", and"
+              - link "COA::CameraData::viewMatrix" [ref=e1218] [cursor=pointer]:
+                - /url: Common_8h_source.html#l00033
+              - text: .
+            - paragraph [ref=e1219]:
+              - text: Referenced by
+              - link "main()" [ref=e1220] [cursor=pointer]:
+                - /url: main_8cpp_source.html#l00004
+              - text: .
+        - heading "◆ SetApplication()" [level=2] [ref=e1221]:
+          - link "◆" [ref=e1223] [cursor=pointer]:
+            - /url: "#aef9afaa3b40f686deb61c8258c4adf1f"
+          - text: SetApplication()
+        - generic [ref=e1224]:
+          - table [ref=e1226]:
+            - rowgroup [ref=e1227]:
+              - row "void COA::Engine::SetApplication ( Application * app )" [ref=e1228]:
+                - cell "void COA::Engine::SetApplication" [ref=e1229]
+                - cell "(" [ref=e1230]
+                - cell "Application *" [ref=e1231]:
+                  - link "Application" [ref=e1232] [cursor=pointer]:
+                    - /url: classCOA_1_1Application.html
+                  - text: "*"
+                - cell "app" [ref=e1233]:
+                  - emphasis [ref=e1235]: app
+                - cell ")" [ref=e1236]
+                - cell [ref=e1237]
+          - generic [ref=e1238]:
+            - paragraph [ref=e1239]: Transfer ownership of the application to the engine.
+            - generic [ref=e1240]:
+              - term [ref=e1241]: Parameters
+              - definition [ref=e1242]:
+                - table [ref=e1243]:
+                  - rowgroup [ref=e1244]:
+                    - row "app Heap-allocated Application subclass. Engine takes ownership." [ref=e1245]:
+                      - cell "app" [ref=e1246]
+                      - cell "Heap-allocated Application subclass. Engine takes ownership." [ref=e1247]:
+                        - text: Heap-allocated
+                        - link "Application" [ref=e1248] [cursor=pointer]:
+                          - /url: classCOA_1_1Application.html
+                        - text: subclass.
+                        - link "Engine" [ref=e1249] [cursor=pointer]:
+                          - /url: classCOA_1_1Engine.html
+                        - text: takes ownership.
+            - paragraph [ref=e1250]:
+              - text: Definition at line
+              - link "230" [ref=e1251] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00230
+              - text: of file
+              - link "Engine.cpp" [ref=e1252] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e1253]:
+              - text: Referenced by
+              - link "main()" [ref=e1254] [cursor=pointer]:
+                - /url: main_8cpp_source.html#l00004
+              - text: .
+        - heading "◆ SetScene()" [level=2] [ref=e1255]:
+          - link "◆" [ref=e1257] [cursor=pointer]:
+            - /url: "#a8e9bd857392246289820e7e57a00a14e"
+          - text: SetScene()
+        - generic [ref=e1258]:
+          - table [ref=e1260]:
+            - rowgroup [ref=e1261]:
+              - row "void COA::Engine::SetScene ( Scene * scene )" [ref=e1262]:
+                - cell "void COA::Engine::SetScene" [ref=e1263]
+                - cell "(" [ref=e1264]
+                - cell "Scene *" [ref=e1265]:
+                  - link "Scene" [ref=e1266] [cursor=pointer]:
+                    - /url: classCOA_1_1Scene.html
+                  - text: "*"
+                - cell "scene" [ref=e1267]:
+                  - emphasis [ref=e1269]: scene
+                - cell ")" [ref=e1270]
+                - cell [ref=e1271]
+          - generic [ref=e1272]:
+            - paragraph [ref=e1273]: Replace the active scene (takes ownership).
+            - generic [ref=e1274]:
+              - term [ref=e1275]: Parameters
+              - definition [ref=e1276]:
+                - table [ref=e1277]:
+                  - rowgroup [ref=e1278]:
+                    - row "scene Heap-allocated Scene. Previous scene is destroyed." [ref=e1279]:
+                      - cell "scene" [ref=e1280]
+                      - cell "Heap-allocated Scene. Previous scene is destroyed." [ref=e1281]:
+                        - text: Heap-allocated
+                        - link "Scene" [ref=e1282] [cursor=pointer]:
+                          - /url: classCOA_1_1Scene.html
+                        - text: . Previous scene is destroyed.
+            - paragraph [ref=e1283]:
+              - text: Definition at line
+              - link "255" [ref=e1284] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html#l00255
+              - text: of file
+              - link "Engine.cpp" [ref=e1285] [cursor=pointer]:
+                - /url: Engine_8cpp_source.html
+              - text: .
+            - paragraph [ref=e1286]:
+              - text: Referenced by
+              - link "Game::Init()" [ref=e1287] [cursor=pointer]:
+                - /url: Game_8cpp_source.html#l00009
+              - text: .
+        - separator [ref=e1288]
+        - text: "The documentation for this class was generated from the following files:"
+        - list [ref=e1289]:
+          - listitem [ref=e1290]:
+            - text: engine/source/
+            - link "Engine.h" [ref=e1291] [cursor=pointer]:
+              - /url: Engine_8h_source.html
+          - listitem [ref=e1292]:
+            - text: engine/source/
+            - link "Engine.cpp" [ref=e1293] [cursor=pointer]:
+              - /url: Engine_8cpp_source.html
+    - list [ref=e1297]:
+      - listitem [ref=e1298]:
+        - link "Public Member Functions" [ref=e1302] [cursor=pointer]:
+          - /url: "#header-pub-methods"
+      - listitem [ref=e1303]:
+        - link "Destroy" [ref=e1306] [cursor=pointer]:
+          - /url: "#r_a6cab56be09551ba30c02e1d0822b8a04"
+      - listitem [ref=e1307]:
+        - link "Engine" [ref=e1310] [cursor=pointer]:
+          - /url: "#r_a8d2d4586883607e9ab7af89feadcea9b"
+      - listitem [ref=e1311]:
+        - link "Engine" [ref=e1314] [cursor=pointer]:
+          - /url: "#r_af7e0bce7aaa0515bd93fcabde8f821b8"
+      - listitem [ref=e1315]:
+        - link "Engine" [ref=e1318] [cursor=pointer]:
+          - /url: "#r_a383a4901fb821466f487db36be37d8ce"
+      - listitem [ref=e1319]:
+        - link "GetApplication" [ref=e1322] [cursor=pointer]:
+          - /url: "#r_a2553e066d4fe671b07cdb8fa63876bf6"
+      - listitem [ref=e1323]:
+        - link "GetAudioManager" [ref=e1326] [cursor=pointer]:
+          - /url: "#r_a8fa976cb580558c3fab31a15509dbaa1"
+      - listitem [ref=e1327]:
+        - link "GetFileSystem" [ref=e1330] [cursor=pointer]:
+          - /url: "#r_a1dc233cd8da97ad3ce6d1af17571c1e3"
+      - listitem [ref=e1331]:
+        - link "GetGraphicsAPI" [ref=e1334] [cursor=pointer]:
+          - /url: "#r_a56a5b3ebb9aea63ab2fed991ea026ff1"
+      - listitem [ref=e1335]:
+        - link "GetInputManager" [ref=e1338] [cursor=pointer]:
+          - /url: "#r_a20d48b6beecea8b4e9f01fbbc146b508"
+      - listitem [ref=e1339]:
+        - link "GetPhysicsManager" [ref=e1342] [cursor=pointer]:
+          - /url: "#r_a18c7a6b3aad2cb5b5a85f1e4bbe440ef"
+      - listitem [ref=e1343]:
+        - link "GetRenderQueue" [ref=e1346] [cursor=pointer]:
+          - /url: "#r_af5eebde416ec2b153637d9f41e1ce917"
+      - listitem [ref=e1347]:
+        - link "GetScene" [ref=e1350] [cursor=pointer]:
+          - /url: "#r_a454aa2faa2f0aee6d392c7a192da8e24"
+      - listitem [ref=e1351]:
+        - link "GetTextureManager" [ref=e1354] [cursor=pointer]:
+          - /url: "#r_ad0ffbd44f7195950d50d701afb0aff61"
+      - listitem [ref=e1355]:
+        - link "Init" [ref=e1358] [cursor=pointer]:
+          - /url: "#r_a72995c040a48d299eb46f975a3b5f90a"
+      - listitem [ref=e1359]:
+        - link "operator=" [ref=e1362] [cursor=pointer]:
+          - /url: "#r_a284b8639b03bc4e6c0c92fc3dd600d2d"
+      - listitem [ref=e1363]:
+        - link "operator=" [ref=e1366] [cursor=pointer]:
+          - /url: "#r_aafba49a28da1e5fcef9cae984b79e43d"
+      - listitem [ref=e1367]:
+        - link "Run" [ref=e1370] [cursor=pointer]:
+          - /url: "#r_a666d1b35481020d60297eb68caca1d15"
+      - listitem [ref=e1371]:
+        - link "SetApplication" [ref=e1374] [cursor=pointer]:
+          - /url: "#r_aef9afaa3b40f686deb61c8258c4adf1f"
+      - listitem [ref=e1375]:
+        - link "SetScene" [ref=e1378] [cursor=pointer]:
+          - /url: "#r_a8e9bd857392246289820e7e57a00a14e"
+      - listitem [ref=e1379]:
+        - link "Static Public Member Functions" [ref=e1383] [cursor=pointer]:
+          - /url: "#header-pub-static-methods"
+      - listitem [ref=e1384]:
+        - link "GetInstance" [ref=e1387] [cursor=pointer]:
+          - /url: "#r_a8b2ccc02f416f005aa52619bbe533bbc"
+      - listitem [ref=e1388]:
+        - link "Detailed Description" [ref=e1391] [cursor=pointer]:
+          - /url: "#header-details"
+      - listitem [ref=e1392]:
+        - link "Constructor & Destructor Documentation" [ref=e1396] [cursor=pointer]:
+          - /url: "#header-doc-constructors"
+      - listitem [ref=e1397]:
+        - link "Engine" [ref=e1400] [cursor=pointer]:
+          - /url: "#a8d2d4586883607e9ab7af89feadcea9b"
+      - listitem [ref=e1401]:
+        - link "Engine" [ref=e1404] [cursor=pointer]:
+          - /url: "#af7e0bce7aaa0515bd93fcabde8f821b8"
+      - listitem [ref=e1405]:
+        - link "Engine" [ref=e1408] [cursor=pointer]:
+          - /url: "#a383a4901fb821466f487db36be37d8ce"
+      - listitem [ref=e1409]:
+        - link "Member Function Documentation" [ref=e1413] [cursor=pointer]:
+          - /url: "#header-doc-func-members"
+      - listitem [ref=e1414]:
+        - link "Destroy" [ref=e1417] [cursor=pointer]:
+          - /url: "#a6cab56be09551ba30c02e1d0822b8a04"
+      - listitem [ref=e1418]:
+        - link "GetApplication" [ref=e1421] [cursor=pointer]:
+          - /url: "#a2553e066d4fe671b07cdb8fa63876bf6"
+      - listitem [ref=e1422]:
+        - link "GetAudioManager" [ref=e1425] [cursor=pointer]:
+          - /url: "#a8fa976cb580558c3fab31a15509dbaa1"
+      - listitem [ref=e1426]:
+        - link "GetFileSystem" [ref=e1429] [cursor=pointer]:
+          - /url: "#a1dc233cd8da97ad3ce6d1af17571c1e3"
+      - listitem [ref=e1430]:
+        - link "GetGraphicsAPI" [ref=e1433] [cursor=pointer]:
+          - /url: "#a56a5b3ebb9aea63ab2fed991ea026ff1"
+      - listitem [ref=e1434]:
+        - link "GetInputManager" [ref=e1437] [cursor=pointer]:
+          - /url: "#a20d48b6beecea8b4e9f01fbbc146b508"
+      - listitem [ref=e1438]:
+        - link "GetInstance" [ref=e1441] [cursor=pointer]:
+          - /url: "#a8b2ccc02f416f005aa52619bbe533bbc"
+      - listitem [ref=e1442]:
+        - link "GetPhysicsManager" [ref=e1445] [cursor=pointer]:
+          - /url: "#a18c7a6b3aad2cb5b5a85f1e4bbe440ef"
+      - listitem [ref=e1446]:
+        - link "GetRenderQueue" [ref=e1449] [cursor=pointer]:
+          - /url: "#af5eebde416ec2b153637d9f41e1ce917"
+      - listitem [ref=e1450]:
+        - link "GetScene" [ref=e1453] [cursor=pointer]:
+          - /url: "#a454aa2faa2f0aee6d392c7a192da8e24"
+      - listitem [ref=e1454]:
+        - link "GetTextureManager" [ref=e1457] [cursor=pointer]:
+          - /url: "#ad0ffbd44f7195950d50d701afb0aff61"
+      - listitem [ref=e1458]:
+        - link "Init" [ref=e1461] [cursor=pointer]:
+          - /url: "#a72995c040a48d299eb46f975a3b5f90a"
+      - listitem [ref=e1462]:
+        - link "operator=" [ref=e1465] [cursor=pointer]:
+          - /url: "#a284b8639b03bc4e6c0c92fc3dd600d2d"
+      - listitem [ref=e1466]:
+        - link "operator=" [ref=e1469] [cursor=pointer]:
+          - /url: "#aafba49a28da1e5fcef9cae984b79e43d"
+      - listitem [ref=e1470]:
+        - link "Run" [ref=e1473] [cursor=pointer]:
+          - /url: "#a666d1b35481020d60297eb68caca1d15"
+      - listitem [ref=e1474]:
+        - link "SetApplication" [ref=e1477] [cursor=pointer]:
+          - /url: "#aef9afaa3b40f686deb61c8258c4adf1f"
+      - listitem [ref=e1478]:
+        - link "SetScene" [ref=e1481] [cursor=pointer]:
+          - /url: "#a8e9bd857392246289820e7e57a00a14e"
+      - listitem [ref=e1482]:
+        - link "List of all members" [ref=e1485] [cursor=pointer]:
+          - /url: classCOA_1_1Engine-members.html
+  - list [ref=e1487]:
+    - listitem [ref=e1488]:
+      - link "COA" [ref=e1489] [cursor=pointer]:
+        - /url: namespaceCOA.html
+    - listitem [ref=e1490]:
+      - link "Engine" [ref=e1491] [cursor=pointer]:
+        - /url: classCOA_1_1Engine.html
+    - listitem [ref=e1492]:
+      - text: Generated by
+      - link "doxygen" [ref=e1493] [cursor=pointer]:
+        - /url: https://www.doxygen.org/index.html
+        - img "doxygen" [ref=e1494]
+      - text: 1.16.1

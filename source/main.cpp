@@ -1,5 +1,6 @@
 #include "COA.h"
 #include "Game.h"
+#include "GameConstants.h"
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
 
     engine.SetApplication(game);
 
-    if (engine.Init(1280, 720)) {
+    if (engine.Init(kWindowWidth, kWindowHeight)) {
         engine.Run();
     } else {
         LOG_ERROR("Engine init failed, exiting");

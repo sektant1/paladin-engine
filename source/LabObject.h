@@ -1,6 +1,7 @@
 #pragma once
 
 #include "COA.h"
+#include "GameConstants.h"
 
 class LabObject : public COA::GameObject
 {
@@ -13,5 +14,5 @@ private:
     std::shared_ptr<COA::Material> m_material;
 
     float m_time      = 0.0F;
-    float m_timeScale = 0.3F;
+    float m_timeScale = kLabDefaultTimeScale;
 };
