@@ -53,10 +53,10 @@ inline constexpr COA::f32 kDefaultCapsuleHeight = 1.2F;
 inline constexpr COA::f32 kDefaultStepHeight    = 0.35F;
 
 // -- Camera / controller -----------------------------------------------------
-inline constexpr COA::f32 kPitchLimitDegrees = 89.0F;
-inline constexpr COA::f32 kCameraFov         = 60.0F;
-inline constexpr COA::f32 kCameraNearPlane   = 0.01F;
-inline constexpr COA::f32 kCameraFarPlane    = 1000.0F;
+inline constexpr COA::f32 kPitchLimitDegrees       = 89.0F;
+inline constexpr COA::f32 kCameraFov               = 60.0F;
+inline constexpr COA::f32 kCameraNearPlane         = 0.01F;
+inline constexpr COA::f32 kCameraFarPlane          = 1000.0F;
 inline constexpr COA::f32 kDefaultMouseSensitivity = 15.0F;
 inline constexpr COA::f32 kDefaultMoveSpeed        = 5.0F;
 inline constexpr COA::f32 kDefaultJumpSpeed        = 0.5F;
@@ -87,4 +87,4 @@ inline constexpr const char *kJsonKeyW          = "w";
 inline constexpr const char *kSceneTypeGltf     = "gltf";
 inline constexpr const char *kDefaultObjectName = "Object";
 inline constexpr const char *kDefaultSceneName  = "noname";
-inline constexpr const char *kRootObjectLabel   = "<root>";
+inline constexpr const char *kRootObjectLabel   = "";

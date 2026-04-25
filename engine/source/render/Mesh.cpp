@@ -187,7 +187,9 @@ std::shared_ptr<Mesh> Mesh::CreateBox(const glm::vec3 &extents)
 {
     const glm::vec3 half = extents * 0.5f;
     // UVs tile one repeat per world unit on each face's tangent axes.
-    const float        ux = extents.x, uy = extents.y, uz = extents.z;
+    const float        ux       = extents.x;
+    const float        uy       = extents.y;
+    const float        uz       = extents.z;
     std::vector<float> vertices = {
 
         // clang-format off

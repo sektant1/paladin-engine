@@ -10,27 +10,29 @@
    --------------------------------------------------------------------- */
 :root {
   --coa-font-display: "Cinzel", "Trajan Pro", Georgia, serif;
-  --coa-font-body:    "EB Garamond", "Iowan Old Style", Georgia, serif;
-  --coa-font-mono:    "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --coa-font-body: "EB Garamond", "Iowan Old Style", Georgia, serif;
+  --coa-font-mono:
+    "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo,
+    monospace;
 
   /* ---- Undercity / cobblestone master palette ---- */
-  --und-cobble-0:    #0c0e10;   /* deepest crypt */
-  --und-cobble-1:    #14171a;   /* primary surface */
-  --und-cobble-2:    #1c2024;   /* lifted stone */
-  --und-cobble-3:    #262a30;   /* hover / borders */
-  --und-mortar:      #3a3f48;   /* wet mortar */
-  --und-iron:        #4d525c;
-  --und-bone:        #c4bfa8;   /* primary text — bone-yellow */
-  --und-bone-dim:    #948f78;
-  --und-bile:        #7a9c34;   /* sickly green chemical */
-  --und-bile-glow:   #aed957;   /* bright bile highlight */
-  --und-bile-deep:   #3d4d18;
-  --und-rot:         #5a7a44;   /* moss / rot accent */
-  --und-poison:      #5cb89e;   /* alchemy teal-mint */
-  --und-rust:        #8a4a26;   /* dried-blood rust */
-  --und-blood:       #6a1818;
-  --und-arcane:      #7a4ea8;   /* shadow-magic purple */
-  --und-arcane-bg:   #1c1428;
+  --und-cobble-0: #0c0e10; /* deepest crypt */
+  --und-cobble-1: #14171a; /* primary surface */
+  --und-cobble-2: #1c2024; /* lifted stone */
+  --und-cobble-3: #262a30; /* hover / borders */
+  --und-mortar: #3a3f48; /* wet mortar */
+  --und-iron: #4d525c;
+  --und-bone: #c4bfa8; /* primary text — bone-yellow */
+  --und-bone-dim: #948f78;
+  --und-bile: #7a9c34; /* sickly green chemical */
+  --und-bile-glow: #aed957; /* bright bile highlight */
+  --und-bile-deep: #3d4d18;
+  --und-rot: #5a7a44; /* moss / rot accent */
+  --und-poison: #5cb89e; /* alchemy teal-mint */
+  --und-rust: #8a4a26; /* dried-blood rust */
+  --und-blood: #6a1818;
+  --und-arcane: #7a4ea8; /* shadow-magic purple */
+  --und-arcane-bg: #1c1428;
 }
 
 /* ---------------------------------------------------------------------
@@ -40,85 +42,85 @@
    --------------------------------------------------------------------- */
 html {
   /* Palette (light / cobblestone-grey daylight crypt) */
-  --primary-color:               #5d7a1e;   /* moss-bile */
-  --primary-dark-color:          #425814;
-  --primary-light-color:         #7a9c34;
-  --primary-lighter-color:       #d4d8c4;
-  --primary-lightest-color:      #e6e8d8;
+  --primary-color: #5d7a1e; /* moss-bile */
+  --primary-dark-color: #425814;
+  --primary-light-color: #7a9c34;
+  --primary-lighter-color: #d4d8c4;
+  --primary-lightest-color: #e6e8d8;
 
-  --page-background-color:       #c4c0b4;   /* weathered stone */
-  --page-foreground-color:       #1a1d20;
+  --page-background-color: #c4c0b4; /* weathered stone */
+  --page-foreground-color: #1a1d20;
   --page-secondary-foreground-color: #4a4d54;
 
-  --separator-color:             #8a8e88;
-  --side-nav-background:         #a8a8a0;
-  --side-nav-foreground:         #1a1d20;
+  --separator-color: #8a8e88;
+  --side-nav-background: #a8a8a0;
+  --side-nav-foreground: #1a1d20;
 
-  --code-background:             #b4b0a4;
-  --code-foreground:             #1a1d20;
+  --code-background: #b4b0a4;
+  --code-foreground: #1a1d20;
 
-  --fragment-background:         #b8b4a8;
-  --fragment-foreground:         #1a1d20;
-  --fragment-keyword:            #425814;
-  --fragment-keywordtype:        #2a5a4e;
-  --fragment-keywordflow:        #6a3818;
-  --fragment-token:              #1a1d20;
-  --fragment-comment:            #6a6a5a;
-  --fragment-link:               #425814;
-  --fragment-preprocessor:       #4a3a6a;
-  --fragment-linenumber-color:   #6a6a5a;
+  --fragment-background: #b8b4a8;
+  --fragment-foreground: #1a1d20;
+  --fragment-keyword: #425814;
+  --fragment-keywordtype: #2a5a4e;
+  --fragment-keywordflow: #6a3818;
+  --fragment-token: #1a1d20;
+  --fragment-comment: #6a6a5a;
+  --fragment-link: #425814;
+  --fragment-preprocessor: #4a3a6a;
+  --fragment-linenumber-color: #6a6a5a;
   --fragment-linenumber-background: #b0aca0;
-  --fragment-linenumber-border:  #8a8e88;
+  --fragment-linenumber-border: #8a8e88;
 
-  --tablehead-background:        #aeae9c;
-  --tablehead-foreground:        #1a1d20;
+  --tablehead-background: #aeae9c;
+  --tablehead-foreground: #1a1d20;
 
-  --memdef-border-color:         #8a8e88;
-  --memdef-title-background:     #aeae9c;
-  --memdef-title-foreground:     #1a1d20;
-  --memdef-proto-background:     #b8b4a8;
-  --memdef-proto-foreground:     #1a1d20;
-  --memdef-doc-background:       #c4c0b4;
+  --memdef-border-color: #8a8e88;
+  --memdef-title-background: #aeae9c;
+  --memdef-title-foreground: #1a1d20;
+  --memdef-proto-background: #b8b4a8;
+  --memdef-proto-foreground: #1a1d20;
+  --memdef-doc-background: #c4c0b4;
 
-  --header-background:           #a8a8a0;
-  --header-foreground:           #1a1d20;
+  --header-background: #a8a8a0;
+  --header-foreground: #1a1d20;
 
-  --searchbar-background:        #d0ccc0;
-  --searchbar-foreground:        #1a1d20;
-  --searchbar-border-color:      #8a8e88;
+  --searchbar-background: #d0ccc0;
+  --searchbar-foreground: #1a1d20;
+  --searchbar-border-color: #8a8e88;
 
-  --tab-background-color:        #a8a8a0;
-  --tab-foreground-color:        #4a4d54;
-  --tab-hover-background:        #aeae9c;
-  --tab-hover-foreground:        #425814;
-  --tab-selected-background:     #c4c0b4;
-  --tab-selected-foreground:     #5d7a1e;
+  --tab-background-color: #a8a8a0;
+  --tab-foreground-color: #4a4d54;
+  --tab-hover-background: #aeae9c;
+  --tab-hover-foreground: #425814;
+  --tab-selected-background: #c4c0b4;
+  --tab-selected-foreground: #5d7a1e;
 
-  --warning-color-bg:            #d4cfa8;
-  --warning-color-hl:            #6a5818;
-  --warning-color-text:          #1a1d20;
-  --note-color-bg:               #b8c8c4;
-  --note-color-hl:               #2a5a4e;
-  --note-color-text:             #1a2624;
-  --todo-color-bg:               #c8d0a8;
-  --todo-color-hl:               #5d7a1e;
-  --deprecated-color-bg:         #d0bcb8;
-  --bug-color-bg:                #d0bcb8;
-  --invariant-color-bg:          #b8c8c4;
+  --warning-color-bg: #d4cfa8;
+  --warning-color-hl: #6a5818;
+  --warning-color-text: #1a1d20;
+  --note-color-bg: #b8c8c4;
+  --note-color-hl: #2a5a4e;
+  --note-color-text: #1a2624;
+  --todo-color-bg: #c8d0a8;
+  --todo-color-hl: #5d7a1e;
+  --deprecated-color-bg: #d0bcb8;
+  --bug-color-bg: #d0bcb8;
+  --invariant-color-bg: #b8c8c4;
 
   /* Type */
-  --content-maxwidth:            1100px;
-  --font-family:                 var(--coa-font-body);
-  --font-family-monospace:       var(--coa-font-mono);
-  --page-font-size:              17px;
-  --content-line-height:         1.7;
-  --code-font-size:              14px;
-  --title-font-size:             32px;
+  --content-maxwidth: 1100px;
+  --font-family: var(--coa-font-body);
+  --font-family-monospace: var(--coa-font-mono);
+  --page-font-size: 17px;
+  --content-line-height: 1.7;
+  --code-font-size: 14px;
+  --title-font-size: 32px;
 
   /* Spacing — slightly more generous so the parchment feels deliberate */
-  --spacing-large:               28px;
-  --spacing-medium:              14px;
-  --spacing-small:               8px;
+  --spacing-large: 28px;
+  --spacing-medium: 14px;
+  --spacing-small: 8px;
 }
 
 /* ---------------------------------------------------------------------
@@ -126,71 +128,71 @@ html {
       `html.dark-mode` selector (set by the toggle).
    --------------------------------------------------------------------- */
 html.dark-mode {
-  --primary-color:               #aed957;   /* bile-glow accent */
-  --primary-dark-color:          #7a9c34;
-  --primary-light-color:         #c8e87a;
-  --primary-lighter-color:       #1a2210;
-  --primary-lightest-color:      #14180c;
+  --primary-color: #aed957; /* bile-glow accent */
+  --primary-dark-color: #7a9c34;
+  --primary-light-color: #c8e87a;
+  --primary-lighter-color: #1a2210;
+  --primary-lightest-color: #14180c;
 
-  --page-background-color:       #0c0e10;
-  --page-foreground-color:       #c4bfa8;
+  --page-background-color: #0c0e10;
+  --page-foreground-color: #c4bfa8;
   --page-secondary-foreground-color: #948f78;
 
-  --separator-color:             #2a2e34;
-  --side-nav-background:         #0a0c0e;
-  --side-nav-foreground:         #948f78;
+  --separator-color: #2a2e34;
+  --side-nav-background: #0a0c0e;
+  --side-nav-foreground: #948f78;
 
-  --code-background:             #14171a;
-  --code-foreground:             #c4bfa8;
+  --code-background: #14171a;
+  --code-foreground: #c4bfa8;
 
-  --fragment-background:         #10131580;
-  --fragment-foreground:         #c4bfa8;
-  --fragment-keyword:            #aed957;   /* bile */
-  --fragment-keywordtype:        #5cb89e;   /* poison teal */
-  --fragment-keywordflow:        #c98a52;   /* rust */
-  --fragment-token:              #c4bfa8;
-  --fragment-comment:            #5a5e54;
-  --fragment-link:               #aed957;
-  --fragment-preprocessor:       #9c7eb8;   /* arcane */
-  --fragment-linenumber-color:   #4d525c;
+  --fragment-background: #10131580;
+  --fragment-foreground: #c4bfa8;
+  --fragment-keyword: #aed957; /* bile */
+  --fragment-keywordtype: #5cb89e; /* poison teal */
+  --fragment-keywordflow: #c98a52; /* rust */
+  --fragment-token: #c4bfa8;
+  --fragment-comment: #5a5e54;
+  --fragment-link: #aed957;
+  --fragment-preprocessor: #9c7eb8; /* arcane */
+  --fragment-linenumber-color: #4d525c;
   --fragment-linenumber-background: #0c0e10;
-  --fragment-linenumber-border:  #2a2e34;
+  --fragment-linenumber-border: #2a2e34;
 
-  --tablehead-background:        #181c20;
-  --tablehead-foreground:        #aed957;
+  --tablehead-background: #181c20;
+  --tablehead-foreground: #aed957;
 
-  --memdef-border-color:         #2a2e34;
-  --memdef-title-background:     #181c20;
-  --memdef-title-foreground:     #aed957;
-  --memdef-proto-background:     #14171a;
-  --memdef-proto-foreground:     #c4bfa8;
-  --memdef-doc-background:       #10131580;
+  --memdef-border-color: #2a2e34;
+  --memdef-title-background: #181c20;
+  --memdef-title-foreground: #aed957;
+  --memdef-proto-background: #14171a;
+  --memdef-proto-foreground: #c4bfa8;
+  --memdef-doc-background: #10131580;
 
-  --header-background:           #14171a;
-  --header-foreground:           #aed957;
+  --header-background: #14171a;
+  --header-foreground: #aed957;
 
-  --searchbar-background:        #14171a;
-  --searchbar-foreground:        #c4bfa8;
-  --searchbar-border-color:      #2a2e34;
+  --searchbar-background: #14171a;
+  --searchbar-foreground: #c4bfa8;
+  --searchbar-border-color: #2a2e34;
 
-  --tab-background-color:        #14171a;
-  --tab-foreground-color:        #948f78;
-  --tab-hover-background:        #1c2024;
-  --tab-hover-foreground:        #aed957;
-  --tab-selected-background:     #1c2024;
-  --tab-selected-foreground:     #aed957;
+  --tab-background-color: #14171a;
+  --tab-foreground-color: #948f78;
+  --tab-hover-background: #1c2024;
+  --tab-hover-foreground: #aed957;
+  --tab-selected-background: #1c2024;
+  --tab-selected-foreground: #aed957;
 
-  --warning-color-bg:            #2a1f08;
-  --warning-color-hl:            #d4a24c;
-  --warning-color-text:          #c4bfa8;
-  --note-color-bg:               #0e1a1a;
-  --note-color-hl:               #5cb89e;
-  --note-color-text:             #c4bfa8;
-  --todo-color-bg:               #1a2210;
-  --todo-color-hl:               #aed957;
-  --deprecated-color-bg:         #1c1428;
-  --bug-color-bg:                #1a0a0a;
-  --invariant-color-bg:          #0e1a1a;
+  --warning-color-bg: #2a1f08;
+  --warning-color-hl: #d4a24c;
+  --warning-color-text: #c4bfa8;
+  --note-color-bg: #0e1a1a;
+  --note-color-hl: #5cb89e;
+  --note-color-text: #c4bfa8;
+  --todo-color-bg: #1a2210;
+  --todo-color-hl: #aed957;
+  --deprecated-color-bg: #1c1428;
+  --bug-color-bg: #1a0a0a;
+  --invariant-color-bg: #0e1a1a;
 
   color-scheme: dark;
 }
@@ -202,57 +204,130 @@ html.dark-mode {
 html.dark-mode body {
   background-color: #0c0e10;
   background-image:
-    radial-gradient(ellipse 1300px 900px at 18% -12%, rgba(174,217,87,.07), transparent 60%),
-    radial-gradient(ellipse 1000px 700px at 105% 115%, rgba(92,184,158,.05), transparent 65%),
-    radial-gradient(ellipse 800px 600px at 50% 50%, rgba(122,78,168,.025), transparent 70%),
+    radial-gradient(
+      ellipse 1300px 900px at 18% -12%,
+      rgba(174, 217, 87, 0.07),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 1000px 700px at 105% 115%,
+      rgba(92, 184, 158, 0.05),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 800px 600px at 50% 50%,
+      rgba(122, 78, 168, 0.025),
+      transparent 70%
+    ),
     /* faint masonry hatching */
-    repeating-linear-gradient(0deg, rgba(255,255,255,.008) 0 1px, transparent 1px 64px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.006) 0 1px, transparent 1px 96px);
+    repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.008) 0 1px,
+        transparent 1px 64px
+      ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.006) 0 1px,
+      transparent 1px 96px
+    );
   background-attachment: fixed;
 }
 body {
   background-color: #c4c0b4;
   background-image:
-    radial-gradient(ellipse 1100px 700px at 20% -10%, rgba(93,122,30,.10), transparent 60%),
-    radial-gradient(ellipse 900px 600px at 100% 110%, rgba(42,90,78,.06), transparent 65%),
-    repeating-linear-gradient(0deg, rgba(0,0,0,.025) 0 1px, transparent 1px 56px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,.02) 0 1px, transparent 1px 84px);
+    radial-gradient(
+      ellipse 1100px 700px at 20% -10%,
+      rgba(93, 122, 30, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 900px 600px at 100% 110%,
+      rgba(42, 90, 78, 0.06),
+      transparent 65%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.025) 0 1px,
+      transparent 1px 56px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.02) 0 1px,
+      transparent 1px 84px
+    );
   background-attachment: fixed;
 }
 
 #coa-embers {
-  position: fixed; inset: 0;
-  width: 100vw; height: 100vh;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
   z-index: 0;
   opacity: 0;
-  transition: opacity .6s ease;
+  transition: opacity 0.6s ease;
 }
-html.dark-mode #coa-embers { opacity: .9; }
+html.dark-mode #coa-embers {
+  opacity: 0.9;
+}
 
 .coa-grain {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: .25;
+  opacity: 0.25;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.78  0 0 0 0 0.6  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
-html.dark-mode .coa-grain { opacity: .35; }
+html.dark-mode .coa-grain {
+  opacity: 0.35;
+}
 
 .coa-vignette {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.45) 100%);
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
   opacity: 0;
 }
-html.dark-mode .coa-vignette { opacity: 1; }
+html.dark-mode .coa-vignette {
+  opacity: 1;
+}
 
 /* Make sure awesome's content paints above atmosphere */
-#top, #side-nav, #nav-tree, #doc-content, #nav-path,
-.coa-banner, .header, .contents, #titlearea {
+#top,
+#side-nav,
+#nav-tree,
+#doc-content,
+#nav-path,
+.coa-banner,
+.header,
+.contents,
+#titlearea {
   z-index: 2;
+}
+
+.header {
+  display: none;
+}
+
+#nav-tree {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+
+  /* Hide scrollbar for IE and Edge */
+  -ms-overflow-style: none;
 }
 
 /* ---------------------------------------------------------------------
@@ -263,8 +338,9 @@ html.dark-mode .coa-vignette { opacity: 1; }
      the right (content) pane
    • --top-height covers all stacked sidebar header rows
    --------------------------------------------------------------------- */
-:root, html.dark-mode {
-  --top-height: 200px;             /* sigil ~46 + titlearea ~92 + tabs ~46 */
+:root,
+html.dark-mode {
+  --top-height: 200px; /* sigil ~46 + titlearea ~92 + tabs ~46 */
   --side-nav-fixed-width: 320px;
 }
 
@@ -278,30 +354,41 @@ html.dark-mode .coa-vignette { opacity: 1; }
    5a. Sidebar-top sigil — sits inside #top above #titlearea (320px wide)
    --------------------------------------------------------------------- */
 .coa-banner {
-  display: flex; align-items: center; gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 8px 20px 6px;
   color: var(--primary-color);
   font-family: var(--coa-font-display);
-  letter-spacing: .3em;
+  letter-spacing: 0.3em;
   font-size: 10px;
   text-transform: uppercase;
   border-bottom: 1px dashed var(--separator-color);
 }
 .coa-banner__sigil {
   color: var(--primary-color);
-  filter: drop-shadow(0 0 4px rgba(174,217,87,.35));
+  filter: drop-shadow(0 0 4px rgba(174, 217, 87, 0.35));
   animation: coa-flicker 4.3s ease-in-out infinite;
   flex-shrink: 0;
 }
 .coa-banner__motto {
   white-space: nowrap;
-  text-shadow: 0 0 14px rgba(174,217,87,.18);
+  text-shadow: 0 0 14px rgba(174, 217, 87, 0.18);
 }
 
 @keyframes coa-flicker {
-  0%, 100% { opacity: 1; }
-  47%      { opacity: .82; filter: drop-shadow(0 0 10px rgba(174,217,87,.55)); }
-  53%      { opacity: .95; filter: drop-shadow(0 0 4px rgba(174,217,87,.25)); }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  47% {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 10px rgba(174, 217, 87, 0.55));
+  }
+  53% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 4px rgba(174, 217, 87, 0.25));
+  }
 }
 
 /* ---------------------------------------------------------------------
@@ -314,19 +401,23 @@ html.dark-mode .coa-vignette { opacity: 1; }
   left: var(--side-nav-fixed-width);
   right: 0;
   height: 36px;
-  display: flex; align-items: center; gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   padding: 0 28px;
-  background: linear-gradient(180deg,
+  background: linear-gradient(
+    180deg,
     var(--page-background-color) 0%,
     color-mix(in srgb, var(--page-background-color), transparent 30%) 80%,
-    transparent 100%);
+    transparent 100%
+  );
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 30;
   pointer-events: none;
   font-family: var(--coa-font-display);
   font-size: 10px;
-  letter-spacing: .4em;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--primary-color);
   border-bottom: 1px solid var(--separator-color);
@@ -334,57 +425,86 @@ html.dark-mode .coa-vignette { opacity: 1; }
 .coa-strip__rule {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%, var(--separator-color) 8%,
-    var(--primary-color) 50%, var(--separator-color) 92%, transparent 100%);
-  box-shadow: 0 0 6px rgba(174,217,87,.2);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--separator-color) 8%,
+    var(--primary-color) 50%,
+    var(--separator-color) 92%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(174, 217, 87, 0.2);
 }
 .coa-strip__motto {
   white-space: nowrap;
-  text-shadow: 0 0 14px rgba(174,217,87,.25);
+  text-shadow: 0 0 14px rgba(174, 217, 87, 0.25);
 }
 .coa-rune {
   color: var(--primary-light-color);
-  margin: 0 .35em;
+  margin: 0 0.35em;
   letter-spacing: 0;
 }
 
 @media screen and (max-width: 767px) {
-  .coa-strip { display: none; }
+  .coa-strip {
+    display: none;
+  }
 }
 
 /* Push #doc-content down so its content clears the strip */
 @media screen and (min-width: 768px) {
-  #doc-content { padding-top: 60px !important; }
+  #doc-content {
+    padding-top: 60px !important;
+  }
 }
 
 /* ---------------------------------------------------------------------
    6. Typography — display heading font (Cinzel) for project name and
    awesome's `.title` / heading classes. Body stays Garamond.
    --------------------------------------------------------------------- */
-body, .contents, .memdoc, .textblock, p, li, td, dd {
+body,
+.contents,
+.memdoc,
+.textblock,
+p,
+li,
+td,
+dd {
   font-family: var(--coa-font-body) !important;
 }
 
 #projectname,
-h1, h2, h3, h4, .title, .header .headertitle,
-.tablist a, .summary, #nav-path li {
+h1,
+h2,
+h3,
+h4,
+.title,
+.header .headertitle,
+.tablist a,
+.summary,
+#nav-path li {
   font-family: var(--coa-font-display) !important;
 }
 /* Force titlearea cells to wrap so the project number drops below the
    name instead of overflowing the 320px sidebar. */
-#titlearea, #titlearea table, #titlearea tbody, #titlearea tr,
-#titlearea td, #projectalign {
+#titlearea,
+#titlearea table,
+#titlearea tbody,
+#titlearea tr,
+#titlearea td,
+#projectalign {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box;
 }
-#titlearea { padding: 6px 18px 10px !important; }
+#titlearea {
+  padding: 6px 18px 10px !important;
+}
 
 #projectname {
   font-weight: 700;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   font-size: 20px !important;
   color: var(--primary-color);
@@ -397,26 +517,26 @@ h1, h2, h3, h4, .title, .header .headertitle,
 }
 html.dark-mode #projectname {
   text-shadow:
-    0 0 18px rgba(174,217,87,.25),
+    0 0 18px rgba(174, 217, 87, 0.25),
     0 1px 0 #000;
 }
 #projectnumber {
   display: inline-block;
   font-family: var(--coa-font-mono) !important;
   font-size: 9px;
-  letter-spacing: .3em;
+  letter-spacing: 0.3em;
   vertical-align: middle;
   padding: 2px 7px;
   margin: 4px 0 0 0 !important;
   border: 1px solid var(--separator-color);
   border-radius: 2px;
   color: var(--page-secondary-foreground-color);
-  background: rgba(174,217,87,.05);
+  background: rgba(174, 217, 87, 0.05);
   white-space: nowrap;
 }
 #projectnumber::before {
   content: "v";
-  opacity: .55;
+  opacity: 0.55;
   margin-right: 1px;
 }
 #projectbrief {
@@ -425,20 +545,30 @@ html.dark-mode #projectname {
   color: var(--page-secondary-foreground-color);
   font-size: 12px;
   line-height: 1.35;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   margin-top: 6px;
   white-space: normal !important;
   word-break: break-word;
 }
 
-h1, h2, h3, .title, .header .headertitle .title {
-  letter-spacing: .04em;
+h1,
+h2,
+h3,
+.title,
+.header .headertitle .title {
+  letter-spacing: 0.04em;
 }
-h1, .title { text-transform: uppercase; letter-spacing: .07em; }
-h1::before, div.contents > .title::before {
+h1,
+.title {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+h1::before,
+div.contents > .title::before {
   content: "";
   display: inline-block;
-  width: 9px; height: 9px;
+  width: 9px;
+  height: 9px;
   margin-right: 12px;
   vertical-align: 4px;
   background: var(--primary-color);
@@ -450,44 +580,53 @@ h1::before, div.contents > .title::before {
 h2::before {
   content: "✦  ";
   color: var(--primary-light-color);
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 /* Code surfaces — keep awesome's structure, retint to forge */
-code, .tt, tt, kbd {
+code,
+.tt,
+tt,
+kbd {
   font-family: var(--coa-font-mono) !important;
 }
-div.fragment, pre.fragment {
+div.fragment,
+pre.fragment {
   border-left: 3px solid var(--primary-color) !important;
   position: relative;
 }
-div.fragment::after, pre.fragment::after {
+div.fragment::after,
+pre.fragment::after {
   content: "// forged";
-  position: absolute; top: 6px; right: 14px;
+  position: absolute;
+  top: 6px;
+  right: 14px;
   font-family: var(--coa-font-mono);
   font-size: 10px;
   color: var(--page-secondary-foreground-color);
-  letter-spacing: .25em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  opacity: .55;
+  opacity: 0.55;
   pointer-events: none;
 }
 
 /* Block-quote ornament */
 blockquote {
   border-left: 3px solid var(--primary-color) !important;
-  background: linear-gradient(90deg, rgba(174,217,87,.08), transparent 60%);
+  background: linear-gradient(90deg, rgba(174, 217, 87, 0.08), transparent 60%);
   font-style: italic;
   padding: 14px 22px !important;
   position: relative;
 }
 blockquote::before {
   content: "“";
-  position: absolute; top: -10px; left: 8px;
+  position: absolute;
+  top: -10px;
+  left: 8px;
   font-family: var(--coa-font-display);
   font-size: 38px;
   color: var(--primary-color);
-  opacity: .45;
+  opacity: 0.45;
 }
 
 /* ---------------------------------------------------------------------
@@ -497,34 +636,52 @@ blockquote::before {
 #side-nav {
   border-right: 1px solid var(--separator-color);
 }
-#nav-tree, #nav-tree-contents {
+
+#MSearchBox {
+  border-radius: 0;
+}
+
+#nav-tree,
+#nav-tree-contents {
   font-family: var(--coa-font-display) !important;
   font-size: 13px;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
 }
-#nav-tree .item { line-height: 1.85; }
+#nav-tree .item {
+  line-height: 1.85;
+}
 #nav-tree .selected {
-  background: linear-gradient(90deg,
-    var(--primary-lighter-color), transparent 80%) !important;
+  background: linear-gradient(
+    90deg,
+    var(--primary-lighter-color),
+    transparent 80%
+  ) !important;
   border-left: 2px solid var(--primary-color);
 }
 html.dark-mode #nav-tree .selected {
-  background: linear-gradient(90deg,
-    rgba(174,217,87,.18), transparent 80%) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(174, 217, 87, 0.18),
+    transparent 80%
+  ) !important;
 }
-#nav-tree .selected a, #nav-tree .selected .item {
+#nav-tree .selected a,
+#nav-tree .selected .item {
   color: var(--primary-color) !important;
 }
 
 /* Top tablist — capitalised dwarven runes */
-.tabs, .tabs2, .tabs3, #main-nav {
+.tabs,
+.tabs2,
+.tabs3,
+#main-nav {
   border-top: 1px solid var(--separator-color);
   border-bottom: 1px solid var(--separator-color);
 }
 .tablist a {
   font-weight: 700;
   font-size: 11px !important;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
@@ -533,12 +690,12 @@ html.dark-mode #nav-tree .selected {
    --------------------------------------------------------------------- */
 .memberdecls .heading {
   font-family: var(--coa-font-display) !important;
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .mlabel {
   font-family: var(--coa-font-display) !important;
-  letter-spacing: .14em !important;
+  letter-spacing: 0.14em !important;
   text-transform: uppercase;
   font-size: 10px !important;
 }
@@ -547,12 +704,12 @@ html.dark-mode #nav-tree .selected {
    9. Selection — molten
    --------------------------------------------------------------------- */
 ::selection {
-  background: rgba(174,217,87,.45);
+  background: rgba(174, 217, 87, 0.45);
   color: #fff;
 }
 html.dark-mode ::selection {
-  background: rgba(174,217,87,.55);
-  text-shadow: 0 0 10px rgba(174,217,87,.7);
+  background: rgba(174, 217, 87, 0.55);
+  text-shadow: 0 0 10px rgba(174, 217, 87, 0.7);
 }
 
 /* ---------------------------------------------------------------------
@@ -565,7 +722,7 @@ pre.coa-ascii {
   font-family: var(--coa-font-mono) !important;
   font-size: 12px !important;
   line-height: 1.25;
-  text-shadow: 0 0 12px rgba(174,217,87,.3);
+  text-shadow: 0 0 12px rgba(174, 217, 87, 0.3);
   box-shadow: none !important;
   padding: 6px 0 !important;
   margin: 18px 0 !important;
@@ -573,29 +730,42 @@ pre.coa-ascii {
   white-space: pre;
   overflow: visible;
 }
-pre.coa-ascii::after { content: "" !important; }
+pre.coa-ascii::after {
+  content: "" !important;
+}
 
 .coa-divider {
   height: 22px;
   margin: 30px 0;
   background:
-    radial-gradient(circle at center, var(--primary-color) 0 2px, transparent 3px),
-    linear-gradient(90deg,
+    radial-gradient(
+      circle at center,
+      var(--primary-color) 0 2px,
+      transparent 3px
+    ),
+    linear-gradient(
+      90deg,
       transparent 0%,
       var(--separator-color) 12%,
       var(--primary-color) 50%,
       var(--separator-color) 88%,
-      transparent 100%);
-  background-size: 100% 100%, 100% 1px;
+      transparent 100%
+    );
+  background-size:
+    100% 100%,
+    100% 1px;
   background-repeat: no-repeat;
-  background-position: center center, center center;
-  filter: drop-shadow(0 0 6px rgba(174,217,87,.25));
+  background-position:
+    center center,
+    center center;
+  filter: drop-shadow(0 0 6px rgba(174, 217, 87, 0.25));
 }
 
 /* ---------------------------------------------------------------------
    11. Footer
    --------------------------------------------------------------------- */
-.footer, address.footer {
+.footer,
+address.footer {
   text-align: center;
   font-style: italic;
   font-family: var(--coa-font-body);
@@ -609,23 +779,37 @@ pre.coa-ascii::after { content: "" !important; }
   color: var(--primary-color);
   letter-spacing: 1em;
   margin-bottom: 10px;
-  opacity: .55;
+  opacity: 0.55;
 }
-.footer img { opacity: .4; }
+.footer img {
+  opacity: 0.4;
+}
 
 /* ---------------------------------------------------------------------
    12. Reduced motion
    --------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .coa-banner__sigil { animation: none; }
-  #coa-embers { display: none; }
+  .coa-banner__sigil {
+    animation: none;
+  }
+  #coa-embers {
+    display: none;
+  }
 }
 
 /* ---------------------------------------------------------------------
    13. Mobile — hide banner motto on narrow widths
    --------------------------------------------------------------------- */
 @media (max-width: 700px) {
-  .coa-banner { padding: 6px 12px; gap: 10px; }
-  .coa-banner__motto { font-size: 9px; letter-spacing: .25em; }
-  #projectname { font-size: 22px; }
+  .coa-banner {
+    padding: 6px 12px;
+    gap: 10px;
+  }
+  .coa-banner__motto {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+  }
+  #projectname {
+    font-size: 22px;
+  }
 }

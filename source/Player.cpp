@@ -1,6 +1,6 @@
-#include "Player.h"
-
 #include <memory>
+
+#include "Player.h"
 
 #include <GLFW/glfw3.h>
 
@@ -60,8 +60,8 @@ void Player::Update(f32 deltaTime)
             }
 
             auto bullet   = GetScene()->CreateObject<Bullet>("bullet");
-            auto material = COA::Material::Load("materials/suzanne.mat");
-            auto mesh     = COA::Mesh::CreateSphere(0.2f, 32, 32);
+            auto material = COA::Material::Load("materials/bullet.mat");
+            auto mesh     = COA::Mesh::CreateSphere(0.1f, 32, 32);
 
             bullet->AddComponent(new COA::MeshComponent(material, mesh));
 
@@ -73,7 +73,7 @@ void Player::Update(f32 deltaTime)
             bullet->SetPosition(pos + GetRotation() * vec3(-0.2f, 0.2f, -1.75f));
 
             auto collider  = std::make_shared<COA::SphereCollider>(0.2f);
-            auto rigidBody = std::make_shared<RigidBody>(COA::BodyType::Dynamic, collider, 10.0f, 0.1f);
+            auto rigidBody = std::make_shared<RigidBody>(COA::BodyType::Dynamic, collider, 5.0f, 1.0f);
             bullet->AddComponent(new COA::PhysicsComponent(rigidBody));
 
             vec3 front = GetRotation() * vec3(0.0f, 0.0f, -1.0f);

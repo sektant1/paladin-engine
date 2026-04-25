@@ -133,9 +133,8 @@ GameObject *Scene::CreateObject(const std::string &name, GameObject *parent)
     {
         SetParent(obj, parent);
     }
-    LOG_INFO("Created GameObject '%s' (parent=%s)",
-             name.c_str(),
-             parent ? parent->GetName().c_str() : kRootObjectLabel);
+    LOG_INFO(
+        "Created GameObject '%s' (parent=%s)", name.c_str(), parent ? parent->GetName().c_str() : kRootObjectLabel);
     return obj;
 }
 
