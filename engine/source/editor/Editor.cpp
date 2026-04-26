@@ -122,19 +122,20 @@ void Editor::BeginFrame()
 
 namespace
 {
-constexpr f32 kLeftWidth    = 300.0F;  // Hierarchy column
-constexpr f32 kRightWidth   = 200.0F;  // Inspector column
-constexpr f32 kBottomHeight = 300.0F;  // Console + Render row
+constexpr f32 kLeftWidth    = 320.0F;  // Settings tabs (Render/Engine/Physics/Player)
+constexpr f32 kRightWidth   = 280.0F;  // Inspector
+constexpr f32 kBottomHeight = 280.0F;  // Console + Hierarchy
+constexpr f32 kConsoleFrac  = 0.62F;   // Console takes 62% of bottom row width
 
 constexpr ImGuiWindowFlags kDockedFlags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
     | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBringToFrontOnFocus;
 
 struct DockRects
 {
-    ImVec2 hierarchyPos, hierarchySize;
+    ImVec2 settingsPos, settingsSize;
     ImVec2 inspectorPos, inspectorSize;
     ImVec2 consolePos, consoleSize;
-    ImVec2 renderPos, renderSize;
+    ImVec2 hierarchyPos, hierarchySize;
     ImVec2 statsPos, statsSize;
 };
 
@@ -146,33 +147,34 @@ DockRects ComputeDock(f32 menuH)
     f32                  vw = vp->WorkSize.x;
     f32                  vh = vp->WorkSize.y - menuH;
 
-    f32 leftW   = (vw < kLeftWidth + kRightWidth + 200.0F) ? vw * 0.22F : kLeftWidth;
-    f32 rightW  = (vw < kLeftWidth + kRightWidth + 200.0F) ? vw * 0.26F : kRightWidth;
-    f32 bottomH = (vh < kBottomHeight + 200.0F) ? vh * 0.28F : kBottomHeight;
+    // Scale columns when the window is too small to fit comfortable defaults.
+    f32 leftW   = (vw < kLeftWidth + kRightWidth + 240.0F) ? vw * 0.24F : kLeftWidth;
+    f32 rightW  = (vw < kLeftWidth + kRightWidth + 240.0F) ? vw * 0.22F : kRightWidth;
+    f32 bottomH = (vh < kBottomHeight + 240.0F) ? vh * 0.30F : kBottomHeight;
 
     DockRects r {};
-    // Left column: Render (full height, no gap at the bottom).
-    r.renderPos  = ImVec2(vx, vy);
-    r.renderSize = ImVec2(leftW, vh);
+    r.settingsPos  = ImVec2(vx, vy);
+    r.settingsSize = ImVec2(leftW, vh);
 
     r.inspectorPos  = ImVec2(vx + vw - rightW, vy);
     r.inspectorSize = ImVec2(rightW, vh);
 
-    f32 bottomY = vy + vh - bottomH;
-    f32 bottomX = vx + leftW;
-    f32 bottomW = vw - leftW - rightW;
-    f32 halfW   = bottomW * 0.5F;
+    f32 bottomY  = vy + vh - bottomH;
+    f32 centerX  = vx + leftW;
+    f32 centerW  = vw - leftW - rightW;
+    f32 consoleW = centerW * kConsoleFrac;
 
-    // Bottom row: Console (left half), Hierarchy (right half).
-    r.consolePos  = ImVec2(bottomX, bottomY);
-    r.consoleSize = ImVec2(halfW, bottomH);
+    r.consolePos  = ImVec2(centerX, bottomY);
+    r.consoleSize = ImVec2(consoleW, bottomH);
 
-    r.hierarchyPos  = ImVec2(bottomX + halfW, bottomY);
-    r.hierarchySize = ImVec2(bottomW - halfW, bottomH);
+    r.hierarchyPos  = ImVec2(centerX + consoleW, bottomY);
+    r.hierarchySize = ImVec2(centerW - consoleW, bottomH);
 
-    // Stats: compact overlay top-left of viewport area (inside the 3D view).
-    r.statsPos  = ImVec2(vx + leftW + 10.0F, vy + 10.0F);
-    r.statsSize = ImVec2(190.0F, 90.0F);
+    // Stats: compact overlay in the viewport's top-right corner.
+    constexpr f32 kStatsW = 190.0F;
+    constexpr f32 kStatsH = 90.0F;
+    r.statsPos  = ImVec2(vx + leftW + centerW - kStatsW - 10.0F, vy + 10.0F);
+    r.statsSize = ImVec2(kStatsW, kStatsH);
     return r;
 }
 }  // namespace
@@ -207,25 +209,19 @@ void Editor::Draw()
         ImGui::SetNextWindowSize(d.consoleSize, ImGuiCond_Always);
         DrawConsole();
     }
-    if (m_showRender)
+    // Settings: single docked window with tabs (Render/Engine/Physics/Player).
+    // Visible if any of those four panels are toggled on.
+    if (m_showRender || m_showEngine || m_showPhysics || m_showPlayer)
     {
-        ImGui::SetNextWindowPos(d.renderPos, ImGuiCond_Always);
-        ImGui::SetNextWindowSize(d.renderSize, ImGuiCond_Always);
-        DrawRender();
+        ImGui::SetNextWindowPos(d.settingsPos, ImGuiCond_Always);
+        ImGui::SetNextWindowSize(d.settingsSize, ImGuiCond_Always);
+        DrawSettings();
     }
     if (m_showStats)
     {
         ImGui::SetNextWindowPos(d.statsPos, ImGuiCond_Always);
         ImGui::SetNextWindowSize(d.statsSize, ImGuiCond_Always);
         DrawStats();
-    }
-    if (m_showEngine)
-    {
-        DrawEnginePanel();
-    }
-    if (m_showPhysics)
-    {
-        DrawPhysicsPanel();
     }
     if (m_showDemo)
     {
@@ -279,6 +275,7 @@ void Editor::DrawMenuBar()
         ImGui::MenuItem("Stats", nullptr, &m_showStats);
         ImGui::MenuItem("Engine", nullptr, &m_showEngine);
         ImGui::MenuItem("Physics", nullptr, &m_showPhysics);
+        ImGui::MenuItem("Player", nullptr, &m_showPlayer);
         ImGui::Separator();
         ImGui::MenuItem("ImGui Demo", nullptr, &m_showDemo);
         ImGui::EndMenu();
@@ -575,16 +572,49 @@ void Editor::DrawConsole()
     ImGui::End();
 }
 
-// ---- Render settings --------------------------------------------------
+// ---- Settings tabs ----------------------------------------------------
 
-void Editor::DrawRender()
+void Editor::DrawSettings()
 {
-    if (!ImGui::Begin("Render", &m_showRender, kDockedFlags))
+    // No close button: closing all tabs is done from the Windows menu instead.
+    ImGuiWindowFlags flags = kDockedFlags | ImGuiWindowFlags_NoTitleBar;
+    if (!ImGui::Begin("##settings", nullptr, flags))
     {
         ImGui::End();
         return;
     }
 
+    if (ImGui::BeginTabBar("settings_tabs", ImGuiTabBarFlags_FittingPolicyScroll))
+    {
+        if (m_showRender && ImGui::BeginTabItem("Render"))
+        {
+            DrawRenderBody();
+            ImGui::EndTabItem();
+        }
+        if (m_showEngine && ImGui::BeginTabItem("Engine"))
+        {
+            DrawEngineBody();
+            ImGui::EndTabItem();
+        }
+        if (m_showPhysics && ImGui::BeginTabItem("Physics"))
+        {
+            DrawPhysicsBody();
+            ImGui::EndTabItem();
+        }
+        if (m_showPlayer && ImGui::BeginTabItem("Player"))
+        {
+            DrawPlayerBody();
+            ImGui::EndTabItem();
+        }
+        ImGui::EndTabBar();
+    }
+    ImGui::End();
+}
+
+// ---- Render settings --------------------------------------------------
+
+void Editor::DrawRenderBody()
+{
     RenderSettings &rs = Engine::GetInstance().GetRenderSettings();
 
     ImGui::SeparatorText("Clear");
@@ -632,21 +662,12 @@ void Editor::DrawRender()
                          GLFW_CURSOR,
                          m_cursorLocked ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
     }
-
-    ImGui::End();
 }
 
-// ---- Engine panel -----------------------------------------------------
+// ---- Engine tab -------------------------------------------------------
 
-void Editor::DrawEnginePanel()
+void Editor::DrawEngineBody()
 {
-    ImGui::SetNextWindowSize(ImVec2(320.0F, 0.0F), ImGuiCond_FirstUseEver);
-    if (!ImGui::Begin("Engine", &m_showEngine))
-    {
-        ImGui::End();
-        return;
-    }
-
     Engine &eng = Engine::GetInstance();
 
     ImGui::SeparatorText("Time");
@@ -685,26 +706,16 @@ void Editor::DrawEnginePanel()
             app->SetNeedsToBeClosed(true);
         }
     }
-
-    ImGui::End();
 }
 
-// ---- Physics panel ----------------------------------------------------
+// ---- Physics tab ------------------------------------------------------
 
-void Editor::DrawPhysicsPanel()
+void Editor::DrawPhysicsBody()
 {
-    ImGui::SetNextWindowSize(ImVec2(320.0F, 0.0F), ImGuiCond_FirstUseEver);
-    if (!ImGui::Begin("Physics", &m_showPhysics))
-    {
-        ImGui::End();
-        return;
-    }
-
     auto *world = Engine::GetInstance().GetPhysicsManager().GetWorld();
     if (world == nullptr)
     {
         ImGui::TextDisabled("Physics world not available");
-        ImGui::End();
         return;
     }
 
@@ -726,8 +737,6 @@ void Editor::DrawPhysicsPanel()
 
     int bodies = world->getNumCollisionObjects();
     ImGui::Text("Collision objects: %d", bodies);
-
-    ImGui::End();
 }
 
 // ---- Stats ------------------------------------------------------------
@@ -747,6 +756,136 @@ void Editor::DrawStats()
     ImGui::Text("Frame time: %6.2f ms", dt * 1000.0F);
     ImGui::Text("Draw calls: %d", m_lastDrawCount);
     ImGui::End();
+}
+
+// ---- Player panel -----------------------------------------------------
+
+namespace
+{
+PlayerControllerComponent *FindPlayer(GameObject *obj)
+{
+    if (obj == nullptr)
+    {
+        return nullptr;
+    }
+    if (auto *player = obj->GetComponent<PlayerControllerComponent>())
+    {
+        return player;
+    }
+    for (const auto &child : obj->GetChildren())
+    {
+        if (auto *found = FindPlayer(child.get()))
+        {
+            return found;
+        }
+    }
+    return nullptr;
+}
+}  // namespace
+
+void Editor::DrawPlayerBody()
+{
+    Scene                     *scene  = Engine::GetInstance().GetScene();
+    PlayerControllerComponent *player = nullptr;
+    if (scene != nullptr)
+    {
+        for (const auto &root : scene->GetRootObjects())
+        {
+            player = FindPlayer(root.get());
+            if (player != nullptr)
+            {
+                break;
+            }
+        }
+    }
+    if (player == nullptr)
+    {
+        ImGui::TextDisabled("No PlayerControllerComponent in scene");
+        return;
+    }
+
+    ImGui::SeparatorText("Look");
+    f32 sens = player->GetSensitivity();
+    if (ImGui::SliderFloat("Sensitivity (deg/px)", &sens, 0.01F, 1.0F, "%.3f"))
+    {
+        player->SetSensitivity(sens);
+    }
+
+    ImGui::SeparatorText("Movement");
+    f32 moveSpeed = player->GetMoveSpeed();
+    if (ImGui::SliderFloat("Max speed (m/s)", &moveSpeed, 1.0F, 20.0F, "%.2f"))
+    {
+        player->SetMoveSpeed(moveSpeed);
+    }
+    f32 jumpSpeed = player->GetJumpSpeed();
+    if (ImGui::SliderFloat("Jump x maxSpeed", &jumpSpeed, 0.0F, 2.0F, "%.2f"))
+    {
+        player->SetJumpSpeed(jumpSpeed);
+    }
+    ImGui::Text("  -> jump impulse: %.2f m/s", moveSpeed * jumpSpeed);
+
+    ImGui::SeparatorText("Acceleration");
+    f32 groundAccel = player->GetGroundAccel();
+    if (ImGui::SliderFloat("Ground accel", &groundAccel, 0.0F, 30.0F, "%.2f"))
+    {
+        player->SetGroundAccel(groundAccel);
+    }
+    f32 airAccel = player->GetAirAccel();
+    if (ImGui::SliderFloat("Air accel", &airAccel, 0.0F, 30.0F, "%.2f"))
+    {
+        player->SetAirAccel(airAccel);
+    }
+    f32 fric = player->GetFriction();
+    if (ImGui::SliderFloat("Friction", &fric, 0.0F, 12.0F, "%.2f"))
+    {
+        player->SetFriction(fric);
+    }
+    f32 cap = player->GetAirCap();
+    if (ImGui::SliderFloat("Air wishspeed cap", &cap, 0.1F, 30.0F, "%.2f"))
+    {
+        player->SetAirCap(cap);
+    }
+    ImGui::TextDisabled("Low cap (~0.76) = Q3 strafe-jump; high = HL air control");
+
+    bool hop = player->GetAutoHop();
+    if (ImGui::Checkbox("Auto bunny-hop (hold Space)", &hop))
+    {
+        player->SetAutoHop(hop);
+    }
+
+    ImGui::SeparatorText("Presets");
+    if (ImGui::Button("HL1"))
+    {
+        player->SetMoveSpeed(7.5F);
+        player->SetJumpSpeed(0.9F);
+        player->SetGroundAccel(10.0F);
+        player->SetAirAccel(10.0F);
+        player->SetFriction(4.0F);
+        player->SetAirCap(30.0F);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Quake3"))
+    {
+        player->SetMoveSpeed(8.0F);
+        player->SetJumpSpeed(1.0F);
+        player->SetGroundAccel(10.0F);
+        player->SetAirAccel(1.0F);
+        player->SetFriction(6.0F);
+        player->SetAirCap(0.76F);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Source"))
+    {
+        player->SetMoveSpeed(7.6F);
+        player->SetJumpSpeed(0.85F);
+        player->SetGroundAccel(10.0F);
+        player->SetAirAccel(10.0F);
+        player->SetFriction(4.0F);
+        player->SetAirCap(30.0F);
+    }
+
+    ImGui::SeparatorText("Live");
+    ImGui::Text("On ground: %s", player->OnGround() ? "yes" : "no");
 }
 
 }  // namespace mnd

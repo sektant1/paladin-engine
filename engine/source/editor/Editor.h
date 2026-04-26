@@ -77,14 +77,16 @@ private:
     void DrawHierarchy();
     void DrawInspector();
     void DrawConsole();
-    void DrawRender();
     void DrawStats();
-    void DrawEnginePanel();
-    void DrawPhysicsPanel();
+    void DrawSettings();      ///< Tabbed left-column window holding the four bodies below.
+    void DrawRenderBody();    ///< Render tab content (no Begin/End).
+    void DrawEngineBody();    ///< Engine tab content.
+    void DrawPhysicsBody();   ///< Physics tab content.
+    void DrawPlayerBody();    ///< Player tab content.
     void DrawObjectNode(GameObject *obj);
 
     bool        m_initialized   = false;
-    bool        m_visible       = true;
+    bool        m_visible       = false;  ///< Hidden at startup; F1 opens.
     bool        m_showHierarchy = true;
     bool        m_showInspector = true;
     bool        m_showConsole   = true;
@@ -92,6 +94,7 @@ private:
     bool        m_showStats     = true;
     bool        m_showEngine    = true;
     bool        m_showPhysics   = false;
+    bool        m_showPlayer    = false;
     bool        m_showDemo      = false;
     GameObject *m_selected      = nullptr;
     int         m_lastDrawCount = 0;

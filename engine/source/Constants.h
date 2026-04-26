@@ -74,9 +74,27 @@ inline constexpr mnd::f32 kPitchLimitDegrees       = 89.0F;
 inline constexpr mnd::f32 kCameraFov               = 60.0F;
 inline constexpr mnd::f32 kCameraNearPlane         = 0.01F;
 inline constexpr mnd::f32 kCameraFarPlane          = 1000.0F;
-inline constexpr mnd::f32 kDefaultMouseSensitivity = 15.0F;
-inline constexpr mnd::f32 kDefaultMoveSpeed        = 5.0F;
-inline constexpr mnd::f32 kDefaultJumpSpeed        = 0.5F;
+// Mouse-look: degrees per pixel of mouse delta. Raw (no deltaTime scaling)
+// matches GoldSrc/Source — each mouse count maps to a fixed angle regardless
+// of frame rate.
+inline constexpr mnd::f32 kDefaultMouseSensitivity = 0.15F;
+// Top run speed: HL1 sv_maxspeed=320 ups ≈ 8.13 m/s. 7.5 m/s feels close
+// while reading better at 1u≈1m scenes.
+inline constexpr mnd::f32 kDefaultMoveSpeed = 7.5F;
+// Jump impulse multiplier on moveSpeed. HL1 jump = 268 ups ≈ 6.8 m/s,
+// so 7.5 * 0.9 ≈ 6.75 m/s. Reaches ~2.3 m at gravity 9.81.
+inline constexpr mnd::f32 kDefaultJumpSpeed = 0.9F;
+
+// -- HL/GoldSrc-style movement -----------------------------------------------
+// Tuned to mirror sv_accelerate / sv_airaccelerate / sv_friction / sv_stopspeed.
+inline constexpr mnd::f32 kQuakeGroundAccel = 10.0F;  ///< sv_accelerate.
+inline constexpr mnd::f32 kQuakeAirAccel    = 10.0F;  ///< sv_airaccelerate (HL1 = 10; Q3 = 1).
+inline constexpr mnd::f32 kQuakeFriction    = 4.0F;   ///< sv_friction.
+inline constexpr mnd::f32 kQuakeStopSpeed   = 2.5F;   ///< sv_stopspeed (100 ups).
+// Per-axis wishspeed cap mid-air. HL has no cap → set above any reasonable
+// moveSpeed so the binding cap becomes moveSpeed itself. Lower it (≈ 0.76)
+// for CPMA/Q3-style strafe-jumping.
+inline constexpr mnd::f32 kQuakeAirCap = 30.0F;
 
 // -- Simulation --------------------------------------------------------------
 inline constexpr mnd::f32 kFixedTimeStep = 1.0F / 60.0F;
