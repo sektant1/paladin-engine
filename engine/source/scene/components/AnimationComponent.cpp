@@ -1,59 +1,72 @@
 #include "scene/components/AnimationComponent.h"
 
+#include "animation/SkeletalAnimationClip.h"
+#include "animation/Skeleton.h"
 #include "scene/GameObject.h"
 
 namespace mnd
 {
 void AnimationComponent::Update(float deltaTime)
 {
-    if (!m_clip)
-    {
-        return;
-    }
-
     if (!m_isPlaying)
     {
         return;
     }
+    if (!m_clip && !m_activeSkelClip)
+    {
+        return;
+    }
+
+    // Effective duration: longest of the active lanes.
+    float duration = 0.0f;
+    if (m_clip)            duration = std::max(duration, m_clip->duration);
+    if (m_activeSkelClip)  duration = std::max(duration, m_activeSkelClip->duration);
 
     m_time += deltaTime;
-
-    if (m_time > m_clip->duration)
+    if (duration > 0.0f && m_time > duration)
     {
         if (m_looping)
         {
-            m_time = std::fmod(m_time, m_clip->duration);
+            m_time = std::fmod(m_time, duration);
         } else
         {
-            m_time      = 0.0f;
+            m_time      = duration;
             m_isPlaying = false;
-            return;
         }
     }
 
-    for (auto &binding : m_bindings)
+    // Node-track lane: drive child GameObjects by name.
+    if (m_clip)
     {
-        auto &obj          = binding.first;
-        auto &trackIndices = binding.second->trackIndices;
-        for (auto i : trackIndices)
+        for (auto &binding : m_bindings)
         {
-            auto &track = m_clip->tracks[i];
-            if (!track.positions.empty())
+            auto &obj          = binding.first;
+            auto &trackIndices = binding.second->trackIndices;
+            for (auto i : trackIndices)
             {
-                auto pos = Interpolate(track.positions, m_time);
-                obj->SetPosition(pos);
-            }
-            if (!track.rotations.empty())
-            {
-                auto rot = Interpolate(track.rotations, m_time);
-                obj->SetRotation(rot);
-            }
-            if (!track.scales.empty())
-            {
-                auto scale = Interpolate(track.scales, m_time);
-                obj->SetScale(scale);
+                auto &track = m_clip->tracks[i];
+                if (!track.positions.empty())
+                {
+                    obj->SetPosition(Interpolate(track.positions, m_time));
+                }
+                if (!track.rotations.empty())
+                {
+                    obj->SetRotation(Interpolate(track.rotations, m_time));
+                }
+                if (!track.scales.empty())
+                {
+                    obj->SetScale(Interpolate(track.scales, m_time));
+                }
             }
         }
+    }
+
+    // Skeletal lane: evaluate pose → fill GPU palette read by SkinnedMeshComponent.
+    if (m_activeSkelClip && m_skeleton)
+    {
+        EvaluatePose(*m_activeSkelClip, *m_skeleton, m_time, m_pose);
+        ComputePalette(*m_skeleton, m_pose);
+        m_palette = m_pose.finalPalette;
     }
 }
 
@@ -68,24 +81,54 @@ void AnimationComponent::RegisterClip(const std::string &name, const std::shared
     m_clips[name] = clip;
 }
 
+void AnimationComponent::RegisterSkeletalClip(const std::string &name, const std::shared_ptr<SkeletalAnimationClip> &clip)
+{
+    // Step 7 wires this into Update(). For now we just stash so the importer compiles.
+    m_skelClips[name] = clip;
+}
+
+void AnimationComponent::SetSkeleton(const std::shared_ptr<Skeleton> &skeleton)
+{
+    m_skeleton = skeleton;
+}
+
 void AnimationComponent::Play(const std::string &name, bool loop)
 {
-    if (m_clip && m_clip->name == name)
+    bool found = false;
+
+    auto nodeIt = m_clips.find(name);
+    if (nodeIt != m_clips.end())
     {
-        m_time      = 0.0f;
-        m_isPlaying = true;
-        m_looping   = loop;
+        SetClip(nodeIt->second.get());
+        found = true;
     } else
     {
-        auto it = m_clips.find(name);
-        if (it != m_clips.end())
-        {
-            SetClip(it->second.get());
-            m_time      = 0.0f;
-            m_isPlaying = true;
-            m_looping   = loop;
-        }
+        m_clip = nullptr;
+        m_bindings.clear();
     }
+
+    auto skelIt = m_skelClips.find(name);
+    if (skelIt != m_skelClips.end())
+    {
+        m_activeSkelClip = skelIt->second.get();
+        if (m_skeleton)
+        {
+            ResetPoseToBind(*m_skeleton, m_pose);
+        }
+        found = true;
+    } else
+    {
+        m_activeSkelClip = nullptr;
+    }
+
+    if (!found)
+    {
+        return;
+    }
+
+    m_time      = 0.0f;
+    m_isPlaying = true;
+    m_looping   = loop;
 }
 
 void AnimationComponent::BuildBindings()

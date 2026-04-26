@@ -120,6 +120,8 @@ inline constexpr const char *kJsonKeyZ          = "z";
 inline constexpr const char *kJsonKeyW          = "w";
 
 inline constexpr const char *kSceneTypeGltf     = "gltf";
+inline constexpr const char *kSceneTypeFbx      = "fbx";
+inline constexpr const char *kSceneTypeModel    = "model";
 inline constexpr const char *kDefaultObjectName = "Object";
 inline constexpr const char *kDefaultSceneName  = "noname";
 inline constexpr const char *kRootObjectLabel   = "";

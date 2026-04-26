@@ -26,6 +26,13 @@
           "path": "models/carbine/scene.gltf",
           "position": { "x": 0.75, "y": -0.5, "z": -0.75 },
           "scale": { "x": -1, "y": 1, "z": 1 }
+        },
+        {
+          "name": "Hands",
+          "type": "fbx",
+          "path": "models/arms/arms.fbx",
+          "position": { "x": 0, "y": -0.4, "z": -0.6 },
+          "scale": { "x": 0.01, "y": 0.01, "z": 0.01 }
         }
       ]
     },

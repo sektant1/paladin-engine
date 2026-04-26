@@ -48,10 +48,12 @@ struct VertexElement
 
     /// @brief Canonical attribute slot indices — must match the GLSL layout locations.
     /// @{
-    static constexpr int PositionIndex = 0;  ///< layout(location = 0) vec3 aPosition
-    static constexpr int ColorIndex    = 1;  ///< layout(location = 1) vec3 aColor
-    static constexpr int UVIndex       = 2;  ///< layout(location = 2) vec2 aUV
-    static constexpr int NormalIndex   = 3;  ///< layout(location = 3) vec3 aNormal
+    static constexpr int PositionIndex     = 0;  ///< layout(location = 0) vec3 aPosition
+    static constexpr int ColorIndex        = 1;  ///< layout(location = 1) vec3 aColor
+    static constexpr int UVIndex           = 2;  ///< layout(location = 2) vec2 aUV
+    static constexpr int NormalIndex       = 3;  ///< layout(location = 3) vec3 aNormal
+    static constexpr int BoneIndicesIndex  = 4;  ///< layout(location = 4) ivec4 aBoneIndices
+    static constexpr int BoneWeightsIndex  = 5;  ///< layout(location = 5) vec4  aBoneWeights
     /// @}
 };
 

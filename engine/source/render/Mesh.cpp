@@ -12,6 +12,37 @@
 namespace mnd
 {
 
+namespace
+{
+bool IsIntegerAttribType(GLuint type)
+{
+    switch (type)
+    {
+        case GL_BYTE:
+        case GL_UNSIGNED_BYTE:
+        case GL_SHORT:
+        case GL_UNSIGNED_SHORT:
+        case GL_INT:
+        case GL_UNSIGNED_INT:
+            return true;
+        default:
+            return false;
+    }
+}
+
+void SetupAttribute(const VertexElement &element, uint32_t stride)
+{
+    if (IsIntegerAttribType(element.type))
+    {
+        glVertexAttribIPointer(element.index, element.size, element.type, stride, (void *)(uintptr_t)element.offset);
+    } else
+    {
+        glVertexAttribPointer(element.index, element.size, element.type, GL_FALSE, stride, (void *)(uintptr_t)element.offset);
+    }
+    glEnableVertexAttribArray(element.index);
+}
+}  // namespace
+
 Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const std::vector<uint32_t> &indices)
     : m_vertexLayout(layout)
 {
@@ -27,13 +58,7 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices, const
 
     for (auto &element : m_vertexLayout.elements)
     {
-        glVertexAttribPointer(element.index,
-                              element.size,
-                              element.type,
-                              GL_FALSE,
-                              m_vertexLayout.stride,
-                              (void *)(uintptr_t)element.offset);
-        glEnableVertexAttribArray(element.index);
+        SetupAttribute(element, m_vertexLayout.stride);
     }
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
@@ -150,13 +175,7 @@ Mesh::Mesh(const VertexLayout &layout, const std::vector<float> &vertices)
 
     for (auto &element : m_vertexLayout.elements)
     {
-        glVertexAttribPointer(element.index,
-                              element.size,
-                              element.type,
-                              GL_FALSE,
-                              m_vertexLayout.stride,
-                              (void *)(uintptr_t)element.offset);
-        glEnableVertexAttribArray(element.index);
+        SetupAttribute(element, m_vertexLayout.stride);
     }
 
     glBindVertexArray(0);

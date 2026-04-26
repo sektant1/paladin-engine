@@ -53,6 +53,14 @@
             "y": 1.0,
             "z": 1.0
           }
+        },
+        {
+          "name": "Hands",
+          "type": "fbx",
+          "path": "models/arms/arms.fbx",
+          "position": { "x": 0.0, "y": 0.095, "z": -1.785 },
+          "rotation_deg": { "x": 29.0, "y": 0.0, "z": 0.0 },
+          "scale": { "x": 0.5245, "y": 0.5245, "z": 0.5245 }
         }
       ]
     },
@@ -1662,7 +1670,12 @@
             "path": "materials/light_bulb.mat",
             "params": {
               "float3": [
-                { "name": "uEmissive", "value0": 1.0, "value1": 1.0, "value2": 1.0 }
+                {
+                  "name": "uEmissive",
+                  "value0": 1.0,
+                  "value1": 1.0,
+                  "value2": 1.0
+                }
               ]
             }
           }

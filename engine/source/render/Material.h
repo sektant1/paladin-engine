@@ -31,6 +31,9 @@
 #include <string>
 #include <tuple>
 #include <unordered_map>
+#include <vector>
+
+#include <glm/mat4x4.hpp>
 
 #include "Types.h"
 #include "graphics/Texture.h"
@@ -64,6 +67,7 @@ class Material
     void SetParam(const std::string &name, const vec3 &value);                        ///< Set a vec3 uniform.
     void SetParam(const std::string &name, const vec4 &value);                        ///< Set a vec4 uniform.
     void SetParam(const std::string &name, const std::shared_ptr<Texture> &texture);  ///< Set a sampler2D uniform.
+    void SetParam(const std::string &name, const std::vector<glm::mat4> &matrices);   ///< Set a mat4[] uniform (e.g. bone palette).
     /// @}
 
     /**
@@ -91,6 +95,7 @@ class Material
     std::unordered_map<std::string, vec3>                     m_float3Params;   ///< vec3 uniforms.
     std::unordered_map<std::string, vec4>                     m_float4Params;   ///< vec4 uniforms.
     std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;       ///< Sampler2D uniforms.
+    std::unordered_map<std::string, std::vector<glm::mat4>>   m_mat4ArrayParams; ///< mat4[] uniforms (bone palettes etc.).
 };
 
 }  // namespace mnd

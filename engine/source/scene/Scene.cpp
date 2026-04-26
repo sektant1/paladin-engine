@@ -9,6 +9,7 @@
 #include "Common.h"
 #include "Engine.h"
 #include "Log.h"
+#include "io/ModelImporter.h"
 #include "scene/GameObject.h"
 #include "scene/components/AnimationComponent.h"
 #include "scene/components/AudioComponent.h"
@@ -16,6 +17,7 @@
 #include "scene/components/CameraComponent.h"
 #include "scene/components/LightComponent.h"
 #include "scene/components/MeshComponent.h"
+#include "scene/components/SkinnedMeshComponent.h"
 #include "scene/components/PhysicsComponent.h"
 #include "scene/components/PlayerControllerComponent.h"
 
@@ -28,6 +30,7 @@ void Scene::RegisterTypes()
     CameraComponent::Register();
     LightComponent::Register();
     MeshComponent::Register();
+    SkinnedMeshComponent::Register();
     PhysicsComponent::Register();
     PlayerControllerComponent::Register();
     AudioComponent::Register();
@@ -159,6 +162,18 @@ void Scene::LoadObject(const nlohmann::json &jsonObject, GameObject *parent)
             } else
             {
                 LOG_ERROR("Scene::LoadObject failed to load GLTF '%s' for object '%s'", path.c_str(), name.c_str());
+            }
+        } else if (type == kSceneTypeFbx || type == kSceneTypeModel)
+        {
+            std::string path = jsonObject.value(kJsonKeyPath, "");
+            gameObject       = ModelImporter::Import(path, this);
+            if (gameObject)
+            {
+                gameObject->SetParent(parent);
+                gameObject->SetName(name);
+            } else
+            {
+                LOG_ERROR("Scene::LoadObject failed to import model '%s' for object '%s'", path.c_str(), name.c_str());
             }
         } else
         {

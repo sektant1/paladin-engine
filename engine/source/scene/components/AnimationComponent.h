@@ -41,28 +41,17 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/vec3.hpp>
 
+#include <glm/mat4x4.hpp>
+
+#include "animation/KeyFrame.h"
+#include "animation/Pose.h"
 #include "scene/Component.h"
 
 namespace mnd
 {
 
-/**
- * @brief A single keyframe for a vec3 channel (position or scale).
- */
-struct KeyFrameVec3
-{
-    float     time  = 0.0f;             ///< Keyframe timestamp in seconds.
-    glm::vec3 value = glm::vec3(0.0f);  ///< Vec3 value at this keyframe.
-};
-
-/**
- * @brief A single keyframe for a quaternion rotation channel.
- */
-struct KeyFrameQuat
-{
-    float     time  = 0.0f;                               ///< Keyframe timestamp in seconds.
-    glm::quat value = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);  ///< Unit quaternion at this keyframe.
-};
+class Skeleton;
+struct SkeletalAnimationClip;
 
 /**
  * @brief Animation data for one GLTF node: position, rotation, and scale tracks.
@@ -131,7 +120,27 @@ public:
      */
     void RegisterClip(const std::string &name, const std::shared_ptr<AnimationClip> &clip);
 
+    /// Register a skeletal clip (per-bone TRS tracks) — used by SkinnedMeshComponent.
+    void RegisterSkeletalClip(const std::string &name, const std::shared_ptr<SkeletalAnimationClip> &clip);
+
+    /// Bind a skeleton to the component so skeletal clips can be evaluated.
+    void SetSkeleton(const std::shared_ptr<Skeleton> &skeleton);
+
+    /// Read-only handle to the bound skeleton (may be null for non-skeletal anims).
+    const std::shared_ptr<Skeleton> &GetSkeleton() const { return m_skeleton; }
+
+    /// Halt playback. Pose freezes at the current frame.
+    void Stop() { m_isPlaying = false; }
+
     bool IsPlaying();
+
+    /**
+     * @brief Read-only access to the bone palette computed at the last Update().
+     *
+     * Empty until a skeletal clip is registered and Play() has been called.
+     * `SkinnedMeshComponent` reads this to upload `uBones[]` each frame.
+     */
+    const std::vector<glm::mat4> &GetPalette() const { return m_palette; }
 
     /**
      * @brief Start playing a registered clip by name.
@@ -168,6 +177,13 @@ private:
     std::unordered_map<std::string, std::shared_ptr<AnimationClip>> m_clips;  ///< Registered clips by name.
     std::unordered_map<GameObject *, std::unique_ptr<ObjectBinding>>
         m_bindings;  ///< Track-to-object bindings built at play time.
+
+    std::vector<glm::mat4> m_palette;  ///< Latest skinning palette (empty for non-skeletal clips). Filled in step 7.
+
+    std::shared_ptr<Skeleton>                                              m_skeleton;
+    std::unordered_map<std::string, std::shared_ptr<SkeletalAnimationClip>> m_skelClips;
+    SkeletalAnimationClip                                                 *m_activeSkelClip = nullptr;
+    Pose                                                                   m_pose;
 };
 
 }  // namespace mnd

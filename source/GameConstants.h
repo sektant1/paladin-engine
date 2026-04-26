@@ -16,12 +16,14 @@ inline constexpr const char *kDungeonScenePath    = "scenes/dungeon.json";
 inline constexpr const char *kChildBulletName = "bullet_33";
 inline constexpr const char *kChildBoomName   = "BOOM_35";
 inline constexpr const char *kChildGunName    = "Gun";
+inline constexpr const char *kChildHandsName  = "Hands";
 
 // Audio / animation cue names
 inline constexpr const char *kSfxShoot  = "shoot";
 inline constexpr const char *kSfxJump   = "jump";
 inline constexpr const char *kSfxStep   = "step";
 inline constexpr const char *kAnimShoot = "shoot";
+inline constexpr const char *kAnimIdle  = "idle";
 
 // -- Bullet ------------------------------------------------------------------
 inline constexpr mnd::f32 kBulletLifetime = 4.0F;

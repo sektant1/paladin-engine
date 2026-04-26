@@ -73,6 +73,7 @@ public:
     void SetUniform(const std::string &name, float v0, float v1, float v2, float v3);   ///< Upload a vec4 uniform.
     void SetUniform(const std::string &name, const mat4 &mat);                           ///< Upload a 4×4 matrix (column-major).
     void SetUniform(const std::string &name, const vec3 &value);                         ///< Upload a vec3 from a glm::vec3.
+    void SetUniform(const std::string &name, const mat4 *matrices, std::size_t count);   ///< Upload an array of 4×4 matrices.
 
     /**
      * @brief Bind a texture to the next available texture unit and set the sampler uniform.

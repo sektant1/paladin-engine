@@ -46,6 +46,11 @@ void Material::SetParam(const std::string &name, const std::shared_ptr<Texture> 
     m_textures[name] = texture;
 }
 
+void Material::SetParam(const std::string &name, const std::vector<glm::mat4> &matrices)
+{
+    m_mat4ArrayParams[name] = matrices;
+}
+
 std::shared_ptr<Material> Material::Load(const str &path)
 {
     auto contents = Engine::GetInstance().GetFileSystem().LoadAssetFileText(path);
@@ -199,6 +204,10 @@ void Material::Bind()
     for (const auto &tex : m_textures)
     {
         m_shaderProgram->SetTexture(tex.first, tex.second.get());
+    }
+    for (const auto &param : m_mat4ArrayParams)
+    {
+        m_shaderProgram->SetUniform(param.first, param.second.data(), param.second.size());
     }
 }
 }  // namespace mnd

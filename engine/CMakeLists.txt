@@ -97,6 +97,22 @@ target_include_directories(nlohmann_json INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/t
 add_library(cgltf INTERFACE)
 target_include_directories(cgltf INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cgltf)
 
+# -- Third party: Assimp (FBX + glTF + OBJ importers only) --
+set(ASSIMP_BUILD_TESTS                    OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ASSIMP_TOOLS             OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_SAMPLES                  OFF CACHE BOOL "" FORCE)
+set(ASSIMP_INSTALL                        OFF CACHE BOOL "" FORCE)
+set(ASSIMP_INSTALL_PDB                    OFF CACHE BOOL "" FORCE)
+set(ASSIMP_NO_EXPORT                      ON  CACHE BOOL "" FORCE)
+set(ASSIMP_WARNINGS_AS_ERRORS             OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ZLIB                     ON  CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ALL_EXPORTERS_BY_DEFAULT OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_FBX_IMPORTER             ON  CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_GLTF_IMPORTER            ON  CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_OBJ_IMPORTER             ON  CACHE BOOL "" FORCE)
+add_subdirectory(thirdparty/assimp EXCLUDE_FROM_ALL)
+
 set(BUILD_UTILS
     OFF
     CACHE BOOL "utilities" FORCE)
@@ -152,7 +168,8 @@ target_link_libraries(
   BulletCollision
   LinearMath
   miniaudio
-  imgui)
+  imgui
+  assimp)
 
 add_custom_command(
   TARGET ${PROJECT_NAME}

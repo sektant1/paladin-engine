@@ -73,6 +73,16 @@ void ShaderProgram::SetUniform(const std::string &name, const vec3 &value)
     glUniform3fv(location, 1, value_ptr(value));
 }
 
+void ShaderProgram::SetUniform(const std::string &name, const mat4 *matrices, std::size_t count)
+{
+    if (count == 0 || matrices == nullptr)
+    {
+        return;
+    }
+    auto location = GetUniformLocation(name);
+    glUniformMatrix4fv(location, static_cast<GLsizei>(count), GL_FALSE, value_ptr(matrices[0]));
+}
+
 void ShaderProgram::SetTexture(const std::string &name, Texture *texture)
 {
     auto location = GetUniformLocation(name);
