@@ -53,7 +53,7 @@ void RenderQueue::Draw(GraphicsAPI &graphicsAPI, const CameraData &cameraData, c
         {
             auto &light = lights[0];
             program->SetUniform("uLight.color", light.color);
-            program->SetUniform("uLight.direction", normalize(-light.position));
+            program->SetUniform("uLight.position", light.position);
         }
 
         // Editor-controlled PSX shader uniforms. ShaderProgram::SetUniform is a no-op

@@ -3,7 +3,7 @@
 struct Light
 {
     vec3 color;
-    vec3 direction;
+    vec3 position;
 };
 
 uniform Light uLight;
@@ -22,19 +22,16 @@ void main()
 {
     vec3 norm = normalize(vNormal);
 
-    // diffuse
-    vec3 lightDir = normalize(-uLight.direction);
+    vec3 lightDir = normalize(uLight.position - vFragPos);
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 diffuse = diff * uLight.color;
 
-    // specular
     vec3 viewDir = normalize(uCameraPos - vFragPos);
-    vec3 redlectDir = reflect(-lightDir, norm);
-    float spec = pow(max(dot(viewDir, redlectDir), 0.0), 32.0);
+    vec3 reflectDir = reflect(-lightDir, norm);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32.0);
     float specularStrength = 0.5;
     vec3 specular = specularStrength * spec * uLight.color;
 
-    // ambient
     const float ambientStrength = 0.4;
     vec3 ambient = ambientStrength * uLight.color;
 

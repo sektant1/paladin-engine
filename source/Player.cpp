@@ -76,6 +76,9 @@ void Player::Update(f32 deltaTime)
             auto rigidBody = std::make_shared<RigidBody>(mnd::BodyType::Dynamic, collider, 5.0f, 1.0f);
             bullet->AddComponent(new mnd::PhysicsComponent(rigidBody));
 
+            // CCD: bullet moves ~1.67 u/frame at 60fps, way past sphere radius 0.2 — needs swept test.
+            rigidBody->EnableCcd(0.1f, 0.15f);
+
             vec3 front = GetRotation() * vec3(0.0f, 0.0f, -1.0f);
             rigidBody->ApplyImpulse(front * 500.0f);
         }

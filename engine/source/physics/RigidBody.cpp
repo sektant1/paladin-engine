@@ -136,4 +136,14 @@ void RigidBody::ApplyImpulse(const vec3 &impulse)
     m_body->applyCentralImpulse(btVector3(btScalar(impulse.x), btScalar(impulse.y), btScalar(impulse.z)));
 }
 
+void RigidBody::EnableCcd(float motionThreshold, float sweptRadius)
+{
+    if (!m_body)
+    {
+        return;
+    }
+    m_body->setCcdMotionThreshold(btScalar(motionThreshold));
+    m_body->setCcdSweptSphereRadius(btScalar(sweptRadius));
+}
+
 }  // namespace mnd

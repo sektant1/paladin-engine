@@ -67,6 +67,11 @@ class RigidBody : public CollisionObject
 
     void ApplyImpulse(const vec3 &impulse);
 
+    /// Enable continuous collision detection (prevents tunneling for fast bodies).
+    /// motionThreshold: velocity per step above which CCD kicks in (set < expected step distance).
+    /// sweptRadius:     embedded sphere radius used for the swept test (typically ~0.2× shape radius).
+    void EnableCcd(float motionThreshold, float sweptRadius);
+
  private:
     std::unique_ptr<btRigidBody> m_body;
     BodyType                     m_type = BodyType::Static;
