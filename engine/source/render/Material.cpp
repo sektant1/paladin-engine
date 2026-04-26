@@ -91,6 +91,7 @@ std::shared_ptr<Material> Material::Load(const str &path)
 
         result = std::make_shared<Material>();
         result->SetShaderProgram(shaderProgram);
+        result->SetParam("color", vec3(1.0F));
     }
 
     if (json.contains("params"))
