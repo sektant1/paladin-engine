@@ -10,6 +10,7 @@
 
 #include "Constants.h"
 #include "Types.h"
+#include "physics/CollisionObject.h"
 
 class btPairCachingGhostObject;
 class btKinematicCharacterController;
@@ -25,9 +26,9 @@ namespace mnd
  * @ref Walk / @ref Jump with desired directions and Bullet resolves the resulting
  * motion against the collision world.
  */
-class KinematicCharacterController
+class KinematicCharacterController : public CollisionObject
 {
-public:
+ public:
     /**
      * @param radius   Capsule radius (metres).
      * @param height   Capsule height (metres, full — caps included).
@@ -48,7 +49,7 @@ public:
     /// True when the controller has a contact point beneath it.
     [[nodiscard]] bool OnGround() const;
 
-private:
+ private:
     float m_height = kDefaultCapsuleHeight;
     float m_radius = kDefaultCapsuleRadius;
 

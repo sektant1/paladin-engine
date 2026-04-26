@@ -21,7 +21,9 @@ if(NOT MONAD_DOCS_ONLY)
       source/Player.h
       source/Player.cpp
       source/Bullet.h
-      source/Bullet.cpp)
+      source/Bullet.cpp
+      source/JumpPlatform.h
+      source/JumpPlatform.cpp)
 
   # Add the application
   include_directories(source)

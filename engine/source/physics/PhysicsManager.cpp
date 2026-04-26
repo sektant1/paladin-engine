@@ -4,6 +4,7 @@
 #include <btBulletDynamicsCommon.h>
 
 #include "Constants.h"
+#include "physics/CollisionObject.h"
 #include "physics/RigidBody.h"
 
 namespace mnd
@@ -19,7 +20,8 @@ void PhysicsManager::Init()
     m_dispatcher      = std::make_unique<btCollisionDispatcher>(m_collisionConfig.get());
     m_solver          = std::make_unique<btSequentialImpulseConstraintSolver>();
     m_world           = std::make_unique<btDiscreteDynamicsWorld>(
-        m_dispatcher.get(), m_broadphase.get(), m_solver.get(), m_collisionConfig.get());
+        m_dispatcher.get(), m_broadphase.get(), m_solver.get(), m_collisionConfig.get()
+    );
 
     m_world->setGravity(btVector3(0, kGravity, 0));
 }
@@ -27,6 +29,38 @@ void PhysicsManager::Init()
 void PhysicsManager::Update(float deltaTime)
 {
     m_world->stepSimulation(deltaTime, kMaxSubSteps, kFixedTimeStep);
+
+    auto       dispatcher   = m_world->getDispatcher();
+    const auto numManifolds = dispatcher->getNumManifolds();
+
+    for (int i = 0; i < numManifolds; ++i)
+    {
+        auto manifold = dispatcher->getManifoldByIndexInternal(i);
+
+        if (!manifold)
+        {
+            continue;
+        }
+
+        auto bodyA = reinterpret_cast<CollisionObject *>(manifold->getBody0()->getUserPointer());
+        auto bodyB = reinterpret_cast<CollisionObject *>(manifold->getBody1()->getUserPointer());
+
+        if (!bodyA || !bodyB)
+        {
+            continue;
+        }
+
+        const auto numContacts = manifold->getNumContacts();
+        for (int j = 0; j < numContacts; ++j)
+        {
+            const auto &point = manifold->getContactPoint(j);
+            const vec3  pos(point.m_positionWorldOnB.x(), point.m_positionWorldOnB.y(), point.m_positionWorldOnB.z());
+            const vec3  norm(point.m_normalWorldOnB.x(), point.m_normalWorldOnB.y(), point.m_normalWorldOnB.z());
+
+            bodyA->DispatchContactEvent(bodyB, pos, norm);
+            bodyB->DispatchContactEvent(bodyA, pos, norm);
+        }
+    }
 }
 
 void PhysicsManager::AddRigidBody(RigidBody *body)

@@ -17,9 +17,11 @@ void RenderQueue::Submit(const RenderCommand &command)
 {
     if (!command.material || !command.mesh)
     {
-        LOG_WARN("RenderQueue::Submit received incomplete command (material=%p mesh=%p)",
-                 (void *)command.material,
-                 (void *)command.mesh);
+        LOG_WARN(
+            "RenderQueue::Submit received incomplete command (material=%p mesh=%p)",
+            (void *)command.material,
+            (void *)command.mesh
+        );
     }
     m_commands.push_back(command);
 }
@@ -51,19 +53,19 @@ void RenderQueue::Draw(GraphicsAPI &graphicsAPI, const CameraData &cameraData, c
         {
             auto &light = lights[0];
             program->SetUniform("uLight.color", light.color);
-            program->SetUniform("uLight.position", light.position);
+            program->SetUniform("uLight.direction", normalize(-light.position));
         }
 
         // Editor-controlled PSX shader uniforms. ShaderProgram::SetUniform is a no-op
         // for shaders that don't declare the uniform, so this is safe across materials.
-        program->SetUniform("uSnapResolutionX", rs.snapX);
-        program->SetUniform("uSnapResolutionY", rs.snapY);
-        program->SetUniform("uFogStart", rs.fogStart);
-        program->SetUniform("uFogEnd", rs.fogEnd);
-        program->SetUniform("uAmbient", rs.ambient);
-        program->SetUniform("uLightDir", rs.lightDir);
-        program->SetUniform("uColorDepth", rs.colorDepth);
-        program->SetUniform("uDitherStrength", rs.ditherStrength);
+        // program->SetUniform("uSnapResolutionX", rs.snapX);
+        // program->SetUniform("uSnapResolutionY", rs.snapY);
+        // program->SetUniform("uFogStart", rs.fogStart);
+        // program->SetUniform("uFogEnd", rs.fogEnd);
+        // program->SetUniform("uAmbient", rs.ambient);
+        // program->SetUniform("uLightDir", rs.lightDir);
+        // program->SetUniform("uColorDepth", rs.colorDepth);
+        // program->SetUniform("uDitherStrength", rs.ditherStrength);
 
         graphicsAPI.BindMesh(command.mesh);
         graphicsAPI.DrawMesh(command.mesh);

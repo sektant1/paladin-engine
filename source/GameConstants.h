@@ -7,7 +7,8 @@ inline constexpr mnd::i32 kWindowWidth  = 1280;
 inline constexpr mnd::i32 kWindowHeight = 720;
 
 // -- Scene -------------------------------------------------------------------
-inline constexpr const char *kInitialScenePath = "scenes/scene2.json";
+inline constexpr const char *kInitialScenePath = "scenes/scene.json";
+inline constexpr const char *kTestScenePath    = "scenes/testing.json";
 
 // -- Player ------------------------------------------------------------------
 inline constexpr mnd::f32 kPlayerWalkSpeed = 5.0F;

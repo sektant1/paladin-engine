@@ -15,8 +15,9 @@ bool GraphicsAPI::Init()
     return true;
 }
 
-std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(const std::string &vertexSource,
-                                                                const std::string &fragmentSource)
+std::shared_ptr<ShaderProgram> GraphicsAPI::CreateShaderProgram(
+    const std::string &vertexSource, const std::string &fragmentSource
+)
 {
     GLuint      vertexShader     = glCreateShader(GL_VERTEX_SHADER);
     const char *vertexShaderCStr = vertexSource.c_str();
@@ -104,11 +105,12 @@ const std::shared_ptr<ShaderProgram> &GraphicsAPI::GetDefaultShaderProgram()
 
         struct Light {
             vec3 color;
-            vec3 position;
+            vec3 direction;
         };
 
         uniform Light uLight;
         uniform vec3 uCameraPos;
+        uniform vec3 color;
 
         out vec4 FragColor;
 
@@ -123,7 +125,7 @@ const std::shared_ptr<ShaderProgram> &GraphicsAPI::GetDefaultShaderProgram()
             vec3 normal = normalize(vNormal);
 
             // diffuse
-            vec3 lightDir = normalize(uLight.position - vFragPos);
+            vec3 lightDir = normalize(-uLight.direction);
             float diff = max(dot(normal, lightDir), 0.0);
             vec3 ambient = 0.4 * uLight.color;
             vec3 diffuse = diff * uLight.color;
@@ -135,11 +137,10 @@ const std::shared_ptr<ShaderProgram> &GraphicsAPI::GetDefaultShaderProgram()
             float specularStrenght = 0.5;
             vec3 specular = specularStrenght * spec * uLight.color;
 
-            vec3 result = diffuse + specular + ambient;
-
             vec4 texColor = texture(baseColorTexture, vUV);
+            vec3 result = (diffuse + specular + ambient) * texColor.xyz * color;
 
-            FragColor = texColor * vec4(result, 1.0);
+            FragColor = vec4(result, 1.0);
         }
     )";
 

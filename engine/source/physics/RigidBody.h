@@ -11,6 +11,7 @@
 
 #include "Types.h"
 #include "physics/Collider.h"
+#include "physics/CollisionObject.h"
 
 class btRigidBody;
 
@@ -36,9 +37,9 @@ enum class BodyType
  * @brief Owning wrapper around `btRigidBody`; holds a shared @ref Collider,
  *        mass, friction, and body type.
  */
-class RigidBody
+class RigidBody : public CollisionObject
 {
-public:
+ public:
     /**
      * @param type     Simulation category.
      * @param collider Shape used for collision (shared — the same Collider may
@@ -66,7 +67,7 @@ public:
 
     void ApplyImpulse(const vec3 &impulse);
 
-private:
+ private:
     std::unique_ptr<btRigidBody> m_body;
     BodyType                     m_type = BodyType::Static;
     std::shared_ptr<Collider>    m_collider;

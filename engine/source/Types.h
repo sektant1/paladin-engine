@@ -1,5 +1,5 @@
-#ifndef TYPES_H
-#define TYPES_H
+#ifndef ENGINE_SOURCE_TYPES_H_
+#define ENGINE_SOURCE_TYPES_H_
 
 /** @file Types.h
  * @ingroup mnd_types
@@ -90,4 +90,4 @@ using glm::value_ptr;
 
 }  // namespace mnd
 
-#endif
+#endif  // ENGINE_SOURCE_TYPES_H_

@@ -5,6 +5,7 @@
 
 #include "Engine.h"
 #include "LinearMath/btVector3.h"
+#include "physics/CollisionObject.h"
 
 namespace mnd
 {
@@ -19,6 +20,8 @@ RigidBody::RigidBody(BodyType type, const std::shared_ptr<Collider> &collider, f
         return;
     }
 
+    m_collisionObjType = CollisionObjectType::RigidBody;
+
     btVector3 inertia(0, 0, 0);
     if (m_type == BodyType::Dynamic && mass > 0.0f && m_collider->GetShape())
     {
@@ -30,10 +33,12 @@ RigidBody::RigidBody(BodyType type, const std::shared_ptr<Collider> &collider, f
     btDefaultMotionState *motionState = new btDefaultMotionState(transform);
 
     btRigidBody::btRigidBodyConstructionInfo info(
-        (m_type == BodyType::Dynamic) ? btScalar(mass) : btScalar(0), motionState, m_collider->GetShape(), inertia);
+        (m_type == BodyType::Dynamic) ? btScalar(mass) : btScalar(0), motionState, m_collider->GetShape(), inertia
+    );
 
     m_body = std::make_unique<btRigidBody>(info);
     m_body->setFriction(friction);
+    m_body->setUserPointer(this);
 
     if (m_type == BodyType::Kinematic)
     {

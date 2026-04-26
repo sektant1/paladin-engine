@@ -13,7 +13,8 @@ KinematicCharacterController::KinematicCharacterController(float radius, float h
     : m_height(height)
     , m_radius(radius)
 {
-    auto world = Engine::GetInstance().GetPhysicsManager().GetWorld();
+    m_collisionObjType = CollisionObjectType::KinematicCharacterController;
+    auto world         = Engine::GetInstance().GetPhysicsManager().GetWorld();
 
     // Capsule collider (standard for characters)
     auto capsule = new btCapsuleShape(m_radius, m_height);
@@ -25,6 +26,7 @@ KinematicCharacterController::KinematicCharacterController(float radius, float h
     m_ghost->setWorldTransform(start);
     m_ghost->setCollisionShape(capsule);
     m_ghost->setCollisionFlags(m_ghost->getCollisionFlags() | btCollisionObject::CF_CHARACTER_OBJECT);
+    m_ghost->setUserPointer(this);
 
     world->getBroadphase()->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
 
@@ -34,9 +36,11 @@ KinematicCharacterController::KinematicCharacterController(float radius, float h
     m_controller->setMaxSlope(btRadians(50.0F));
     m_controller->setGravity(world->getGravity());
 
-    world->addCollisionObject(m_ghost.get(),
-                              btBroadphaseProxy::CharacterFilter,
-                              btBroadphaseProxy::AllFilter & ~btBroadphaseProxy::SensorTrigger);
+    world->addCollisionObject(
+        m_ghost.get(),
+        btBroadphaseProxy::CharacterFilter,
+        btBroadphaseProxy::AllFilter & ~btBroadphaseProxy::SensorTrigger
+    );
     world->addAction(m_controller.get());
 }
 

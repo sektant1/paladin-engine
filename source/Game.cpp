@@ -2,15 +2,17 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Monad.h"
+#include "Bullet.h"
 #include "GameConstants.h"
+#include "JumpPlatform.h"
+#include "Monad.h"
 #include "Player.h"
 
 bool Game::Init()
 {
     LOG_INFO("Game::Init");
 
-    auto scene = mnd::Scene::Load(kInitialScenePath);
+    auto scene = mnd::Scene::Load(kTestScenePath);
     m_scene    = scene;
     mnd::Engine::GetInstance().SetScene(scene.get());
 
@@ -20,6 +22,8 @@ bool Game::Init()
 void Game::RegisterTypes()
 {
     Player::Register();
+    JumpPlatform::Register();
+    Bullet::Register();
 }
 
 void Game::Update(mnd::f32 deltaTime)

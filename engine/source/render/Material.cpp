@@ -31,14 +31,14 @@ void Material::SetParam(const std::string &name, float v0, float v1)
     m_float2Params[name] = {v0, v1};
 }
 
-void Material::SetParam(const std::string &name, float v0, float v1, float v2)
+void Material::SetParam(const std::string &name, const vec3 &value)
 {
-    m_float3Params[name] = {v0, v1, v2};
+    m_float3Params[name] = value;
 }
 
-void Material::SetParam(const std::string &name, float v0, float v1, float v2, float v3)
+void Material::SetParam(const std::string &name, const vec4 &value)
 {
-    m_float4Params[name] = {v0, v1, v2, v3};
+    m_float4Params[name] = value;
 }
 
 void Material::SetParam(const std::string &name, const std::shared_ptr<Texture> &texture)
@@ -49,21 +49,25 @@ void Material::SetParam(const std::string &name, const std::shared_ptr<Texture> 
 std::shared_ptr<Material> Material::Load(const str &path)
 {
     auto contents = Engine::GetInstance().GetFileSystem().LoadAssetFileText(path);
-    if (contents.empty()) {
+    if (contents.empty())
+    {
         LOG_ERROR("Material::Load empty or missing file '%s'", path.c_str());
         return nullptr;
     }
 
     nlohmann::json json;
-    try {
+    try
+    {
         json = nlohmann::json::parse(contents);
-    } catch (const nlohmann::json::parse_error &e) {
+    } catch (const nlohmann::json::parse_error &e)
+    {
         LOG_ERROR("Material::Load JSON parse error in '%s': %s", path.c_str(), e.what());
         return nullptr;
     }
     std::shared_ptr<Material> result;
 
-    if (json.contains("shader")) {
+    if (json.contains("shader"))
+    {
         auto shaderObj    = json["shader"];
         str  vertexPath   = shaderObj.value("vertex", "");
         str  fragmentPath = shaderObj.value("fragment", "");
@@ -75,10 +79,13 @@ std::shared_ptr<Material> Material::Load(const str &path)
         auto &graphicsAPI   = Engine::GetInstance().GetGraphicsAPI();
         auto  shaderProgram = graphicsAPI.CreateShaderProgram(vertexSource, fragmentSource);
 
-        if (!shaderProgram) {
-            LOG_ERROR("Material::Load shader program creation failed (vert='%s' frag='%s')",
-                      vertexPath.c_str(),
-                      fragmentPath.c_str());
+        if (!shaderProgram)
+        {
+            LOG_ERROR(
+                "Material::Load shader program creation failed (vert='%s' frag='%s')",
+                vertexPath.c_str(),
+                fragmentPath.c_str()
+            );
             return nullptr;
         }
 
@@ -86,21 +93,26 @@ std::shared_ptr<Material> Material::Load(const str &path)
         result->SetShaderProgram(shaderProgram);
     }
 
-    if (json.contains("params")) {
+    if (json.contains("params"))
+    {
         auto paramsObj = json["params"];
 
         // Float
-        if (paramsObj.contains("float")) {
-            for (auto &param : paramsObj["float"]) {
+        if (paramsObj.contains("float"))
+        {
+            for (auto &param : paramsObj["float"])
+            {
                 str name  = param.value("name", "");
-                f32 value = param.value("value", 0.0F);
+                f32 value = param.value("value", 0.0f);
                 result->SetParam(name, value);
             }
         }
 
         // Float 2
-        if (paramsObj.contains("float2")) {
-            for (auto &param : paramsObj["float2"]) {
+        if (paramsObj.contains("float2"))
+        {
+            for (auto &param : paramsObj["float2"])
+            {
                 str name = param.value("name", "");
                 f32 v0   = param.value("value0", 0.0F);
                 f32 v1   = param.value("value1", 0.0F);
@@ -110,33 +122,39 @@ std::shared_ptr<Material> Material::Load(const str &path)
         }
 
         // Float 3
-        if (paramsObj.contains("float3")) {
-            for (auto &param : paramsObj["float3"]) {
+        if (paramsObj.contains("float3"))
+        {
+            for (auto &param : paramsObj["float3"])
+            {
                 str name = param.value("name", "");
                 f32 v0   = param.value("value0", 0.0F);
                 f32 v1   = param.value("value1", 0.0F);
                 f32 v2   = param.value("value2", 0.0F);
 
-                result->SetParam(name, v0, v1, v2);
+                result->SetParam(name, vec3(v0, v1, v2));
             }
         }
 
         // Float 4
-        if (paramsObj.contains("float4")) {
-            for (auto &param : paramsObj["float4"]) {
+        if (paramsObj.contains("float4"))
+        {
+            for (auto &param : paramsObj["float4"])
+            {
                 str name = param.value("name", "");
                 f32 v0   = param.value("value0", 0.0F);
                 f32 v1   = param.value("value1", 0.0F);
                 f32 v2   = param.value("value2", 0.0F);
                 f32 v3   = param.value("value3", 0.0F);
 
-                result->SetParam(name, v0, v1, v2, v3);
+                result->SetParam(name, vec4(v0, v1, v2, v3));
             }
         }
 
         // Textures
-        if (paramsObj.contains("textures")) {
-            for (auto &param : paramsObj["textures"]) {
+        if (paramsObj.contains("textures"))
+        {
+            for (auto &param : paramsObj["textures"])
+            {
                 str  name    = param.value("name", "");
                 str  texPath = param.value("path", "");
                 auto texture = Texture::Load(texPath);
@@ -151,28 +169,34 @@ std::shared_ptr<Material> Material::Load(const str &path)
 
 void Material::Bind()
 {
-    if (!m_shaderProgram) {
+    if (!m_shaderProgram)
+    {
         LOG_WARN("Material::Bind with no shader program set");
         return;
     }
     m_shaderProgram->Bind();
 
-    for (const auto &param : m_floatParams) {
+    for (const auto &param : m_floatParams)
+    {
         m_shaderProgram->SetUniform(param.first, param.second);
     }
-    for (const auto &param : m_float2Params) {
+    for (const auto &param : m_float2Params)
+    {
         auto &v = param.second;
         m_shaderProgram->SetUniform(param.first, std::get<0>(v), std::get<1>(v));
     }
-    for (const auto &param : m_float3Params) {
+    for (const auto &param : m_float3Params)
+    {
         auto &v = param.second;
-        m_shaderProgram->SetUniform(param.first, std::get<0>(v), std::get<1>(v), std::get<2>(v));
+        m_shaderProgram->SetUniform(param.first, param.second);
     }
-    for (const auto &param : m_float4Params) {
+    for (const auto &param : m_float4Params)
+    {
         auto &v = param.second;
-        m_shaderProgram->SetUniform(param.first, std::get<0>(v), std::get<1>(v), std::get<2>(v), std::get<3>(v));
+        m_shaderProgram->SetUniform(param.first, param.second);
     }
-    for (const auto &tex : m_textures) {
+    for (const auto &tex : m_textures)
+    {
         m_shaderProgram->SetTexture(tex.first, tex.second.get());
     }
 }

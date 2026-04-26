@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include "Types.h"
+
 namespace mnd
 {
 
@@ -23,16 +25,16 @@ namespace mnd
  * @ingroup mnd_input
  * @brief Keyboard key + mouse button identifier (GLFW-compatible values).
  */
-enum class Key : int
+enum class Key : i16
 {
     Unknown = -1,
 
-    Space        = 32,
-    Apostrophe   = 39,
-    Comma        = 44,
-    Minus        = 45,
-    Period       = 46,
-    Slash        = 47,
+    Space      = 32,
+    Apostrophe = 39,
+    Comma      = 44,
+    Minus      = 45,
+    Period     = 46,
+    Slash      = 47,
 
     Num0 = 48,
     Num1 = 49,
@@ -143,7 +145,7 @@ enum class Key : int
     Menu         = 348,
 };
 
-enum class MouseButton : int
+enum class MouseButton : i8
 {
     Left   = 0,
     Right  = 1,

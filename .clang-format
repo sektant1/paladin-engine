@@ -1,7 +1,7 @@
 ---
 Language: Cpp
 AccessModifierOffset: -3
-AlignAfterOpenBracket: Align
+AlignAfterOpenBracket: BlockIndent
 AlignArrayOfStructures: Left
 AlignConsecutiveAssignments:
   Enabled: true

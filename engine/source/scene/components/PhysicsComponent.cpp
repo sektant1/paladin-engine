@@ -24,10 +24,12 @@ void PhysicsComponent::LoadProperties(const nlohmann::json &json)
         {
             glm::vec3 extents(col.value("x", 1.0f), col.value("y", 1.0f), col.value("z", 1.0f));
             collider = std::make_shared<BoxCollider>(extents);
+
         } else if (type == "sphere")
         {
             float radius = col.value("r", 1.0f);
             collider     = std::make_shared<SphereCollider>(radius);
+
         } else if (type == "capsule")
         {
             float radius = col.value("r", 1.0f);

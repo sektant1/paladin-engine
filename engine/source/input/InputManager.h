@@ -32,7 +32,7 @@ namespace mnd
  */
 class InputManager
 {
-public:
+ public:
     InputManager()                     = default;
     InputManager(const InputManager &) = delete;
     InputManager(InputManager &&)      = delete;
@@ -52,7 +52,7 @@ public:
      * @param key Key code (e.g. Key::W).
      * @return True if the key is pressed.
      */
-    bool IsKeyPressed(Key key) const;
+    [[nodiscard]] bool IsKeyPressed(Key key) const;
 
     /**
      * @brief Record a mouse-button press or release event.
@@ -66,7 +66,7 @@ public:
      * @param button Mouse-button code (e.g. MouseButton::Left).
      * @return True if the button is pressed.
      */
-    bool IsMouseButtonPressed(MouseButton button) const;
+    [[nodiscard]] bool IsMouseButtonPressed(MouseButton button) const;
 
     /**
      * @brief Store the cursor position from the previous frame.
@@ -86,8 +86,8 @@ public:
      */
     void SetMousePositionCurrent(const vec2 &pos);
 
-    void SetMousePositionChanged(bool changed);
-    bool IsMousePositionChanged() const;
+    void               SetMousePositionChanged(bool changed);
+    [[nodiscard]] bool IsMousePositionChanged() const;
 
     /**
      * @brief Retrieve the cursor position for the current frame.
@@ -99,11 +99,11 @@ public:
      */
     [[nodiscard]] const vec2 GetMousePositionCurrent() const;
 
-private:
-    std::array<bool, kMaxKeys>         m_keys      = {false};  ///< Pressed state for each GLFW key code.
-    std::array<bool, kMaxMouseButtons> m_mouseKeys = {false};  ///< Pressed state for each GLFW mouse button.
-    vec2                  m_mousePositionOld     = vec2(0.0F);  ///< Cursor position at end of previous frame.
-    vec2                  m_mousePositionCurrent = vec2(0.0F);  ///< Cursor position at end of current frame.
+ private:
+    std::array<bool, kMaxKeys>         m_keys             = {false};     ///< Pressed state for each GLFW key code.
+    std::array<bool, kMaxMouseButtons> m_mouseKeys        = {false};     ///< Pressed state for each GLFW mouse button.
+    vec2                               m_mousePositionOld = vec2(0.0F);  ///< Cursor position at end of previous frame.
+    vec2 m_mousePositionCurrent                           = vec2(0.0F);  ///< Cursor position at end of current frame.
 
     bool m_mousePositionChanged = false;
 
