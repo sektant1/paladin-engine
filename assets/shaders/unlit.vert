@@ -8,7 +8,11 @@ uniform mat4 uModel;
 uniform mat4 uProjection;
 uniform mat4 uView;
 
+out vec3 vViewNormal;
+
 void main()
 {
+    vec3 worldNormal = normalize(mat3(uModel) * normal);
+    vViewNormal = normalize(mat3(uView) * worldNormal);
     gl_Position = uProjection * uView * uModel * vec4(position, 1.0);
 }

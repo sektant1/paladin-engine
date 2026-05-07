@@ -18,6 +18,7 @@
 #include "scene/components/HealthComponent.h"
 #include "scene/components/LightComponent.h"
 #include "scene/components/MeshComponent.h"
+#include "scene/components/ParticleEmitterComponent.h"
 #include "scene/components/SkinnedMeshComponent.h"
 #include "scene/components/PhysicsComponent.h"
 #include "scene/components/PlayerControllerComponent.h"
@@ -32,6 +33,7 @@ void Scene::RegisterTypes()
     HealthComponent::Register();
     LightComponent::Register();
     MeshComponent::Register();
+    ParticleEmitterComponent::Register();
     SkinnedMeshComponent::Register();
     PhysicsComponent::Register();
     PlayerControllerComponent::Register();

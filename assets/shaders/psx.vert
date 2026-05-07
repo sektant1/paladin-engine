@@ -30,6 +30,7 @@ noperspective out vec2 vTexCoord; // affine UVs = PSX wobble
 out vec4  vColor;
 out float vFog;
 out float vLight;
+out vec3  vViewNormal;
 
 void main()
 {
@@ -52,6 +53,7 @@ void main()
 
     // --- Gouraud directional light ----------------------------------
     vec3 N = normalize(mat3(uModel) * aNormal);
+    vViewNormal = normalize(mat3(uView) * N);
     float ambient = (uAmbient > 0.0) ? uAmbient : 0.35;
     float ndl = 0.0;
     if (dot(uLightDir, uLightDir) > 0.0)

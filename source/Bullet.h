@@ -10,6 +10,8 @@ class Bullet
     GAMEOBJECT(Bullet)
 
  public:
+    ~Bullet() override;
+
     void Update(mnd::f32 deltaTime) override;
 
     void OnContact(mnd::CollisionObject *obj, const mnd::vec3 &pos, const mnd::vec3 &norm) override;

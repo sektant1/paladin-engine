@@ -1,6 +1,6 @@
 #version 330 core
 
-// Three.js-style pixel-art post-pass.
+// Pixelation + outline pass inspired by the Three.js pixelation example.
 // Reference: https://threejs.org/examples/webgl_postprocessing_pixel.html
 //
 // Scene is rendered at full resolution; pixelation happens HERE by
@@ -22,20 +22,20 @@ uniform float uPixelSize;    // window-pixels per scene-pixel; >= 1
 
 vec2 SnappedUV()
 {
-    // Centre of the chunky cell that vUV falls in.
-    vec2 cellPx = uTexel * uPixelSize;
-    return (floor(vUV / cellPx) + 0.5) * cellPx;
+    float pixelSize = max(uPixelSize, 1.0);
+    vec2 snappedPx = floor(gl_FragCoord.xy / pixelSize) * pixelSize + vec2(0.5 * pixelSize);
+    return clamp(snappedPx * uTexel, uTexel * 0.5, 1.0 - uTexel * 0.5);
 }
 
 float SampleDepth(vec2 baseUV, int dx, int dy)
 {
-    vec2 step = uTexel * uPixelSize;
+    vec2 step = uTexel * max(uPixelSize, 1.0);
     return texture(uDepth, baseUV + vec2(float(dx), float(dy)) * step).r;
 }
 
 vec3 SampleNormal(vec2 baseUV, int dx, int dy)
 {
-    vec2 step = uTexel * uPixelSize;
+    vec2 step = uTexel * max(uPixelSize, 1.0);
     return texture(uNormal, baseUV + vec2(float(dx), float(dy)) * step).rgb * 2.0 - 1.0;
 }
 

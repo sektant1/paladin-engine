@@ -5,6 +5,15 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(Engine)
 
+set(MONAD_RENDERER
+    "OpenGL"
+    CACHE STRING "Renderer backend to build (OpenGL)")
+set_property(CACHE MONAD_RENDERER PROPERTY STRINGS OpenGL)
+if(NOT MONAD_RENDERER STREQUAL "OpenGL")
+  message(FATAL_ERROR "MONAD_RENDERER='${MONAD_RENDERER}' is not implemented in Phase 0. Use OpenGL.")
+endif()
+message(STATUS "Monad renderer backend: ${MONAD_RENDERER}")
+
 set(ASSETS_DIR "${CMAKE_SOURCE_DIR}/assets")
 configure_file(${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_BINARY_DIR}/config.h)
 

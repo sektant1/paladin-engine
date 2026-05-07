@@ -10,10 +10,12 @@ uniform Light uLight;
 uniform vec3 uCameraPos;
 uniform vec3 color;
 
-out vec4 FragColor;
+layout(location = 0) out vec4 FragColor;
+layout(location = 1) out vec4 FragNormal;
 
 in vec2 vUV;
 in vec3 vNormal;
+in vec3 vViewNormal;
 in vec3 vFragPos;
 
 uniform sampler2D baseColorTexture;
@@ -39,4 +41,5 @@ void main()
     vec3 result = (diffuse + specular + ambient) * texColor.xyz * color;
 
     FragColor = vec4(result, 1.0);
+    FragNormal = vec4(normalize(vViewNormal) * 0.5 + 0.5, 1.0);
 }

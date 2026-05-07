@@ -75,6 +75,7 @@ public:
     /// Creates a unit cube mesh (factory convenience, same as Builder::CreateCube).
     static std::shared_ptr<Mesh> CreateCube();
     static std::shared_ptr<Mesh> CreateSphere(f32 radius, int sectors, int stacks);
+    static std::shared_ptr<Mesh> CreateCapsule(f32 radius, f32 height, int sectors, int hemisphereStacks);
 
     static std::shared_ptr<Mesh> CreateBox(const glm::vec3 &extents = glm::vec3(1.0f));
 

@@ -8,9 +8,9 @@
  * threejs.org/examples/webgl_postprocessing_pixel.html, and writes the
  * result into its own colour FBO for the final BlitNearest upscale.
  *
- * Scene downsampling (the actual pixelation) is driven by
- * RenderSettings::pixelSize and applied at the scene-target level by the
- * Engine, not here. This pass only handles the edge term.
+ * For the current full-resolution RenderTarget path, pixelation is done in
+ * this pass by snapping colour/depth/normal samples to RenderSettings::pixelSize
+ * screen-pixel cells before applying the optional edge term.
  */
 
 #pragma once
@@ -36,7 +36,7 @@ public:
     void RunOutline(const RenderTarget &scene, const CameraData &cam);
 
     GLuint OutputTex() const { return m_color; }
-    bool   IsValid() const { return m_program != 0 && m_fbo != 0; }
+    bool   IsValid() const { return m_program != 0 && m_vao != 0; }
 
     // Editor-tunable. Both 0 = passthrough (no edges).
     float depthEdgeStrength  = 0.4F;
@@ -60,6 +60,7 @@ private:
     int m_locTexel       = -1;
     int m_locDepthStr    = -1;
     int m_locNormalStr   = -1;
+    int m_locPixelSize   = -1;
 };
 
 }  // namespace mnd

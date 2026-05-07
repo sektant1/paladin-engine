@@ -6,10 +6,41 @@
 namespace mnd
 {
 
+namespace
+{
+const char *FramebufferStatusName(GLenum status)
+{
+    switch (status)
+    {
+        case GL_FRAMEBUFFER_COMPLETE:
+            return "complete";
+        case GL_FRAMEBUFFER_UNDEFINED:
+            return "undefined";
+        case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+            return "incomplete attachment";
+        case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+            return "missing attachment";
+        case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:
+            return "incomplete draw buffer";
+        case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:
+            return "incomplete read buffer";
+        case GL_FRAMEBUFFER_UNSUPPORTED:
+            return "unsupported";
+        case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:
+            return "incomplete multisample";
+        case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS:
+            return "incomplete layer targets";
+        default:
+            return "unknown";
+    }
+}
+}  // namespace
+
 bool RenderTarget::Create(int w, int h)
 {
     if (w <= 0 || h <= 0)
     {
+        LOG_ERROR("RenderTarget::Create called with invalid size %dx%d", w, h);
         return false;
     }
     Destroy();
@@ -49,12 +80,19 @@ bool RenderTarget::Create(int w, int h)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_depth, 0);
 
+    const GLenum bufs[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
+    glDrawBuffers(2, bufs);
+
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     if (status != GL_FRAMEBUFFER_COMPLETE)
     {
-        LOG_ERROR("RenderTarget FBO incomplete (0x%x) at %dx%d", status, w, h);
+        LOG_ERROR("RenderTarget FBO incomplete (%s, 0x%x) at %dx%d",
+                  FramebufferStatusName(status),
+                  status,
+                  w,
+                  h);
         Destroy();
         return false;
     }
@@ -85,6 +123,12 @@ void RenderTarget::Destroy()
 
 void RenderTarget::Bind()
 {
+    if (!IsValid())
+    {
+        LOG_ERROR("RenderTarget::Bind called before a valid FBO was created");
+        return;
+    }
+
     glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
     // Tell GL we're writing to both attachments. Shaders that only declare
     // one fragment output (basic/lab/psx etc.) leave attachment 1 at the

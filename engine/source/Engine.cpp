@@ -1,5 +1,6 @@
 #include <chrono>
 #include <cstdio>
+#include <cstring>
 #include <vector>
 
 #include "Engine.h"
@@ -12,6 +13,7 @@
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 #include "graphics/GraphicsAPI.h"
+#include "graphics/opengl/OpenGLRendererBackend.h"
 #include "imgui.h"
 #include "physics/PhysicsManager.h"
 #include "render/RenderQueue.h"
@@ -125,7 +127,13 @@ bool Engine::Init(int width, int height)
     }
     LOG_INFO("GLEW initialized (GL %s)", reinterpret_cast<const char *>(glGetString(GL_VERSION)));
 
-    m_graphicsAPI.Init();
+    m_rendererBackend = CreateOpenGLRendererBackend(m_graphicsAPI);
+    if (!m_rendererBackend->Init())
+    {
+        LOG_ERROR("Renderer backend init failed");
+        glfwTerminate();
+        return false;
+    }
     m_physicsManager.Init();
     if (!m_audioManager.Init())
     {
@@ -142,6 +150,11 @@ bool Engine::Init(int width, int height)
     {
         LOG_ERROR("Editor Init failed");
     }
+    if (!m_spriteRenderer.Init())
+    {
+        LOG_ERROR("SpriteRenderer Init failed");
+    }
+    m_particleSystem.Init();
 
     DrawLoadingScreen("Loading...", 0.0F);
 
@@ -182,20 +195,38 @@ void Engine::Run()
 
         m_physicsManager.Update(scaledDt);
         m_application->Update(scaledDt);
+        m_particleSystem.Update(scaledDt);
 
-        // Bind scene target (offscreen low-res) or default framebuffer for the scene pass.
+        // Bind scene target or default framebuffer for the scene pass.
+        // Path B keeps the scene target at framebuffer size and performs
+        // pixelation in the post-pass by snapping shader sample UVs.
         int winW = 0, winH = 0;
         glfwGetFramebufferSize(m_window, &winW, &winH);
+        if (winW <= 0) winW = kDefaultInternalWidth;
+        if (winH <= 0) winH = kDefaultInternalHeight;
+
+        if (m_renderSettings.pixelSize < 1)
+        {
+            m_renderSettings.pixelSize = 1;
+        }
+        else if (m_renderSettings.pixelSize > 32)
+        {
+            m_renderSettings.pixelSize = 32;
+        }
 
         if (m_renderSettings.useInternalRes)
         {
-            // Render at full window resolution. Pixelation is now done by
-            // the post-pass via UV snapping, so physics/picking/depth all
-            // run at native resolution.
-            m_renderSettings.internalW = (winW > 0) ? winW : kDefaultInternalWidth;
-            m_renderSettings.internalH = (winH > 0) ? winH : kDefaultInternalHeight;
+            m_renderSettings.internalW = winW;
+            m_renderSettings.internalH = winH;
             m_sceneTarget.Resize(m_renderSettings.internalW, m_renderSettings.internalH);
-            m_sceneTarget.Bind();
+            if (m_sceneTarget.IsValid())
+            {
+                m_sceneTarget.Bind();
+            }
+            else
+            {
+                RenderTarget::BindDefault(winW, winH);
+            }
         }
         else
         {
@@ -211,11 +242,7 @@ void Engine::Run()
         CameraData             cameraData;
         std::vector<LightData> lights;
 
-        int width  = 0;
-        int height = 0;
-
-        glfwGetWindowSize(m_window, &width, &height);
-        f32 aspect = static_cast<f32>(width) / static_cast<f32>(height);
+        f32 aspect = static_cast<f32>(winW) / static_cast<f32>(winH);
 
         if (m_currentScene)
         {
@@ -253,18 +280,28 @@ void Engine::Run()
         }
 
         m_renderQueue.Draw(m_graphicsAPI, cameraData, lights);
+        m_particleSystem.Render(cameraData);
 
-        // Run outline post-pass on the low-res scene target, then nearest-blit
-        // the result to the window. Debug-view selector overrides this and shows
-        // raw MRT attachments instead.
+        // Run the pixelation/outline post-pass for the production color view.
+        // Debug-view selector overrides it and shows raw MRT attachments.
         if (m_renderSettings.useInternalRes && m_sceneTarget.IsValid())
         {
-            const bool runOutline = m_renderSettings.useOutline
-                                    && m_renderSettings.debugView == DebugView::Color
-                                    && m_postProcess.IsValid();
-            if (runOutline)
+            const bool runPostProcess = m_renderSettings.debugView == DebugView::Color
+                                        && m_postProcess.IsValid();
+            if (runPostProcess)
             {
+                const float oldDepthStrength  = m_postProcess.depthEdgeStrength;
+                const float oldNormalStrength = m_postProcess.normalEdgeStrength;
+                if (!m_renderSettings.useOutline)
+                {
+                    m_postProcess.depthEdgeStrength  = 0.0F;
+                    m_postProcess.normalEdgeStrength = 0.0F;
+                }
+
                 m_postProcess.RunOutline(m_sceneTarget, cameraData);
+
+                m_postProcess.depthEdgeStrength  = oldDepthStrength;
+                m_postProcess.normalEdgeStrength = oldNormalStrength;
             }
 
             RenderTarget::BindDefault(winW, winH);
@@ -282,7 +319,7 @@ void Engine::Run()
                     break;
                 case DebugView::Color:
                 default:
-                    if (runOutline)
+                    if (runPostProcess && m_postProcess.OutputTex() != 0)
                     {
                         tex = m_postProcess.OutputTex();
                     }
@@ -290,6 +327,45 @@ void Engine::Run()
             }
             BlitNearest(tex, winW, winH, mode);
         }
+
+        if (m_renderSettings.showFps)
+        {
+            const float instantFps = deltaTime > 0.0F ? 1.0F / deltaTime : 0.0F;
+            const float emaAlpha   = 0.1F;
+            m_fpsSmoothed = (m_fpsSmoothed <= 0.0F)
+                                ? instantFps
+                                : m_fpsSmoothed + (instantFps - m_fpsSmoothed) * emaAlpha;
+            m_fpsRefreshTimer += deltaTime;
+            if (m_fpsRefreshTimer >= 0.2F)
+            {
+                m_fpsDisplayed    = m_fpsSmoothed;
+                m_fpsRefreshTimer = 0.0F;
+            }
+
+            char fpsBuf[64];
+            std::snprintf(fpsBuf, sizeof(fpsBuf), "FPS %.0f  %.2fms", m_fpsDisplayed,
+                          m_fpsDisplayed > 0.0F ? 1000.0F / m_fpsDisplayed : 0.0F);
+
+            const float padding   = 12.0F;
+            const float textSize  = 22.0F;
+            const float boxWidth  = textSize * 0.55F * static_cast<float>(std::strlen(fpsBuf)) + padding * 2.0F;
+            const float boxHeight = textSize + padding;
+            m_spriteRenderer.DrawRect(vec2(padding, padding),
+                                      vec2(boxWidth, boxHeight),
+                                      vec4(0.04F, 0.05F, 0.07F, 0.65F));
+            m_spriteRenderer.DrawText(fpsBuf,
+                                      vec2(padding + padding * 0.5F + 1.0F,
+                                           padding + padding * 0.5F * 0.5F + 1.0F),
+                                      textSize,
+                                      vec4(0.0F, 0.0F, 0.0F, 0.85F));
+            m_spriteRenderer.DrawText(fpsBuf,
+                                      vec2(padding + padding * 0.5F,
+                                           padding + padding * 0.5F * 0.5F),
+                                      textSize,
+                                      vec4(0.85F, 1.0F, 0.85F, 1.0F));
+        }
+
+        m_spriteRenderer.Flush(winW, winH);
 
         // Editor overlays the scene on the default framebuffer.
         m_editor.Draw();
@@ -309,6 +385,8 @@ void Engine::Destroy()
     if (m_application)
     {
         m_editor.Shutdown();
+        m_particleSystem.Shutdown();
+        m_spriteRenderer.Shutdown();
         m_postProcess.Destroy();
         m_sceneTarget.Destroy();
         m_application->Destroy();

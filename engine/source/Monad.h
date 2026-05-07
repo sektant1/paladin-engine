@@ -56,6 +56,7 @@
 #include "render/Material.h"
 #include "render/Mesh.h"
 #include "render/RenderQueue.h"
+#include "render/SpriteRenderer.h"
 #include "scene/Component.h"
 #include "scene/GameObject.h"
 #include "scene/Scene.h"

@@ -1,0 +1,23 @@
+{
+	"shader": 
+	{
+		"vertex": "shaders/vertex.glsl",
+		"fragment": "shaders/fragment.glsl"
+	},
+	"params": {
+		"float3": [
+			{
+				"name": "color",
+				"value0": 1.0,
+				"value1": 1.0,
+				"value2": 1.0
+			}
+		],
+		"textures": [
+			{
+				"name": "baseColorTexture",
+				"path": "textures/checker.png"
+			}
+		]
+	}
+}

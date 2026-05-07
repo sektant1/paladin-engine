@@ -1,7 +1,11 @@
+#include <algorithm>
+#include <cmath>
 #include <memory>
 #include <vector>
 
 #include "render/Mesh.h"
+
+#include <glm/geometric.hpp>
 
 #include "Constants.h"
 #include "Engine.h"
@@ -387,6 +391,85 @@ std::shared_ptr<Mesh> Mesh::CreateSphere(f32 radius, int sectors, int stacks)
     auto result = std::make_shared<mnd::Mesh>(vertexLayout, vertices, indices);
 
     return result;
+}
+
+std::shared_ptr<Mesh> Mesh::CreateCapsule(f32 radius, f32 height, int sectors, int hemisphereStacks)
+{
+    const f32 safeRadius     = std::max(0.001f, radius);
+    const f32 safeHeight     = std::max(safeRadius * 2.0f, height);
+    const f32 straightHeight = std::max(0.0f, safeHeight - safeRadius * 2.0f);
+    const f32 halfStraight   = straightHeight * 0.5f;
+    const int safeSectors    = std::max(3, sectors);
+    const int safeStacks     = std::max(2, hemisphereStacks);
+
+    struct Ring
+    {
+        f32 y;
+        f32 r;
+    };
+
+    std::vector<Ring> rings;
+    rings.reserve(static_cast<size_t>(safeStacks * 2 + 2));
+
+    for (int i = 0; i <= safeStacks; ++i)
+    {
+        const f32 theta = (static_cast<f32>(i) / static_cast<f32>(safeStacks)) * (kPI * 0.5f);
+        rings.push_back({halfStraight + safeRadius * std::cos(theta), safeRadius * std::sin(theta)});
+    }
+    for (int i = 0; i <= safeStacks; ++i)
+    {
+        const f32 theta = (kPI * 0.5f) + (static_cast<f32>(i) / static_cast<f32>(safeStacks)) * (kPI * 0.5f);
+        rings.push_back({-halfStraight + safeRadius * std::cos(theta), safeRadius * std::sin(theta)});
+    }
+
+    std::vector<f32> vertices;
+    vertices.reserve(rings.size() * static_cast<size_t>(safeSectors + 1) * 8);
+
+    for (const auto &ring : rings)
+    {
+        for (int j = 0; j <= safeSectors; ++j)
+        {
+            const f32 sectorAngle = static_cast<f32>(j) * (2.0f * kPI / static_cast<f32>(safeSectors));
+            const f32 x           = ring.r * std::cos(sectorAngle);
+            const f32 z           = ring.r * std::sin(sectorAngle);
+            const f32 centerY     = ring.y > halfStraight ? halfStraight : (ring.y < -halfStraight ? -halfStraight : ring.y);
+            glm::vec3 normal      = glm::normalize(glm::vec3(x, ring.y - centerY, z));
+
+            vertices.push_back(x);
+            vertices.push_back(ring.y);
+            vertices.push_back(z);
+            vertices.push_back(normal.x);
+            vertices.push_back(normal.y);
+            vertices.push_back(normal.z);
+            vertices.push_back(static_cast<f32>(j) / static_cast<f32>(safeSectors));
+            vertices.push_back((ring.y + safeHeight * 0.5f) / safeHeight);
+        }
+    }
+
+    std::vector<u32> indices;
+    for (int i = 0; i < static_cast<int>(rings.size()) - 1; ++i)
+    {
+        int k1 = i * (safeSectors + 1);
+        int k2 = k1 + safeSectors + 1;
+        for (int j = 0; j < safeSectors; ++j, ++k1, ++k2)
+        {
+            indices.push_back(k1);
+            indices.push_back(k2);
+            indices.push_back(k1 + 1);
+
+            indices.push_back(k1 + 1);
+            indices.push_back(k2);
+            indices.push_back(k2 + 1);
+        }
+    }
+
+    VertexLayout vertexLayout;
+    vertexLayout.elements.push_back({VertexElement::PositionIndex, 3, GL_FLOAT, 0});
+    vertexLayout.elements.push_back({VertexElement::NormalIndex, 3, GL_FLOAT, sizeof(f32) * 3});
+    vertexLayout.elements.push_back({VertexElement::UVIndex, 2, GL_FLOAT, sizeof(f32) * 6});
+    vertexLayout.stride = sizeof(f32) * 8;
+
+    return std::make_shared<Mesh>(vertexLayout, vertices, indices);
 }
 
 }  // namespace mnd

@@ -1,5 +1,6 @@
 #version 330 core
-out vec4 fragColor;
+layout(location = 0) out vec4 fragColor;
+layout(location = 1) out vec4 fragNormal;
 
 uniform vec2 iResolution;
 uniform float iTime;
@@ -71,4 +72,5 @@ void main() {
     col = clamp(col, 0.0, 1.0);
 
     fragColor = vec4(col, 1.0);
+    fragNormal = vec4(0.5, 0.5, 1.0, 1.0);
 }

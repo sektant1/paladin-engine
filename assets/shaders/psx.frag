@@ -12,6 +12,7 @@ noperspective in vec2 vTexCoord;
 in vec4  vColor;
 in float vFog;
 in float vLight;
+in vec3  vViewNormal;
 
 // Sampler name matches engine convention (Material JSON loader)
 uniform sampler2D baseColorTexture;
@@ -23,7 +24,8 @@ uniform float uColorDepth;       // levels per channel; <= 1 disables quantize. 
 uniform float uDitherStrength;   // 0 = off; typical 1.0
 uniform float uAlphaCutoff;      // 0 -> default 0.01
 
-out vec4 FragColor;
+layout(location = 0) out vec4 FragColor;
+layout(location = 1) out vec4 FragNormal;
 
 float bayer4x4(vec2 frag)
 {
@@ -67,4 +69,5 @@ void main()
     color.rgb = mix(uFogColor, color.rgb, vFog);
 
     FragColor = vec4(color.rgb, color.a);
+    FragNormal = vec4(normalize(vViewNormal) * 0.5 + 0.5, 1.0);
 }

@@ -82,6 +82,7 @@ const std::shared_ptr<ShaderProgram> &GraphicsAPI::GetDefaultShaderProgram()
 
         out vec2 vUV;
         out vec3 vNormal;
+        out vec3 vViewNormal;
         out vec3 vFragPos;
 
         uniform mat4 uModel;
@@ -95,6 +96,7 @@ const std::shared_ptr<ShaderProgram> &GraphicsAPI::GetDefaultShaderProgram()
             vFragPos = vec3(uModel * vec4(position, 1.0));
 
             vNormal = mat3(transpose(inverse(uModel))) * normal;
+            vViewNormal = normalize(mat3(uView) * normalize(vNormal));
 
             gl_Position = uProjection * uView * uModel * vec4(position, 1.0);
         }
@@ -112,10 +114,12 @@ const std::shared_ptr<ShaderProgram> &GraphicsAPI::GetDefaultShaderProgram()
         uniform vec3 uCameraPos;
         uniform vec3 color;
 
-        out vec4 FragColor;
+        layout(location = 0) out vec4 FragColor;
+        layout(location = 1) out vec4 FragNormal;
 
         in vec2 vUV;
         in vec3 vNormal;
+        in vec3 vViewNormal;
         in vec3 vFragPos;
 
         uniform sampler2D baseColorTexture;
@@ -139,6 +143,7 @@ const std::shared_ptr<ShaderProgram> &GraphicsAPI::GetDefaultShaderProgram()
             vec3 result = (diffuse + specular + ambient) * texColor.xyz * color;
 
             FragColor = vec4(result, 1.0);
+            FragNormal = vec4(normalize(vViewNormal) * 0.5 + 0.5, 1.0);
         }
     )";
 

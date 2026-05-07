@@ -4,6 +4,7 @@
 #include "Constants.h"
 #include "Engine.h"
 #include "Log.h"
+#include "graphics/RenderSettings.h"
 #include "graphics/RenderTarget.h"
 #include "io/FileSystem.h"
 
@@ -49,6 +50,33 @@ GLuint LinkProgram(GLuint vs, GLuint fs)
     }
     return p;
 }
+
+const char *FramebufferStatusName(GLenum status)
+{
+    switch (status)
+    {
+        case GL_FRAMEBUFFER_COMPLETE:
+            return "complete";
+        case GL_FRAMEBUFFER_UNDEFINED:
+            return "undefined";
+        case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+            return "incomplete attachment";
+        case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+            return "missing attachment";
+        case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:
+            return "incomplete draw buffer";
+        case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:
+            return "incomplete read buffer";
+        case GL_FRAMEBUFFER_UNSUPPORTED:
+            return "unsupported";
+        case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:
+            return "incomplete multisample";
+        case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS:
+            return "incomplete layer targets";
+        default:
+            return "unknown";
+    }
+}
 }  // namespace
 
 bool PostProcess::Init()
@@ -80,6 +108,7 @@ bool PostProcess::Init()
     m_locTexel     = glGetUniformLocation(m_program, "uTexel");
     m_locDepthStr  = glGetUniformLocation(m_program, "uDepthEdgeStrength");
     m_locNormalStr = glGetUniformLocation(m_program, "uNormalEdgeStrength");
+    m_locPixelSize = glGetUniformLocation(m_program, "uPixelSize");
 
     return true;
 }
@@ -109,6 +138,12 @@ void PostProcess::DestroyFBO()
 
 bool PostProcess::CreateFBO(int w, int h)
 {
+    if (w <= 0 || h <= 0)
+    {
+        LOG_ERROR("PostProcess::CreateFBO called with invalid size %dx%d", w, h);
+        return false;
+    }
+
     DestroyFBO();
     glGenFramebuffers(1, &m_fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
@@ -121,12 +156,17 @@ bool PostProcess::CreateFBO(int w, int h)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_color, 0);
+    glDrawBuffer(GL_COLOR_ATTACHMENT0);
 
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     if (status != GL_FRAMEBUFFER_COMPLETE)
     {
-        LOG_ERROR("PostProcess FBO incomplete (0x%x) at %dx%d", status, w, h);
+        LOG_ERROR("PostProcess FBO incomplete (%s, 0x%x) at %dx%d",
+                  FramebufferStatusName(status),
+                  status,
+                  w,
+                  h);
         DestroyFBO();
         return false;
     }
@@ -146,14 +186,30 @@ void PostProcess::Resize(int w, int h)
 
 void PostProcess::RunOutline(const RenderTarget &scene, const CameraData & /*cam*/)
 {
-    if (!IsValid())
+    if (m_program == 0 || m_vao == 0 || !scene.IsValid())
     {
         return;
     }
 
     Resize(scene.Width(), scene.Height());
+    if (m_fbo == 0 || m_color == 0 || m_w <= 0 || m_h <= 0)
+    {
+        return;
+    }
+
+    const RenderSettings &settings = Engine::GetInstance().GetRenderSettings();
+    int pixelSize = settings.pixelSize;
+    if (pixelSize < 1)
+    {
+        pixelSize = 1;
+    }
+    else if (pixelSize > 32)
+    {
+        pixelSize = 32;
+    }
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+    glDrawBuffer(GL_COLOR_ATTACHMENT0);
     glViewport(0, 0, m_w, m_h);
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
@@ -176,11 +232,13 @@ void PostProcess::RunOutline(const RenderTarget &scene, const CameraData & /*cam
     if (m_locTexel     >= 0) glUniform2f(m_locTexel, 1.0F / static_cast<float>(m_w), 1.0F / static_cast<float>(m_h));
     if (m_locDepthStr  >= 0) glUniform1f(m_locDepthStr,  depthEdgeStrength);
     if (m_locNormalStr >= 0) glUniform1f(m_locNormalStr, normalEdgeStrength);
+    if (m_locPixelSize >= 0) glUniform1f(m_locPixelSize, static_cast<float>(pixelSize));
 
     glBindVertexArray(m_vao);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(0);
 
+    glUseProgram(0);
     glEnable(GL_DEPTH_TEST);
 }
 

@@ -3,6 +3,21 @@
 #include "combat/DamageEvent.h"
 #include "combat/DamageSystem.h"
 
+Bullet::~Bullet()
+{
+    auto *physics = GetComponent<mnd::PhysicsComponent>();
+    if (physics == nullptr)
+    {
+        return;
+    }
+
+    const auto &rigidBody = physics->GetRigidBody();
+    if (rigidBody)
+    {
+        rigidBody->RemoveContactListener(this);
+    }
+}
+
 void Bullet::Update(mnd::f32 deltaTime)
 {
     mnd::GameObject::Update(deltaTime);

@@ -21,9 +21,24 @@ if(NOT MONAD_DOCS_ONLY)
   find_program(MOLD_PROGRAM mold)
   find_program(LLD_PROGRAM ld.lld)
   if(MOLD_PROGRAM)
+    execute_process(
+      COMMAND ${MOLD_PROGRAM} --version
+      RESULT_VARIABLE MOLD_RESULT
+      OUTPUT_QUIET
+      ERROR_QUIET)
+  endif()
+  if(LLD_PROGRAM)
+    execute_process(
+      COMMAND ${LLD_PROGRAM} --version
+      RESULT_VARIABLE LLD_RESULT
+      OUTPUT_QUIET
+      ERROR_QUIET)
+  endif()
+
+  if(MOLD_PROGRAM AND MOLD_RESULT EQUAL 0)
     add_link_options(-fuse-ld=mold)
     message(STATUS "Linker: mold (${MOLD_PROGRAM})")
-  elseif(LLD_PROGRAM)
+  elseif(LLD_PROGRAM AND LLD_RESULT EQUAL 0)
     add_link_options(-fuse-ld=lld)
     message(STATUS "Linker: lld (${LLD_PROGRAM})")
   else()
@@ -34,6 +49,8 @@ if(NOT MONAD_DOCS_ONLY)
       source/main.cpp
       source/Game.h
       source/Game.cpp
+      source/Enemy.h
+      source/Enemy.cpp
       source/Player.h
       source/Player.cpp
       source/Bullet.h

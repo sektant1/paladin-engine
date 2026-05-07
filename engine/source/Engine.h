@@ -37,11 +37,14 @@
 #include "graphics/PostProcess.h"
 #include "graphics/RenderSettings.h"
 #include "graphics/RenderTarget.h"
+#include "graphics/RendererBackend.h"
 #include "graphics/Texture.h"
 #include "input/InputManager.h"
 #include "io/FileSystem.h"
 #include "physics/PhysicsManager.h"
 #include "render/RenderQueue.h"
+#include "render/ParticleSystem.h"
+#include "render/SpriteRenderer.h"
 #include "scene/Scene.h"
 
 struct GLFWwindow;
@@ -117,6 +120,12 @@ public:
     /// Returns the per-frame command queue that batches and issues draw calls.
     RenderQueue &GetRenderQueue();
 
+    /// Returns the 2D sprite/font renderer. Queue draw calls during Application::Update().
+    SpriteRenderer &GetSpriteRenderer() { return m_spriteRenderer; }
+
+    /// Returns the global particle pool. Emitter components push particles via Spawn().
+    ParticleSystem &GetParticleSystem() { return m_particleSystem; }
+
     /// Returns the file system helper for asset-relative path resolution.
     FileSystem &GetFileSystem();
 
@@ -173,7 +182,10 @@ private:
     GLFWwindow                           *m_window = nullptr;  ///< GLFW window handle.
     InputManager                          m_inputManager;      ///< Keyboard + mouse state.
     GraphicsAPI                           m_graphicsAPI;       ///< GL wrapper (shaders, buffers, draw).
+    std::unique_ptr<RendererBackend>      m_rendererBackend;   ///< Active renderer backend facade.
     RenderQueue                           m_renderQueue;       ///< Per-frame render command list.
+    SpriteRenderer                        m_spriteRenderer;    ///< 2D sprite/text overlay queue.
+    ParticleSystem                        m_particleSystem;    ///< CPU billboard particle pool.
     FileSystem                            m_fileSystem;        ///< Asset path resolver.
     TextureManager                        m_textureManager;    ///< Texture cache.
     AudioManager                          m_audioManager;
@@ -183,6 +195,10 @@ private:
 
     float m_timeScale = 1.0F;
     bool  m_paused    = false;
+
+    float m_fpsSmoothed     = 0.0F;  ///< EMA of 1/dt for the overlay counter.
+    float m_fpsRefreshTimer = 0.0F;  ///< Throttles the displayed value's refresh.
+    float m_fpsDisplayed    = 0.0F;  ///< The currently rendered FPS value.
 
     Editor         m_editor;          ///< ImGui overlay.
     RenderTarget   m_sceneTarget;     ///< Low-res FBO for pixelated look.

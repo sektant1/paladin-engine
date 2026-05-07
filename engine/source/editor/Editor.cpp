@@ -621,11 +621,19 @@ void Editor::DrawRenderBody()
     ImGui::ColorEdit4("Clear color", glm::value_ptr(rs.clearColor));
 
     ImGui::SeparatorText("Pixel art");
-    ImGui::SliderInt("pixelSize", &rs.pixelSize, 1, 16);
+    ImGui::Checkbox("Use Pixelation", &rs.useInternalRes);
+    ImGui::SliderInt("Pixel Size", &rs.pixelSize, 1, 32);
+    rs.pixelSize = std::clamp(rs.pixelSize, 1, 32);
+    ImGui::Text("Scene target: %d x %d", rs.internalW, rs.internalH);
+    ImGui::Checkbox("Use Outline", &rs.useOutline);
     {
         PostProcess &pp = Engine::GetInstance().GetPostProcess();
-        ImGui::SliderFloat("normalEdgeStrength", &pp.normalEdgeStrength, 0.0F, 2.0F);
-        ImGui::SliderFloat("depthEdgeStrength",  &pp.depthEdgeStrength,  0.0F, 1.0F);
+        ImGui::BeginDisabled(!rs.useOutline);
+        ImGui::SliderFloat("Normal Edge Strength", &pp.normalEdgeStrength, 0.0F, 2.0F);
+        ImGui::SliderFloat("Depth Edge Strength",  &pp.depthEdgeStrength,  0.0F, 2.0F);
+        pp.normalEdgeStrength = std::clamp(pp.normalEdgeStrength, 0.0F, 2.0F);
+        pp.depthEdgeStrength  = std::clamp(pp.depthEdgeStrength,  0.0F, 2.0F);
+        ImGui::EndDisabled();
     }
 
     ImGui::SeparatorText("Debug view");

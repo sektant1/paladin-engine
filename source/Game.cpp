@@ -9,6 +9,7 @@
 #include <imgui.h>
 
 #include "Bullet.h"
+#include "Enemy.h"
 #include "GameConstants.h"
 #include "JumpPlatform.h"
 #include "Monad.h"
@@ -31,6 +32,7 @@ bool Game::Init()
 void Game::RegisterTypes()
 {
     Player::Register();
+    Enemy::Register();
     JumpPlatform::Register();
     Bullet::Register();
 }

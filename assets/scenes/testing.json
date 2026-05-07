@@ -77,6 +77,18 @@
       ]
     },
     {
+      "name": "BigfootEnemy",
+      "type": "Enemy",
+      "position": { "x": 2.0, "y": 1.5, "z": -12.0 },
+      "capsuleRadius": 0.55,
+      "capsuleHeight": 2.0,
+      "colliderHalfExtents": { "x": 0.55, "y": 1.0, "z": 0.55 },
+      "maxHealth": 75,
+      "moveSpeed": 1.4,
+      "detectionRange": 18.0,
+      "stopDistance": 1.7
+    },
+    {
       "name": "Ground",
       "position": {
         "x": 0,

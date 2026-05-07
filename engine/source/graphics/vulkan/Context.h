@@ -24,10 +24,7 @@ struct QueueFamilies
     uint32_t graphics = UINT32_MAX;
     uint32_t present  = UINT32_MAX;
 
-    [[nodiscard]] bool IsComplete() const
-    {
-        return graphics != UINT32_MAX && present != UINT32_MAX;
-    }
+    [[nodiscard]] bool IsComplete() const { return graphics != UINT32_MAX && present != UINT32_MAX; }
 };
 
 /**
@@ -42,7 +39,7 @@ struct QueueFamilies
  */
 class Context
 {
-public:
+ public:
     /// @param window Required — used to create a VkSurfaceKHR via GLFW.
     /// @param enableValidation Toggle VK_LAYER_KHRONOS_validation + debug messenger.
     Context(GLFWwindow *window, bool enableValidation);
@@ -51,15 +48,21 @@ public:
     Context(const Context &)            = delete;
     Context &operator=(const Context &) = delete;
 
-    [[nodiscard]] VkInstance       GetInstance()       const { return m_instance; }
-    [[nodiscard]] VkSurfaceKHR     GetSurface()        const { return m_surface; }
-    [[nodiscard]] VkPhysicalDevice GetPhysicalDevice() const { return m_physicalDevice; }
-    [[nodiscard]] VkDevice         GetDevice()         const { return m_device; }
-    [[nodiscard]] VkQueue          GetGraphicsQueue()  const { return m_graphicsQueue; }
-    [[nodiscard]] VkQueue          GetPresentQueue()   const { return m_presentQueue; }
-    [[nodiscard]] QueueFamilies    GetQueueFamilies()  const { return m_queueFamilies; }
+    [[nodiscard]] VkInstance GetInstance() const { return m_instance; }
 
-private:
+    [[nodiscard]] VkSurfaceKHR GetSurface() const { return m_surface; }
+
+    [[nodiscard]] VkPhysicalDevice GetPhysicalDevice() const { return m_physicalDevice; }
+
+    [[nodiscard]] VkDevice GetDevice() const { return m_device; }
+
+    [[nodiscard]] VkQueue GetGraphicsQueue() const { return m_graphicsQueue; }
+
+    [[nodiscard]] VkQueue GetPresentQueue() const { return m_presentQueue; }
+
+    [[nodiscard]] QueueFamilies GetQueueFamilies() const { return m_queueFamilies; }
+
+ private:
     void CreateInstance();
     void CreateDebugMessenger();
     void CreateSurface(GLFWwindow *window);

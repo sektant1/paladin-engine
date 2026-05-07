@@ -26,6 +26,7 @@ uniform mat4 uBones[MAX_BONES];
 
 out vec2 vUV;
 out vec3 vNormal;
+out vec3 vViewNormal;
 out vec3 vFragPos;
 
 void main()
@@ -49,6 +50,7 @@ void main()
     vec4 worldPos = uModel * skinnedPos;
     vFragPos = worldPos.xyz;
     vNormal  = mat3(transpose(inverse(uModel))) * skinnedNrm;
+    vViewNormal = normalize(mat3(uView) * normalize(vNormal));
     vUV      = aTexCoord;
 
     gl_Position = uProjection * uView * worldPos;

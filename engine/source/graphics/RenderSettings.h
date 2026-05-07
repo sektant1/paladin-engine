@@ -65,6 +65,8 @@ struct RenderSettings
     vec3 lightDir       = vec3(0.0F, -1.0F, 0.0F); ///< Sun/directional light vector.
     f32  colorDepth     = 0.0F;  ///< levels per channel; <= 1 disables quantize
     f32  ditherStrength = 0.0F;  ///< Bayer dither amount applied after quantization.
+
+    bool showFps = true;  ///< Draw FPS counter overlay in top-left corner.
 };
 
 }  // namespace mnd
