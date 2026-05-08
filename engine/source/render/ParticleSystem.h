@@ -30,13 +30,13 @@ struct CameraData;
 
 struct Particle
 {
-    vec3  position{0.0F};
-    vec3  velocity{0.0F};
-    vec3  acceleration{0.0F};  ///< World-space gravity / drag, applied each frame.
-    vec4  colorStart{1.0F};
-    vec4  colorEnd{1.0F};
-    float age      = 0.0F;
-    float lifetime = 1.0F;
+    vec3  position {0.0F};
+    vec3  velocity {0.0F};
+    vec3  acceleration {0.0F};  ///< World-space gravity / drag, applied each frame.
+    vec4  colorStart {1.0F};
+    vec4  colorEnd {1.0F};
+    float age       = 0.0F;
+    float lifetime  = 1.0F;
     float sizeStart = 0.2F;
     float sizeEnd   = 0.0F;
 
@@ -58,11 +58,14 @@ class ParticleSystem
     /// Push a fully-configured particle into the pool. Drops oldest if full.
     void Spawn(const Particle &particle);
 
-    void                       Clear() { m_particles.clear(); }
-    [[nodiscard]] std::size_t  GetAliveCount() const { return m_particles.size(); }
-    [[nodiscard]] std::size_t  GetCapacity() const { return m_capacity; }
+    void Clear() { m_particles.clear(); }
+
+    [[nodiscard]] std::size_t GetAliveCount() const { return m_particles.size(); }
+
+    [[nodiscard]] std::size_t GetCapacity() const { return m_capacity; }
 
     void SetPaused(bool paused) { m_paused = paused; }
+
     [[nodiscard]] bool IsPaused() const { return m_paused; }
 
  private:
